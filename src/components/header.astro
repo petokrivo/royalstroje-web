@@ -1,0 +1,1105 @@
+---
+// src/components/header.astro
+
+// Definícia kategórií pre accordion menu
+const categories = [
+  {
+    title: "Malé náradie",
+    url: "/pozicovna-naradia/male-naradie",
+    items: [
+      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva" },
+      { name: "Uhlové, vibračné a pásové brúsky", url: "/pozicovna-naradia/male-naradie/brusky" },
+      { name: "Ručné píly a rezačky", url: "/pozicovna-naradia/male-naradie/pily-rezacky" },
+      { name: "Vysávače, tepovače a tlakové čističe", url: "/pozicovna-naradia/male-naradie/vysavace-cistice" },
+      { name: "Čerpadlá, ohrievače a odvlhčovače", url: "/pozicovna-naradia/male-naradie/cerpadla-ohriavace" },
+      { name: "Zváracia a meracia technika", url: "/pozicovna-naradia/male-naradie/zvaracia-meracia" },
+      { name: "Vibrátory, vibračné lišty a miešadla", url: "/pozicovna-naradia/male-naradie/vibratory-miesadla" },
+      { name: "Lešenie", url: "/pozicovna-naradia/male-naradie/lesenie" },
+      { name: "Záhradná technika", url: "/pozicovna-naradia/male-naradie/zahradna-technika" },
+      { name: "Nádrže na vodu a naftu", url: "/pozicovna-naradia/male-naradie/nadrze" }
+    ]
+  },
+  {
+    title: "Stredná mechanizácia",
+    url: "/pozicovna-naradia/stredna-mechanizacia",
+    items: [
+      { name: "Vibračné dosky a nohy", url: "/pozicovna-naradia/stredna-mechanizacia/vibracne-dosky" },
+      { name: "Elektrocentrály", url: "/pozicovna-naradia/stredna-mechanizacia/elektrocentraly" },
+      { name: "Kompresory", url: "/pozicovna-naradia/stredna-mechanizacia/kompresory" },
+      { name: "Cestné rezačky, frézy a brúsky", url: "/pozicovna-naradia/stredna-mechanizacia/cestne-rezacky" },
+      { name: "Stolové a portálové píly", url: "/pozicovna-naradia/stredna-mechanizacia/stolove-pily" },
+      { name: "Miešačky, hladičky betónu a bádie", url: "/pozicovna-naradia/stredna-mechanizacia/miesacky-betonarske" }
+    ]
+  },
+  {
+    title: "Ťažká technika",
+    url: "/pozicovna-naradia/tazka-technika",
+    items: [
+      { name: "Pásové mini-rýpadlá", url: "/pozicovna-naradia/tazka-technika/mini-rypadla" },
+      { name: "Pásové ťažké rýpadlá", url: "/pozicovna-naradia/tazka-technika/tazke-rypadla" },
+      { name: "Kolesové rýpadla a nakladače", url: "/pozicovna-naradia/tazka-technika/kolesove-rypadla" },
+      { name: "Šmykom riadené nakladače", url: "/pozicovna-naradia/tazka-technika/smykom-riadene" },
+      { name: "Dumpre", url: "/pozicovna-naradia/tazka-technika/dumpre" },
+      { name: "Valce", url: "/pozicovna-naradia/tazka-technika/valce" }
+    ]
+  },
+  {
+    title: "Manipulačná technika",
+    url: "/pozicovna-naradia/manipulacna-technika",
+    items: [
+      { name: "Manipulátory a vysokozdvižné vozíky", url: "/pozicovna-naradia/manipulacna-technika/manipulatory" },
+      { name: "Pracovné plošiny", url: "/pozicovna-naradia/manipulacna-technika/pracovne-plosiny" },
+      { name: "Interiérové plošiny", url: "/pozicovna-naradia/manipulacna-technika/interierove-plosiny" },
+      { name: "Exteriérové plošiny", url: "/pozicovna-naradia/manipulacna-technika/exterierove-plosiny" }
+    ]
+  },
+  {
+    title: "Vybavenie staveniska",
+    url: "/pozicovna-naradia/vybavenie-staveniska",
+    items: [
+      { name: "Kancelárske kontajnery a vrátnice", url: "/pozicovna-naradia/vybavenie-staveniska/kontajnery-vratnice" },
+      { name: "Skladové kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/skladove-kontajnery" },
+      { name: "Sanitárne kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/sanitarne-kontajnery" },
+      { name: "Mobilné oplotenie a zábrany", url: "/pozicovna-naradia/vybavenie-staveniska/oplotenie-zabrany" },
+      { name: "Mobilné toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
+    ]
+  },
+  {
+    title: "Autá a prívesné vozíky",
+    url: "/pozicovna-naradia/auta-privesy",
+    items: [
+      { name: "Autá a dodávky", url: "/pozicovna-naradia/auta-privesy/auta-dodavky" },
+      { name: "Prívesné vozíky", url: "/pozicovna-naradia/auta-privesy/privesne-voziky" }
+    ]
+  }
+];
+
+// Hlavné menu
+const mainNav = [
+  { name: "Domov", url: "/" },
+  { name: "Požičovňa náradia", url: "/pozicovna-naradia", hasDropdown: true },
+  { name: "Zemné a búracie práce", url: "/zemne-buracie-prace" },
+  { name: "Kontakt", url: "/kontakt" }
+];
+---
+
+<header class="site-header" id="header">
+  <div class="header-bg">
+    <div class="header-gradient"></div>
+    <div class="header-mesh"></div>
+  </div>
+  
+  <div class="header-wrap">
+    <!-- Logo/Brand -->
+    <a href="/" class="brand">
+      <div class="brand-logo">
+        <div class="logo-icon">RS</div>
+        <div class="logo-glow"></div>
+      </div>
+      <div class="brand-text">
+        <h1>ROYAL STROJE</h1>
+        <span>Premium náradie</span>
+      </div>
+    </a>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav" id="mainNav">
+      {mainNav.map((item) => (
+        <div class="nav-item" data-dropdown={item.hasDropdown ? "true" : "false"}>
+          <a href={item.url} class="nav-link">
+            {item.name}
+            {item.hasDropdown && (
+              <svg class="dropdown-icon" viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z"/>
+              </svg>
+            )}
+            <span class="nav-glow"></span>
+          </a>
+          
+          {item.hasDropdown && (
+            <div class="mega-menu">
+              <div class="mega-menu-content">
+                <div class="accordion-menu">
+                  {categories.map((category, index) => (
+                    <div class="accordion-item" data-category={index}>
+                      <button class="accordion-header" type="button">
+                        <span class="accordion-title">{category.title}</span>
+                        <svg class="accordion-icon" viewBox="0 0 24 24">
+                          <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                      </button>
+                      <div class="accordion-content">
+                        <div class="accordion-inner">
+                          <div class="category-overview">
+                            <a href={category.url} class="category-main-link">
+                              Zobraziť všetko v kategórii {category.title}
+                              <svg viewBox="0 0 24 24">
+                                <path d="M5 12h14m-7-7l7 7-7 7"/>
+                              </svg>
+                            </a>
+                          </div>
+                          <div class="category-items-grid">
+                            {category.items.map((subItem) => (
+                              <a href={subItem.url} class="category-item-link">
+                                <span class="item-icon">
+                                  <svg viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                  </svg>
+                                </span>
+                                {subItem.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div class="mega-menu-cta">
+                  <div class="cta-content">
+                    <h4>Potrebujete poradiť?</h4>
+                    <p>Kontaktujte nás a pomôžeme vám vybrať správne náradie</p>
+                    <a href="tel:+421948555551" class="cta-phone">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                      </svg>
+                      0948 555 551
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Online Status -->
+      <div class="online-status">
+        <div class="status-dot"></div>
+        <span class="status-text">ONLINE 24/7</span>
+      </div>
+      
+      <!-- Phone CTA -->
+      <a href="tel:+421948555551" class="phone-cta">
+        <svg class="phone-icon" viewBox="0 0 24 24">
+          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+        </svg>
+        <span>0948 555 551</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Otvoriť menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-content">
+      <nav class="mobile-nav">
+        {mainNav.map((item) => (
+          <div class="mobile-nav-item">
+            <a href={item.url} class="mobile-nav-link">
+              {item.name}
+            </a>
+            {item.hasDropdown && (
+              <div class="mobile-submenu">
+                {categories.map((category) => (
+                  <div class="mobile-category">
+                    <a href={category.url} class="mobile-category-title">
+                      {category.title}
+                    </a>
+                    <div class="mobile-category-items">
+                      {category.items.map((subItem) => (
+                        <a href={subItem.url} class="mobile-category-link">
+                          {subItem.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </nav>
+      
+      <div class="mobile-actions">
+        <div class="mobile-status">
+          <div class="status-dot"></div>
+          <span>ONLINE 24/7</span>
+        </div>
+        <a href="tel:+421948555551" class="mobile-phone">
+          <svg viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+          </svg>
+          0948 555 551
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  :root {
+    --brand: #ff6b00;
+    --brand-dark: #e85d00;
+    --brand-light: #ff8533;
+    --gold: #ffb366;
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+    --bg: #0a0a0a;
+    --bg-secondary: #111111;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+
+  /* ---------------- HEADER BASE ---------------- */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 107, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .site-header.scrolled {
+    background: rgba(10, 10, 10, 0.98);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .header-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .header-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
+  }
+
+  .header-mesh {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 107, 0, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+    opacity: 0.3;
+  }
+
+  .header-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------------- BRAND/LOGO ---------------- */
+  .brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .brand:hover {
+    transform: translateY(-1px);
+  }
+
+  .brand-logo {
+    position: relative;
+    margin-right: 16px;
+  }
+
+  .logo-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 20px;
+    color: #000;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+
+  .logo-glow {
+    position: absolute;
+    inset: -4px;
+    background: inherit;
+    border-radius: inherit;
+    filter: blur(12px);
+    opacity: 0.4;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  .brand:hover .logo-glow {
+    opacity: 0.7;
+  }
+
+  .brand-text h1 {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--text);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .brand-text span {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  /* ---------------- MAIN NAVIGATION ---------------- */
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 20px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--glass);
+    transform: translateY(-1px);
+  }
+
+  .nav-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-link:hover .nav-glow {
+    opacity: 1;
+  }
+
+  .dropdown-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-item:hover .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  /* ---------------- MEGA MENU ---------------- */
+  .mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    background: rgba(15, 15, 15, 0.98);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    border-radius: 20px;
+    margin-top: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mega-menu-content {
+    padding: 24px;
+  }
+
+  /* ---------------- ACCORDION MENU ---------------- */
+  .accordion-menu {
+    margin-bottom: 24px;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .accordion-header:hover {
+    color: var(--brand);
+  }
+
+  .accordion-header:hover::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    right: -24px;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 107, 0, 0.05);
+    border-radius: 12px;
+    z-index: -1;
+  }
+
+  .accordion-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .accordion-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .accordion-item.active .accordion-header {
+    color: var(--brand);
+  }
+
+  .accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+    color: var(--brand);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .accordion-item.active .accordion-content {
+    max-height: 500px;
+  }
+
+  .accordion-inner {
+    padding: 0 0 20px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease 0.1s;
+  }
+
+  .accordion-item.active .accordion-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .category-overview {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .category-main-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 12px;
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .category-main-link:hover {
+    background: rgba(255, 107, 0, 0.15);
+    border-color: rgba(255, 107, 0, 0.4);
+    transform: translateX(4px);
+  }
+
+  .category-main-link svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  .category-items-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .category-item-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    line-height: 1.4;
+  }
+
+  .category-item-link:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+  }
+
+  .item-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 107, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  .item-icon svg {
+    width: 10px;
+    height: 10px;
+    fill: var(--brand);
+  }
+
+  .mega-menu-cta {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 24px;
+  }
+
+  .cta-content {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 107, 0, 0.05));
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .cta-content h4 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 8px;
+  }
+
+  .cta-content p {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin: 0 0 20px;
+  }
+
+  .cta-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .cta-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+  }
+
+  .cta-phone svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* ---------------- HEADER ACTIONS ---------------- */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .online-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--brand);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .status-text {
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .phone-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 12px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .phone-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+  }
+
+  .phone-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* ---------------- MOBILE MENU ---------------- */
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  /* ---------------- MOBILE MENU ---------------- */
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-toggle:hover {
+    background: var(--glass);
+  }
+
+  .hamburger-line {
+    width: 24px;
+    height: 3px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .mobile-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(30px);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+  }
+
+  .mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-content {
+    padding: 40px 24px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .mobile-nav-item {
+    margin-bottom: 20px;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.3s ease;
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--brand);
+  }
+
+  .mobile-submenu {
+    padding-left: 20px;
+    margin-top: 16px;
+  }
+
+  .mobile-category {
+    margin-bottom: 24px;
+  }
+
+  .mobile-category-title {
+    display: block;
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .mobile-category-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-category-link {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-category-link:hover {
+    color: var(--text);
+  }
+
+  .mobile-actions {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
+
+  .mobile-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .mobile-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+  }
+
+  .mobile-phone svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width: 1024px) {
+    .mega-menu {
+      width: 100vw;
+      left: 0;
+      transform: none;
+      border-radius: 0;
+      margin-top: 0;
+    }
+
+    .nav-item:hover .mega-menu {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-wrap {
+      padding: 0 16px;
+      height: 70px;
+    }
+
+    .main-nav,
+    .header-actions {
+      display: none;
+    }
+
+    .mobile-toggle {
+      display: flex;
+    }
+
+    .brand-text span {
+      display: none;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-wrap {
+      padding: 0 12px;
+    }
+
+    .brand-text h1 {
+      font-size: 18px;
+    }
+  }
+
+  /* ---------------- ACCESSIBILITY ---------------- */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Focus states */
+  .nav-link:focus,
+  .phone-cta:focus,
+  .mobile-toggle:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  // Header scroll effects
+  const header = document.getElementById('header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+  }, { passive: true });
+
+  // Accordion functionality in mega menu
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const accordionItem = header.closest('.accordion-item');
+      const isActive = accordionItem.classList.contains('active');
+      
+      // Close all other accordion items
+      accordionHeaders.forEach(otherHeader => {
+        const otherItem = otherHeader.closest('.accordion-item');
+        if (otherItem !== accordionItem) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      // Toggle current item
+      if (isActive) {
+        accordionItem.classList.remove('active');
+      } else {
+        accordionItem.classList.add('active');
+      }
+    });
+  });
+
+  // Close accordion when clicking outside mega menu
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.mega-menu')) {
+      accordionHeaders.forEach(header => {
+        const accordionItem = header.closest('.accordion-item');
+        accordionItem.classList.remove('active');
+      });
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  mobileToggle?.addEventListener('click', () => {
+    mobileToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  });
+
+  // Close mobile menu when clicking on links
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileToggle.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close mobile menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+      mobileToggle.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Keyboard navigation for accordion
+  accordionHeaders.forEach(header => {
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        header.click();
+      }
+    });
+  });
+
+  // Auto-close mega menu when mouse leaves
+  const navItems = document.querySelectorAll('.nav-item[data-dropdown="true"]');
+  let megaMenuTimeout;
+
+  navItems.forEach(item => {
+    const megaMenu = item.querySelector('.mega-menu');
+    
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(megaMenuTimeout);
+    });
+    
+    item.addEventListener('mouseleave', () => {
+      megaMenuTimeout = setTimeout(() => {
+        // Close all accordion items when leaving mega menu
+        accordionHeaders.forEach(header => {
+          const accordionItem = header.closest('.accordion-item');
+          accordionItem.classList.remove('active');
+        });
+      }, 300);
+    });
+  });
+</script>

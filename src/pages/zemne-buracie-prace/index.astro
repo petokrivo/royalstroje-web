@@ -1,0 +1,152 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const TITLE = "Zemné a búracie práce – ROYAL STROJE";
+const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, planírovanie, odvoz odpadu a dovoz materiálu. Senec • Bratislava a okolie.";
+---
+<Layout title={TITLE} description={DESC}>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="hero-text">
+        <h1>Zemné a búracie práce</h1>
+        <p>Rýchle termíny • Presná práca • Férové ceny</p>
+        <div class="actions">
+          <a class="btn" href="tel:+421948555551">Zavolať 0948 555 551</a>
+          <a class="btn ghost" href="/kontakt">Napísať správu</a>
+        </div>
+      </div>
+
+      <!-- HERO FOTO (nahraď vlastnou) -->
+      <figure class="hero-img">
+        <img src="/images/zemne/hero.webp" alt="Mini-rýpadlo pri výkope základov" loading="eager" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- SLUŽBY -->
+  <section class="services">
+    <div class="wrap">
+      <h2>Čo ponúkame</h2>
+      <ul class="list">
+        <li><span class="dot"></span> Výkopy základov, bazénov, pivníc, žúmp a čističiek</li>
+        <li><span class="dot"></span> Vodovodné a kanalizačné prípojky, inžinierske siete, šachty a montážne jamy</li>
+        <li><span class="dot"></span> Vŕtanie dier pre plotové stĺpiky – vrtáky Ø 300 a 400&nbsp;mm (mini-rýpadlo)</li>
+        <li><span class="dot"></span> Búracie práce s hydraulickým kladivom</li>
+        <li><span class="dot"></span> Zrovnávanie a úpravy pozemkov (planírovanie)</li>
+        <li><span class="dot"></span> Nakládka a vykládka kamiónov manipulačnou technikou</li>
+        <li><span class="dot"></span> Odvoz a likvidácia odpadu – kontajnery 3, 4, 5, 7, 10&nbsp;m³</li>
+        <li><span class="dot"></span> Dovoz materiálu – štrk, piesok, makadam, zemina</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TECHNIKA / OBRÁZKY (iba placeholdre – nahraď) -->
+  <section class="gallery">
+    <div class="wrap grid">
+      <figure class="card">
+        <img src="/images/zemne/kladivo.webp" alt="Hydraulické kladivo – búracie práce" loading="lazy" />
+        <figcaption>Hydraulické kladivo – búracie práce</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="/images/zemne/nakladac.webp" alt="Nakladač – nakládka a prevoz materiálu" loading="lazy" />
+        <figcaption>Nakladač – nakládka a prevoz</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="/images/zemne/kontajner.webp" alt="Kontajnery 3–10 m³ – odvoz odpadu" loading="lazy" />
+        <figcaption>Kontajnery 3–10 m³ – odvoz odpadu</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="/images/zemne/material.webp" alt="Dovoz materiálu: štrk, piesok, makadam, zemina" loading="lazy" />
+        <figcaption>Dovoz štrku, piesku, makadamu</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PREČO MY -->
+  <section class="reasons">
+    <div class="wrap grid4">
+      <div class="b"><span class="dot"></span><h3>Rýchle termíny</h3><p>Flexibilné nasadenie strojov – Senec, Bratislava a okolie.</p></div>
+      <div class="b"><span class="dot"></span><h3>Férové ceny</h3><p>Transparentne a bez skrytých poplatkov.</p></div>
+      <div class="b"><span class="dot"></span><h3>Presná práca</h3><p>Skúsený tím a moderná technika šetria čas aj náklady.</p></div>
+      <div class="b"><span class="dot"></span><h3>Profesionalita</h3><p>Kvalita, odbornosť a etika sú u nás na prvom mieste.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA PÁS -->
+  <section class="cta">
+    <div class="wrap cta-in">
+      <h2>Potrebujete zemné alebo búracie práce?</h2>
+      <p>Zavolajte – dohodneme obhliadku a termín.</p>
+      <div class="actions">
+        <a class="btn" href="tel:+421948555551">Zavolať 0948 555 551</a>
+        <a class="btn ghost" href="/kontakt">Napísať správu</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+/* FULL-WIDTH SEKCIE */
+.hero, .services, .gallery, .reasons, .cta { margin:0; padding:0; }
+.wrap{ width:100%; max-width:1180px; margin:0 auto; padding:0 22px; }
+
+/* PRÉMIOVÝ ČIERN0-ORANŽOVÝ HERO */
+.hero{
+  background:
+    radial-gradient(160% 220% at 0% 0%, #181818 0%, #111 55%, #0a0a0a 100%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+  border-bottom:1px solid rgba(255,255,255,.07);
+  color:#fff;
+}
+.hero-wrap{
+  display:grid; grid-template-columns:1.1fr .9fr; gap:24px;
+  align-items:center; padding:42px 22px 34px;
+}
+.hero-text h1{font-size:clamp(30px,6vw,56px);margin:0 0 8px;font-weight:800}
+.hero-text p{margin:0 0 18px;color:#eaeaea}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;background:#f66000;color:#fff;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:800;box-shadow:0 6px 24px rgba(246,96,0,.25)}
+.btn:hover{opacity:.9}
+.btn.ghost{background:transparent;border:2px solid #f66000;color:#f66000}
+.hero-img img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 60px rgba(0,0,0,.35)}
+
+/* SLUŽBY – tmavá plocha s oranžovým akcentom */
+.services{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:26px 0 10px }
+.services h2{ margin:0 0 8px; font-size:24px }
+.list{ display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); padding:12px 0 24px; margin:0; list-style:none }
+.list li{
+  background:#171717; border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:12px 14px;
+}
+.dot{width:10px;height:10px;border-radius:50%;background:#f66000;box-shadow:0 0 10px rgba(246,96,0,.6);display:inline-block;margin-right:10px;vertical-align:middle}
+
+/* GALÉRIA / TECHNIKA */
+.gallery{ background:#0b0b0b; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:26px 0 }
+.grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)) }
+.card{
+  background:#141414; border:1px solid rgba(255,255,255,.10); border-radius:16px; overflow:hidden;
+  transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover{ transform:translateY(-2px); box-shadow:0 18px 60px rgba(0,0,0,.35); border-color:rgba(246,96,0,.45) }
+.card img{ width:100%; height:auto; display:block }
+.card figcaption{ padding:10px 12px; font-weight:700 }
+
+/* PREČO MY – tmavý pás so štvoricou benefitov */
+.reasons{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:28px 0 }
+.grid4{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)) }
+.b{ background:#171717; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px }
+.b h3{ margin:6px 0 6px; font-weight:800 }
+.b p{ margin:0; color:#cfcfcf }
+
+/* CTA pás – tmavý prechod s oranžovým akcentom */
+.cta{
+  background:linear-gradient(180deg,#111 0%, #0c0c0c 100%); color:#fff; padding:40px 0 56px;
+}
+.cta-in{ text-align:center }
+.cta-in h2{ margin:0 0 6px; font-size:clamp(20px,4vw,30px) }
+.cta-in p{ margin:0 0 12px; color:#e5e5e5 }
+
+/* RESPONSIVE */
+@media (max-width:900px){
+  .hero-wrap{ grid-template-columns:1fr; padding:28px 22px }
+}
+</style>

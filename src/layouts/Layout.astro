@@ -1,0 +1,636 @@
+---
+// src/layouts/Layout.astro
+import Header from "../components/Header.astro";
+
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { 
+  title = "ROYAL STROJE - Požičovňa náradia a techniky",
+  description = "Profesionálny prenájom stavebnej techniky a náradia v Seneci a okolí. Malé náradie, ťažká technika, manipulačná technika a vybavenie staveniska.",
+  ogImage = "/og-image.jpg"
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+---
+
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <!-- Essential Meta Tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="ROYAL STROJE" />
+    <meta property="og:locale" content="sk_SK" />
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+    
+    <!-- Business/Local SEO -->
+    <meta name="geo.region" content="SK-BC" />
+    <meta name="geo.placename" content="Senec" />
+    <meta name="geo.position" content="48.2208;17.4017" />
+    <meta name="ICBM" content="48.2208, 17.4017" />
+    
+    <!-- Theme and Icons -->
+    <meta name="theme-color" content="#ff6b00" />
+    <meta name="msapplication-TileColor" content="#ff6b00" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Preconnect to improve performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "ROYAL STROJE",
+        "telephone": "+421948555551",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Récka cesta 182",
+          "addressLocality": "Senec",
+          "postalCode": "903 01",
+          "addressCountry": "SK"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 48.2208,
+          "longitude": 17.4017
+        },
+        "openingHours": "Mo-Su 00:00-23:59",
+        "description": "Profesionálny prenájom stavebnej techniky a náradia v Seneci a okolí."
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Preskočiť na hlavný obsah</a>
+    
+    <!-- Background Elements -->
+    <div class="page-background">
+      <div class="bg-gradient"></div>
+      <div class="bg-mesh"></div>
+      <div class="bg-particles"></div>
+    </div>
+    
+    <!-- Header -->
+    <Header />
+    
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+      <slot />
+    </main>
+    
+    <!-- Footer Placeholder -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-wrap">
+          <div class="footer-info">
+            <div class="footer-brand">
+              <h3>ROYAL STROJE</h3>
+              <p>Profesionálny prenájom stavebnej techniky</p>
+            </div>
+            
+            <div class="footer-contact">
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" class="contact-icon">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                </svg>
+                <a href="tel:+421948555551">0948 555 551</a>
+              </div>
+              
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" class="contact-icon">
+                  <path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 119.5 9 2.5 2.5 0 0112 11.5z"/>
+                </svg>
+                <span>Récka cesta 182, Senec</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="footer-status">
+            <div class="status-badge">
+              <div class="status-dot"></div>
+              <span>ONLINE 24/7</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <div class="footer-wrap">
+            <p>&copy; 2024 ROYAL STROJE s.r.o. Všetky práva vyhradené.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Späť navrch">
+      <svg viewBox="0 0 24 24">
+        <path d="M7 14l5-5 5 5z"/>
+      </svg>
+    </button>
+  </body>
+</html>
+
+<style is:global>
+  /* ---------------- CSS VARIABLES ---------------- */
+  :root {
+    --brand: #ff6b00;
+    --brand-dark: #e85d00;
+    --brand-light: #ff8533;
+    --gold: #ffb366;
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+    --text-muted: #888888;
+    --bg: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1a1a1a;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: rgba(0, 0, 0, 0.5);
+    --shadow-heavy: rgba(0, 0, 0, 0.8);
+    
+    /* Spacing */
+    --container-max: 1400px;
+    --container-padding: 24px;
+    --section-padding: 80px;
+    
+    /* Typography */
+    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ---------------- RESET & BASE STYLES ---------------- */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    overflow-x: hidden;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    transition: var(--transition-normal);
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  /* ---------------- SKIP LINK ---------------- */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--brand);
+    color: #000;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 10000;
+    font-weight: 600;
+    transition: var(--transition-normal);
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
+  /* ---------------- BACKGROUND ELEMENTS ---------------- */
+  .page-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(255, 107, 0, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 179, 102, 0.02) 0%, transparent 50%),
+      linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
+  }
+
+  .bg-mesh {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(255, 107, 0, 0.05) 1px, transparent 0);
+    background-size: 60px 60px;
+    animation: float-mesh 20s ease-in-out infinite;
+  }
+
+  @keyframes float-mesh {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .bg-particles {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, rgba(255, 107, 0, 0.2), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.05), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255, 107, 0, 0.15), transparent);
+    background-repeat: repeat;
+    background-size: 150px 100px;
+    animation: drift 30s linear infinite;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-150px, -100px); }
+  }
+
+  /* ---------------- MAIN CONTENT ---------------- */
+  .main-content {
+    padding-top: 80px; /* Header height compensation */
+    min-height: calc(100vh - 80px);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------------- UTILITY CLASSES ---------------- */
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .section {
+    padding: var(--section-padding) 0;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ---------------- TYPOGRAPHY ---------------- */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--text-dim);
+  }
+
+  /* ---------------- FOOTER PLACEHOLDER ---------------- */
+  .site-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid rgba(255, 107, 0, 0.1);
+    margin-top: var(--section-padding);
+  }
+
+  .footer-content {
+    padding: 40px 0 20px;
+  }
+
+  .footer-wrap {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand h3 {
+    color: var(--brand);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .footer-brand p {
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-dim);
+  }
+
+  .contact-item a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .contact-item a:hover {
+    color: var(--brand-light);
+  }
+
+  .contact-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .footer-status {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 50px;
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--brand);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* ---------------- BACK TO TOP BUTTON ---------------- */
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    border: none;
+    border-radius: 50%;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: var(--transition-slow);
+    z-index: 1000;
+  }
+
+  .back-to-top.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255, 107, 0, 0.5);
+  }
+
+  .back-to-top svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  /* ---------------- RESPONSIVE DESIGN ---------------- */
+  @media (max-width: 768px) {
+    :root {
+      --container-padding: 16px;
+      --section-padding: 60px;
+    }
+
+    .main-content {
+      padding-top: 70px; /* Mobile header height */
+    }
+
+    .footer-info {
+      flex-direction: column;
+      text-align: center;
+      gap: 30px;
+    }
+
+    .back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --container-padding: 12px;
+      --section-padding: 40px;
+    }
+  }
+
+  /* ---------------- ACCESSIBILITY ---------------- */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Focus states */
+  *:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--brand);
+    color: #000;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--brand), var(--brand-dark));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--brand-light), var(--brand));
+  }
+</style>
+
+<script>
+  // Back to top functionality
+  const backToTop = document.getElementById('backToTop');
+  
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }, { passive: true });
+    
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with animation classes
+  document.querySelectorAll('[class*="animate"]').forEach(el => {
+    observer.observe(el);
+  });
+</script>
