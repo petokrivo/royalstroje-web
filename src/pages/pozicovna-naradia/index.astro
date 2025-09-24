@@ -6,38 +6,129 @@ const categories = [
   {
     title: "Malé náradie",
     url: "/pozicovna-naradia/male-naradie",
-    image: "/images/categories/male-naradie.webp", // Sem vložte fotku
+    image: "/images/categories/male-naradie.webp",
     description: "Ručné náradie, malá stavebná mechanizácia, vykurovacie zariadenia, čerpadlá, meracia technika, záhradná technika."
   },
   {
-    title: "Stredná mechanizácia",
+    title: "Stredná mechanizácia", 
     url: "/pozicovna-naradia/stredna-mechanizacia",
-    image: "/images/categories/stredna-mechanizacia.webp", // Sem vložte fotku
+    image: "/images/categories/stredna-mechanizacia.webp",
     description: "Vibračné nohy a dosky, cestné píly, elektrocentrály, kompresory, miešačky a ďalšie."
   },
   {
     title: "Ťažká technika",
-    url: "/pozicovna-naradia/tazka-technika",
-    image: "/images/categories/tazka-technika.webp", // Sem vložte fotku
+    url: "/pozicovna-naradia/tazka-technika", 
+    image: "/images/categories/tazka-technika.webp",
     description: "Pásové mini a midi rýpadlá, veľké pásové a kolesové rýpadlá, nakladače, dumpre, valce."
   },
   {
     title: "Pracovné plošiny",
     url: "/pozicovna-naradia/pracovne-plosiny",
-    image: "/images/categories/pracovne-plosiny.webp", // Sem vložte fotku
-    description: "Pracovné plošiny - interiérové aj exteriérové."
+    image: "/images/categories/pracovne-plosiny.webp", 
+    description: "Pracovné plošiny - interiérové aj exteriérové pre prácu vo výške."
   },
   {
     title: "Vybavenie staveniska",
     url: "/pozicovna-naradia/vybavenie-staveniska",
-    image: "/images/categories/vybavenie-staveniska.webp", // Sem vložte fotku
+    image: "/images/categories/vybavenie-staveniska.webp",
     description: "Kontajnery (kancelárske, skladové, sanitárne), vrátnice, mobilné oplotenie a zábrany, mobilné toalety."
   },
   {
     title: "Autá a prívesné vozíky",
-    url: "/pozicovna-naradia/auta-privesy",
-    image: "/images/categories/auta-privesy.webp", // Sem vložte fotku
+    url: "/pozicovna-naradia/auta-privesy", 
+    image: "/images/categories/auta-privesy.webp",
     description: "Autá, dodávky a prívesné vozíky na prevoz techniky a materiálu."
+  }
+];
+
+const benefits = [
+  {
+    icon: "🚚",
+    title: "Rýchla doprava",
+    description: "Dovoz techniky na stavbu do 24 hodín"
+  },
+  {
+    icon: "🔧", 
+    title: "Servis v cene",
+    description: "Technická podpora a urgentné opravy zadarmo"
+  },
+  {
+    icon: "💳",
+    title: "Flexibilné platby", 
+    description: "Platba kartou, hotovosť alebo faktúra"
+  },
+  {
+    icon: "👨‍🔧",
+    title: "S obsluhou",
+    description: "Stroje s kvalifikovanou obsluhou na požiadanie"
+  },
+  {
+    icon: "📞",
+    title: "24/7 podpora",
+    description: "Non-stop technická linka a pohotovosť"
+  }
+];
+
+const vipBenefits = [
+  {
+    icon: "💎",
+    title: "VIP zľavy až 25%",
+    description: "Exkluzívne cenové zvýhodnenia pre stálych klientov"
+  },
+  {
+    icon: "🎯",
+    title: "Prioritná rezervácia", 
+    description: "Prednostné právo na najnovšie a najpopulárnejšie stroje"
+  },
+  {
+    icon: "🚛",
+    title: "Bezplatná doprava",
+    description: "Dovoz a odvoz techniky zadarmo v rámci Bratislavy"
+  },
+  {
+    icon: "⚡", 
+    title: "Express servis",
+    description: "Prioritné riešenie požiadaviek a urgentné zásahy"
+  },
+  {
+    icon: "📊",
+    title: "Osobný manažér",
+    description: "Dedikovaný kontakt pre všetky vaše projekty"
+  }
+];
+
+const newMachines = [
+  {
+    title: "Makita HM1203C",
+    category: "Búracie kladivá",
+    image: "/images/new-machines/makita-hm1203c.webp",
+    price: "7€/deň", 
+    description: "Výkonné búracie kladivo s SDS-MAX uchytením",
+    features: ["1100W", "8,3kg", "SDS-MAX"]
+  },
+  {
+    title: "Vibračný valec RD24",
+    category: "Vibračné valce",
+    image: "/images/new-machines/valec-rd24.webp",
+    price: "45€/deň",
+    description: "Kompaktný vibračný valec pre menšie plochy", 
+    features: ["680kg", "850mm", "Diesel"]
+  },
+  {
+    title: "Elektrocentrála 15kW",
+    category: "Elektrocentrály", 
+    image: "/images/new-machines/elektrocentrala-15kw.webp",
+    price: "35€/deň",
+    description: "Výkonná elektrocentrála s tichým chodom",
+    features: ["15kW", "400V/230V", "Diesel"]
+  },
+  {
+    title: "Fúkar na lístie",
+    category: "Záhradná technika",
+    image: "/images/new-machines/fukar-listie.webp", 
+    price: "10€/deň",
+    description: "Výkonný fúkar pre jesenné upratovanie",
+    features: ["2-takt", "1,2kW", "Benzín"]
   }
 ];
 ---
@@ -58,6 +149,23 @@ const categories = [
           Široký výber <span class="hero-highlight">profesionálneho náradia</span> a stavebnej techniky 
           za výhodné ceny. Od ručného náradia až po ťažkú techniku.
         </p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">strojov</span>
+          </div>
+          <div class="stat-divider">•</div>
+          <div class="stat-item">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">rokov</span>
+          </div>
+          <div class="stat-divider">•</div>
+          <div class="stat-item">
+            <span class="stat-number">1000+</span>
+            <span class="stat-label">klientov</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -65,7 +173,7 @@ const categories = [
   <!-- Wave Transition -->
   <div class="section-wave">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M321.39,56.44C187.11,91.18,121.55,126.46,0,134.64V0H1200V0C1073.5,18.55,944.72,59.95,806.04,69.46C729.84,74.58,461.25,37.34,321.39,56.44Z"/>
+      <path d="M321.39,56.44C187.11,91.18,121.55,126.46,0,134.64V0H1200V0C1073.5,18.55,944.72,59.95,806.04,69.46C729.84,74.58,461.25,37.34,321.39,56.44Z"></path>
     </svg>
   </div>
 
@@ -79,26 +187,151 @@ const categories = [
 
       <div class="categories-grid">
         {categories.map((category, index) => (
-          <a href={category.url} class="category-card" style={`animation-delay: ${index * 0.1}s`}>
+          <article class="category-card" style={`animation-delay: ${index * 0.1}s`}>
             <div class="category-image">
-              <img src={category.image} alt={category.title} loading="lazy" />
-              <div class="image-overlay"></div>
+              <img 
+                src={category.image} 
+                alt={category.title} 
+                loading="lazy"
+              />
             </div>
+            
             <div class="category-content">
               <h3 class="category-title">{category.title}</h3>
               <p class="category-desc">{category.description}</p>
-              <span class="category-link">
-                Zobraziť ponuku
+              
+              <a href={category.url} class="category-link">
+                <span>Zobraziť ponuku</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14m-7-7l7 7-7 7"/>
+                  <path d="M5 12h14m-7-7l7 7-7 7"></path>
                 </svg>
-              </span>
+              </a>
             </div>
-          </a>
+          </article>
         ))}
       </div>
+    </div>
+  </section>
 
-      <!-- CTA Banner -->
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Prečo si vybrať ROYAL STROJE?</h2>
+        <p class="section-desc">Profesionálne služby s osobným prístupom</p>
+      </div>
+      
+      <div class="benefits-grid">
+        {benefits.map((benefit, index) => (
+          <div class="benefit-card" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="benefit-icon">{benefit.icon}</div>
+            <h4 class="benefit-title">{benefit.title}</h4>
+            <p class="benefit-desc">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- New Machines Section -->
+  <section class="new-machines-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nové stroje v požičovni</h2>
+        <p class="section-desc">Najnovšie prírastky do našej flotily profesionálnych strojov</p>
+      </div>
+      
+      <div class="new-machines-grid">
+        {newMachines.map((machine, index) => (
+          <div class="machine-card" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="machine-image">
+              <img 
+                src={machine.image} 
+                alt={machine.title} 
+                loading="lazy"
+              />
+              <div class="machine-badge">NOVINKA</div>
+            </div>
+            
+            <div class="machine-content">
+              <div class="machine-header">
+                <span class="machine-category">{machine.category}</span>
+                <span class="machine-price">{machine.price}</span>
+              </div>
+              
+              <h4 class="machine-title">{machine.title}</h4>
+              <p class="machine-desc">{machine.description}</p>
+              
+              <div class="machine-features">
+                {machine.features.map((feature) => (
+                  <span class="feature-tag">{feature}</span>
+                ))}
+              </div>
+              
+              <div class="machine-actions">
+                <a href="tel:+421948555551" class="btn-reserve">
+                  Rezervovať
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VIP Program Section -->
+  <section class="vip-section">
+    <div class="container">
+      <div class="vip-header">
+        <div class="vip-badge">
+          <span class="vip-crown">👑</span>
+          VIP PROGRAM
+        </div>
+        <h2 class="vip-title">Staňte sa <span class="accent">VIP klientom</span></h2>
+        <p class="vip-subtitle">
+          Exkluzívne výhody a prémiové služby pre našich najvernejších partnerov
+        </p>
+      </div>
+      
+      <div class="vip-content">
+        <div class="vip-benefits-grid">
+          {vipBenefits.map((benefit, index) => (
+            <div class="vip-benefit-card" style={`animation-delay: ${index * 0.1}s`}>
+              <div class="vip-benefit-icon">{benefit.icon}</div>
+              <h4 class="vip-benefit-title">{benefit.title}</h4>
+              <p class="vip-benefit-desc">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div class="vip-cta">
+          <div class="vip-cta-content">
+            <h3>Ako sa stať VIP klientom?</h3>
+            <p>
+              VIP status získate automaticky na základe objemu prenájmov alebo po osobnej konzultácii. 
+              Kontaktujte nás a zistite, ako môžeme pomôcť vášmu biznisu rásť.
+            </p>
+            <div class="vip-cta-buttons">
+              <a href="tel:+421948555551" class="btn btn-vip">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"></path>
+                </svg>
+                Zavolajte teraz
+              </a>
+              <a href="/kontakt" class="btn btn-outline-vip">
+                Získať VIP status
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner-section">
+    <div class="container">
       <div class="cta-banner">
         <div class="cta-content">
           <h3 class="cta-title">Potrebujete poradiť s výberom?</h3>
@@ -109,7 +342,7 @@ const categories = [
           <div class="cta-buttons">
             <a href="tel:+421948555551" class="btn btn-primary">
               <svg viewBox="0 0 24 24">
-                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"></path>
               </svg>
               0948 555 551
             </a>
@@ -124,10 +357,24 @@ const categories = [
 </Layout>
 
 <style>
-  /* Hero Section */
+  :root {
+    --brand: #ff6b00;
+    --brand-dark: #e85d00;
+    --brand-light: #ff8533;
+    --vip-gold: #ffd700;
+    --vip-gold-dark: #ffcd00;
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+    --bg: #0a0a0a;
+    --bg-secondary: #111111;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --border-radius: 12px;
+  }
+
   .hero {
     position: relative;
-    padding: 5rem 0 3rem;
+    padding: 3rem 0;
     background: linear-gradient(135deg, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
     overflow: hidden;
   }
@@ -159,7 +406,6 @@ const categories = [
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 1.5rem;
-    animation: fadeInUp 0.8s ease;
   }
 
   .hero-title {
@@ -171,7 +417,6 @@ const categories = [
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: fadeInUp 0.8s ease 0.1s both;
   }
 
   .hero-subtitle {
@@ -180,7 +425,6 @@ const categories = [
     font-weight: 500;
     max-width: 800px;
     margin: 0 auto 2rem;
-    animation: fadeInUp 0.8s ease 0.2s both;
   }
 
   .hero-highlight {
@@ -188,7 +432,41 @@ const categories = [
     font-weight: 700;
   }
 
-  /* Section Wave */
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--brand);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  .stat-divider {
+    color: rgba(255, 107, 0, 0.3);
+    font-size: 2rem;
+  }
+
   .section-wave {
     position: relative;
     height: 60px;
@@ -203,12 +481,6 @@ const categories = [
     width: 100%;
     height: 60px;
     fill: var(--bg-secondary);
-  }
-
-  /* Categories Section */
-  .categories-section {
-    padding: 5rem 0;
-    background: var(--bg-secondary);
   }
 
   .section-header {
@@ -233,10 +505,14 @@ const categories = [
     margin: 0 auto;
   }
 
-  /* Categories Grid */
+  .categories-section {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
   .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
   }
@@ -245,15 +521,14 @@ const categories = [
     background: var(--glass);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     transition: all 0.3s ease;
-    position: relative;
-    animation: fadeInUp 0.8s ease both;
-    text-decoration: none;
-    color: inherit;
+    opacity: 0;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    animation: fadeInUp 0.8s ease both;
   }
 
   .category-card:hover {
@@ -262,11 +537,10 @@ const categories = [
     border-color: rgba(255, 107, 0, 0.3);
   }
 
-  /* Category Image */
   .category-image {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 220px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 107, 0, 0.05));
     border-bottom: 1px solid rgba(255, 107, 0, 0.2);
@@ -276,42 +550,30 @@ const categories = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.3s ease;
+    filter: brightness(0.95);
+    transform: scale(1);
   }
 
   .category-card:hover .category-image img {
     transform: scale(1.1);
+    filter: brightness(1.05);
   }
 
-  .image-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(0, 0, 0, 0.3) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .category-card:hover .image-overlay {
-    opacity: 1;
-  }
-
-  /* Category Content */
   .category-content {
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
 
   .category-title {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
     font-weight: 800;
     color: var(--text);
     margin-bottom: 1rem;
+    line-height: 1.3;
   }
 
   .category-desc {
@@ -329,8 +591,20 @@ const categories = [
     color: var(--brand);
     font-weight: 700;
     font-size: 0.95rem;
+    text-decoration: none;
     transition: all 0.3s ease;
     margin-top: auto;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 107, 0, 0.05);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    border-radius: 8px;
+    justify-content: center;
+  }
+
+  .category-link:hover {
+    background: rgba(255, 107, 0, 0.1);
+    border-color: rgba(255, 107, 0, 0.4);
+    transform: translateY(-2px);
   }
 
   .category-link svg {
@@ -340,13 +614,459 @@ const categories = [
     transition: transform 0.3s ease;
   }
 
-  .category-card:hover .category-link svg {
+  .category-link:hover svg {
     transform: translateX(4px);
   }
 
-  /* CTA Banner */
+  .benefits-section {
+    padding: 5rem 0;
+    background: var(--bg);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand);
+    background: rgba(255, 107, 0, 0.02);
+  }
+
+  .benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .benefit-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .new-machines-section {
+    padding: 5rem 0;
+    background: var(--bg);
+  }
+
+  .new-machines-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .machine-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  .machine-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--brand);
+    box-shadow: 0 15px 40px rgba(255, 107, 0, 0.2);
+  }
+
+  .machine-image {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 107, 0, 0.05));
+  }
+
+  .machine-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+  }
+
+  .machine-card:hover .machine-image img {
+    transform: scale(1.1);
+  }
+
+  .machine-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--brand);
+    color: #000;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .machine-content {
+    padding: 1.5rem;
+  }
+
+  .machine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .machine-category {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-dim);
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .machine-price {
+    color: var(--brand);
+    font-weight: 800;
+    font-size: 1.125rem;
+  }
+
+  .machine-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .machine-desc {
+    color: var(--text-dim);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .machine-features {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-tag {
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    color: var(--brand);
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  .machine-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-reserve {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .btn-reserve:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+  }
+
+  .vip-section {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vip-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 107, 0, 0.02) 0%, transparent 50%);
+  }
+
+  .vip-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--vip-gold), var(--vip-gold-dark));
+    color: #000;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .vip-crown {
+    font-size: 16px;
+  }
+
+  .vip-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .vip-title .accent {
+    background: linear-gradient(135deg, var(--vip-gold), var(--vip-gold-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .vip-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .vip-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .vip-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .vip-benefit-card {
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  .vip-benefit-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 215, 0, 0.1) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .vip-benefit-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--vip-gold);
+    background: rgba(255, 215, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+  }
+
+  .vip-benefit-card:hover::before {
+    opacity: 1;
+  }
+
+  .vip-benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vip-benefit-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--vip-gold);
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vip-benefit-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vip-cta {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 0, 0.05));
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vip-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    animation: rotate 15s linear infinite;
+  }
+
+  .vip-cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .vip-cta h3 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .vip-cta p {
+    font-size: 1.125rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .vip-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 107, 0, 0.4);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .btn-vip {
+    background: linear-gradient(135deg, var(--vip-gold), var(--vip-gold-dark));
+    color: #000;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .btn-vip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+  }
+
+  .btn-outline-vip {
+    background: transparent;
+    border: 2px solid var(--vip-gold);
+    color: var(--vip-gold);
+  }
+
+  .btn-outline-vip:hover {
+    background: var(--vip-gold);
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+  .btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .cta-banner-section {
+    padding: 5rem 0;
+    background: var(--bg);
+  }
+
   .cta-banner {
-    margin-top: 4rem;
     background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 107, 0, 0.05));
     border: 1px solid rgba(255, 107, 0, 0.3);
     border-radius: 24px;
@@ -383,6 +1103,9 @@ const categories = [
     font-size: 1.125rem;
     color: var(--text-dim);
     margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cta-buttons {
@@ -392,49 +1115,6 @@ const categories = [
     flex-wrap: wrap;
   }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 28px;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    color: #000;
-    box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255, 107, 0, 0.4);
-  }
-
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-  }
-
-  .btn svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-
-  /* Animations */
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -451,7 +1131,22 @@ const categories = [
     to { transform: rotate(360deg); }
   }
 
-  /* Responsive */
+  @media (max-width: 1024px) {
+    .categories-grid {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .benefits-grid,
+    .vip-benefits-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .new-machines-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 768px) {
     .categories-grid {
       grid-template-columns: 1fr;
@@ -459,69 +1154,80 @@ const categories = [
     }
 
     .category-content {
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
 
+    .category-image {
+      height: 180px;
+    }
+
+    .benefits-grid,
+    .vip-benefits-grid,
+    .new-machines-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .hero-stats {
+      gap: 1rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+
+    .vip-cta,
     .cta-banner {
       padding: 2rem;
     }
 
-    .cta-buttons {
+    .cta-buttons,
+    .vip-cta-buttons {
       flex-direction: column;
+      align-items: center;
     }
 
     .btn {
       width: 100%;
+      max-width: 300px;
       justify-content: center;
+    }
+
+    .machine-image {
+      height: 160px;
     }
   }
 
   @media (max-width: 480px) {
     .hero {
-      padding: 3rem 0 2rem;
+      padding: 2rem 0;
     }
 
-    .categories-section {
+    .categories-section,
+    .benefits-section,
+    .vip-section,
+    .new-machines-section,
+    .cta-banner-section {
       padding: 3rem 0;
     }
 
-    .category-image {
+    .category-image,
+    .machine-image {
       height: 150px;
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .benefits-grid,
+    .vip-benefits-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
-
-<script>
-  // Intersection Observer for animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.category-card').forEach(card => {
-    card.style.animationPlayState = 'paused';
-    observer.observe(card);
-  });
-</script>
-
-<!-- 
-POZNÁMKA PRE FOTKY:
-Nahrajte fotky do priečinka: /public/images/categories/
-Názvy súborov:
-- male-naradie.jpg
-- stredna-mechanizacia.jpg
-- tazka-technika.jpg
-- manipulacna-technika.jpg
-- vybavenie-staveniska.jpg
-- auta-privesy.jpg
-
-Odporúčané rozmery: 600x400px alebo podobný pomer strán
--->

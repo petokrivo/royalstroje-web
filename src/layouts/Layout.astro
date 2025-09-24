@@ -1,5 +1,4 @@
 ---
-// src/layouts/Layout.astro
 import Header from "../components/header.astro";
 
 export interface Props {
@@ -90,220 +89,179 @@ const canonicalURL = Astro.url.href;
         "description": "Profesionálny prenájom stavebnej techniky a náradia v Seneci a okolí."
       }
     </script>
+
+    <!-- GLOBAL STYLES (presunuté do <head>) -->
+    <style is:global>
+      /* ---------------- CSS VARIABLES ---------------- */
+      :root {
+        --brand: #ff6b00;
+        --brand-dark: #e85d00;
+        --brand-light: #ff8533;
+        --gold: #ffb366;
+        --text: #ffffff;
+        --text-dim: #b0b0b0;
+        --text-muted: #888888;
+        --bg: #0a0a0a;
+        --bg-secondary: #111111;
+        --bg-tertiary: #1a1a1a;
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --shadow: rgba(0, 0, 0, 0.5);
+        --shadow-heavy: rgba(0, 0, 0, 0.8);
+        
+        /* Spacing */
+        --container-max: 1400px;
+        --container-padding: 24px;
+        --section-padding: 80px;
+        
+        /* Typography */
+        --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        
+        /* Transitions */
+        --transition-fast: 0.2s ease;
+        --transition-normal: 0.3s ease;
+        --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ---------------- RESET & BASE STYLES ---------------- */
+      *,
+      *::before,
+      *::after { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; height: 100%; }
+
+      body {
+        margin: 0;
+        min-height: 100%;
+        font-family: var(--font-family);
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+        overflow-x: hidden;
+        font-feature-settings: 'kern' 1, 'liga' 1;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      img, video { max-width: 100%; height: auto; display: block; }
+      a { color: inherit; transition: var(--transition-normal); }
+      button { font-family: inherit; cursor: pointer; }
+
+      /* ---------------- SKIP LINK ---------------- */
+      .skip-link {
+        position: absolute; top: -40px; left: 6px;
+        background: var(--brand); color: #000; padding: 8px;
+        text-decoration: none; border-radius: 4px; z-index: 10000;
+        font-weight: 600; transition: var(--transition-normal);
+      }
+      .skip-link:focus { top: 6px; }
+
+      /* ---------------- BACKGROUND ELEMENTS ---------------- */
+      .page-background { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+      .bg-gradient {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(255, 107, 0, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(255, 179, 102, 0.02) 0%, transparent 50%),
+          linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
+      }
+      .bg-mesh {
+        position: absolute; inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, rgba(255, 107, 0, 0.05) 1px, transparent 0);
+        background-size: 60px 60px; animation: float-mesh 20s ease-in-out infinite;
+      }
+      @keyframes float-mesh { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+      .bg-particles {
+        position: absolute; inset: 0;
+        background-image:
+          radial-gradient(2px 2px at 20px 30px, rgba(255, 107, 0, 0.2), transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.05), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(255, 107, 0, 0.15), transparent);
+        background-repeat: repeat; background-size: 150px 100px; animation: drift 30s linear infinite;
+      }
+      @keyframes drift { 0%{transform:translate(0,0)} 100%{transform:translate(-150px,-100px)} }
+
+      /* ---------------- MAIN CONTENT ---------------- */
+      .main-content { padding-top: 80px; min-height: calc(100vh - 80px); position: relative; z-index: 1; }
+
+      /* ---------------- UTILITIES ---------------- */
+      .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-padding); }
+      .section { padding: var(--section-padding) 0; }
+      .text-center { text-align: center; }
+      .visually-hidden {
+        position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+        clip: rect(0,0,0,0); white-space:nowrap; border:0;
+      }
+
+      /* ---------------- TYPOGRAPHY ---------------- */
+      h1,h2,h3,h4,h5,h6 { margin:0; line-height:1.2; font-weight:800; color:var(--text); }
+      h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+      h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+      h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: .75rem; }
+      p { margin: 0 0 1rem; color: var(--text-dim); }
+
+      /* ---------------- FOOTER ---------------- */
+      .site-footer { background: var(--bg-secondary); border-top: 1px solid rgba(255,107,0,.1); margin-top: var(--section-padding); }
+      .footer-content { padding: 40px 0 20px; }
+      .footer-wrap { max-width: var(--container-max); margin:0 auto; padding:0 var(--container-padding); }
+      .footer-info { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:40px; margin-bottom:40px; }
+      .footer-brand h3 { color: var(--brand); font-size: 1.5rem; margin-bottom: 8px; }
+      .footer-brand p { color: var(--text-dim); margin:0; }
+      .footer-contact { display:flex; flex-direction:column; gap:12px; }
+      .contact-item { display:flex; align-items:center; gap:12px; color: var(--text-dim); }
+      .contact-item a { color: var(--brand); text-decoration: none; font-weight: 600; }
+      .contact-item a:hover { color: var(--brand-light); }
+      .contact-icon { width:18px; height:18px; fill: currentColor; flex-shrink: 0; }
+      .footer-status { display:flex; justify-content:center; margin-bottom:40px; }
+      .status-badge {
+        display:flex; align-items:center; gap:8px; padding:8px 16px;
+        background: rgba(255,107,0,.1); border:1px solid rgba(255,107,0,.3);
+        border-radius:50px; color:var(--brand); font-weight:700; font-size:14px;
+      }
+      .status-dot { width:8px; height:8px; background: var(--brand); border-radius:50%; animation: pulse 2s infinite; }
+      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+      .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:20px; text-align:center; }
+      .footer-bottom p { color: var(--text-muted); font-size:14px; margin:0; }
+
+      /* ---------------- BACK TO TOP ---------------- */
+      .back-to-top {
+        position: fixed; bottom: 30px; right: 30px; width:50px; height:50px;
+        background: linear-gradient(135deg, var(--brand), var(--brand-light));
+        border: none; border-radius: 50%; color:#000;
+        display:flex; align-items:center; justify-content:center;
+        box-shadow: 0 8px 25px rgba(255,107,0,.4);
+        transform: translateY(100px); opacity: 0; transition: var(--transition-slow);
+        z-index: 1000;
+      }
+      .back-to-top.visible { transform: translateY(0); opacity: 1; }
+      .back-to-top:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255,107,0,.5); }
+      .back-to-top svg { width:24px; height:24px; fill: currentColor; }
+
+      /* ---------------- RESPONSIVE ---------------- */
+      @media (max-width: 768px) {
+        :root { --container-padding:16px; --section-padding:60px; }
+        .main-content { padding-top: 70px; }
+        .footer-info { flex-direction: column; text-align: center; gap:30px; }
+        .back-to-top { bottom:20px; right:20px; width:45px; height:45px; }
+      }
+      @media (max-width: 480px) {
+        :root { --container-padding:12px; --section-padding:40px; }
+      }
+
+      /* ---------------- ACCESSIBILITY ---------------- */
+      @media (prefers-reduced-motion: reduce) {
+        *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+        html { scroll-behavior: auto; }
+      }
+      *:focus { outline:2px solid var(--brand); outline-offset:2px; }
+      ::selection { background: var(--brand); color:#000; }
+      ::-webkit-scrollbar { width:8px; }
+      ::-webkit-scrollbar-track { background: var(--bg); }
+      ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--brand), var(--brand-dark)); border-radius:4px; }
+      ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--brand-light), var(--brand)); }
+    </style>
   </head>
-
-<!-- 
-Tento kód vložte do vášho Layout.astro pred uzatváraciu značku </body>
-Umiestnenie: src/layouts/Layout.astro
--->
-
-<!-- Royal Assistant Chat Widget -->
-<div class="royal-assistant" id="royalAssistant">
-  <button class="assistant-button" aria-label="Otvoriť Royal Asistent">
-    <div class="assistant-icon">
-      <!-- Lightning Bolt Icon -->
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-      </svg>
-    </div>
-    <span class="assistant-badge"></span>
-  </button>
-  <div class="assistant-label">Royal Asistent</div>
-</div>
-
-<style>
-  /* Royal Assistant Chat Widget */
-  .royal-assistant {
-    position: fixed;
-    bottom: 100px; /* Vyššie umiestnenie, aby neprekrývalo šípku späť hore */
-    right: 30px;
-    z-index: 998; /* Nižšie ako back-to-top button (1000) */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .assistant-button {
-    width: 65px;
-    height: 65px;
-    background: linear-gradient(135deg, #ff6b00, #ff8533);
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
-    transition: all 0.3s ease;
-    border: 2px solid #000;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .assistant-button::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(135deg, #ff8533, #ff6b00);
-    border-radius: 18px;
-    z-index: -1;
-    filter: blur(8px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .assistant-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px rgba(255, 107, 0, 0.5);
-  }
-
-  .assistant-button:hover::before {
-    opacity: 0.7;
-  }
-
-  .assistant-icon {
-    width: 32px;
-    height: 32px;
-    color: #000;
-    position: relative;
-    z-index: 1;
-  }
-
-  .assistant-icon svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
-  }
-
-  .assistant-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 18px;
-    height: 18px;
-    background: #00ff00;
-    border-radius: 50%;
-    border: 3px solid #0a0a0a;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { 
-      opacity: 1; 
-      transform: scale(1);
-    }
-    50% { 
-      opacity: 0.8;
-      transform: scale(1.1);
-    }
-  }
-
-  .assistant-label {
-    background: rgba(17, 17, 17, 0.95);
-    color: #ff6b00;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: 1px solid rgba(255, 107, 0, 0.3);
-    backdrop-filter: blur(10px);
-    white-space: nowrap;
-    transition: all 0.3s ease;
-  }
-
-  .royal-assistant:hover .assistant-label {
-    background: rgba(255, 107, 0, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .royal-assistant {
-      bottom: 80px;
-      right: 20px;
-    }
-
-    .assistant-button {
-      width: 55px;
-      height: 55px;
-    }
-
-    .assistant-icon {
-      width: 28px;
-      height: 28px;
-    }
-
-    .assistant-label {
-      font-size: 11px;
-      padding: 5px 10px;
-    }
-  }
-
-  /* Ensure it doesn't overlap with scroll-to-top button */
-  @media (max-height: 700px) {
-    .royal-assistant {
-      bottom: 80px;
-    }
-  }
-</style>
-
-<script>
-  // Royal Assistant Chat functionality
-  const assistantButton = document.querySelector('.assistant-button');
-  const assistantLabel = document.querySelector('.assistant-label');
-  
-  // Click handler for the button
-  assistantButton?.addEventListener('click', () => {
-    // Tu bude neskôr prepojenie na chat aplikáciu
-    console.log('Royal Asistent - otvára sa chat...');
-    
-    // Dočasné riešenie - otvorí WhatsApp
-    // Neskôr nahraďte vlastnou chat aplikáciou
-    window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
-  });
-
-  // Hide/show label on scroll
-  let lastScrollY = window.scrollY;
-  let isScrolling;
-
-  window.addEventListener('scroll', () => {
-    if (assistantLabel) {
-      assistantLabel.style.opacity = '0';
-      assistantLabel.style.transform = 'translateY(5px)';
-      
-      clearTimeout(isScrolling);
-      
-      isScrolling = setTimeout(() => {
-        assistantLabel.style.opacity = '1';
-        assistantLabel.style.transform = 'translateY(0)';
-      }, 150);
-    }
-  }, { passive: true });
-
-  // Animate on page load
-  setTimeout(() => {
-    const assistant = document.getElementById('royalAssistant');
-    if (assistant) {
-      assistant.style.animation = 'slideInRight 0.6s ease';
-    }
-  }, 1000);
-</script>
-
-<style>
-  @keyframes slideInRight {
-    from {
-      transform: translateX(100px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-</style>
 
   <body>
     <!-- Skip to content for accessibility -->
@@ -373,477 +331,113 @@ Umiestnenie: src/layouts/Layout.astro
         <path d="M7 14l5-5 5 5z"/>
       </svg>
     </button>
+
+    <!-- Royal Assistant Chat Widget (presunutý sem) -->
+    <div class="royal-assistant" id="royalAssistant">
+      <button class="assistant-button" aria-label="Otvoriť Royal Asistent">
+        <div class="assistant-icon">
+          <!-- Lightning Bolt Icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <span class="assistant-badge"></span>
+      </button>
+      <div class="assistant-label">Royal Asistent</div>
+    </div>
+
+    <!-- Styles pre Royal Assistant (môžu byť aj v <head>, ponechávam pri widgete) -->
+    <style>
+      .royal-assistant {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        z-index: 998;
+        display: flex; flex-direction: column; align-items: center; gap: 8px;
+      }
+      .assistant-button {
+        width: 50px; height: 50px;
+        background: linear-gradient(135deg, #ff6b00, #ff8533);
+        border-radius: 18px; display:flex; align-items:center; justify-content:center;
+        cursor: pointer; box-shadow: 0 4px 20px rgba(255,107,0,.3);
+        transition: all .3s ease; border: 2px solid #000; position: relative; overflow: hidden;
+      }
+      .assistant-button::before {
+        content:''; position:absolute; inset:-2px;
+        background: linear-gradient(135deg, #ff8533, #ff6b00);
+        border-radius: 18px; z-index:-1; filter: blur(8px); opacity:0; transition: opacity .3s ease;
+      }
+      .assistant-button:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(255,107,0,.5); }
+      .assistant-button:hover::before { opacity: .7; }
+      .assistant-icon { width: 32px; height: 32px; color:#000; position:relative; z-index:1; }
+      .assistant-icon svg { width:100%; height:100%; filter: drop-shadow(0 0 2px rgba(255,255,255,.3)); }
+      .assistant-badge {
+        position:absolute; top:-5px; right:-5px; width:18px; height:18px;
+        background:#00ff00; border-radius:50%; border:3px solid #0a0a0a; animation: pulse 2s infinite;
+      }
+      .assistant-label {
+        background: rgba(17,17,17,.95); color:#ff6b00; padding:6px 12px; border-radius:8px; font-size:12px;
+        font-weight:700; text-transform:uppercase; letter-spacing:.5px;
+        border:1px solid rgba(255,107,0,.3); backdrop-filter: blur(10px); white-space: nowrap; transition: all .3s ease;
+      }
+      .royal-assistant:hover .assistant-label {
+        background: rgba(255,107,0,.1); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,107,0,.2);
+      }
+      @media (max-width: 768px) {
+        .royal-assistant { bottom: 80px; right: 20px; }
+        .assistant-button { width:55px; height:55px; }
+        .assistant-icon { width:28px; height:28px; }
+        .assistant-label { font-size:11px; padding:5px 10px; }
+      }
+      @media (max-height: 700px) { .royal-assistant { bottom: 80px; } }
+      @keyframes slideInRight { from { transform: translateX(100px); opacity:0; } to { transform: translateX(0); opacity:1; } }
+    </style>
+
+    <!-- Script pre Royal Assistant (presunutý sem) -->
+    <script>
+      const assistantButton = document.querySelector('.assistant-button');
+      const assistantLabel = document.querySelector('.assistant-label');
+
+      assistantButton?.addEventListener('click', () => {
+        console.log('Royal Asistent - otvára sa chat...');
+        window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
+      });
+
+      let isScrolling;
+      window.addEventListener('scroll', () => {
+        if (assistantLabel) {
+          assistantLabel.style.opacity = '0';
+          assistantLabel.style.transform = 'translateY(5px)';
+          clearTimeout(isScrolling);
+          isScrolling = setTimeout(() => {
+            assistantLabel.style.opacity = '1';
+            assistantLabel.style.transform = 'translateY(0)';
+          }, 150);
+        }
+      }, { passive: true });
+
+      setTimeout(() => {
+        const assistant = document.getElementById('royalAssistant');
+        if (assistant) assistant.style.animation = 'slideInRight 0.6s ease';
+      }, 1000);
+    </script>
+
+    <!-- Back to top + Intersection Observer (presunuté sem) -->
+    <script>
+      const backToTop = document.getElementById('backToTop');
+      if (backToTop) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) backToTop.classList.add('visible');
+          else backToTop.classList.remove('visible');
+        }, { passive: true });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      }
+
+      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animate-in'); });
+      }, observerOptions);
+      document.querySelectorAll('[class*="animate"]').forEach(el => observer.observe(el));
+    </script>
   </body>
 </html>
-
-<style is:global>
-  /* ---------------- CSS VARIABLES ---------------- */
-  :root {
-    --brand: #ff6b00;
-    --brand-dark: #e85d00;
-    --brand-light: #ff8533;
-    --gold: #ffb366;
-    --text: #ffffff;
-    --text-dim: #b0b0b0;
-    --text-muted: #888888;
-    --bg: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1a1a1a;
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --shadow: rgba(0, 0, 0, 0.5);
-    --shadow-heavy: rgba(0, 0, 0, 0.8);
-    
-    /* Spacing */
-    --container-max: 1400px;
-    --container-padding: 24px;
-    --section-padding: 80px;
-    
-    /* Typography */
-    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* ---------------- RESET & BASE STYLES ---------------- */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    height: 100%;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100%;
-    font-family: var(--font-family);
-    line-height: 1.6;
-    color: var(--text);
-    background: var(--bg);
-    overflow-x: hidden;
-    font-feature-settings: 'kern' 1, 'liga' 1;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  img,
-  video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  a {
-    color: inherit;
-    transition: var(--transition-normal);
-  }
-
-  button {
-    font-family: inherit;
-    cursor: pointer;
-  }
-
-  /* ---------------- SKIP LINK ---------------- */
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--brand);
-    color: #000;
-    padding: 8px;
-    text-decoration: none;
-    border-radius: 4px;
-    z-index: 10000;
-    font-weight: 600;
-    transition: var(--transition-normal);
-  }
-
-  .skip-link:focus {
-    top: 6px;
-  }
-
-  /* ---------------- BACKGROUND ELEMENTS ---------------- */
-  .page-background {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-  }
-
-  .bg-gradient {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(circle at 20% 20%, rgba(255, 107, 0, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(255, 179, 102, 0.02) 0%, transparent 50%),
-      linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
-  }
-
-  .bg-mesh {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      radial-gradient(circle at 1px 1px, rgba(255, 107, 0, 0.05) 1px, transparent 0);
-    background-size: 60px 60px;
-    animation: float-mesh 20s ease-in-out infinite;
-  }
-
-  @keyframes float-mesh {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
-  }
-
-  .bg-particles {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      radial-gradient(2px 2px at 20px 30px, rgba(255, 107, 0, 0.2), transparent),
-      radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.05), transparent),
-      radial-gradient(1px 1px at 90px 40px, rgba(255, 107, 0, 0.15), transparent);
-    background-repeat: repeat;
-    background-size: 150px 100px;
-    animation: drift 30s linear infinite;
-  }
-
-  @keyframes drift {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-150px, -100px); }
-  }
-
-  /* ---------------- MAIN CONTENT ---------------- */
-  .main-content {
-    padding-top: 80px; /* Header height compensation */
-    min-height: calc(100vh - 80px);
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ---------------- UTILITY CLASSES ---------------- */
-  .container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-  }
-
-  .section {
-    padding: var(--section-padding) 0;
-  }
-
-  .text-center {
-    text-align: center;
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  /* ---------------- TYPOGRAPHY ---------------- */
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    line-height: 1.2;
-    font-weight: 800;
-    color: var(--text);
-  }
-
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 1rem;
-  }
-
-  h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 1rem;
-  }
-
-  h3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: 0.75rem;
-  }
-
-  p {
-    margin: 0 0 1rem;
-    color: var(--text-dim);
-  }
-
-  /* ---------------- FOOTER PLACEHOLDER ---------------- */
-  .site-footer {
-    background: var(--bg-secondary);
-    border-top: 1px solid rgba(255, 107, 0, 0.1);
-    margin-top: var(--section-padding);
-  }
-
-  .footer-content {
-    padding: 40px 0 20px;
-  }
-
-  .footer-wrap {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-  }
-
-  .footer-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  .footer-brand h3 {
-    color: var(--brand);
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-  }
-
-  .footer-brand p {
-    color: var(--text-dim);
-    margin: 0;
-  }
-
-  .footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--text-dim);
-  }
-
-  .contact-item a {
-    color: var(--brand);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .contact-item a:hover {
-    color: var(--brand-light);
-  }
-
-  .contact-icon {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-    flex-shrink: 0;
-  }
-
-  .footer-status {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-  }
-
-  .status-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: rgba(255, 107, 0, 0.1);
-    border: 1px solid rgba(255, 107, 0, 0.3);
-    border-radius: 50px;
-    color: var(--brand);
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-  .status-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--brand);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-    text-align: center;
-  }
-
-  .footer-bottom p {
-    color: var(--text-muted);
-    font-size: 14px;
-    margin: 0;
-  }
-
-  /* ---------------- BACK TO TOP BUTTON ---------------- */
-  .back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    border: none;
-    border-radius: 50%;
-    color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
-    transform: translateY(100px);
-    opacity: 0;
-    transition: var(--transition-slow);
-    z-index: 1000;
-  }
-
-  .back-to-top.visible {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .back-to-top:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(255, 107, 0, 0.5);
-  }
-
-  .back-to-top svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-  }
-
-  /* ---------------- RESPONSIVE DESIGN ---------------- */
-  @media (max-width: 768px) {
-    :root {
-      --container-padding: 16px;
-      --section-padding: 60px;
-    }
-
-    .main-content {
-      padding-top: 70px; /* Mobile header height */
-    }
-
-    .footer-info {
-      flex-direction: column;
-      text-align: center;
-      gap: 30px;
-    }
-
-    .back-to-top {
-      bottom: 20px;
-      right: 20px;
-      width: 45px;
-      height: 45px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    :root {
-      --container-padding: 12px;
-      --section-padding: 40px;
-    }
-  }
-
-  /* ---------------- ACCESSIBILITY ---------------- */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
-  /* Focus states */
-  *:focus {
-    outline: 2px solid var(--brand);
-    outline-offset: 2px;
-  }
-
-  /* Selection */
-  ::selection {
-    background: var(--brand);
-    color: #000;
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--bg);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--brand), var(--brand-dark));
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, var(--brand-light), var(--brand));
-  }
-</style>
-
-<script>
-  // Back to top functionality
-  const backToTop = document.getElementById('backToTop');
-  
-  if (backToTop) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    }, { passive: true });
-    
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  }
-
-  // Intersection Observer for animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-      }
-    });
-  }, observerOptions);
-
-  // Observe all elements with animation classes
-  document.querySelectorAll('[class*="animate"]').forEach(el => {
-    observer.observe(el);
-  });
-</script>

@@ -1,0 +1,788 @@
+---
+// src/pages/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/index.astro
+import Layout from '../../../../layouts/Layout.astro';
+
+const pageTitle = "Vŕtacie búracie kladivá a vŕtačky - ROYAL STROJE";
+const pageDescription = "Prenájom profesionálnych vŕtacích a búracích kladív v Seneci. Makita, Bosch, DeWalt, Hilti. SDS-plus, SDS-max systémy. Rezervácia online.";
+
+// Produkty vŕtacích a búracích kladív
+const produkty = [
+  {
+    id: "makita-6413",
+    nazov: "Makita 6413",
+    typ: "Rýchloupínacie sklučovadlo",
+    vykon: "450W",
+    hmotnost: "1,3kg",
+    cena: "8€/deň",
+    popis: "Klasická spolahlivá vŕtačka",
+    image: "/images/produkty/vrtacie/makita-6413.webp",
+    alt: "Makita 6413 vŕtačka",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/makita-6413"
+  },
+  {
+    id: "makita-hr2470",
+    nazov: "Makita HR2470",
+    typ: "SDS-PLUS",
+    vykon: "780W",
+    hmotnost: "2.9kg",
+    cena: "9€/deň",
+    popis: "Menšie vŕtacie kladivo",
+    image: "/images/produkty/vrtacie/makita-hr2470.webp",
+    alt: "Makita HR2470 vŕtacie kladivo",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/makita-hr2470"
+  },
+  {
+    id: "makita-hm0870c",
+    nazov: "Makita HM0870C",
+    typ: "SDS-MAX",
+    vykon: "1100W",
+    hmotnost: "5.1kg",
+    cena: "15€/deň",
+    popis: "Ľahké kompaktné búracie kladivo s elektronickou reguláciou",
+    image: "/images/produkty/vrtacie/makita-hm0870c.webp",
+    alt: "Makita HM0870C kompaktné búracie kladivo",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/makita-hm0870c"
+  },
+  {
+    id: "hilti-te-30-c-avr",
+    nazov: "Hilti TE 30-C AVR",
+    typ: "Kombinované kladivo AVR",
+    vykon: "1050W",
+    hmotnost: "3.9kg",
+    cena: "22€/deň",
+    popis: "Profesionálne kladivo s pokročilou vibračnou kontrolou",
+    image: "/images/produkty/vrtacie/hilti-te-30-c-avr.webp",
+    alt: "Hilti TE 30-C AVR s vibračnou kontrolou",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/hilti-te-30-c-avr"
+  },
+  {
+    id: "milwaukee-m18-chx",
+    nazov: "Milwaukee M18 CHX",
+    typ: "Akumulátorové kladivo",
+    vykon: "18V Li-Ion",
+    hmotnost: "2.1kg",
+    cena: "20€/deň",
+    popis: "Bezšnúrová sloboda s výkonom sieťového kladiva",
+    image: "/images/produkty/vrtacie/milwaukee-m18-chx.webp",
+    alt: "Milwaukee M18 CHX akumulátorové kladivo",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/milwaukee-m18-chx"
+  },
+  {
+    id: "metabo-khe-2660-quick",
+    nazov: "Metabo KHE 2660 Quick",
+    typ: "Kombinované kladivo",
+    vykon: "850W",
+    hmotnost: "2.9kg",
+    cena: "17€/deň",
+    popis: "Rýchle a efektívne kladivo s Quick systémom",
+    image: "/images/produkty/vrtacie/metabo-khe-2660-quick.webp",
+    alt: "Metabo KHE 2660 Quick kombinované kladivo",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/metabo-khe-2660-quick"
+  },
+  {
+    id: "bosch-gbh-5-40-dce",
+    nazov: "Bosch GBH 5-40 DCE",
+    typ: "Profesionálne SDS-max kladivo",
+    vykon: "1150W",
+    hmotnost: "6.2kg",
+    cena: "28€/deň",
+    popis: "Výkonné ťažké kladivo pre náročné búracie práce",
+    image: "/images/produkty/vrtacie/bosch-gbh-5-40-dce.webp",
+    alt: "Bosch GBH 5-40 DCE profesionálne kladivo",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/bosch-gbh-5-40-dce"
+  },
+  {
+    id: "makita-hr4013c",
+    nazov: "Makita HR4013C",
+    typ: "Ťažké búracie kladivo",
+    vykon: "1100W",
+    hmotnost: "5.8kg",
+    cena: "25€/deň",
+    popis: "Výkonné SDS-max kladivo s AVT technológiou",
+    image: "/images/produkty/vrtacie/makita-hr4013c.webp",
+    alt: "Makita HR4013C ťažké búracie kladivo",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/makita-hr4013c"
+  }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="produkty-section">
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Domov</a></li>
+          <li><a href="/pozicovna-naradia">Požičovňa náradia</a></li>
+          <li><a href="/pozicovna-naradia/male-naradie">Malé náradie</a></li>
+          <li aria-current="page">Vŕtacie búracie kladivá a vŕtačky</li>
+        </ol>
+      </nav>
+
+      <!-- Header -->
+      <div class="section-header">
+        <div class="section-badge">Vŕtacie a búracie kladivá</div>
+        <h1 class="section-title">Profesionálne vŕtacie a búracie kladivá</h1>
+        <p class="section-subtitle">
+          Výkonné kladivá značky MAKITA pre vŕtanie do betónu, muriva a kameňa. SDS-plus a SDS-max systémy. 
+        </p>
+      </div>
+
+      <!-- Grid produktov -->
+      <div class="produkty-grid">
+        {produkty.map((produkt) => (
+          <div class="produkt-card">
+            <div class="produkt-image">
+              <img src={produkt.image} alt={produkt.alt} loading="lazy" />
+            </div>
+            
+            <div class="produkt-content">
+              <div class="produkt-header">
+                <div class="produkt-title-row">
+                  <h3 class="produkt-nazov">{produkt.nazov}</h3>
+                  <div class="produkt-cena">{produkt.cena}</div>
+                </div>
+                <p class="produkt-typ">{produkt.typ}</p>
+                <p class="produkt-popis">{produkt.popis}</p>
+              </div>
+
+              <div class="produkt-specs">
+                <div class="spec-item">
+                  <span class="spec-label">Výkon:</span>
+                  <span class="spec-value">{produkt.vykon}</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Hmotnosť:</span>
+                  <span class="spec-value spec-value-highlight">{produkt.hmotnost}</span>
+                </div>
+              </div>
+
+              <div class="produkt-actions">
+                <a 
+                  href={`mailto:info@royalstroje.sk?subject=Rezervácia: ${produkt.nazov}&body=Dobrý deň,\n\nchcem si rezervovať:\n\n${produkt.nazov} - ${produkt.typ}\nCena: ${produkt.cena}\n\nTermín prenájmu:\nOd: \nDo: \n\nMeno a priezvisko:\nTelefón:\n\nĎakujem`}
+                  class="rezervovat-btn"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
+                  </svg>
+                  Rezervovať
+                </a>
+                
+                <a href={produkt.url} class="detail-btn">
+                  Technické parametre
+                  <svg viewBox="0 0 24 24">
+                    <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Informačná sekcia -->
+      <div class="info-section">
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.1 3.9 23 5 23H11V21H5V3H13V9H21Z"/>
+              </svg>
+            </div>
+            <h4>Návod na použitie</h4>
+            <p>Každé náradie dodávame s podrobným návodom a bezpečnostnými pokynmi</p>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+              </svg>
+            </div>
+            <h4>Prémiová kvalita</h4>
+            <p>Len originálne náradie od renomovaných výrobcov ako Makita, Bosch, DeWalt</p>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z"/>
+              </svg>
+            </div>
+            <h4>Technická podpora</h4>
+            <p>Naši technici vám poradia s výberom správneho kladiva pre váš projekt</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA sekcia -->
+      <div class="cta-section">
+        <div class="cta-content">
+          <h2>Potrebujete poradiť s výberom kladiva?</h2>
+          <p>Kontaktujte nás a pomôžeme vám vybrať správny typ kladiva pre váš projekt</p>
+          <div class="cta-actions">
+            <a href="tel:+421948555551" class="cta-phone">
+              <svg viewBox="0 0 24 24">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+              </svg>
+              Zavolajte 0948 555 551
+            </a>
+            <a href="/kontakt" class="cta-contact">Kontaktný formulár</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* PRODUKTY SECTION */
+  .produkty-section {
+    padding: 40px 0 120px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #111111 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 80px);
+  }
+
+  .produkty-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .produkty-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 107, 0, 0.1) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  /* BREADCRUMBS */
+  .breadcrumbs {
+    margin-bottom: 40px;
+  }
+
+  .breadcrumbs ol {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '>';
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  .breadcrumbs a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--brand-light);
+  }
+
+  .breadcrumbs li[aria-current="page"] {
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 107, 0, 0.1));
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    color: var(--brand);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+    line-height: 1.1;
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* PRODUKTY GRID */
+  .produkty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 32px;
+    margin-bottom: 80px;
+  }
+
+  .produkt-card {
+    background: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .produkt-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 107, 0, 0.4);
+    box-shadow: 0 20px 60px rgba(255, 107, 0, 0.15);
+  }
+
+  /* PRODUKT OBRÁZOK */
+  .produkt-image {
+    height: 180px;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .produkt-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  .produkt-card:hover .produkt-image img {
+    transform: scale(1.05);
+  }
+
+  /* PRODUKT OBSAH */
+  .produkt-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .produkt-header {
+    margin-bottom: 16px;
+  }
+
+  .produkt-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+
+  .produkt-nazov {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+    flex-grow: 1;
+  }
+
+  .produkt-cena {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 107, 0, 0.1));
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    padding: 4px 10px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .produkt-typ {
+    font-size: 0.9rem;
+    color: var(--brand);
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .produkt-popis {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* ŠPECIFIKÁCIE */
+  .produkt-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .spec-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .spec-value {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Zvýraznenie hmotnosti */
+  .spec-value-highlight {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.15), rgba(255, 107, 0, 0.08));
+    border: 1px solid rgba(255, 107, 0, 0.25);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* AKCIE */
+  .produkt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .rezervovat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .rezervovat-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+  }
+
+  .rezervovat-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  .detail-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid var(--brand);
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .detail-btn:hover {
+    background: rgba(255, 107, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .detail-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  /* INFO SEKCIA */
+  .info-section {
+    margin-bottom: 80px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+  }
+
+  .info-card {
+    background: rgba(255, 107, 0, 0.05);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .info-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .info-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #000;
+  }
+
+  .info-card h4 {
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .info-card p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 107, 0, 0.05));
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 24px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .cta-content p {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cta-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .cta-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255, 107, 0, 0.4);
+  }
+
+  .cta-phone svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .cta-contact {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 2px solid var(--brand);
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 30px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .cta-contact:hover {
+    background: var(--brand);
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .produkty-section {
+      padding: 20px 0 80px;
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+    }
+
+    .produkty-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .cta-section {
+      padding: 40px 24px;
+    }
+
+    .cta-content h2 {
+      font-size: 1.6rem;
+    }
+
+    .cta-actions {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 1.8rem;
+    }
+
+    .produkt-image {
+      height: 140px;
+    }
+
+    .produkt-content {
+      padding: 20px;
+    }
+
+    .breadcrumbs {
+      margin-bottom: 20px;
+    }
+
+    .produkt-specs {
+      grid-template-columns: 1fr;
+    }
+
+    .produkt-title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
+
+  /* FOCUS STATES */
+  .produkt-card:focus-within {
+    outline: 2px solid var(--brand);
+    outline-offset: 4px;
+  }
+
+  .rezervovat-btn:focus,
+  .detail-btn:focus,
+  .cta-phone:focus,
+  .cta-contact:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  /* ACCESSIBILITY */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

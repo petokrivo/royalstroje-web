@@ -1,117 +1,89 @@
 ---
-// src/pages/pozicovna-naradia/male-naradie/index.astro
+// src/pages/pozicovna-naradia/stredna-mechanizacia/index.astro
 import Layout from '../../../layouts/Layout.astro';
 
-const pageTitle = "Malé náradie - ROYAL STROJE";
-const pageDescription = "Profesionálne malé stavebné náradie na prenájom v Seneci. Vŕtačky, brúsky, píly, vysávače, čerpadlá, zváracia technika a viac.";
+const pageTitle = "Stredná mechanizácia - ROYAL STROJE";
+const pageDescription = "Profesionálna stredná mechanizácia na prenájom v Seneci. Vibračné dosky, elektrocentrály, kompresory, cestné rezačky a viac.";
 
-// Kategórie malého náradia
-const naradia = [
+// Kategórie strednej mechanizácie
+const mechanizacia = [
   {
-    title: "Vŕtacie búracie kladivá a vŕtačky",
-    description: "Výkonné vŕtačky a búracie kladivá pre betón, murivko a ďalšie materiály",
-    image: "/images/male-naradie/vrtacky.webp",
-    alt: "Vŕtacie a búracie kladivá",
-    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky"
+    title: "Vibračné dosky a nohy",
+    description: "Výkonné vibračné zariadenia pre zhutňovanie podkladu a asfaltových povrchov",
+    image: "/images/stredna-mechanizacia/vibracne-dosky.webp",
+    alt: "Vibračné dosky a nohy",
+    url: "/pozicovna-naradia/stredna-mechanizacia/vibracne-dosky-a-nohy"
   },
   {
-    title: "Uhlové, vibračné a pásové brúsky",
-    description: "Profesionálne brúsky pre rezanie, brúsenie a úpravu kovov a betónu",
-    image: "/images/male-naradie/brusky.webp",
-    alt: "Uhlové a vibračné brúsky",
-    url: "/pozicovna-naradia/male-naradie/uhlove-vibracne-a-pasove-brusky"
+    title: "Elektrocentrály",
+    description: "Spoľahlivé generátory elektrickej energie pre stavebné práce a záložné napájanie",
+    image: "/images/stredna-mechanizacia/elektrocentraly.webp",
+    alt: "Elektrocentrály a generátory",
+    url: "/pozicovna-naradia/stredna-mechanizacia/elektrocentraly"
   },
   {
-    title: "Ručné píly a rezačky",
-    description: "Presné rezacie nástroje pre drevo, kov, plast a ďalšie materiály",
-    image: "/images/male-naradie/pily.webp",
-    alt: "Ručné píly a rezačky",
-    url: "/pozicovna-naradia/male-naradie/rucne-pily-a-rezacky"
+    title: "Kompresory",
+    description: "Tlakové vzduchové kompresory pre pneumatické náradie a striekanie",
+    image: "/images/stredna-mechanizacia/kompresory.webp",
+    alt: "Vzduchové kompresory",
+    url: "/pozicovna-naradia/stredna-mechanizacia/kompresory"
   },
   {
-    title: "Vysávače, tepovače a tlakové čističe",
-    description: "Čistiace zariadenia pre stavebné práce a úklid pracoviska",
-    image: "/images/male-naradie/vysavace.webp",
-    alt: "Vysávače a čističe",
-    url: "/pozicovna-naradia/male-naradie/vysavace-tepovace-a-tlakove-cistice"
+    title: "Cestné rezačky, frézy a brúsky",
+    description: "Profesionálne zariadenia pre rezanie a opravy asfaltových a betónových povrchov",
+    image: "/images/stredna-mechanizacia/cestne-rezacky.webp",
+    alt: "Cestné rezačky a frézy",
+    url: "/pozicovna-naradia/stredna-mechanizacia/cestne-rezacky-frezy-a-brusky"
   },
   {
-    title: "Čerpadlá, ohrievače a odvlhčovače",
-    description: "Technika pre vodné hospodárstvo a klimatizáciu priestorov",
-    image: "/images/male-naradie/cerpadla.webp",
-    alt: "Čerpadlá a ohrievače",
-    url: "/pozicovna-naradia/male-naradie/cerpadla-ohrieavce-a-odvlhcovace"
+    title: "Stolové a portálové píly",
+    description: "Presné rezacie stolové píly pre kameň, betón, dlažbu a stavebné materiály",
+    image: "/images/stredna-mechanizacia/stolove-pily.webp",
+    alt: "Stolové a portálové píly",
+    url: "/pozicovna-naradia/stredna-mechanizacia/stolove-a-portalove-pily"
   },
   {
-    title: "Zváracia a meracia technika",
-    description: "Presné meracie prístroje a profesionálne zváracie zariadenia",
-    image: "/images/male-naradie/zvaranie.webp",
-    alt: "Zváracia a meracia technika",
-    url: "/pozicovna-naradia/male-naradie/zvaracia-a-meracia-technika"
-  },
-  {
-    title: "Vibrátory, vibračné lišty a miešadlá",
-    description: "Betonárske náradie pre zhutňovanie a miešanie stavebných zmesí",
-    image: "/images/male-naradie/vibratory.webp",
-    alt: "Vibrátory a miešadlá",
-    url: "/pozicovna-naradia/male-naradie/vibratory-vibracne-listy-a-miesadla"
-  },
-  {
-    title: "Lešenie",
-    description: "Bezpečné lešenárske systémy pre prácu vo výške a na fasádach",
-    image: "/images/male-naradie/lesenie.webp",
-    alt: "Lešenie a lešenárske kozy",
-    url: "/pozicovna-naradia/male-naradie/lesenie"
-  },
-  {
-    title: "Záhradná technika",
-    description: "Kosačky, vysekávače, reťazové píly a ďalšia záhradná technika",
-    image: "/images/male-naradie/zahrada.webp",
-    alt: "Záhradná technika",
-    url: "/pozicovna-naradia/male-naradie/zahradna-technika"
-  },
-  {
-    title: "Nádrže na vodu a naftu",
-    description: "Skladovacie nádrže a kontajnery pre rôzne typy tekutín",
-    image: "/images/male-naradie/nadrze.webp",
-    alt: "Nádrže na vodu a naftu",
-    url: "/pozicovna-naradia/male-naradie/nadrze-na-vodu-a-naftu"
+    title: "Miešačky, hladičky betónu a bádie",
+    description: "Betonárske zariadenia pre miešanie, hladenie a transport betónových zmesí",
+    image: "/images/stredna-mechanizacia/miesacky-betonarske.webp",
+    alt: "Miešačky a hladičky betónu",
+    url: "/pozicovna-naradia/stredna-mechanizacia/miesacky-hladiciky-betonu-a-badie"
   }
 ];
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <section class="male-naradie-section">
+  <section class="stredna-mechanizacia-section">
     <div class="container">
       <!-- Breadcrumbs -->
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li><a href="/">Domov</a></li>
           <li><a href="/pozicovna-naradia">Požičovňa náradia</a></li>
-          <li aria-current="page">Malé náradie</li>
+          <li aria-current="page">Stredná mechanizácia</li>
         </ol>
       </nav>
 
       <!-- Header -->
       <div class="section-header">
-        <div class="section-badge">Malé náradie</div>
-        <h1 class="section-title">Profesionálne náradie pre každý projekt</h1>
+        <div class="section-badge">Stredná mechanizácia</div>
+        <h1 class="section-title">Výkonné stroje pre stredné stavebné práce</h1>
         <p class="section-subtitle">
-          Kompletný sortiment malého stavebného náradia a techniky pre profesionálov aj domácich majstrov
+          Profesionálna mechanizácia pre efektívne riešenie stredných stavebných projektov a infraštruktúrnych prác
         </p>
       </div>
 
-      <!-- Grid náradia -->
-      <div class="naradie-grid">
-        {naradia.map((item) => (
-          <div class="naradie-card">
-            <div class="naradie-image">
+      <!-- Grid mechanizácie -->
+      <div class="mechanizacia-grid">
+        {mechanizacia.map((item) => (
+          <div class="mechanizacia-card">
+            <div class="mechanizacia-image">
               <img src={item.image} alt={item.alt} loading="lazy" />
             </div>
-            <div class="naradie-content">
-              <h3 class="naradie-title">{item.title}</h3>
-              <p class="naradie-description">{item.description}</p>
-              <a href={item.url} class="naradie-link">
+            <div class="mechanizacia-content">
+              <h3 class="mechanizacia-title">{item.title}</h3>
+              <p class="mechanizacia-description">{item.description}</p>
+              <a href={item.url} class="mechanizacia-link">
                 Zobraziť ponuku
                 <svg viewBox="0 0 24 24">
                   <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"/>
@@ -125,8 +97,8 @@ const naradia = [
       <!-- CTA sekcia -->
       <div class="cta-section">
         <div class="cta-content">
-          <h2>Potrebujete poradiť s výberom?</h2>
-          <p>Naši odborníci vám pomôžu vybrať správne náradie pre váš projekt</p>
+          <h2>Potrebujete poradiť s výberom mechanizácie?</h2>
+          <p>Naši techniční špecialisti vám pomôžu vybrať správne stroje pre váš projekt</p>
           <div class="cta-actions">
             <a href="tel:+421948555551" class="cta-phone">
               <svg viewBox="0 0 24 24">
@@ -143,8 +115,8 @@ const naradia = [
 </Layout>
 
 <style>
-  /* MALÉ NÁRADIE SECTION */
-  .male-naradie-section {
+  /* STREDNÁ MECHANIZÁCIA SECTION */
+  .stredna-mechanizacia-section {
     padding: 40px 0 120px;
     background: linear-gradient(135deg, #0a0a0a 0%, #111111 50%, #0a0a0a 100%);
     position: relative;
@@ -152,7 +124,7 @@ const naradia = [
     min-height: calc(100vh - 80px);
   }
 
-  .male-naradie-section::before {
+  .stredna-mechanizacia-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -164,7 +136,7 @@ const naradia = [
     pointer-events: none;
   }
 
-  .male-naradie-section::after {
+  .stredna-mechanizacia-section::after {
     content: '';
     position: absolute;
     top: 0;
@@ -254,20 +226,20 @@ const naradia = [
   .section-subtitle {
     font-size: 1.25rem;
     color: var(--text-dim);
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     line-height: 1.6;
   }
 
-  /* NÁRADIE GRID */
-  .naradie-grid {
+  /* MECHANIZÁCIA GRID */
+  .mechanizacia-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 32px;
     margin-bottom: 80px;
   }
 
-  .naradie-card {
+  .mechanizacia-card {
     background: rgba(17, 17, 17, 0.8);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -281,7 +253,7 @@ const naradia = [
     height: 100%;
   }
 
-  .naradie-card::before {
+  .mechanizacia-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -294,52 +266,52 @@ const naradia = [
     pointer-events: none;
   }
 
-  .naradie-card:hover::before {
+  .mechanizacia-card:hover::before {
     opacity: 1;
   }
 
-  .naradie-card:hover {
+  .mechanizacia-card:hover {
     transform: translateY(-8px);
     border-color: rgba(255, 107, 0, 0.4);
     box-shadow: 0 20px 60px rgba(255, 107, 0, 0.15);
   }
 
-  /* NÁRADIE OBRÁZOK */
-  .naradie-image {
-    height: 200px;
+  /* MECHANIZÁCIA OBRÁZOK */
+  .mechanizacia-image {
+    height: 220px;
     background: #ffffff;
     overflow: hidden;
     position: relative;
   }
 
-  .naradie-image img {
+  .mechanizacia-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: all 0.3s ease;
   }
 
-  .naradie-card:hover .naradie-image img {
+  .mechanizacia-card:hover .mechanizacia-image img {
     transform: scale(1.05);
   }
 
-  /* NÁRADIE OBSAH */
-  .naradie-content {
+  /* MECHANIZÁCIA OBSAH */
+  .mechanizacia-content {
     padding: 32px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
 
-  .naradie-title {
-    font-size: 1.25rem;
+  .mechanizacia-title {
+    font-size: 1.3rem;
     font-weight: 800;
     color: var(--text);
     margin-bottom: 12px;
     line-height: 1.3;
   }
 
-  .naradie-description {
+  .mechanizacia-description {
     font-size: 0.95rem;
     color: var(--text-dim);
     margin-bottom: 24px;
@@ -347,7 +319,7 @@ const naradia = [
     flex-grow: 1;
   }
 
-  .naradie-link {
+  .mechanizacia-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -363,19 +335,19 @@ const naradia = [
     letter-spacing: 1px;
   }
 
-  .naradie-link:hover {
+  .mechanizacia-link:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
   }
 
-  .naradie-link svg {
+  .mechanizacia-link svg {
     width: 16px;
     height: 16px;
     fill: currentColor;
     transition: transform 0.3s ease;
   }
 
-  .naradie-link:hover svg {
+  .mechanizacia-link:hover svg {
     transform: translateX(2px);
   }
 
@@ -409,7 +381,7 @@ const naradia = [
     font-size: 1.1rem;
     color: var(--text-dim);
     margin-bottom: 32px;
-    max-width: 500px;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -469,7 +441,7 @@ const naradia = [
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    .male-naradie-section {
+    .stredna-mechanizacia-section {
       padding: 20px 0 80px;
     }
 
@@ -481,13 +453,13 @@ const naradia = [
       font-size: 2.5rem;
     }
 
-    .naradie-grid {
+    .mechanizacia-grid {
       grid-template-columns: 1fr;
       gap: 24px;
       margin-bottom: 60px;
     }
 
-    .naradie-card {
+    .mechanizacia-card {
       max-width: 100%;
     }
 
@@ -509,16 +481,11 @@ const naradia = [
       font-size: 2rem;
     }
 
-    .naradie-image {
-      height: 160px;
+    .mechanizacia-image {
+      height: 180px;
     }
 
-    .naradie-image img {
-      width: 100px;
-      height: 100px;
-    }
-
-    .naradie-content {
+    .mechanizacia-content {
       padding: 24px;
     }
 
@@ -528,12 +495,12 @@ const naradia = [
   }
 
   /* FOCUS STATES */
-  .naradie-card:focus-within {
+  .mechanizacia-card:focus-within {
     outline: 2px solid var(--brand);
     outline-offset: 4px;
   }
 
-  .naradie-link:focus,
+  .mechanizacia-link:focus,
   .cta-phone:focus,
   .cta-contact:focus {
     outline: 2px solid var(--brand);
