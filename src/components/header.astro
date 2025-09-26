@@ -61,7 +61,7 @@ const categories = [
       { name: "Skladové kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/skladove-kontajnery" },
       { name: "Sanitárne kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/sanitarne-kontajnery" },
       { name: "Mobilné oplotenie a zábrany", url: "/pozicovna-naradia/vybavenie-staveniska/oplotenie-zabrany" },
-      { name: "Mobilné toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
+      { name: "Mobilne toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
     ]
   },
   {
@@ -212,15 +212,23 @@ const mainNav = [
               <div class="mobile-submenu">
                 {categories.map((category) => (
                   <div class="mobile-category">
-                    <a href={category.url} class="mobile-category-title">
-                      {category.title}
-                    </a>
-                    <div class="mobile-category-items">
-                      {category.items.map((subItem) => (
-                        <a href={subItem.url} class="mobile-category-link">
-                          {subItem.name}
-                        </a>
-                      ))}
+                    <button class="mobile-category-toggle" data-category={category.title}>
+                      <span>{category.title}</span>
+                      <svg class="mobile-category-icon" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                      </svg>
+                    </button>
+                    <div class="mobile-category-content">
+                      <a href={category.url} class="mobile-category-main">
+                        Zobraziť všetko v kategórii {category.title}
+                      </a>
+                      <div class="mobile-category-items">
+                        {category.items.map((subItem) => (
+                          <a href={subItem.url} class="mobile-category-link">
+                            {subItem.name}
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -318,6 +326,7 @@ const mainNav = [
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
+    z-index: 1001;
   }
 
   .brand:hover {
@@ -741,7 +750,7 @@ const mainNav = [
     fill: currentColor;
   }
 
-  /* ---------------- MOBILE MENU ---------------- */
+  /* ---------------- MOBILE MENU TOGGLE ---------------- */
   .mobile-toggle {
     display: none;
     flex-direction: column;
@@ -752,19 +761,7 @@ const mainNav = [
     padding: 8px;
     border-radius: 8px;
     transition: all 0.3s ease;
-  }
-
-  /* ---------------- MOBILE MENU ---------------- */
-  .mobile-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    z-index: 1001;
   }
 
   .mobile-toggle:hover {
@@ -791,6 +788,7 @@ const mainNav = [
     transform: rotate(-45deg) translate(6px, -6px);
   }
 
+  /* ---------------- MOBILE MENU ---------------- */
   .mobile-menu {
     position: fixed;
     top: 80px;
@@ -799,7 +797,7 @@ const mainNav = [
     bottom: 0;
     background: rgba(10, 10, 10, 0.98);
     backdrop-filter: blur(30px);
-    transform: translateY(-100%);
+    transform: translateX(-100%);
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -807,26 +805,26 @@ const mainNav = [
   }
 
   .mobile-menu.active {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
     visibility: visible;
   }
 
   .mobile-menu-content {
-    padding: 40px 24px;
+    padding: 24px;
     height: 100%;
     overflow-y: auto;
   }
 
   .mobile-nav-item {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .mobile-nav-link {
     display: block;
     color: var(--text);
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     padding: 16px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -838,44 +836,105 @@ const mainNav = [
   }
 
   .mobile-submenu {
-    padding-left: 20px;
     margin-top: 16px;
   }
 
   .mobile-category {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
   }
 
-  .mobile-category-title {
+  .mobile-category-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: var(--brand);
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-category-toggle:hover {
+    background: rgba(255, 107, 0, 0.05);
+  }
+
+  .mobile-category-toggle span {
+    text-align: left;
+  }
+
+  .mobile-category-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .mobile-category.active .mobile-category-icon {
+    transform: rotate(180deg);
+  }
+
+  .mobile-category-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-category.active .mobile-category-content {
+    max-height: 800px;
+  }
+
+  .mobile-category-main {
     display: block;
     color: var(--brand);
     text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 16px;
+    margin: 0 16px 12px;
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-category-main:hover {
+    background: rgba(255, 107, 0, 0.15);
   }
 
   .mobile-category-items {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    padding: 0 16px 16px;
   }
 
   .mobile-category-link {
+    display: block;
     color: var(--text-dim);
     text-decoration: none;
     font-size: 14px;
-    padding: 8px 0;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    line-height: 1.4;
   }
 
   .mobile-category-link:hover {
     color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .mobile-actions {
     margin-top: 40px;
-    padding-top: 40px;
+    padding-top: 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
   }
@@ -899,7 +958,7 @@ const mainNav = [
     color: #000;
     text-decoration: none;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 16px;
     padding: 16px 32px;
     border-radius: 50px;
     transition: all 0.3s ease;
@@ -911,8 +970,8 @@ const mainNav = [
   }
 
   .mobile-phone svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     fill: currentColor;
   }
 
@@ -955,6 +1014,10 @@ const mainNav = [
       height: 45px;
       font-size: 18px;
     }
+
+    .mobile-menu {
+      top: 70px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -963,7 +1026,14 @@ const mainNav = [
     }
 
     .brand-text h1 {
-      font-size: 18px;
+      font-size: 16px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      margin-right: 12px;
     }
   }
 
@@ -981,7 +1051,9 @@ const mainNav = [
   /* Focus states */
   .nav-link:focus,
   .phone-cta:focus,
-  .mobile-toggle:focus {
+  .mobile-toggle:focus,
+  .mobile-category-toggle:focus,
+  .accordion-header:focus {
     outline: 2px solid var(--brand);
     outline-offset: 2px;
   }
@@ -1004,7 +1076,7 @@ const mainNav = [
     lastScroll = currentScroll;
   }, { passive: true });
 
-  // Accordion functionality in mega menu
+  // Desktop Accordion functionality in mega menu
   const accordionHeaders = document.querySelectorAll('.accordion-header');
   
   accordionHeaders.forEach(header => {
@@ -1024,11 +1096,7 @@ const mainNav = [
       });
       
       // Toggle current item
-      if (isActive) {
-        accordionItem.classList.remove('active');
-      } else {
-        accordionItem.classList.add('active');
-      }
+      accordionItem.classList.toggle('active');
     });
   });
 
@@ -1046,19 +1114,65 @@ const mainNav = [
   const mobileToggle = document.getElementById('mobileToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  mobileToggle?.addEventListener('click', () => {
-    mobileToggle.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Mobile category toggles
+  const mobileCategoryToggles = document.querySelectorAll('.mobile-category-toggle');
+  
+  mobileCategoryToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const category = toggle.closest('.mobile-category');
+      const isActive = category.classList.contains('active');
+      
+      // Close all other categories
+      mobileCategoryToggles.forEach(otherToggle => {
+        const otherCategory = otherToggle.closest('.mobile-category');
+        if (otherCategory !== category) {
+          otherCategory.classList.remove('active');
+        }
+      });
+      
+      // Toggle current category
+      category.classList.toggle('active');
+    });
   });
 
-  // Close mobile menu when clicking on links
-  const mobileLinks = mobileMenu?.querySelectorAll('a');
-  mobileLinks?.forEach(link => {
+  // Close mobile menu when clicking on main nav links
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
-      mobileToggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Close mobile menu when clicking on category links
+  const mobileCategoryLinks = document.querySelectorAll('.mobile-category-link, .mobile-category-main');
+  mobileCategoryLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   });
 
@@ -1071,7 +1185,7 @@ const mainNav = [
     }
   });
 
-  // Keyboard navigation for accordion
+  // Keyboard navigation for desktop accordion
   accordionHeaders.forEach(header => {
     header.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -1081,13 +1195,21 @@ const mainNav = [
     });
   });
 
+  // Keyboard navigation for mobile accordion
+  mobileCategoryToggles.forEach(toggle => {
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+  });
+
   // Auto-close mega menu when mouse leaves
   const navItems = document.querySelectorAll('.nav-item[data-dropdown="true"]');
   let megaMenuTimeout;
 
   navItems.forEach(item => {
-    const megaMenu = item.querySelector('.mega-menu');
-    
     item.addEventListener('mouseenter', () => {
       clearTimeout(megaMenuTimeout);
     });
@@ -1101,5 +1223,17 @@ const mainNav = [
         });
       }, 300);
     });
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      // Close mobile menu when switching to desktop
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
   });
 </script>
