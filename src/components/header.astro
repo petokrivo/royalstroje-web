@@ -1,7 +1,7 @@
 ---
 // src/components/header.astro
 
-// Definícia kategórií pre accordion menu
+// Definícia kategórií pre mega menu
 const categories = [
   {
     title: "Malé náradie",
@@ -192,7 +192,7 @@ const mainNav = [
     </div>
 
     <!-- Mobile Menu Toggle -->
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Otvoriť menu">
+    <button class="mobile-toggle" onclick="toggleMobileMenu()">
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -210,15 +210,15 @@ const mainNav = [
             </a>
             {item.hasDropdown && (
               <div class="mobile-submenu">
-                {categories.map((category) => (
+                {categories.map((category, categoryIndex) => (
                   <div class="mobile-category">
-                    <button class="mobile-category-toggle" data-category={category.title}>
+                    <button class="mobile-category-toggle" onclick={`toggleCategory(${categoryIndex})`}>
                       <span>{category.title}</span>
                       <svg class="mobile-category-icon" viewBox="0 0 24 24">
                         <path d="M7 10l5 5 5-5z"/>
                       </svg>
                     </button>
-                    <div class="mobile-category-content">
+                    <div class="mobile-category-content" id={`category-${categoryIndex}`}>
                       <a href={category.url} class="mobile-category-main">
                         Zobraziť všetko v kategórii {category.title}
                       </a>
@@ -797,15 +797,13 @@ const mainNav = [
     bottom: 0;
     background: rgba(10, 10, 10, 0.98);
     backdrop-filter: blur(30px);
-    transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     z-index: 999;
   }
 
   .mobile-menu.active {
-    transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
@@ -885,10 +883,10 @@ const mainNav = [
   .mobile-category-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.3s ease;
   }
 
-  .mobile-category.active .mobile-category-content {
+  .mobile-category-content.active {
     max-height: 800px;
   }
 
@@ -1036,50 +1034,42 @@ const mainNav = [
       margin-right: 12px;
     }
   }
-
-  /* ---------------- ACCESSIBILITY ---------------- */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* Focus states */
-  .nav-link:focus,
-  .phone-cta:focus,
-  .mobile-toggle:focus,
-  .mobile-category-toggle:focus,
-  .accordion-header:focus {
-    outline: 2px solid var(--brand);
-    outline-offset: 2px;
-  }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Header script loaded');
-
-  // Header scroll effects
-  const header = document.getElementById('header');
-  if (header) {
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }, { passive: true });
+// SUPER JEDNODUCHÉ FUNKCIE
+function toggleMobileMenu() {
+  console.log('Mobile menu clicked!');
+  const menu = document.getElementById('mobileMenu');
+  const toggle = document.querySelector('.mobile-toggle');
+  
+  if (menu && toggle) {
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+    
+    // Zablokuj scrollovanie
+    if (menu.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
+}
 
-  // Desktop Accordion functionality in mega menu
+function toggleCategory(index) {
+  console.log('Category clicked:', index);
+  const content = document.getElementById('category-' + index);
+  const category = content.closest('.mobile-category');
+  
+  if (content && category) {
+    content.classList.toggle('active');
+    category.classList.toggle('active');
+  }
+}
+
+// Desktop accordion (zostáva rovnaký)
+window.addEventListener('load', function() {
   const accordionHeaders = document.querySelectorAll('.accordion-header');
-  console.log('Found accordion headers:', accordionHeaders.length);
   
   accordionHeaders.forEach(header => {
     header.addEventListener('click', (e) => {
@@ -1087,9 +1077,7 @@ document.addEventListener('DOMContentLoaded', function() {
       e.stopPropagation();
       
       const accordionItem = header.closest('.accordion-item');
-      const isActive = accordionItem.classList.contains('active');
       
-      // Close all other accordion items
       accordionHeaders.forEach(otherHeader => {
         const otherItem = otherHeader.closest('.accordion-item');
         if (otherItem !== accordionItem) {
@@ -1097,156 +1085,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // Toggle current item
       accordionItem.classList.toggle('active');
     });
   });
 
-  // Close accordion when clicking outside mega menu
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.mega-menu')) {
-      accordionHeaders.forEach(header => {
-        const accordionItem = header.closest('.accordion-item');
-        accordionItem.classList.remove('active');
-      });
-    }
-  });
-
-  // Mobile menu toggle
-  const mobileToggle = document.getElementById('mobileToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  
-  console.log('Mobile toggle:', mobileToggle);
-  console.log('Mobile menu:', mobileMenu);
-
-  if (mobileToggle && mobileMenu) {
-    mobileToggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      console.log('Mobile toggle clicked');
-      
-      mobileToggle.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      
-      console.log('Mobile menu active:', mobileMenu.classList.contains('active'));
-      
-      // Prevent body scroll when menu is open
-      if (mobileMenu.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  // Mobile category toggles
-  const mobileCategoryToggles = document.querySelectorAll('.mobile-category-toggle');
-  console.log('Found mobile category toggles:', mobileCategoryToggles.length);
-  
-  mobileCategoryToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const category = toggle.closest('.mobile-category');
-      const isActive = category.classList.contains('active');
-      
-      console.log('Category toggle clicked:', toggle.dataset.category);
-      
-      // Close all other categories
-      mobileCategoryToggles.forEach(otherToggle => {
-        const otherCategory = otherToggle.closest('.mobile-category');
-        if (otherCategory !== category) {
-          otherCategory.classList.remove('active');
-        }
-      });
-      
-      // Toggle current category
-      category.classList.toggle('active');
-    });
-  });
-
-  // Close mobile menu when clicking on main nav links
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (mobileToggle && mobileMenu) {
-        mobileToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  });
-
-  // Close mobile menu when clicking on category links
-  const mobileCategoryLinks = document.querySelectorAll('.mobile-category-link, .mobile-category-main');
-  mobileCategoryLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (mobileToggle && mobileMenu) {
-        mobileToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  });
-
-  // Close mobile menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
-      mobileToggle?.classList.remove('active');
-      mobileMenu?.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Keyboard navigation for desktop accordion
-  accordionHeaders.forEach(header => {
-    header.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        header.click();
-      }
-    });
-  });
-
-  // Keyboard navigation for mobile accordion
-  mobileCategoryToggles.forEach(toggle => {
-    toggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggle.click();
-      }
-    });
-  });
-
-  // Auto-close mega menu when mouse leaves
-  const navItems = document.querySelectorAll('.nav-item[data-dropdown="true"]');
-  let megaMenuTimeout;
-
-  navItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      clearTimeout(megaMenuTimeout);
-    });
-    
-    item.addEventListener('mouseleave', () => {
-      megaMenuTimeout = setTimeout(() => {
-        // Close all accordion items when leaving mega menu
-        accordionHeaders.forEach(header => {
-          const accordionItem = header.closest('.accordion-item');
-          accordionItem.classList.remove('active');
-        });
-      }, 300);
-    });
-  });
-
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      // Close mobile menu when switching to desktop
-      if (mobileToggle && mobileMenu) {
-        mobileToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+  // Scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if (window.pageYOffset > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
     }
   });
 });
