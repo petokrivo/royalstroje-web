@@ -797,7 +797,7 @@ const mainNav = [
     bottom: 0;
     background: rgba(10, 10, 10, 0.98);
     backdrop-filter: blur(30px);
-    transform: translateX(-100%);
+    transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -805,7 +805,7 @@ const mainNav = [
   }
 
   .mobile-menu.active {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
@@ -849,7 +849,7 @@ const mainNav = [
 
   .mobile-category-toggle {
     width: 100%;
-    background: none;
+    background: rgba(255, 107, 0, 0.1);
     border: none;
     padding: 16px;
     display: flex;
@@ -863,7 +863,7 @@ const mainNav = [
   }
 
   .mobile-category-toggle:hover {
-    background: rgba(255, 107, 0, 0.05);
+    background: rgba(255, 107, 0, 0.15);
   }
 
   .mobile-category-toggle span {
@@ -1060,24 +1060,26 @@ const mainNav = [
 </style>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Header script loaded');
+
   // Header scroll effects
   const header = document.getElementById('header');
-  let lastScroll = 0;
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-
-    lastScroll = currentScroll;
-  }, { passive: true });
+  if (header) {
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
 
   // Desktop Accordion functionality in mega menu
   const accordionHeaders = document.querySelectorAll('.accordion-header');
+  console.log('Found accordion headers:', accordionHeaders.length);
   
   accordionHeaders.forEach(header => {
     header.addEventListener('click', (e) => {
@@ -1113,11 +1115,19 @@ const mainNav = [
   // Mobile menu toggle
   const mobileToggle = document.getElementById('mobileToggle');
   const mobileMenu = document.getElementById('mobileMenu');
+  
+  console.log('Mobile toggle:', mobileToggle);
+  console.log('Mobile menu:', mobileMenu);
 
   if (mobileToggle && mobileMenu) {
-    mobileToggle.addEventListener('click', () => {
+    mobileToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('Mobile toggle clicked');
+      
       mobileToggle.classList.toggle('active');
       mobileMenu.classList.toggle('active');
+      
+      console.log('Mobile menu active:', mobileMenu.classList.contains('active'));
       
       // Prevent body scroll when menu is open
       if (mobileMenu.classList.contains('active')) {
@@ -1130,6 +1140,7 @@ const mainNav = [
 
   // Mobile category toggles
   const mobileCategoryToggles = document.querySelectorAll('.mobile-category-toggle');
+  console.log('Found mobile category toggles:', mobileCategoryToggles.length);
   
   mobileCategoryToggles.forEach(toggle => {
     toggle.addEventListener('click', (e) => {
@@ -1138,6 +1149,8 @@ const mainNav = [
       
       const category = toggle.closest('.mobile-category');
       const isActive = category.classList.contains('active');
+      
+      console.log('Category toggle clicked:', toggle.dataset.category);
       
       // Close all other categories
       mobileCategoryToggles.forEach(otherToggle => {
@@ -1179,8 +1192,8 @@ const mainNav = [
   // Close mobile menu on escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
-      mobileToggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
+      mobileToggle?.classList.remove('active');
+      mobileMenu?.classList.remove('active');
       document.body.style.overflow = '';
     }
   });
@@ -1236,4 +1249,5 @@ const mainNav = [
       }
     }
   });
+});
 </script>
