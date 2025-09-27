@@ -1,7 +1,7 @@
 ---
 // src/components/header.astro
 
-// Definícia kategórií pre accordion menu
+// Definícia kategórií pre mega menu
 const categories = [
   {
     title: "Malé náradie",
@@ -191,25 +191,32 @@ const mainNav = [
       </a>
     </div>
 
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Otvoriť menu">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
+    <!-- Mobile Menu Toggle - FORCE VISIBLE -->
+    <div class="mobile-toggle-wrapper">
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Otvoriť menu" style="display: flex !important;">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
+  <!-- Mobile Menu - FORCE VISIBLE -->
+  <div class="mobile-menu" id="mobileMenu" style="position: fixed !important; z-index: 9999 !important;">
     <div class="mobile-menu-content">
       <nav class="mobile-nav">
-        {mainNav.map((item) => (
-          <div class="mobile-nav-item">
-            <a href={item.url} class="mobile-nav-link">
-              {item.name}
-            </a>
-          </div>
-        ))}
+        <div class="mobile-nav-item">
+          <a href="/" class="mobile-nav-link">Domov</a>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="/pozicovna-naradia" class="mobile-nav-link">Požičovňa náradia</a>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="/zemne-buracie-prace" class="mobile-nav-link">Zemné a búracie práce</a>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="/kontakt" class="mobile-nav-link">Kontakt</a>
+        </div>
       </nav>
       
       <div class="mobile-actions">
@@ -227,6 +234,59 @@ const mainNav = [
     </div>
   </div>
 </header>
+
+<!-- External JS File for Better Compatibility -->
+<script>
+// NAJJEDNODUCHŠÍ MOŽNÝ KÓD
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Header loaded');
+  
+  const hamburger = document.getElementById('mobileToggle');
+  const menu = document.getElementById('mobileMenu');
+  
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', function() {
+      console.log('Hamburger clicked');
+      hamburger.classList.toggle('active');
+      menu.classList.toggle('active');
+      
+      if (menu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Close menu on link click
+    const links = menu.querySelectorAll('a');
+    links.forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        menu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  
+  // Desktop accordion
+  const accordions = document.querySelectorAll('.accordion-header');
+  accordions.forEach(function(header) {
+    header.addEventListener('click', function(e) {
+      e.preventDefault();
+      const item = header.closest('.accordion-item');
+      
+      accordions.forEach(function(other) {
+        const otherItem = other.closest('.accordion-item');
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      item.classList.toggle('active');
+    });
+  });
+});
+</script>
 
 <style>
   :root {
@@ -700,6 +760,19 @@ const mainNav = [
     letter-spacing: 1px;
   }
 
+  .phone-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 12px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
   .phone-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
@@ -711,371 +784,4 @@ const mainNav = [
     fill: currentColor;
   }
 
-  /* ---------------- MOBILE MENU TOGGLE ---------------- */
-  .mobile-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    z-index: 1001;
-  }
-
-  .mobile-toggle:hover {
-    background: var(--glass);
-  }
-
-  .hamburger-line {
-    width: 24px;
-    height: 3px;
-    background: var(--text);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-toggle.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-
-  .mobile-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-toggle.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  /* ---------------- MOBILE MENU ---------------- */
-  .mobile-menu {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(30px);
-    transform: translateX(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
-  }
-
-  .mobile-menu.active {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .mobile-menu-content {
-    padding: 24px;
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  .mobile-nav-item {
-    margin-bottom: 16px;
-  }
-
-  .mobile-nav-link {
-    display: block;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 700;
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: color 0.3s ease;
-  }
-
-  .mobile-nav-link:hover {
-    color: var(--brand);
-  }
-
-  .mobile-submenu {
-    margin-top: 16px;
-  }
-
-  .mobile-category {
-    margin-bottom: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.02);
-  }
-
-  .mobile-category-toggle {
-    width: 100%;
-    background: rgba(255, 107, 0, 0.1);
-    border: none;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    color: var(--brand);
-    font-size: 16px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-category-toggle:hover {
-    background: rgba(255, 107, 0, 0.15);
-  }
-
-  .mobile-category-toggle span {
-    text-align: left;
-  }
-
-  .mobile-category-icon {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .mobile-category.active .mobile-category-icon {
-    transform: rotate(180deg);
-  }
-
-  .mobile-category-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .mobile-category.active .mobile-category-content {
-    max-height: 800px;
-  }
-
-  .mobile-category-main {
-    display: block;
-    color: var(--brand);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 12px 16px;
-    margin: 0 16px 12px;
-    background: rgba(255, 107, 0, 0.1);
-    border: 1px solid rgba(255, 107, 0, 0.2);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-category-main:hover {
-    background: rgba(255, 107, 0, 0.15);
-  }
-
-  .mobile-category-items {
-    padding: 0 16px 16px;
-  }
-
-  .mobile-category-link {
-    display: block;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 12px;
-    margin-bottom: 4px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    line-height: 1.4;
-  }
-
-  .mobile-category-link:hover {
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .mobile-actions {
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-  }
-
-  .mobile-status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 20px;
-    color: var(--brand);
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-  .mobile-phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    color: #000;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 16px;
-    padding: 16px 32px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-phone:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
-  }
-
-  .mobile-phone svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-
-  /* ---------------- RESPONSIVE ---------------- */
-  @media (max-width: 1024px) {
-    .mega-menu {
-      width: 100vw;
-      left: 0;
-      transform: none;
-      border-radius: 0;
-      margin-top: 0;
-    }
-
-    .nav-item:hover .mega-menu {
-      transform: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .header-wrap {
-      padding: 0 16px;
-      height: 70px;
-    }
-
-    .main-nav,
-    .header-actions {
-      display: none;
-    }
-
-    .mobile-toggle {
-      display: flex;
-    }
-
-    .brand-text span {
-      display: none;
-    }
-
-    .logo-icon {
-      width: 45px;
-      height: 45px;
-      font-size: 18px;
-    }
-
-    .mobile-menu {
-      top: 70px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .header-wrap {
-      padding: 0 12px;
-    }
-
-    .brand-text h1 {
-      font-size: 16px;
-    }
-
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-      margin-right: 12px;
-    }
-  }
-
-  /* ---------------- ACCESSIBILITY ---------------- */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* Focus states */
-  .nav-link:focus,
-  .phone-cta:focus,
-  .mobile-toggle:focus,
-  .mobile-category-toggle:focus,
-  .accordion-header:focus {
-    outline: 2px solid var(--brand);
-    outline-offset: 2px;
-  }
-</style>
-
-<script is:inline>
-// SUPER JEDNODUCHÉ MOBILNÉ MENU
-document.addEventListener('click', function(e) {
-  // Hamburger button
-  if (e.target.closest('#mobileToggle')) {
-    const toggle = document.getElementById('mobileToggle');
-    const menu = document.getElementById('mobileMenu');
-    
-    toggle.classList.toggle('active');
-    menu.classList.toggle('active');
-    
-    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
-    return;
-  }
-  
-  // Close menu when clicking links
-  if (e.target.closest('.mobile-nav-link')) {
-    const toggle = document.getElementById('mobileToggle');
-    const menu = document.getElementById('mobileMenu');
-    
-    toggle.classList.remove('active');
-    menu.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-});
-
-// Desktop accordion (zostáva rovnaký)
-document.addEventListener('DOMContentLoaded', function() {
-  const accordionHeaders = document.querySelectorAll('.accordion-header');
-  
-  accordionHeaders.forEach(header => {
-    header.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const accordionItem = header.closest('.accordion-item');
-      
-      accordionHeaders.forEach(otherHeader => {
-        const otherItem = otherHeader.closest('.accordion-item');
-        if (otherItem !== accordionItem) {
-          otherItem.classList.remove('active');
-        }
-      });
-      
-      accordionItem.classList.toggle('active');
-    });
-  });
-
-  // Scroll effect
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    if (window.pageYOffset > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-});
-</script>
+  /* ----------------
