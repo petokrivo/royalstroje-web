@@ -204,45 +204,24 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
         
         <div class="prislusenstvo-kategorie">
           <div class="kategoria-box">
-            <h3>SDS-MAX Vrtáky</h3>
-            <p class="kategoria-popis">Cena: priemer v mm × 0,10€ (bez DPH)</p>
+            <h3>SDS-MAX Vrtáky - Kalkulačka cien</h3>
+            <p class="kategoria-popis">Vypočítajte si cenu vrtákov podľa priemeru</p>
             
             <!-- Kalkulačka vrtákov -->
             <div class="vrtak-calculator">
-              <h4>Kalkulačka ceny vrtáka:</h4>
               <div class="calculator-input">
                 <label for="vrtakPriemer">Priemer vrtáka (mm):</label>
                 <input type="number" id="vrtakPriemer" min="6" max="50" value="20" />
-                <span class="calculator-result">
-                  = <span id="vrtakCena">2,00</span>€ bez DPH (<span id="vrtakCenaDPH">2,46</span>€ s DPH)
-                </span>
-              </div>
-            </div>
-
-            <div class="prislusenstvo-grid">
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">15mm vrták</span>
-                <span class="prislusenstvo-cena">1,50€ <small>bez DPH</small></span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">20mm vrták</span>
-                <span class="prislusenstvo-cena">2,00€ <small>bez DPH</small></span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">25mm vrták</span>
-                <span class="prislusenstvo-cena">2,50€ <small>bez DPH</small></span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">30mm vrták</span>
-                <span class="prislusenstvo-cena">3,00€ <small>bez DPH</small></span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">35mm vrták</span>
-                <span class="prislusenstvo-cena">3,50€ <small>bez DPH</small></span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">40mm vrták</span>
-                <span class="prislusenstvo-cena">4,00€ <small>bez DPH</small></span>
+                <div class="calculator-result">
+                  <span class="result-label">Cena za deň:</span>
+                  <div class="result-values">
+                    <span class="result-value" id="vrtakCena">2,00€ bez DPH</span>
+                    <span class="result-value-vat" id="vrtakCenaDPH">2,46€ s DPH</span>
+                  </div>
+                </div>
+                <div class="result-formula">
+                  <small>Vzorec: priemer (mm) × 0,10€ (bez DPH)</small>
+                </div>
               </div>
             </div>
           </div>
@@ -253,15 +232,15 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
             <div class="prislusenstvo-grid">
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Sekáč špicatý SDS-MAX</span>
-                <span class="prislusenstvo-cena">3€ <small>bez DPH</small></span>
+                <span class="prislusenstvo-cena">3€ bez DPH</span>
               </div>
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Sekáč plochý SDS-MAX</span>
-                <span class="prislusenstvo-cena">3€ <small>bez DPH</small></span>
+                <span class="prislusenstvo-cena">3€ bez DPH</span>
               </div>
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Predlžovací kábel 50m (bubon)</span>
-                <span class="prislusenstvo-cena">3€ <small>bez DPH</small></span>
+                <span class="prislusenstvo-cena">3€ bez DPH</span>
               </div>
             </div>
           </div>
@@ -328,6 +307,19 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
     bottom: 0;
     background: radial-gradient(circle at 30% 20%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .produkt-detail-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 107, 0, 0.1) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.2;
     pointer-events: none;
   }
 
@@ -826,22 +818,15 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
   .vrtak-calculator {
     background: rgba(255, 107, 0, 0.05);
     border: 1px solid rgba(255, 107, 0, 0.2);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 16px;
+    padding: 24px;
     margin-bottom: 24px;
-  }
-
-  .vrtak-calculator h4 {
-    color: var(--brand);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 0 0 16px;
   }
 
   .calculator-input {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
 
   .calculator-input label {
@@ -868,9 +853,45 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
   }
 
   .calculator-result {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .result-label {
+    color: var(--text-dim);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .result-values {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .result-value {
     color: var(--brand);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.1rem;
+  }
+
+  .result-value-vat {
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .result-formula {
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .result-formula small {
+    color: var(--text-dim);
+    font-style: italic;
   }
 
   .prislusenstvo-grid {
@@ -908,16 +929,6 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
     background: rgba(255, 107, 0, 0.1);
     padding: 4px 12px;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
-
-  .prislusenstvo-cena small {
-    font-size: 0.7rem;
-    font-weight: 500;
-    opacity: 0.8;
   }
 
   .prislusenstvo-poznamka {
@@ -947,6 +958,14 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
     text-align: center;
     position: relative;
     overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
   }
 
   .cta-content {
@@ -1077,6 +1096,10 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
     .cta-section {
       padding: 40px 20px;
     }
+
+    .vrtak-calculator {
+      padding: 16px;
+    }
   }
 </style>
 
@@ -1094,8 +1117,8 @@ const pageDescription = "Prenájom Makita HR4003C kombinovaného kladiva 1100W v
       const cenaBezDPH = priemer * 0.10;
       const cenaSdph = cenaBezDPH * 1.23;
       
-      vrtakCena.textContent = cenaBezDPH.toFixed(2);
-      vrtakCenaDPH.textContent = cenaSdph.toFixed(2);
+      vrtakCena.textContent = `${cenaBezDPH.toFixed(2)}€ bez DPH`;
+      vrtakCenaDPH.textContent = `${cenaSdph.toFixed(2)}€ s DPH`;
     }
     
     vrtakInput.addEventListener('input', updateVrtakPrice);

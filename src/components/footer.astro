@@ -1,14 +1,684 @@
 ---
-const BRAND = '#f66000';
+// src/components/Footer.astro
+
+const PHONE = "+421 948 555 551";
+const EMAIL = "info@royalstroje.sk";
+const WHATSAPP = "https://wa.me/421948555551";
+const TELEGRAM = "https://t.me/petokrivo";
+const MAPS_PREVADZKA = "https://www.google.com/maps/search/?api=1&query=48.22442423409257%2C17.41841256196949";
+const MAPS_SIDLO = "https://www.google.com/maps/search/?api=1&query=Bajkalská+31+Bratislava";
+
+const currentYear = new Date().getFullYear();
+
+// Navigačné sekcie
+const serviceLinks = [
+  { name: "Požičovňa náradia", url: "/pozicovna-naradia" },
+  { name: "Malé náradie", url: "/pozicovna-naradia/male-naradie" },
+  { name: "Stredná mechanizácia", url: "/pozicovna-naradia/stredna-mechanizacia" },
+  { name: "Ťažká technika", url: "/pozicovna-naradia/tazka-technika" },
+  { name: "Manipulačná technika", url: "/pozicovna-naradia/manipulacna-technika" },
+  { name: "Zemné a búracie práce", url: "/zemne-buracie-prace" }
+];
+
+const infoLinks = [
+  { name: "O nás", url: "/o-nas" },
+  { name: "Cenník", url: "/cennik" },
+  { name: "Kontakt", url: "/kontakt" },
+  { name: "Obchodné podmienky", url: "/obchodne-podmienky" },
+  { name: "GDPR", url: "/gdpr" },
+  { name: "Sitemap", url: "/sitemap" }
+];
 ---
-<footer class="site-footer">
-  <div class="wrap">
-    <p>© {new Date().getFullYear()} ROYAL STROJE s.r.o. • <a href="/gdpr">GDPR</a></p>
+
+<footer class="site-footer" id="footer">
+  <!-- Pozadie s jemnými efektmi -->
+  <div class="footer-bg">
+    <div class="footer-gradient"></div>
+    <div class="footer-glow"></div>
   </div>
+  
+  <div class="footer-content">
+    <!-- Hlavný obsah footera -->
+    <div class="footer-main">
+      
+      <!-- Brand sekcia s logom -->
+      <div class="footer-brand fade-in-section">
+        <div class="brand-container">
+          <!-- Logo -->
+          <div class="brand-logo">
+            <img 
+              src="/images/logo.svg" 
+              alt="ROYAL STROJE logo" 
+              class="logo-main"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Fallback ak sa logo nenačíta -->
+            <div class="logo-fallback">
+              <div class="logo-icon">RS</div>
+            </div>
+          </div>
+          
+          <div class="brand-text">
+            <h3>ROYAL STROJE</h3>
+            <span>PREMIUM NÁRADIE PRE PROFESIONÁLOV</span>
+          </div>
+        </div>
+        
+        <p class="brand-description">
+          Prenájom stavebnej techniky a náradia v Bratislave a okolí. 
+          Viac ako 25 rokov skúseností s profesionálnym prístupom.
+        </p>
+        
+        <!-- Sociálne siete -->
+        <div class="social-links">
+          <a href="https://www.facebook.com/royalstroje" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/royalstroje" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href={WHATSAPP} target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+          <a href={TELEGRAM} target="_blank" rel="noopener" aria-label="Telegram">
+            <svg viewBox="0 0 24 24">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Kontakt -->
+      <div class="footer-section fade-in-section">
+        <h4>KONTAKT</h4>
+        <div class="contact-items">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            <a href={`tel:${PHONE.replace(/\s/g,"")}`}>{PHONE}</a>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
+            </svg>
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <a href={MAPS_PREVADZKA} target="_blank">Récka cesta 182, Senec</a>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 20A8 8 0 1 0 12 4a8 8 0 0 0 0 16zm0-2A6 6 0 1 1 12 6a6 6 0 0 1 0 12zm1-8V7h-2v3H8v2h3v3h2v-3h3v-2z"/>
+            </svg>
+            <span>PO-PI: 7:00 - 16:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Služby -->
+      <div class="footer-section fade-in-section">
+        <h4>NAŠE SLUŽBY</h4>
+        <ul class="footer-links">
+          {serviceLinks.map((link) => (
+            <li><a href={link.url}>{link.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Informácie -->
+      <div class="footer-section fade-in-section">
+        <h4>INFORMÁCIE</h4>
+        <ul class="footer-links">
+          {infoLinks.map((link) => (
+            <li><a href={link.url}>{link.name}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Firemné údaje -->
+    <div class="footer-company fade-in-section">
+      <div class="company-grid">
+        <div class="company-info">
+          <h5>SÍDLO SPOLOČNOSTI</h5>
+          <address>
+            ROYAL STROJE s.r.o.<br>
+            Bajkalská 31<br>
+            821 05 Bratislava<br>
+            IČO: 12345678<br>
+            DIČ: 2023456789
+          </address>
+        </div>
+        
+        <div class="company-info">
+          <h5>PREVÁDZKA</h5>
+          <address>
+            Récka cesta 182<br>
+            903 01 Senec<br>
+            Po-Pi: 7:00 - 16:00<br>
+            So, Ne: zatvorené
+          </address>
+        </div>
+        
+        <div class="company-info">
+          <h5>PLATOBNÉ MOŽNOSTI</h5>
+          <div class="payment-methods">
+            <span class="payment-item">💳 Karta</span>
+            <span class="payment-item">💵 Hotovosť</span>
+            <span class="payment-item">📄 Faktúra</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom fade-in-section">
+      <div class="copyright-content">
+        <p>&copy; {currentYear} ROYAL STROJE s.r.o. Všetky práva vyhradené.</p>
+        <p class="development">
+          Vytvoril <a href="https://webdeveloper.sk" target="_blank" rel="noopener">WebDeveloper.sk</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ROYAL STROJE s.r.o.",
+      "telephone": "+421948555551",
+      "email": "info@royalstroje.sk",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Récka cesta 182",
+        "addressLocality": "Senec",
+        "postalCode": "903 01",
+        "addressCountry": "SK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.22442423409257,
+        "longitude": 17.41841256196949
+      },
+      "openingHours": "Mo-Fr 07:00-16:00",
+      "description": "Prenájom stavebnej techniky a náradia v Bratislave a okolí.",
+      "url": "https://royalstroje.sk"
+    }
+  </script>
 </footer>
 
 <style>
-.site-footer{background:#111;color:#fff;margin-top:60px}
-.wrap{max-width:1180px;margin:0 auto;padding:24px 16px;text-align:center}
-.site-footer a{color:{BRAND};text-decoration:none}
+  :root {
+    --brand: #ff6b00;
+    --brand-dark: #e85d00;
+    --brand-light: #ff8533;
+    --text-black: #000000;
+    --white: #ffffff;
+  }
+
+  /* Footer Container - Oranžový gradient */
+  .site-footer {
+    position: relative;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 50%, var(--brand) 100%);
+    margin-top: 80px;
+    overflow: hidden;
+  }
+
+  /* Pozadie s jemnými efektmi */
+  .footer-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .footer-gradient {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  }
+
+  .footer-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--white), transparent);
+    opacity: 0.8;
+  }
+
+  /* Hlavný obsah */
+  .footer-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 24px 20px;
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  /* Brand sekcia */
+  .footer-brand {
+    max-width: 400px;
+  }
+
+  .brand-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .brand-logo {
+    position: relative;
+    margin-right: 16px;
+  }
+
+  .logo-main {
+    height: 100px;
+    width: auto;
+    transition: all 0.3s ease;
+  }
+
+  .logo-fallback {
+    display: none;
+  }
+
+  .logo-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--white), #f0f0f0);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--text-black);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* VŠETKY TEXTY ČIERNE A EXTRA TUČNÉ */
+  .brand-text h3 {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0 0 4px;
+    color: var(--text-black);
+  }
+
+  .brand-text span {
+    font-size: 12px;
+    color: var(--text-black);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 900;
+  }
+
+  .brand-description {
+    color: var(--text-black);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  /* Sociálne siete */
+  .social-links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--text-black);
+    border-radius: 12px;
+    color: var(--text-black);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .social-links a:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .social-links svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* Footer sekcie - VŠETKY NADPISY EXTRA ČIERNE */
+  .footer-section h4 {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--text-black);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--text-black);
+    border-radius: 2px;
+  }
+
+  /* Kontakt sekcia */
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .contact-item svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--text-black);
+    flex-shrink: 0;
+  }
+
+  .contact-item a {
+    color: var(--text-black);
+    text-decoration: none;
+    font-weight: 800;
+    transition: all 0.3s ease;
+  }
+
+  .contact-item a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .contact-item span {
+    color: var(--text-black);
+    font-weight: 800;
+  }
+
+  /* Odkazy */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-links li a {
+    color: var(--text-black);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 4px 0;
+  }
+
+  .footer-links li a:hover {
+    transform: translateX(4px);
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Firemné údaje */
+  .footer-company {
+    padding: 30px 0;
+    border-top: 3px solid var(--text-black);
+    border-bottom: 3px solid var(--text-black);
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .company-info h5 {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--text-black);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .company-info address {
+    color: var(--text-black);
+    font-style: normal;
+    line-height: 1.6;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .payment-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--text-black);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-black);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .payment-item:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Copyright */
+  .footer-bottom {
+    text-align: center;
+  }
+
+  .copyright-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .copyright-content p {
+    margin: 0;
+    color: var(--text-black);
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .development a {
+    color: var(--text-black);
+    text-decoration: none;
+    font-weight: 900;
+    transition: all 0.3s ease;
+  }
+
+  .development a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Fade-in animácie */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .footer-main {
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    
+    .company-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      padding: 40px 16px 20px;
+    }
+
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .company-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .copyright-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .brand-container {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .social-links {
+      justify-content: center;
+    }
+
+    .contact-items {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-content {
+      padding: 30px 12px 15px;
+    }
+
+    .logo-main,
+    .logo-icon {
+      height: 50px;
+      width: 50px;
+      font-size: 20px;
+    }
+
+    .brand-text h3 {
+      font-size: 20px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+    }
+
+    .social-links svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .payment-methods {
+      justify-content: center;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-section,
+    .social-links a,
+    .footer-links li a,
+    .payment-item {
+      transition: none;
+    }
+  }
+
+  /* Hover efekty pre celý footer */
+  .site-footer:hover .footer-glow {
+    opacity: 1;
+  }
 </style>
+
+<script>
+  // Fade-in efekt pri scrollovaní
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Pozoruj všetky fade-in sekcie
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Postupné zobrazenie sekcií s malým delayom
+    const sections = document.querySelectorAll('.footer-section, .footer-brand');
+    sections.forEach((section, index) => {
+      setTimeout(() => {
+        section.style.animationDelay = `${index * 0.1}s`;
+      }, 100);
+    });
+  });
+</script>

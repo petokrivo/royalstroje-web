@@ -48,19 +48,27 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
               <span class="highlight-label">Sila príklepu:</span>
               <span class="highlight-value">7.6J</span>
             </div>
-            <div class="highlight-item">
+            <div class="highlight-item price-row">
               <span class="highlight-label">Cena za deň:</span>
-              <span class="highlight-value highlight-price">15€</span>
+              <div class="price-container">
+                <span class="highlight-value highlight-price-main">15€</span>
+                <span class="price-note">bez DPH</span>
+                <span class="price-with-vat">18,45€ s DPH</span>
+              </div>
             </div>
-            <div class="highlight-item">
+            <div class="highlight-item price-row">
               <span class="highlight-label">Cena za 4 hodiny:</span>
-              <span class="highlight-value highlight-price">8€</span>
+              <div class="price-container">
+                <span class="highlight-value highlight-price-main">7,50€</span>
+                <span class="price-note">bez DPH</span>
+                <span class="price-with-vat">9,23€ s DPH</span>
+              </div>
             </div>
           </div>
 
           <div class="produkt-akcie">
             <a 
-              href="mailto:info@royalstroje.sk?subject=Rezervácia Makita HM0870C&body=Dobrý deň,%0A%0Achcem si rezervovať Makita HM0870C - Búracie kladivo%0ACena: 15€/deň alebo 8€/4h%0A%0ATermín prenájmu:%0AOd:%0ADo:%0A%0AMeno:%0ATelefón:%0A%0AĎakujem"
+              href="mailto:info@royalstroje.sk?subject=Rezervácia Makita HM0870C&body=Dobrý deň,%0A%0Achcem si rezervovať Makita HM0870C - Búracie kladivo%0ACena: 15€/deň alebo 7,50€/4h (bez DPH)%0A%0ATermín prenájmu:%0AOd:%0ADo:%0A%0AMeno:%0ATelefón:%0A%0AĎakujem"
               class="rezervovat-btn-primary"
             >
               <svg viewBox="0 0 24 24">
@@ -86,15 +94,26 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
           <div class="cennik-hlavny">
             <div class="cena-item">
               <span class="cena-label">Deň (24 hodín):</span>
-              <span class="cena-hodnota">15€</span>
+              <div class="cena-group">
+                <span class="cena-hodnota">15€</span>
+                <span class="cena-note">bez DPH</span>
+                <span class="cena-vat">18,45€ s DPH</span>
+              </div>
             </div>
             <div class="cena-item">
               <span class="cena-label">Pol dňa (4 hodiny):</span>
-              <span class="cena-hodnota">8€</span>
+              <div class="cena-group">
+                <span class="cena-hodnota">7,50€</span>
+                <span class="cena-note">bez DPH</span>
+                <span class="cena-vat">9,23€ s DPH</span>
+              </div>
             </div>
             <div class="cena-item">
               <span class="cena-label">Kaucia pre nových zákazníkov:</span>
-              <span class="cena-hodnota kaucia">150€</span>
+              <div class="cena-group">
+                <span class="cena-hodnota kaucia">150€</span>
+                <span class="cena-note">vrátane DPH</span>
+              </div>
             </div>
           </div>
           
@@ -186,11 +205,11 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
             <div class="prislusenstvo-grid">
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Sekáč špicatý SDS-MAX</span>
-                <span class="prislusenstvo-cena">3€</span>
+                <span class="prislusenstvo-cena">3€ bez DPH</span>
               </div>
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Sekáč plochý SDS-MAX</span>
-                <span class="prislusenstvo-cena">3€</span>
+                <span class="prislusenstvo-cena">3€ bez DPH</span>
               </div>
             </div>
           </div>
@@ -201,14 +220,14 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
             <div class="prislusenstvo-grid">
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Predlžovací kábel 50m (bubon)</span>
-                <span class="prislusenstvo-cena">3€</span>
+                <span class="prislusenstvo-cena">3€ bez DPH</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="prislusenstvo-poznamka">
-          <p><strong>Poznámka:</strong> Príslušenstvo je k dispozícii priamo na našej prevádzke. Ceny sú za prenájom na jeden deň spolu s hlavným produktom.</p>
+          <p><strong>Poznámka:</strong> Príslušenstvo je k dispozícii priamo na našej prevádzke. Všetky ceny sú bez DPH za prenájom na jeden deň spolu s hlavným produktom.</p>
         </div>
       </div>
 
@@ -257,6 +276,31 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
     position: relative;
     overflow: hidden;
     min-height: calc(100vh - 80px);
+  }
+
+  .produkt-detail-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .produkt-detail-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 107, 0, 0.1) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.2;
+    pointer-events: none;
   }
 
   .container {
@@ -387,6 +431,10 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
     border-bottom: none;
   }
 
+  .highlight-item.price-row {
+    align-items: flex-start;
+  }
+
   .highlight-label {
     font-size: 1rem;
     color: var(--text-dim);
@@ -406,12 +454,34 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
     border-radius: 8px;
   }
 
-  .highlight-price {
+  .price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .highlight-price-main {
     background: linear-gradient(135deg, var(--brand), var(--brand-light));
     color: #000;
-    padding: 6px 16px;
+    padding: 8px 16px;
     border-radius: 12px;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    font-weight: 900;
+  }
+
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--brand);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .price-with-vat {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-weight: 500;
   }
 
   .produkt-akcie {
@@ -520,8 +590,14 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
     margin-bottom: 8px;
   }
 
+  .cena-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
   .cena-hodnota {
-    display: block;
     color: var(--brand);
     font-size: 2rem;
     font-weight: 900;
@@ -529,6 +605,20 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
 
   .cena-hodnota.kaucia {
     color: #ff4444;
+  }
+
+  .cena-note {
+    font-size: 0.8rem;
+    color: var(--brand);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cena-vat {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-weight: 500;
   }
 
   .cennik-poznamky {
@@ -769,6 +859,14 @@ const pageDescription = "Prenájom Makita HM0870C búracieho kladiva 1100W v Sen
     text-align: center;
     position: relative;
     overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
   }
 
   .cta-content {

@@ -1,5 +1,6 @@
 ---
 import Header from "../components/header.astro";
+import Footer from "../components/Footer.astro";
 
 export interface Props {
   title: string;
@@ -201,29 +202,6 @@ const canonicalURL = Astro.url.href;
       h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: .75rem; }
       p { margin: 0 0 1rem; color: var(--text-dim); }
 
-      /* ---------------- FOOTER ---------------- */
-      .site-footer { background: var(--bg-secondary); border-top: 1px solid rgba(255,107,0,.1); margin-top: var(--section-padding); }
-      .footer-content { padding: 40px 0 20px; }
-      .footer-wrap { max-width: var(--container-max); margin:0 auto; padding:0 var(--container-padding); }
-      .footer-info { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:40px; margin-bottom:40px; }
-      .footer-brand h3 { color: var(--brand); font-size: 1.5rem; margin-bottom: 8px; }
-      .footer-brand p { color: var(--text-dim); margin:0; }
-      .footer-contact { display:flex; flex-direction:column; gap:12px; }
-      .contact-item { display:flex; align-items:center; gap:12px; color: var(--text-dim); }
-      .contact-item a { color: var(--brand); text-decoration: none; font-weight: 600; }
-      .contact-item a:hover { color: var(--brand-light); }
-      .contact-icon { width:18px; height:18px; fill: currentColor; flex-shrink: 0; }
-      .footer-status { display:flex; justify-content:center; margin-bottom:40px; }
-      .status-badge {
-        display:flex; align-items:center; gap:8px; padding:8px 16px;
-        background: rgba(255,107,0,.1); border:1px solid rgba(255,107,0,.3);
-        border-radius:50px; color:var(--brand); font-weight:700; font-size:14px;
-      }
-      .status-dot { width:8px; height:8px; background: var(--brand); border-radius:50%; animation: pulse 2s infinite; }
-      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
-      .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:20px; text-align:center; }
-      .footer-bottom p { color: var(--text-muted); font-size:14px; margin:0; }
-
       /* ---------------- BACK TO TOP ---------------- */
       .back-to-top {
         position: fixed; bottom: 30px; right: 30px; width:50px; height:50px;
@@ -242,7 +220,6 @@ const canonicalURL = Astro.url.href;
       @media (max-width: 768px) {
         :root { --container-padding:16px; --section-padding:60px; }
         .main-content { padding-top: 70px; }
-        .footer-info { flex-direction: column; text-align: center; gap:30px; }
         .back-to-top { bottom:20px; right:20px; width:45px; height:45px; }
       }
       @media (max-width: 480px) {
@@ -282,48 +259,8 @@ const canonicalURL = Astro.url.href;
       <slot />
     </main>
     
-    <!-- Footer Placeholder -->
-    <footer class="site-footer">
-      <div class="footer-content">
-        <div class="footer-wrap">
-          <div class="footer-info">
-            <div class="footer-brand">
-              <h3>ROYAL STROJE</h3>
-              <p>Profesionálny prenájom stavebnej techniky</p>
-            </div>
-            
-            <div class="footer-contact">
-              <div class="contact-item">
-                <svg viewBox="0 0 24 24" class="contact-icon">
-                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-                </svg>
-                <a href="tel:+421948555551">0948 555 551</a>
-              </div>
-              
-              <div class="contact-item">
-                <svg viewBox="0 0 24 24" class="contact-icon">
-                  <path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 119.5 9 2.5 2.5 0 0112 11.5z"/>
-                </svg>
-                <span>Récka cesta 182, Senec</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="footer-status">
-            <div class="status-badge">
-              <div class="status-dot"></div>
-              <span>ONLINE 24/7</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="footer-bottom">
-          <div class="footer-wrap">
-            <p>&copy; 2024 ROYAL STROJE s.r.o. Všetky práva vyhradené.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- Footer -->
+    <Footer />
     
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Späť navrch">
@@ -332,7 +269,7 @@ const canonicalURL = Astro.url.href;
       </svg>
     </button>
 
-    <!-- Royal Assistant Chat Widget (presunutý sem) -->
+    <!-- Royal Assistant Chat Widget -->
     <div class="royal-assistant" id="royalAssistant">
       <button class="assistant-button" aria-label="Otvoriť Royal Asistent">
         <div class="assistant-icon">
@@ -346,7 +283,7 @@ const canonicalURL = Astro.url.href;
       <div class="assistant-label">Royal Asistent</div>
     </div>
 
-    <!-- Styles pre Royal Assistant (môžu byť aj v <head>, ponechávam pri widgete) -->
+    <!-- Styles pre Royal Assistant -->
     <style>
       .royal-assistant {
         position: fixed;
@@ -393,7 +330,7 @@ const canonicalURL = Astro.url.href;
       @keyframes slideInRight { from { transform: translateX(100px); opacity:0; } to { transform: translateX(0); opacity:1; } }
     </style>
 
-    <!-- Script pre Royal Assistant (presunutý sem) -->
+    <!-- Script pre Royal Assistant -->
     <script>
       const assistantButton = document.querySelector('.assistant-button');
       const assistantLabel = document.querySelector('.assistant-label');
@@ -422,7 +359,7 @@ const canonicalURL = Astro.url.href;
       }, 1000);
     </script>
 
-    <!-- Back to top + Intersection Observer (presunuté sem) -->
+    <!-- Back to top + Intersection Observer -->
     <script>
       const backToTop = document.getElementById('backToTop');
       if (backToTop) {

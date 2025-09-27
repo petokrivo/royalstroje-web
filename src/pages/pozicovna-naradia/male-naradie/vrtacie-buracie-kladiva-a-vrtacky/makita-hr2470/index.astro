@@ -44,19 +44,27 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
               <span class="highlight-label">Upínanie:</span>
               <span class="highlight-value">SDS-PLUS</span>
             </div>
-            <div class="highlight-item">
+            <div class="highlight-item price-row">
               <span class="highlight-label">Cena za deň:</span>
-              <span class="highlight-value highlight-price">12€</span>
+              <div class="price-container">
+                <span class="highlight-value highlight-price-main">9€</span>
+                <span class="price-note">bez DPH</span>
+                <span class="price-with-vat">11,07€ s DPH</span>
+              </div>
             </div>
-            <div class="highlight-item">
+            <div class="highlight-item price-row">
               <span class="highlight-label">Cena za 4 hodiny:</span>
-              <span class="highlight-value highlight-price">6€</span>
+              <div class="price-container">
+                <span class="highlight-value highlight-price-main">4,50€</span>
+                <span class="price-note">bez DPH</span>
+                <span class="price-with-vat">5,54€ s DPH</span>
+              </div>
             </div>
           </div>
 
           <div class="produkt-akcie">
             <a 
-              href="mailto:info@royalstroje.sk?subject=Rezervácia Makita HR2470&body=Dobrý deň,%0A%0Achcem si rezervovať Makita HR2470 - Vŕtacie búracie kladivo%0ACena: 12€/deň alebo 6€/4h%0A%0ATermín prenájmu:%0AOd:%0ADo:%0A%0AMeno:%0ATelefón:%0A%0AĎakujem"
+              href="mailto:info@royalstroje.sk?subject=Rezervácia Makita HR2470&body=Dobrý deň,%0A%0Achcem si rezervovať Makita HR2470 - Vŕtacie búracie kladivo%0ACena: 9€/deň alebo 4,50€/4h (bez DPH)%0A%0ATermín prenájmu:%0AOd:%0ADo:%0A%0AMeno:%0ATelefón:%0A%0AĎakujem"
               class="rezervovat-btn-primary"
             >
               <svg viewBox="0 0 24 24">
@@ -82,15 +90,26 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
           <div class="cennik-hlavny">
             <div class="cena-item">
               <span class="cena-label">Deň (24 hodín):</span>
-              <span class="cena-hodnota">12€</span>
+              <div class="cena-group">
+                <span class="cena-hodnota">9€</span>
+                <span class="cena-note">bez DPH</span>
+                <span class="cena-vat">11,07€ s DPH</span>
+              </div>
             </div>
             <div class="cena-item">
               <span class="cena-label">Pol dňa (4 hodiny):</span>
-              <span class="cena-hodnota">6€</span>
+              <div class="cena-group">
+                <span class="cena-hodnota">4,50€</span>
+                <span class="cena-note">bez DPH</span>
+                <span class="cena-vat">5,54€ s DPH</span>
+              </div>
             </div>
             <div class="cena-item">
               <span class="cena-label">Kaucia pre nových zákazníkov:</span>
-              <span class="cena-hodnota kaucia">100€</span>
+              <div class="cena-group">
+                <span class="cena-hodnota kaucia">100€</span>
+                <span class="cena-note">vrátane DPH</span>
+              </div>
             </div>
           </div>
           
@@ -181,33 +200,32 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
         
         <div class="prislusenstvo-kategorie">
           <div class="kategoria-box">
-            <h3>SDS-PLUS Vrtáky</h3>
-            <p class="kategoria-popis">Cena: priemer v mm × 0,10€</p>
+            <h3>SDS-PLUS Vrtáky - Kalkulačka cien</h3>
+            <p class="kategoria-popis">Vypočítajte si cenu vrtákov podľa priemeru</p>
+            
+            <div class="calculator-container">
+              <div class="calculator-input">
+                <label for="drill-diameter">Priemer vrtáka (mm):</label>
+                <input type="number" id="drill-diameter" min="1" max="50" value="8" />
+                <button id="calculate-price" class="calc-btn">Vypočítať cenu</button>
+              </div>
+              
+              <div class="calculator-result" id="calculator-result">
+                <div class="result-price">
+                  <span class="result-label">Cena za deň:</span>
+                  <div class="result-values">
+                    <span class="result-value" id="drill-price">0,80€ bez DPH</span>
+                    <span class="result-value-vat" id="drill-price-vat">0,98€ s DPH</span>
+                  </div>
+                </div>
+                <div class="result-formula">
+                  <small>Vzorec: priemer (mm) × 0,10€ (bez DPH)</small>
+                </div>
+              </div>
+            </div>
+
             <div class="prislusenstvo-grid">
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">6mm vrták</span>
-                <span class="prislusenstvo-cena">0,60€</span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">8mm vrták</span>
-                <span class="prislusenstvo-cena">0,80€</span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">10mm vrták</span>
-                <span class="prislusenstvo-cena">1,00€</span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">12mm vrták</span>
-                <span class="prislusenstvo-cena">1,20€</span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">14mm vrták</span>
-                <span class="prislusenstvo-cena">1,40€</span>
-              </div>
-              <div class="prislusenstvo-item">
-                <span class="prislusenstvo-nazov">16mm vrták</span>
-                <span class="prislusenstvo-cena">1,60€</span>
-              </div>
+              <!-- Odstránené hotové ceny vrtákov, nahradené kalkulačkou vyššie -->
             </div>
           </div>
 
@@ -217,18 +235,22 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
             <div class="prislusenstvo-grid">
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Sekáč špicatý SDS-PLUS</span>
-                <span class="prislusenstvo-cena">2,00€</span>
+                <span class="prislusenstvo-cena">2,00€ bez DPH</span>
               </div>
               <div class="prislusenstvo-item">
                 <span class="prislusenstvo-nazov">Sekáč plochý SDS-PLUS</span>
-                <span class="prislusenstvo-cena">2,00€</span>
+                <span class="prislusenstvo-cena">2,00€ bez DPH</span>
+              </div>
+              <div class="prislusenstvo-item">
+                <span class="prislusenstvo-nazov">Predlžovací kábel 50m (bubon) </span>
+                <span class="prislusenstvo-cena">3,00€ bez DPH</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="prislusenstvo-poznamka">
-          <p><strong>Poznámka:</strong> Príslušenstvo je k dispozícii priamo na našej prevádzke. Ceny sú za prenájom na jeden deň spolu s hlavným produktom.</p>
+          <p><strong>Poznámka:</strong> Príslušenstvo je k dispozícii priamo na našej prevádzke. Všetky ceny sú bez DPH za prenájom na jeden deň spolu s hlavným produktom.</p>
         </div>
       </div>
 
@@ -454,12 +476,72 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
     border-radius: 8px;
   }
 
-  .highlight-price {
+  .highlight-item.price-row {
+    align-items: flex-start;
+  }
+
+  .price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .highlight-price-main {
     background: linear-gradient(135deg, var(--brand), var(--brand-light));
     color: #000;
-    padding: 6px 16px;
+    padding: 8px 16px;
     border-radius: 12px;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    font-weight: 900;
+  }
+
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--brand);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .price-with-vat {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .cena-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cena-note {
+    font-size: 0.8rem;
+    color: var(--brand);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cena-vat {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .result-values {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .result-value-vat {
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.95rem;
   }
 
   .produkt-akcie {
@@ -572,7 +654,7 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
   .cena-hodnota {
     display: block;
     color: var(--brand);
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 900;
   }
 
@@ -613,6 +695,96 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
 
   .poznamka-item strong {
     color: var(--text);
+  }
+
+  /* KALKULAČKA */
+  .calculator-container {
+    background: rgba(255, 107, 0, 0.05);
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .calculator-input {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .calculator-input label {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .calculator-input input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-weight: 600;
+    width: 80px;
+    text-align: center;
+  }
+
+  .calculator-input input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2);
+  }
+
+  .calc-btn {
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .calc-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+  }
+
+  .calculator-result {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .result-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .result-label {
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  .result-value {
+    color: var(--brand);
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  .result-formula {
+    text-align: center;
+  }
+
+  .result-formula small {
+    color: var(--text-dim);
+    font-style: italic;
   }
 
   /* TECHNICKÉ PARAMETRE */
@@ -673,6 +845,14 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
   /* VLASTNOSTI */
   .vlastnosti-section {
     margin-bottom: 80px;
+  }
+
+  .vlastnosti-section h2 {
+    color: var(--text);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    text-align: center;
   }
 
   .vlastnosti-list {
@@ -927,6 +1107,12 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
     .cta-content h2 {
       font-size: 1.8rem;
     }
+
+    .calculator-input {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -953,11 +1139,45 @@ const pageDescription = "Prenájom Makita HR2470 vŕtacieho búracieho kladiva 7
     .cta-section {
       padding: 40px 20px;
     }
+
+    .calculator-container {
+      padding: 16px;
+    }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     console.log('Makita HR2470 product page loaded successfully');
+    
+    // Kalkulačka pre vrtáky
+    const diameterInput = document.getElementById('drill-diameter');
+    const calculateBtn = document.getElementById('calculate-price');
+    const priceDisplay = document.getElementById('drill-price');
+    
+    function calculateDrillPrice() {
+      const diameter = parseFloat(diameterInput.value) || 0;
+      const priceWithoutVat = (diameter * 0.10).toFixed(2);
+      const priceWithVat = (diameter * 0.10 * 1.23).toFixed(2);
+      
+      priceDisplay.textContent = `${priceWithoutVat}€ bez DPH`;
+      document.getElementById('drill-price-vat').textContent = `${priceWithVat}€ s DPH`;
+    }
+    
+    // Vypočítať cenu pri kliknutí na tlačidlo
+    calculateBtn.addEventListener('click', calculateDrillPrice);
+    
+    // Vypočítať cenu pri zmene hodnoty
+    diameterInput.addEventListener('input', calculateDrillPrice);
+    
+    // Vypočítať cenu pri stlačení Enter
+    diameterInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        calculateDrillPrice();
+      }
+    });
+    
+    // Iniciálny výpočet
+    calculateDrillPrice();
   });
 </script>
