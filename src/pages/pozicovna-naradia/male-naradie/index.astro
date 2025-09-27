@@ -228,7 +228,7 @@ const naradia = [
 
   .section-badge {
     display: inline-block;
-    background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 107, 0, 0.1));
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 107, 0, 1 0.1));
     border: 1px solid rgba(255, 107, 0, 0.3);
     color: var(--brand);
     font-size: 14px;
@@ -317,6 +317,7 @@ const naradia = [
     height: 100%;
     object-fit: cover;
     transition: all 0.3s ease;
+    display: block;
   }
 
   .naradie-card:hover .naradie-image img {
@@ -513,9 +514,12 @@ const naradia = [
       height: 160px;
     }
 
+    /* FIX OBRÁZKOV NA MOBILE – jediná zmena */
     .naradie-image img {
-      width: 100px;
-      height: 100px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .naradie-content {
