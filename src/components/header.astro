@@ -191,21 +191,28 @@ const mainNav = [
       </a>
     </div>
 
-    <!-- Simple Mobile Menu Button -->
-    <button class="hamburger" onclick="toggleMenu()">
+    <!-- Mobile Menu Button -->
+    <button class="hamburger" id="mobileMenuBtn" aria-label="Otvoriť menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
 
-  <!-- Simple Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="/">Domov</a>
-    <a href="/pozicovna-naradia">Požičovňa náradia</a>
-    <a href="/zemne-buracie-prace">Zemné a búracie práce</a>
-    <a href="/kontakt">Kontakt</a>
-    <a href="tel:+421948555551" class="phone">📞 0948 555 551</a>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav">
+      <a href="/" class="mobile-nav-link">Domov</a>
+      <a href="/pozicovna-naradia" class="mobile-nav-link">Požičovňa náradia</a>
+      <a href="/zemne-buracie-prace" class="mobile-nav-link">Zemné a búracie práce</a>
+      <a href="/kontakt" class="mobile-nav-link">Kontakt</a>
+      <a href="tel:+421948555551" class="mobile-phone-link">
+        <svg viewBox="0 0 24 24">
+          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+        </svg>
+        0948 555 551
+      </a>
+    </nav>
   </div>
 </header>
 
@@ -223,7 +230,7 @@ const mainNav = [
     --glass-border: rgba(255, 255, 255, 0.1);
   }
 
-  /* ---------------- HEADER BASE (SAME AS BEFORE) ---------------- */
+  /* ---------------- HEADER BASE ---------------- */
   .site-header {
     position: fixed;
     top: 0;
@@ -274,7 +281,7 @@ const mainNav = [
     z-index: 1;
   }
 
-  /* ---------------- BRAND (SAME) ---------------- */
+  /* ---------------- BRAND ---------------- */
   .brand {
     display: flex;
     align-items: center;
@@ -340,7 +347,7 @@ const mainNav = [
     font-weight: 600;
   }
 
-  /* ---------------- DESKTOP NAV (SAME) ---------------- */
+  /* ---------------- DESKTOP NAV ---------------- */
   .main-nav {
     display: flex;
     align-items: center;
@@ -395,7 +402,7 @@ const mainNav = [
     transform: rotate(180deg);
   }
 
-  /* ---------------- MEGA MENU (SAME) ---------------- */
+  /* ---------------- MEGA MENU ---------------- */
   .mega-menu {
     position: absolute;
     top: 100%;
@@ -641,7 +648,7 @@ const mainNav = [
     fill: currentColor;
   }
 
-  /* ---------------- HEADER ACTIONS (SAME) ---------------- */
+  /* ---------------- HEADER ACTIONS ---------------- */
   .header-actions {
     display: flex;
     align-items: center;
@@ -704,56 +711,147 @@ const mainNav = [
     fill: currentColor;
   }
 
-  /* ---------------- SIMPLE MOBILE MENU ---------------- */
+  /* ---------------- MOBILE HAMBURGER ---------------- */
   .hamburger {
     display: none;
     flex-direction: column;
-    gap: 4px;
-    background: none;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
     border: none;
     cursor: pointer;
-    padding: 10px;
+    padding: 0;
+    z-index: 1002;
+    position: relative;
   }
 
   .hamburger span {
-    width: 25px;
+    width: 100%;
     height: 3px;
-    background: white;
-    transition: 0.3s;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
   }
 
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* ---------------- MOBILE MENU ---------------- */
   .mobile-menu {
-    display: none;
     position: fixed;
     top: 80px;
     left: 0;
     right: 0;
-    background: #0a0a0a;
-    z-index: 9999;
-    padding: 20px;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(30px);
+    border-top: 1px solid rgba(255, 107, 0, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
   }
 
-  .mobile-menu a {
+  .mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-nav-link {
     display: block;
-    color: white;
+    color: var(--text);
     text-decoration: none;
-    padding: 15px 0;
-    border-bottom: 1px solid #333;
     font-size: 18px;
+    font-weight: 600;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
 
-  .mobile-menu a.phone {
-    background: var(--brand);
-    color: black;
-    padding: 15px;
-    border-radius: 10px;
+  .mobile-nav-link:hover {
+    color: var(--brand);
+    background: rgba(255, 107, 0, 0.05);
+    transform: translateX(8px);
+  }
+
+  .mobile-nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-phone-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 16px 24px;
+    border-radius: 50px;
     margin-top: 20px;
-    text-align: center;
-    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
   }
 
-  /* Show mobile elements on small screens */
+  .mobile-phone-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+  }
+
+  .mobile-phone-link svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width: 1024px) {
+    .mega-menu {
+      width: 100vw;
+      left: 0;
+      transform: none;
+      border-radius: 0;
+      margin-top: 0;
+    }
+
+    .nav-item:hover .mega-menu {
+      transform: none;
+    }
+  }
+
   @media (max-width: 768px) {
+    .header-wrap {
+      padding: 0 16px;
+      height: 70px;
+    }
+
     .main-nav,
     .header-actions {
       display: none;
@@ -763,44 +861,181 @@ const mainNav = [
       display: flex;
     }
 
-    .mobile-menu.show {
-      display: block;
-    }
-
-    .header-wrap {
-      height: 70px;
-    }
-
     .mobile-menu {
       top: 70px;
+      max-height: calc(100vh - 70px);
     }
 
     .brand-text span {
       display: none;
     }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-wrap {
+      padding: 0 12px;
+    }
+
+    .brand-text h1 {
+      font-size: 18px;
+    }
+
+    .mobile-nav {
+      padding: 16px;
+    }
+
+    .mobile-nav-link {
+      font-size: 16px;
+      padding: 14px 16px;
+    }
+  }
+
+  /* ---------------- ACCESSIBILITY ---------------- */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Focus states */
+  .nav-link:focus,
+  .phone-cta:focus,
+  .hamburger:focus,
+  .mobile-nav-link:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
   }
 </style>
 
 <script>
-function toggleMenu() {
-  const menu = document.getElementById('mobile-menu');
-  menu.classList.toggle('show');
-}
+  // Header scroll effects
+  const header = document.getElementById('header');
+  let lastScroll = 0;
 
-// Desktop accordion - simple version
-document.addEventListener('DOMContentLoaded', function() {
-  const headers = document.querySelectorAll('.accordion-header');
-  headers.forEach(function(header) {
-    header.onclick = function() {
-      const item = header.closest('.accordion-item');
-      headers.forEach(function(h) {
-        const otherItem = h.closest('.accordion-item');
-        if (otherItem !== item) {
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+  }, { passive: true });
+
+  // Desktop accordion functionality
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const accordionItem = header.closest('.accordion-item');
+      const isActive = accordionItem.classList.contains('active');
+      
+      // Close all other accordion items
+      accordionHeaders.forEach(otherHeader => {
+        const otherItem = otherHeader.closest('.accordion-item');
+        if (otherItem !== accordionItem) {
           otherItem.classList.remove('active');
         }
       });
-      item.classList.toggle('active');
-    };
+      
+      // Toggle current item
+      if (isActive) {
+        accordionItem.classList.remove('active');
+      } else {
+        accordionItem.classList.add('active');
+      }
+    });
   });
-});
+
+  // Close accordion when clicking outside mega menu
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.mega-menu')) {
+      accordionHeaders.forEach(header => {
+        const accordionItem = header.closest('.accordion-item');
+        accordionItem.classList.remove('active');
+      });
+    }
+  });
+
+  // Mobile menu functionality
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenuBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close mobile menu when clicking on links
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Keyboard navigation for accordion
+  accordionHeaders.forEach(header => {
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        header.click();
+      }
+    });
+  });
+
+  // Auto-close mega menu when mouse leaves
+  const navItems = document.querySelectorAll('.nav-item[data-dropdown="true"]');
+  let megaMenuTimeout;
+
+  navItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(megaMenuTimeout);
+    });
+    
+    item.addEventListener('mouseleave', () => {
+      megaMenuTimeout = setTimeout(() => {
+        // Close all accordion items when leaving mega menu
+        accordionHeaders.forEach(header => {
+          const accordionItem = header.closest('.accordion-item');
+          accordionItem.classList.remove('active');
+        });
+      }, 300);
+    });
+  });
 </script>
