@@ -13,7 +13,8 @@ const produkty = [
     typ: "Rýchloupínacie sklučovadlo",
     vykon: "450W",
     hmotnost: "1,3kg",
-    cena: "8€/deň",
+    cenaBezDPH: "8€/deň",
+    cenaSdph: "9,84€/deň",
     popis: "Klasická spolahlivá vŕtačka",
     image: "/images/produkty/vrtacie/makita-6413.webp",
     alt: "Makita 6413 vŕtačka",
@@ -22,11 +23,12 @@ const produkty = [
   {
     id: "makita-hr2470",
     nazov: "Makita HR2470",
-    typ: "SDS-PLUS",
+    typ: "SDS-PLUS vŕtacie kladivo",
     vykon: "780W",
     hmotnost: "2.9kg",
-    cena: "9€/deň",
-    popis: "Menšie vŕtacie kladivo",
+    cenaBezDPH: "12€/deň",
+    cenaSdph: "14,76€/deň",
+    popis: "Vŕtacie búracie kladivo pre presné práce",
     image: "/images/produkty/vrtacie/makita-hr2470.webp",
     alt: "Makita HR2470 vŕtacie kladivo",
     url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/makita-hr2470"
@@ -34,10 +36,11 @@ const produkty = [
   {
     id: "makita-hm0870c",
     nazov: "Makita HM0870C",
-    typ: "SDS-MAX",
+    typ: "SDS-MAX búracie kladivo",
     vykon: "1100W",
     hmotnost: "5.1kg",
-    cena: "15€/deň",
+    cenaBezDPH: "15€/deň",
+    cenaSdph: "18,45€/deň",
     popis: "Ľahké kompaktné búracie kladivo s elektronickou reguláciou",
     image: "/images/produkty/vrtacie/makita-hm0870c.webp",
     alt: "Makita HM0870C kompaktné búracie kladivo",
@@ -46,26 +49,28 @@ const produkty = [
   {
     id: "makita-hm1203c",
     nazov: "Makita HM1203C",
-    typ: "Búracie kladivo",
+    typ: "SDS-MAX búracie kladivo",
     vykon: "1510W",
     hmotnost: "9.7kg",
-    cena: "20€/deň",
+    cenaBezDPH: "20€/deň",
+    cenaSdph: "24,60€/deň",
     popis: "Profesionálne odolné búracie kladivo",
     image: "/images/produkty/vrtacie/makita-hm1203c.webp",
-    alt: "Makita HM1203C výkonne rúčné búracie kladivo",
+    alt: "Makita HM1203C výkonné ručné búracie kladivo",
     url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/makita-hm1203c"
   },
   {
-    id: "milwaukee-m18-chx",
-    nazov: "Milwaukee M18 CHX",
-    typ: "Akumulátorové kladivo",
-    vykon: "18V Li-Ion",
-    hmotnost: "2.1kg",
-    cena: "20€/deň",
-    popis: "Bezšnúrová sloboda s výkonom sieťového kladiva",
-    image: "/images/produkty/vrtacie/milwaukee-m18-chx.webp",
-    alt: "Milwaukee M18 CHX akumulátorové kladivo",
-    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/milwaukee-m18-chx"
+    id: "makita-hr4003c",
+    nazov: "Makita HR4003C",
+    typ: "SDS-MAX vŕtacie kladivo",
+    vykon: "1100W",
+    hmotnost: "6.2kg",
+    cenaBezDPH: "20€/deň",
+    cenaSdph: "24,60€/deň",
+    popis: "Profesionálne kombinované kladivo SDS-MAX",
+    image: "/images/produkty/vrtacie/makita-hr4003c.webp",
+    alt: "Makita HR4003C výkonné kombinované kladivo",
+    url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky/makita-hr4003c"
   },
   {
     id: "metabo-khe-2660-quick",
@@ -73,7 +78,8 @@ const produkty = [
     typ: "Kombinované kladivo",
     vykon: "850W",
     hmotnost: "2.9kg",
-    cena: "17€/deň",
+    cenaBezDPH: "17€/deň",
+    cenaSdph: "20,91€/deň",
     popis: "Rýchle a efektívne kladivo s Quick systémom",
     image: "/images/produkty/vrtacie/metabo-khe-2660-quick.webp",
     alt: "Metabo KHE 2660 Quick kombinované kladivo",
@@ -85,7 +91,8 @@ const produkty = [
     typ: "Profesionálne SDS-max kladivo",
     vykon: "1150W",
     hmotnost: "6.2kg",
-    cena: "28€/deň",
+    cenaBezDPH: "28€/deň",
+    cenaSdph: "34,44€/deň",
     popis: "Výkonné ťažké kladivo pre náročné búracie práce",
     image: "/images/produkty/vrtacie/bosch-gbh-5-40-dce.webp",
     alt: "Bosch GBH 5-40 DCE profesionálne kladivo",
@@ -97,7 +104,8 @@ const produkty = [
     typ: "Ťažké búracie kladivo",
     vykon: "1100W",
     hmotnost: "5.8kg",
-    cena: "25€/deň",
+    cenaBezDPH: "25€/deň",
+    cenaSdph: "30,75€/deň",
     popis: "Výkonné SDS-max kladivo s AVT technológiou",
     image: "/images/produkty/vrtacie/makita-hr4013c.webp",
     alt: "Makita HR4013C ťažké búracie kladivo",
@@ -140,7 +148,11 @@ const produkty = [
               <div class="produkt-header">
                 <div class="produkt-title-row">
                   <h3 class="produkt-nazov">{produkt.nazov}</h3>
-                  <div class="produkt-cena">{produkt.cena}</div>
+                  <div class="produkt-cena-group">
+                    <div class="produkt-cena-main">{produkt.cenaBezDPH}</div>
+                    <div class="produkt-cena-note">bez DPH</div>
+                    <div class="produkt-cena-vat">{produkt.cenaSdph} s DPH</div>
+                  </div>
                 </div>
                 <p class="produkt-typ">{produkt.typ}</p>
                 <p class="produkt-popis">{produkt.popis}</p>
@@ -159,7 +171,7 @@ const produkty = [
 
               <div class="produkt-actions">
                 <a 
-                  href={`mailto:info@royalstroje.sk?subject=Rezervácia: ${produkt.nazov}&body=Dobrý deň,\n\nchcem si rezervovať:\n\n${produkt.nazov} - ${produkt.typ}\nCena: ${produkt.cena}\n\nTermín prenájmu:\nOd: \nDo: \n\nMeno a priezvisko:\nTelefón:\n\nĎakujem`}
+                  href={`mailto:info@royalstroje.sk?subject=Rezervácia: ${produkt.nazov}&body=Dobrý deň,\n\nchcem si rezervovať:\n\n${produkt.nazov} - ${produkt.typ}\nCena: ${produkt.cenaBezDPH} (bez DPH)\n\nTermín prenájmu:\nOd: \nDo: \n\nMeno a priezvisko:\nTelefón:\n\nĎakujem`}
                   class="rezervovat-btn"
                 >
                   <svg viewBox="0 0 24 24">
@@ -236,6 +248,16 @@ const produkty = [
 </Layout>
 
 <style>
+  :root {
+    --brand: #ff6b00;
+    --brand-light: #ff8533;
+    --brand-dark: #e85d00;
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+    --bg: #0a0a0a;
+    --bg-secondary: #111111;
+  }
+
   /* PRODUKTY SECTION */
   .produkty-section {
     padding: 40px 0 120px;
@@ -268,6 +290,14 @@ const produkty = [
     background-size: 40px 40px;
     opacity: 0.2;
     pointer-events: none;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
   }
 
   /* BREADCRUMBS */
@@ -432,15 +462,37 @@ const produkty = [
     flex-grow: 1;
   }
 
-  .produkt-cena {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--text);
-    background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 107, 0, 0.1));
-    border: 1px solid rgba(255, 107, 0, 0.3);
-    padding: 4px 10px;
-    border-radius: 8px;
+  .produkt-cena-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
     flex-shrink: 0;
+  }
+
+  .produkt-cena-main {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--text);
+    background: linear-gradient(135deg, var(--brand), var(--brand-light));
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .produkt-cena-note {
+    font-size: 0.7rem;
+    color: var(--brand);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .produkt-cena-vat {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-weight: 500;
     white-space: nowrap;
   }
 
@@ -626,6 +678,11 @@ const produkty = [
     pointer-events: none;
   }
 
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
   .cta-content h2 {
     font-size: 2rem;
     font-weight: 800;
@@ -701,6 +758,10 @@ const produkty = [
       padding: 20px 0 80px;
     }
 
+    .container {
+      padding: 0 16px;
+    }
+
     .section-header {
       margin-bottom: 40px;
     }
@@ -731,9 +792,23 @@ const produkty = [
     .cta-actions {
       flex-direction: column;
     }
+
+    .produkt-title-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .produkt-cena-group {
+      align-items: flex-start;
+    }
   }
 
   @media (max-width: 480px) {
+    .container {
+      padding: 0 12px;
+    }
+
     .section-title {
       font-size: 1.8rem;
     }
@@ -752,12 +827,6 @@ const produkty = [
 
     .produkt-specs {
       grid-template-columns: 1fr;
-    }
-
-    .produkt-title-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
     }
   }
 
@@ -786,3 +855,9 @@ const produkty = [
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('Vŕtacie búracie kladivá kategória loaded successfully');
+  });
+</script>
