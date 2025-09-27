@@ -208,32 +208,6 @@ const mainNav = [
             <a href={item.url} class="mobile-nav-link">
               {item.name}
             </a>
-            {item.hasDropdown && (
-              <div class="mobile-submenu">
-                {categories.map((category) => (
-                  <div class="mobile-category">
-                    <button class="mobile-category-toggle" data-category={category.title}>
-                      <span>{category.title}</span>
-                      <svg class="mobile-category-icon" viewBox="0 0 24 24">
-                        <path d="M7 10l5 5 5-5z"/>
-                      </svg>
-                    </button>
-                    <div class="mobile-category-content">
-                      <a href={category.url} class="mobile-category-main">
-                        Zobraziť všetko v kategórii {category.title}
-                      </a>
-                      <div class="mobile-category-items">
-                        {category.items.map((subItem) => (
-                          <a href={subItem.url} class="mobile-category-link">
-                            {subItem.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         ))}
       </nav>
@@ -1047,7 +1021,7 @@ const mainNav = [
 </style>
 
 <script is:inline>
-// JEDINÝ RIADOK JS PRE MOBILNÉ MENU
+// SUPER JEDNODUCHÉ MOBILNÉ MENU
 document.addEventListener('click', function(e) {
   // Hamburger button
   if (e.target.closest('#mobileToggle')) {
@@ -1061,23 +1035,8 @@ document.addEventListener('click', function(e) {
     return;
   }
   
-  // Category buttons
-  if (e.target.closest('.mobile-category-toggle')) {
-    const button = e.target.closest('.mobile-category-toggle');
-    const category = button.closest('.mobile-category');
-    
-    // Zatvor ostatné kategórie
-    document.querySelectorAll('.mobile-category').forEach(cat => {
-      if (cat !== category) cat.classList.remove('active');
-    });
-    
-    // Toggle súčasnú
-    category.classList.toggle('active');
-    return;
-  }
-  
   // Close menu when clicking links
-  if (e.target.closest('.mobile-nav-link, .mobile-category-link, .mobile-category-main')) {
+  if (e.target.closest('.mobile-nav-link')) {
     const toggle = document.getElementById('mobileToggle');
     const menu = document.getElementById('mobileMenu');
     
