@@ -1,7 +1,6 @@
 ---
 // src/components/header.astro
 
-// Definícia kategórií pre mega menu
 const categories = [
   {
     title: "Malé náradie",
@@ -59,7 +58,7 @@ const categories = [
       { name: "Skladové kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/skladove-kontajnery" },
       { name: "Sanitárne kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/sanitarne-kontajnery" },
       { name: "Mobilné oplotenie a zábrany", url: "/pozicovna-naradia/vybavenie-staveniska/oplotenie-zabrany" },
-      { name: "Mobilne toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
+      { name: "Mobilné toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
     ]
   },
   {
@@ -72,7 +71,6 @@ const categories = [
   }
 ];
 
-// Hlavné menu
 const mainNav = [
   { name: "Domov", url: "/" },
   { name: "Požičovňa náradia", url: "/pozicovna-naradia", hasDropdown: true },
@@ -81,959 +79,317 @@ const mainNav = [
 ];
 ---
 
-<header class="site-header" id="header">
-  <div class="header-bg">
-    <div class="header-gradient"></div>
-    <div class="header-mesh"></div>
-  </div>
+<header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-950/95 backdrop-blur-2xl border-b border-orange-500/10 shadow-2xl transition-all duration-500" id="header">
   
-  <div class="header-wrap">
-    <!-- Logo/Brand -->
-    <a href="/" class="brand">
-      <div class="brand-logo">
-        <div class="logo-icon">RS</div>
-        <div class="logo-glow"></div>
-      </div>
-      <div class="brand-text">
-        <h1>ROYAL STROJE</h1>
-        <span>Požičovňa náradia</span>
-      </div>
-    </a>
+  <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+    <div class="absolute inset-0 bg-gradient-radial from-orange-500/10 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.15)_1px,transparent_0)] bg-[length:40px_40px]"></div>
+  </div>
 
-    <!-- Main Navigation -->
-    <nav class="main-nav" id="mainNav">
-      {mainNav.map((item) => (
-        <div class="nav-item" data-dropdown={item.hasDropdown ? "true" : "false"}>
-          <a href={item.url} class="nav-link">
-            {item.name}
+  <div class="max-w-[1600px] mx-auto px-8 relative z-10">
+    <div class="header-wrap flex items-center justify-between h-20 transition-all duration-500">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-4 group relative z-50">
+        <div class="brand-logo relative transition-all duration-500">
+          <div class="w-20 h-20 bg-zinc-900/50 backdrop-blur-sm border-2 border-orange-500 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/30 transition-all duration-500 group-hover:shadow-orange-500/50 group-hover:scale-105 group-hover:rotate-2 group-hover:border-orange-400 relative overflow-hidden p-3">
+            <img 
+              src="/logo.png" 
+              alt="ROYAL STROJE Logo" 
+              class="w-full h-full object-contain relative z-10 drop-shadow-2xl filter brightness-110"
+            />
+          </div>
+          <div class="absolute -inset-1 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+          <div class="absolute -inset-1 rounded-2xl border-2 border-orange-500/30 animate-ping opacity-20"></div>
+        </div>
+        
+        <div class="brand-text hidden sm:block transition-all duration-500">
+          <h1 class="text-2xl font-black text-white leading-none tracking-tight">
+            ROYAL STROJE
+          </h1>
+          <span class="text-[10px] text-orange-500 uppercase tracking-[3px] font-bold">
+            Požičovňa náradia
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-2">
+        {mainNav.map((item) => (
+          <div class="relative nav-item group">
+            <a 
+              href={item.url} 
+              class="nav-link flex items-center gap-2 px-6 py-3 text-gray-300 hover:text-white font-bold text-sm rounded-xl hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-transparent transition-all duration-300 relative overflow-hidden"
+            >
+              <span class="absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/20 to-orange-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+              <span class="relative z-10">{item.name}</span>
+              {item.hasDropdown && (
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              )}
+            </a>
+
             {item.hasDropdown && (
-              <svg class="dropdown-icon" viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5z"/>
-              </svg>
-            )}
-            <span class="nav-glow"></span>
-          </a>
-          
-          {item.hasDropdown && (
-            <div class="mega-menu">
-              <div class="mega-menu-content">
-                <div class="accordion-menu">
-                  {categories.map((category, index) => (
-                    <div class="accordion-item" data-category={index}>
-                      <button class="accordion-header" type="button">
-                        <span class="accordion-title">{category.title}</span>
-                        <svg class="accordion-icon" viewBox="0 0 24 24">
-                          <path d="M7 10l5 5 5-5z"/>
-                        </svg>
-                      </button>
-                      <div class="accordion-content">
-                        <div class="accordion-inner">
-                          <div class="category-overview">
-                            <a href={category.url} class="category-main-link">
-                              Zobraziť všetko v kategórii {category.title}
-                              <svg viewBox="0 0 24 24">
+              <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[460px] bg-gradient-to-b from-zinc-900/98 to-zinc-950/98 backdrop-blur-2xl border border-orange-500/20 rounded-2xl shadow-2xl shadow-black/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 max-h-[68vh] overflow-y-auto">
+                <div class="p-4">
+                  <div class="space-y-1.5 mb-4">
+                    {categories.map((category) => (
+                      <div class="accordion-item border border-white/5 rounded-xl overflow-hidden hover:border-orange-500/30 transition-all duration-300 bg-gradient-to-r from-zinc-800/30 to-zinc-900/20">
+                        <button 
+                          class="accordion-header w-full px-4 py-3 flex items-center justify-between text-left bg-gradient-to-r from-orange-500/5 to-transparent hover:from-orange-500/10 transition-all duration-300 group/btn"
+                          type="button"
+                        >
+                          <span class="font-bold text-white text-xs group-hover/btn:text-orange-400 transition-colors">{category.title}</span>
+                          <svg class="w-4 h-4 text-orange-500 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M19 9l-7 7-7-7"/>
+                          </svg>
+                        </button>
+                        
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
+                          <div class="p-4 bg-black/30 backdrop-blur-sm">
+                            <a 
+                              href={category.url} 
+                              class="inline-flex items-center gap-2 px-3 py-2 mb-3 text-xs font-bold text-orange-500 bg-gradient-to-r from-orange-500/10 to-orange-600/5 hover:from-orange-500/20 hover:to-orange-600/10 border border-orange-500/30 hover:border-orange-500/50 rounded-lg transition-all duration-300 hover:translate-x-1"
+                            >
+                              <span>Všetko v kategórii</span>
+                              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M5 12h14m-7-7l7 7-7 7"/>
                               </svg>
                             </a>
-                          </div>
-                          <div class="category-items-grid">
-                            {category.items.map((subItem) => (
-                              <a href={subItem.url} class="category-item-link">
-                                <span class="item-icon">
-                                  <svg viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"/>
-                                  </svg>
-                                </span>
-                                {subItem.name}
-                              </a>
-                            ))}
+                            
+                            <div class="space-y-1">
+                              {category.items.map((subItem) => (
+                                <a 
+                                  href={subItem.url}
+                                  class="flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-transparent rounded-lg transition-all duration-300 hover:translate-x-2 group/item"
+                                >
+                                  <div class="w-1.5 h-1.5 rounded-full bg-orange-500/40 group-hover/item:bg-orange-500 transition-all duration-300"></div>
+                                  <span class="flex-1 font-medium leading-tight">{subItem.name}</span>
+                                </a>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-                <div class="mega-menu-cta">
-                  <div class="cta-content">
-                    <h4>Potrebujete poradiť?</h4>
-                    <p>Kontaktujte nás a pomôžeme vám vybrať správne náradie</p>
-                    <a href="tel:+421948555551" class="cta-phone">
-                      <svg viewBox="0 0 24 24">
+                    ))}
+                  </div>
+
+                  <div class="p-4 bg-gradient-to-br from-orange-500/15 via-orange-600/10 to-transparent border border-orange-500/30 rounded-xl text-center backdrop-blur-sm">
+                    <h4 class="text-white font-black text-base mb-1.5">Potrebujete poradiť?</h4>
+                    <p class="text-gray-400 text-xs mb-3 font-medium">Kontaktujte nás a pomôžeme vám vybrať správne náradie</p>
+                    <a 
+                      href="tel:+421948555551" 
+                      class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] hover:bg-right text-black font-black text-sm rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-500"
+                    >
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
                       </svg>
-                      0948 555 551
+                      <span>0948 555 551</span>
                     </a>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+        ))}
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions hidden lg:flex items-center gap-4 transition-all duration-500">
+        
+        <!-- Online Status -->
+        <div class="online-status flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-full backdrop-blur-sm transition-all duration-500">
+          <div class="relative">
+            <div class="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse"></div>
+            <div class="absolute inset-0 w-2.5 h-2.5 bg-orange-500 rounded-full animate-ping"></div>
+          </div>
+          <span class="text-orange-500 text-xs font-black uppercase tracking-wider">ONLINE 24/7</span>
         </div>
-      ))}
-    </nav>
 
-    <!-- Header Actions -->
-    <div class="header-actions">
-      <!-- Online Status -->
-      <div class="online-status">
-        <div class="status-dot"></div>
-        <span class="status-text">ONLINE 24/7</span>
+        <!-- Phone CTA -->
+        <a 
+          href="tel:+421948555551" 
+          class="phone-cta flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] hover:bg-right text-black font-black rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-500"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+          </svg>
+          <span class="phone-number text-base transition-all duration-500">0948 555 551</span>
+        </a>
       </div>
-      
-      <!-- Phone CTA -->
-      <a href="tel:+421948555551" class="phone-cta">
-        <svg class="phone-icon" viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-        </svg>
-        <span>0948 555 551</span>
-      </a>
-    </div>
 
-    <!-- Mobile Menu Button -->
-    <button class="hamburger" id="mobileMenuBtn" aria-label="Otvoriť menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <!-- Mobile Menu Button -->
+      <button 
+        class="lg:hidden flex flex-col gap-1.5 w-10 h-10 items-center justify-center rounded-xl hover:bg-orange-500/10 transition-all duration-300 group z-50" 
+        id="mobileMenuBtn"
+        aria-label="Otvoriť menu"
+      >
+        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-1"></span>
+        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 mobile-line-2"></span>
+        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-3"></span>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <nav class="mobile-nav">
-      <a href="/" class="mobile-nav-link">Domov</a>
-      <a href="/pozicovna-naradia" class="mobile-nav-link">Požičovňa náradia</a>
-      <a href="/zemne-buracie-prace" class="mobile-nav-link">Zemné a búracie práce</a>
-      <a href="/kontakt" class="mobile-nav-link">Kontakt</a>
-      <a href="tel:+421948555551" class="mobile-phone-link">
-        <svg viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-        </svg>
-        0948 555 551
-      </a>
-    </nav>
+  <div 
+    class="lg:hidden fixed inset-0 top-20 bg-gradient-to-b from-zinc-950/98 via-zinc-900/98 to-black/98 backdrop-blur-2xl -translate-y-full opacity-0 transition-all duration-500 overflow-y-auto z-40" 
+    id="mobileMenu"
+  >
+    <div class="p-6 space-y-3">
+      {mainNav.map((item) => (
+        <a 
+          href={item.url}
+          class="block px-6 py-4 text-white font-bold text-lg border border-white/10 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent hover:border-orange-500/30 transition-all duration-300"
+        >
+          {item.name}
+        </a>
+      ))}
+      
+      <div class="pt-6 space-y-4">
+        <div class="flex items-center justify-center gap-3 px-5 py-3.5 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-2xl">
+          <div class="relative">
+            <div class="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse"></div>
+            <div class="absolute inset-0 w-2.5 h-2.5 bg-orange-500 rounded-full animate-ping"></div>
+          </div>
+          <span class="text-orange-500 text-sm font-black uppercase tracking-wider">ONLINE 24/7</span>
+        </div>
+        
+        <a 
+          href="tel:+421948555551" 
+          class="flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] text-black font-black text-xl rounded-2xl shadow-2xl shadow-orange-500/30"
+        >
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+          </svg>
+          0948 555 551
+        </a>
+      </div>
+    </div>
   </div>
 </header>
 
-<style>
-  :root {
-    --brand: #ff6b00;
-    --brand-dark: #e85d00;
-    --brand-light: #ff8533;
-    --gold: #ffb366;
-    --text: #ffffff;
-    --text-dim: #b0b0b0;
-    --bg: #0a0a0a;
-    --bg-secondary: #111111;
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-  }
-
-  /* ---------------- HEADER BASE ---------------- */
-  .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 107, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .site-header.scrolled {
-    background: rgba(10, 10, 10, 0.98);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  }
-
-  .header-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .header-gradient {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
-  }
-
-  .header-mesh {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(255, 107, 0, 0.1) 1px, transparent 0);
-    background-size: 20px 20px;
-    opacity: 0.3;
-  }
-
-  .header-wrap {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ---------------- BRAND ---------------- */
-  .brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1001;
-  }
-
-  .brand:hover {
-    transform: translateY(-1px);
-  }
-
-  .brand-logo {
-    position: relative;
-    margin-right: 16px;
-  }
-
-  .logo-icon {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 20px;
-    color: #000;
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease;
-  }
-
-  .logo-glow {
-    position: absolute;
-    inset: -4px;
-    background: inherit;
-    border-radius: inherit;
-    filter: blur(12px);
-    opacity: 0.4;
-    z-index: -1;
-    transition: opacity 0.3s ease;
-  }
-
-  .brand:hover .logo-glow {
-    opacity: 0.7;
-  }
-
-  .brand-text h1 {
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--text);
-    margin: 0;
-    line-height: 1;
-  }
-
-  .brand-text span {
-    font-size: 11px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-  }
-
-  /* ---------------- DESKTOP NAV ---------------- */
-  .main-nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .nav-item {
-    position: relative;
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 12px 20px;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nav-link:hover {
-    color: var(--text);
-    background: var(--glass);
-    transform: translateY(-1px);
-  }
-
-  .nav-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .nav-link:hover .nav-glow {
-    opacity: 1;
-  }
-
-  .dropdown-icon {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-    transition: transform 0.3s ease;
-  }
-
-  .nav-item:hover .dropdown-icon {
-    transform: rotate(180deg);
-  }
-
-  /* ---------------- MEGA MENU ---------------- */
-  .mega-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 500px;
-    background: rgba(15, 15, 15, 0.98);
-    backdrop-filter: blur(30px) saturate(180%);
-    border: 1px solid rgba(255, 107, 0, 0.2);
-    border-radius: 20px;
-    margin-top: 8px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-50%) translateY(-10px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    max-height: 70vh;
-    overflow-y: auto;
-  }
-
-  .nav-item:hover .mega-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .mega-menu-content {
-    padding: 24px;
-  }
-
-  .accordion-menu {
-    margin-bottom: 24px;
-  }
-
-  .accordion-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .accordion-item:last-child {
-    border-bottom: none;
-  }
-
-  .accordion-header {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 16px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    color: var(--text);
-    font-size: 16px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-
-  .accordion-header:hover {
-    color: var(--brand);
-  }
-
-  .accordion-header:hover::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    right: -24px;
-    top: 0;
-    bottom: 0;
-    background: rgba(255, 107, 0, 0.05);
-    border-radius: 12px;
-    z-index: -1;
-  }
-
-  .accordion-title {
-    font-size: 16px;
-    font-weight: 700;
-  }
-
-  .accordion-icon {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .accordion-item.active .accordion-header {
-    color: var(--brand);
-  }
-
-  .accordion-item.active .accordion-icon {
-    transform: rotate(180deg);
-    color: var(--brand);
-  }
-
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .accordion-item.active .accordion-content {
-    max-height: 500px;
-  }
-
-  .accordion-inner {
-    padding: 0 0 20px 0;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease 0.1s;
-  }
-
-  .accordion-item.active .accordion-inner {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .category-overview {
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .category-main-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--brand);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    padding: 8px 12px;
-    background: rgba(255, 107, 0, 0.1);
-    border: 1px solid rgba(255, 107, 0, 0.2);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .category-main-link:hover {
-    background: rgba(255, 107, 0, 0.15);
-    border-color: rgba(255, 107, 0, 0.4);
-    transform: translateX(4px);
-  }
-
-  .category-main-link svg {
-    width: 14px;
-    height: 14px;
-    fill: currentColor;
-  }
-
-  .category-items-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-
-  .category-item-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    line-height: 1.4;
-  }
-
-  .category-item-link:hover {
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateX(4px);
-  }
-
-  .item-icon {
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 107, 0, 0.2);
-    border-radius: 4px;
-  }
-
-  .item-icon svg {
-    width: 10px;
-    height: 10px;
-    fill: var(--brand);
-  }
-
-  .mega-menu-cta {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 24px;
-  }
-
-  .cta-content {
-    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 107, 0, 0.05));
-    border: 1px solid rgba(255, 107, 0, 0.3);
-    border-radius: 16px;
-    padding: 24px;
-    text-align: center;
-  }
-
-  .cta-content h4 {
-    color: var(--text);
-    font-size: 18px;
-    font-weight: 800;
-    margin: 0 0 8px;
-  }
-
-  .cta-content p {
-    color: var(--text-dim);
-    font-size: 14px;
-    margin: 0 0 20px;
-  }
-
-  .cta-phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    color: #000;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 16px;
-    padding: 12px 24px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-  }
-
-  .cta-phone:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
-  }
-
-  .cta-phone svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-
-  /* ---------------- HEADER ACTIONS ---------------- */
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .online-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: rgba(255, 107, 0, 0.1);
-    border: 1px solid rgba(255, 107, 0, 0.3);
-    border-radius: 50px;
-    backdrop-filter: blur(10px);
-  }
-
-  .status-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--brand);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  .status-text {
-    color: var(--brand);
-    font-weight: 700;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .phone-cta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    color: #000;
-    text-decoration: none;
-    font-weight: 800;
-    padding: 12px 20px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-  }
-
-  .phone-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
-  }
-
-  .phone-icon {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-
-  /* ---------------- MOBILE HAMBURGER ---------------- */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1002;
-    position: relative;
-  }
-
-  .hamburger span {
-    width: 100%;
-    height: 3px;
-    background: var(--text);
-    border-radius: 2px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: center;
-  }
-
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-
-  /* ---------------- MOBILE MENU ---------------- */
-  .mobile-menu {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(30px);
-    border-top: 1px solid rgba(255, 107, 0, 0.1);
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 999;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-  }
-
-  .mobile-menu.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .mobile-nav {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .mobile-nav-link {
-    display: block;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 16px 20px;
-    border-radius: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .mobile-nav-link:hover {
-    color: var(--brand);
-    background: rgba(255, 107, 0, 0.05);
-    transform: translateX(8px);
-  }
-
-  .mobile-nav-link:last-child {
-    border-bottom: none;
-  }
-
-  .mobile-phone-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    color: #000;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 18px;
-    padding: 16px 24px;
-    border-radius: 50px;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
-  }
-
-  .mobile-phone-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
-  }
-
-  .mobile-phone-link svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-  }
-
-  /* ---------------- RESPONSIVE ---------------- */
-  @media (max-width: 1024px) {
-    .mega-menu {
-      width: 100vw;
-      left: 0;
-      transform: none;
-      border-radius: 0;
-      margin-top: 0;
-    }
-
-    .nav-item:hover .mega-menu {
-      transform: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .header-wrap {
-      padding: 0 16px;
-      height: 70px;
-    }
-
-    .main-nav,
-    .header-actions {
-      display: none;
-    }
-
-    .hamburger {
-      display: flex;
-    }
-
-    .mobile-menu {
-      top: 70px;
-      max-height: calc(100vh - 70px);
-    }
-
-    .brand-text span {
-      display: none;
-    }
-
-    .logo-icon {
-      width: 45px;
-      height: 45px;
-      font-size: 18px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .header-wrap {
-      padding: 0 12px;
-    }
-
-    .brand-text h1 {
-      font-size: 18px;
-    }
-
-    .mobile-nav {
-      padding: 16px;
-    }
-
-    .mobile-nav-link {
-      font-size: 16px;
-      padding: 14px 16px;
-    }
-  }
-
-  /* ---------------- ACCESSIBILITY ---------------- */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* Focus states */
-  .nav-link:focus,
-  .phone-cta:focus,
-  .hamburger:focus,
-  .mobile-nav-link:focus {
-    outline: 2px solid var(--brand);
-    outline-offset: 2px;
-  }
-</style>
-
 <script>
-  // Header scroll effects
+  // PERFEKTNÝ SCROLL EFEKT
   const header = document.getElementById('header');
-  let lastScroll = 0;
-
+  const headerWrap = header?.querySelector('.header-wrap');
+  const brandLogo = header?.querySelector('.brand-logo');
+  const brandText = header?.querySelector('.brand-text');
+  const navLinks = header?.querySelectorAll('.nav-link');
+  const headerActions = header?.querySelector('.header-actions');
+  const onlineStatus = header?.querySelector('.online-status');
+  const phoneCta = header?.querySelector('.phone-cta');
+  const phoneNumber = header?.querySelector('.phone-number');
+  
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+    const scrolled = window.scrollY;
     
-    if (currentScroll > 50) {
-      header.classList.add('scrolled');
+    if (scrolled > 50) {
+      // Zmenší header
+      headerWrap?.style.setProperty('height', '64px');
+      
+      // ZVÄČŠÍ logo
+      brandLogo?.style.setProperty('transform', 'scale(1.15)');
+      
+      // Zmenší text
+      brandText?.style.setProperty('transform', 'scale(0.85)');
+      brandText?.style.setProperty('opacity', '0.9');
+      
+      // Zmenší navigáciu
+      navLinks?.forEach(link => {
+        link.style.setProperty('padding', '8px 16px');
+        link.style.setProperty('font-size', '13px');
+      });
+      
+      // Zmenší actions
+      headerActions?.style.setProperty('transform', 'scale(0.9)');
+      
+      // ZVÝRAZNÍ online status
+      onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
+      onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
+      onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
+      
+      // ZVÝRAZNÍ telefón
+      phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
+      phoneNumber?.style.setProperty('font-size', '15px');
+      
+      // Shadow
+      header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
+      
     } else {
-      header.classList.remove('scrolled');
+      // Vráti normálnu veľkosť
+      headerWrap?.style.setProperty('height', '80px');
+      brandLogo?.style.setProperty('transform', 'scale(1)');
+      brandText?.style.setProperty('transform', 'scale(1)');
+      brandText?.style.setProperty('opacity', '1');
+      
+      navLinks?.forEach(link => {
+        link.style.setProperty('padding', '12px 24px');
+        link.style.setProperty('font-size', '15px');
+      });
+      
+      headerActions?.style.setProperty('transform', 'scale(1)');
+      onlineStatus?.style.removeProperty('background');
+      onlineStatus?.style.removeProperty('border-color');
+      onlineStatus?.style.removeProperty('box-shadow');
+      phoneCta?.style.removeProperty('box-shadow');
+      phoneNumber?.style.setProperty('font-size', '16px');
+      header?.classList.remove('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
     }
-
-    lastScroll = currentScroll;
   }, { passive: true });
 
-  // Desktop accordion functionality
+  // Accordion
   const accordionHeaders = document.querySelectorAll('.accordion-header');
-  
   accordionHeaders.forEach(header => {
     header.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       
-      const accordionItem = header.closest('.accordion-item');
-      const isActive = accordionItem.classList.contains('active');
+      const item = header.closest('.accordion-item');
+      const content = item?.querySelector('.accordion-content');
+      const icon = header.querySelector('svg');
+      const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
       
-      // Close all other accordion items
-      accordionHeaders.forEach(otherHeader => {
-        const otherItem = otherHeader.closest('.accordion-item');
-        if (otherItem !== accordionItem) {
-          otherItem.classList.remove('active');
-        }
-      });
+      document.querySelectorAll('.accordion-content').forEach(c => { c.style.maxHeight = '0'; });
+      document.querySelectorAll('.accordion-header svg').forEach(i => { i.style.transform = 'rotate(0deg)'; });
       
-      // Toggle current item
-      if (isActive) {
-        accordionItem.classList.remove('active');
-      } else {
-        accordionItem.classList.add('active');
+      if (!isOpen && content) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        if (icon) icon.style.transform = 'rotate(180deg)';
       }
     });
   });
 
-  // Close accordion when clicking outside mega menu
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.mega-menu')) {
-      accordionHeaders.forEach(header => {
-        const accordionItem = header.closest('.accordion-item');
-        accordionItem.classList.remove('active');
-      });
+  // Mobile menu
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const line1 = mobileBtn?.querySelector('.mobile-line-1');
+  const line2 = mobileBtn?.querySelector('.mobile-line-2');
+  const line3 = mobileBtn?.querySelector('.mobile-line-3');
+  
+  mobileBtn?.addEventListener('click', () => {
+    const isOpen = !mobileMenu?.classList.contains('-translate-y-full');
+    
+    if (isOpen) {
+      mobileMenu?.classList.add('-translate-y-full', 'opacity-0');
+      line1?.classList.remove('rotate-45', 'translate-y-2');
+      line2?.classList.remove('opacity-0');
+      line3?.classList.remove('-rotate-45', '-translate-y-2');
+    } else {
+      mobileMenu?.classList.remove('-translate-y-full', 'opacity-0');
+      line1?.classList.add('rotate-45', 'translate-y-2');
+      line2?.classList.add('opacity-0');
+      line3?.classList.add('-rotate-45', '-translate-y-2');
     }
   });
 
-  // Mobile menu functionality
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenuBtn.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      
-      // Prevent body scroll when menu is open
-      if (mobileMenu.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    });
-
-    // Close mobile menu when clicking on links
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Close mobile menu on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-        mobileMenuBtn.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  // Keyboard navigation for accordion
-  accordionHeaders.forEach(header => {
-    header.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        header.click();
-      }
-    });
-  });
-
-  // Auto-close mega menu when mouse leaves
-  const navItems = document.querySelectorAll('.nav-item[data-dropdown="true"]');
-  let megaMenuTimeout;
-
-  navItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      clearTimeout(megaMenuTimeout);
-    });
-    
-    item.addEventListener('mouseleave', () => {
-      megaMenuTimeout = setTimeout(() => {
-        // Close all accordion items when leaving mega menu
-        accordionHeaders.forEach(header => {
-          const accordionItem = header.closest('.accordion-item');
-          accordionItem.classList.remove('active');
-        });
-      }, 300);
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('-translate-y-full', 'opacity-0');
+      line1?.classList.remove('rotate-45', 'translate-y-2');
+      line2?.classList.remove('opacity-0');
+      line3?.classList.remove('-rotate-45', '-translate-y-2');
     });
   });
 </script>

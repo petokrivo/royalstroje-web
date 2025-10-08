@@ -1,380 +1,296 @@
 ---
+import '../styles/global.css';
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
 
 export interface Props {
-  title: string;
+  title?: string;
   description?: string;
   ogImage?: string;
 }
 
-const { 
+const {
   title = "ROYAL STROJE - Požičovňa náradia a techniky",
-  description = "Profesionálny prenájom stavebnej techniky a náradia v Seneci a okolí. Malé náradie, ťažká technika, manipulačná technika a vybavenie staveniska.",
+  description = "Prenájom stavebnej techniky a náradia v Senci a okolí.",
   ogImage = "/og-image.jpg"
 } = Astro.props;
 
 const canonicalURL = Astro.url.href;
+
+const quickCategories = [
+  {
+    title: "Malé náradie",
+    url: "/pozicovna-naradia/male-naradie",
+    items: [
+      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky" },
+      { name: "Uhlové, vibračné a pásové brúsky", url: "/pozicovna-naradia/male-naradie/brusky" },
+      { name: "Ručné píly a rezačky", url: "/pozicovna-naradia/male-naradie/pily-rezacky" },
+      { name: "Vysávače, tepovače a tlakové čističe", url: "/pozicovna-naradia/male-naradie/vysavace-cistice" },
+      { name: "Čerpadlá, ohrievače a odvlhčovače", url: "/pozicovna-naradia/male-naradie/cerpadla-ohriavace" },
+      { name: "Zváracia a meracia technika", url: "/pozicovna-naradia/male-naradie/zvaracia-meracia" },
+      { name: "Vibrátory, vibračné lišty a miešadla", url: "/pozicovna-naradia/male-naradie/vibratory-miesadla" },
+      { name: "Lešenie", url: "/pozicovna-naradia/male-naradie/lesenie" },
+      { name: "Záhradná technika", url: "/pozicovna-naradia/male-naradie/zahradna-technika" },
+      { name: "Nádrže na vodu a naftu", url: "/pozicovna-naradia/male-naradie/nadrze" }
+    ]
+  },
+  {
+    title: "Stredná mechanizácia",
+    url: "/pozicovna-naradia/stredna-mechanizacia",
+    items: [
+      { name: "Vibračné dosky a nohy", url: "/pozicovna-naradia/stredna-mechanizacia/vibracne-dosky" },
+      { name: "Elektrocentrály", url: "/pozicovna-naradia/stredna-mechanizacia/elektrocentraly" },
+      { name: "Kompresory", url: "/pozicovna-naradia/stredna-mechanizacia/kompresory" },
+      { name: "Cestné rezačky, frézy a brúsky", url: "/pozicovna-naradia/stredna-mechanizacia/cestne-rezacky" },
+      { name: "Stolové a portálové píly", url: "/pozicovna-naradia/stredna-mechanizacia/stolove-pily" },
+      { name: "Miešačky, hladičky betónu a bádie", url: "/pozicovna-naradia/stredna-mechanizacia/miesacky-betonarske" }
+    ]
+  },
+  {
+    title: "Ťažká technika",
+    url: "/pozicovna-naradia/tazka-technika",
+    items: [
+      { name: "Pásové mini-rýpadlá", url: "/pozicovna-naradia/tazka-technika/mini-rypadla" },
+      { name: "Pásové ťažké rýpadlá", url: "/pozicovna-naradia/tazka-technika/tazke-rypadla" },
+      { name: "Kolesové rýpadla a nakladače", url: "/pozicovna-naradia/tazka-technika/kolesove-rypadla" },
+      { name: "Šmykom riadené nakladače", url: "/pozicovna-naradia/tazka-technika/smykom-riadene" },
+      { name: "Dumpre", url: "/pozicovna-naradia/tazka-technika/dumpre" },
+      { name: "Valce", url: "/pozicovna-naradia/tazka-technika/valce" }
+    ]
+  },
+  {
+    title: "Pracovné plošiny",
+    url: "/pozicovna-naradia/pracovne-plosiny",
+    items: [
+      { name: "Interiérové plošiny", url: "/pozicovna-naradia/pracovne-plosiny/interierove-plosiny" },
+      { name: "Exteriérové plošiny", url: "/pozicovna-naradia/pracovne-plosiny/exterierove-plosiny" }
+    ]
+  },
+  {
+    title: "Vybavenie staveniska",
+    url: "/pozicovna-naradia/vybavenie-staveniska",
+    items: [
+      { name: "Kancelárske kontajnery a vrátnice", url: "/pozicovna-naradia/vybavenie-staveniska/kontajnery-vratnice" },
+      { name: "Skladové kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/skladove-kontajnery" },
+      { name: "Sanitárne kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/sanitarne-kontajnery" },
+      { name: "Mobilné oplotenie a zábrany", url: "/pozicovna-naradia/vybavenie-staveniska/oplotenie-zabrany" },
+      { name: "Mobilné toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
+    ]
+  },
+  {
+    title: "Autá a prívesné vozíky",
+    url: "/pozicovna-naradia/auta-privesy",
+    items: [
+      { name: "Autá a dodávky", url: "/pozicovna-naradia/auta-privesy/auta-dodavky" },
+      { name: "Prívesné vozíky", url: "/pozicovna-naradia/auta-privesy/privesne-voziky" }
+    ]
+  }
+];
 ---
 
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="sk" class="scroll-smooth">
   <head>
-    <!-- Essential Meta Tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="ROYAL STROJE" />
-    <meta property="og:locale" content="sk_SK" />
-    
-    <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImage} />
-    
-    <!-- Business/Local SEO -->
-    <meta name="geo.region" content="SK-BC" />
-    <meta name="geo.placename" content="Senec" />
-    <meta name="geo.position" content="48.2208;17.4017" />
-    <meta name="ICBM" content="48.2208, 17.4017" />
-    
-    <!-- Theme and Icons -->
-    <meta name="theme-color" content="#ff6b00" />
-    <meta name="msapplication-TileColor" content="#ff6b00" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    
-    <!-- Preconnect to improve performance -->
+    <meta name="theme-color" content="#ff6b00" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    
-    <!-- Structured Data for Local Business -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "ROYAL STROJE",
-        "telephone": "+421948555551",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Récka cesta 182",
-          "addressLocality": "Senec",
-          "postalCode": "903 01",
-          "addressCountry": "SK"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 48.2208,
-          "longitude": 17.4017
-        },
-        "openingHours": "Mo-Su 00:00-23:59",
-        "description": "Profesionálny prenájom stavebnej techniky a náradia v Seneci a okolí."
-      }
-    </script>
-
-    <!-- GLOBAL STYLES (presunuté do <head>) -->
-    <style is:global>
-      /* ---------------- CSS VARIABLES ---------------- */
-      :root {
-        --brand: #ff6b00;
-        --brand-dark: #e85d00;
-        --brand-light: #ff8533;
-        --gold: #ffb366;
-        --text: #ffffff;
-        --text-dim: #b0b0b0;
-        --text-muted: #888888;
-        --bg: #0a0a0a;
-        --bg-secondary: #111111;
-        --bg-tertiary: #1a1a1a;
-        --glass: rgba(255, 255, 255, 0.05);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --shadow: rgba(0, 0, 0, 0.5);
-        --shadow-heavy: rgba(0, 0, 0, 0.8);
-        
-        /* Spacing */
-        --container-max: 1400px;
-        --container-padding: 24px;
-        --section-padding: 80px;
-        
-        /* Typography */
-        --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-        
-        /* Transitions */
-        --transition-fast: 0.2s ease;
-        --transition-normal: 0.3s ease;
-        --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      /* ---------------- RESET & BASE STYLES ---------------- */
-      *,
-      *::before,
-      *::after { box-sizing: border-box; }
-
-      html { scroll-behavior: smooth; height: 100%; }
-
-      body {
-        margin: 0;
-        min-height: 100%;
-        font-family: var(--font-family);
-        line-height: 1.6;
-        color: var(--text);
-        background: var(--bg);
-        overflow-x: hidden;
-        font-feature-settings: 'kern' 1, 'liga' 1;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      img, video { max-width: 100%; height: auto; display: block; }
-      a { color: inherit; transition: var(--transition-normal); }
-      button { font-family: inherit; cursor: pointer; }
-
-      /* ---------------- SKIP LINK ---------------- */
-      .skip-link {
-        position: absolute; top: -40px; left: 6px;
-        background: var(--brand); color: #000; padding: 8px;
-        text-decoration: none; border-radius: 4px; z-index: 10000;
-        font-weight: 600; transition: var(--transition-normal);
-      }
-      .skip-link:focus { top: 6px; }
-
-      /* ---------------- BACKGROUND ELEMENTS ---------------- */
-      .page-background { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
-      .bg-gradient {
-        position: absolute; inset: 0;
-        background:
-          radial-gradient(circle at 20% 20%, rgba(255, 107, 0, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(255, 179, 102, 0.02) 0%, transparent 50%),
-          linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
-      }
-      .bg-mesh {
-        position: absolute; inset: 0;
-        background-image: radial-gradient(circle at 1px 1px, rgba(255, 107, 0, 0.05) 1px, transparent 0);
-        background-size: 60px 60px; animation: float-mesh 20s ease-in-out infinite;
-      }
-      @keyframes float-mesh { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-      .bg-particles {
-        position: absolute; inset: 0;
-        background-image:
-          radial-gradient(2px 2px at 20px 30px, rgba(255, 107, 0, 0.2), transparent),
-          radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.05), transparent),
-          radial-gradient(1px 1px at 90px 40px, rgba(255, 107, 0, 0.15), transparent);
-        background-repeat: repeat; background-size: 150px 100px; animation: drift 30s linear infinite;
-      }
-      @keyframes drift { 0%{transform:translate(0,0)} 100%{transform:translate(-150px,-100px)} }
-
-      /* ---------------- MAIN CONTENT ---------------- */
-      .main-content { padding-top: 80px; min-height: calc(100vh - 80px); position: relative; z-index: 1; }
-
-      /* ---------------- UTILITIES ---------------- */
-      .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-padding); }
-      .section { padding: var(--section-padding) 0; }
-      .text-center { text-align: center; }
-      .visually-hidden {
-        position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
-        clip: rect(0,0,0,0); white-space:nowrap; border:0;
-      }
-
-      /* ---------------- TYPOGRAPHY ---------------- */
-      h1,h2,h3,h4,h5,h6 { margin:0; line-height:1.2; font-weight:800; color:var(--text); }
-      h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
-      h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
-      h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: .75rem; }
-      p { margin: 0 0 1rem; color: var(--text-dim); }
-
-      /* ---------------- BACK TO TOP ---------------- */
-      .back-to-top {
-        position: fixed; bottom: 30px; right: 30px; width:50px; height:50px;
-        background: linear-gradient(135deg, var(--brand), var(--brand-light));
-        border: none; border-radius: 50%; color:#000;
-        display:flex; align-items:center; justify-content:center;
-        box-shadow: 0 8px 25px rgba(255,107,0,.4);
-        transform: translateY(100px); opacity: 0; transition: var(--transition-slow);
-        z-index: 1000;
-      }
-      .back-to-top.visible { transform: translateY(0); opacity: 1; }
-      .back-to-top:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255,107,0,.5); }
-      .back-to-top svg { width:24px; height:24px; fill: currentColor; }
-
-      /* ---------------- RESPONSIVE ---------------- */
-      @media (max-width: 768px) {
-        :root { --container-padding:16px; --section-padding:60px; }
-        .main-content { padding-top: 70px; }
-        .back-to-top { bottom:20px; right:20px; width:45px; height:45px; }
-      }
-      @media (max-width: 480px) {
-        :root { --container-padding:12px; --section-padding:40px; }
-      }
-
-      /* ---------------- ACCESSIBILITY ---------------- */
-      @media (prefers-reduced-motion: reduce) {
-        *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-        html { scroll-behavior: auto; }
-      }
-      *:focus { outline:2px solid var(--brand); outline-offset:2px; }
-      ::selection { background: var(--brand); color:#000; }
-      ::-webkit-scrollbar { width:8px; }
-      ::-webkit-scrollbar-track { background: var(--bg); }
-      ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--brand), var(--brand-dark)); border-radius:4px; }
-      ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--brand-light), var(--brand)); }
-    </style>
   </head>
 
-  <body>
-    <!-- Skip to content for accessibility -->
-    <a href="#main-content" class="skip-link">Preskočiť na hlavný obsah</a>
-    
-    <!-- Background Elements -->
-    <div class="page-background">
-      <div class="bg-gradient"></div>
-      <div class="bg-mesh"></div>
-      <div class="bg-particles"></div>
+  <body class="min-h-screen bg-zinc-950 text-white antialiased font-['Inter',system-ui,sans-serif]">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-orange-500 text-black font-bold px-3 py-2 rounded-md z-[10000]">Preskočiť na obsah</a>
+
+    <div class="fixed inset-0 z-0 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.05)_1px,transparent_0)] bg-[length:40px_40px] opacity-30"></div>
     </div>
-    
-    <!-- Header -->
+
     <Header />
-    
-    <!-- Main Content -->
-    <main id="main-content" class="main-content">
-      <slot />
-    </main>
-    
-    <!-- Footer -->
+
+    <!-- QUICK SIDEBAR - VYŠŠIE + BEZ IKON -->
+    <div id="quickSidebar" class="fixed left-0 md:left-0 bottom-24 md:bottom-auto md:top-[30%] z-[60] transition-all duration-500 quick-sidebar-hidden">
+      <div class="relative">
+        <button id="quickTrigger" class="flex flex-col items-center justify-center gap-2 w-16 h-20 md:w-20 md:h-24 bg-zinc-900/98 backdrop-blur-xl border-r-4 border-t border-b border-orange-500 rounded-r-3xl shadow-2xl shadow-orange-500/20 transition-all duration-300 hover:w-20 md:hover:w-24 hover:shadow-orange-500/40">
+          <svg class="w-8 h-8 md:w-10 md:h-10 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3L2 9v12h20V9L12 3zm8 16h-4v-4h-4v4H8V9h12v10zM10 11h4v2h-4v-2zm0 4h4v2h-4v-2z"/>
+          </svg>
+          <div class="text-center">
+            <div class="text-orange-500 font-black text-[8px] md:text-[9px] uppercase tracking-wider leading-tight">Rýchly<br/>prístup</div>
+          </div>
+          <div class="absolute inset-0 rounded-r-3xl border-2 border-orange-500/50 animate-ping opacity-20"></div>
+        </button>
+
+        <!-- Overlay pre mobil -->
+        <div id="quickOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm opacity-0 invisible transition-all duration-300 z-[-1]"></div>
+
+        <div id="quickPanel" class="fixed md:absolute left-0 md:left-full top-0 md:top-0 w-full md:w-96 h-full md:h-auto bg-zinc-900/98 backdrop-blur-2xl border-2 border-orange-500/30 md:rounded-r-3xl shadow-2xl transition-all duration-500 max-h-screen md:max-h-[85vh] overflow-y-auto opacity-0 invisible translate-x-[-100%] md:translate-x-[-32px]">
+          <div class="p-5">
+            <div class="flex items-center justify-between mb-5 pb-4 border-b-2 border-orange-500/30">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 9v12h20V9L12 3z"/></svg>
+                </div>
+                <h3 class="text-xl font-black text-white">Rýchly prístup</h3>
+              </div>
+              <button id="quickClose" class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+                <svg class="w-6 h-6 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+
+            <div class="space-y-2">
+              {quickCategories.map((category, idx) => (
+                <div class="category-item">
+                  <button class="category-btn w-full flex items-center justify-between px-4 py-3 text-left bg-gradient-to-r from-orange-500/10 to-transparent border border-orange-500/30 rounded-xl hover:from-orange-500/20 hover:border-orange-500/50 transition-all group" data-index={idx}>
+                    <span class="font-bold text-white text-sm group-hover:text-orange-400 transition-colors">{category.title}</span>
+                    <svg class="category-arrow w-5 h-5 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+
+                  <div class="category-content max-h-0 overflow-hidden transition-all duration-300">
+                    <div class="ml-4 mt-2 space-y-1 pl-4 border-l-2 border-orange-500/20">
+                      <a href={category.url} class="flex items-center gap-2 px-3 py-2 text-xs font-bold text-orange-500 bg-orange-500/10 border border-orange-500/30 rounded-lg hover:bg-orange-500/20 hover:scale-105 transition-all mb-2">
+                        <span>Všetko v kategórii</span>
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                      </a>
+
+                      {category.items.map((item) => (
+                        <a href={item.url} class="flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all hover:translate-x-2 group">
+                          <div class="w-1.5 h-1.5 rounded-full bg-orange-500/50 group-hover:bg-orange-500 transition-colors flex-shrink-0"></div>
+                          <span class="leading-tight">{item.name}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-5 pt-5 border-t-2 border-orange-500/30">
+              <div class="bg-gradient-to-br from-orange-500/15 to-transparent border border-orange-500/30 rounded-xl p-4 text-center">
+                <p class="text-white font-bold text-sm mb-3">Potrebujete poradiť?</p>
+                <a href="tel:+421948555551" class="flex items-center justify-center gap-2 w-full px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+                  0948 555 551
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main id="main" class="relative z-10"><slot /></main>
     <Footer />
-    
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Späť navrch">
-      <svg viewBox="0 0 24 24">
-        <path d="M7 14l5-5 5 5z"/>
-      </svg>
+
+    <!-- BACK TO TOP -->
+    <button id="backToTop" class="fixed bottom-5 right-5 w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-black shadow-lg shadow-orange-500/30 flex items-center justify-center opacity-0 translate-y-6 pointer-events-none transition-all duration-300 z-50 hover:scale-110">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5"/></svg>
     </button>
 
-    <!-- Royal Assistant Chat Widget -->
-    <div class="royal-assistant" id="royalAssistant">
-      <button class="assistant-button" aria-label="Otvoriť Royal Asistent">
-        <div class="assistant-icon">
-          <!-- Lightning Bolt Icon -->
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
-        </div>
-        <span class="assistant-badge"></span>
+    <!-- ROYAL ASISTENT - NIŽŠIE -->
+    <div id="royalAssistant" class="fixed bottom-5 right-5 md:bottom-24 md:right-5 z-40 flex flex-col items-center gap-2">
+      <button id="assistantBtn" class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 border-2 border-black/20 shadow-lg shadow-orange-500/30 flex items-center justify-center hover:scale-110 hover:rotate-3 transition-all duration-300 group relative">
+        <svg class="w-6 h-6 md:w-7 md:h-7 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span class="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-400 border-2 border-zinc-900 animate-pulse"></span>
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity -z-10"></div>
       </button>
-      <div class="assistant-label">Royal Asistent</div>
+      <div class="hidden md:block px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-black/80 border border-orange-500/30 text-orange-400 backdrop-blur-sm">Royal Asistent</div>
     </div>
 
-    <!-- Styles pre Royal Assistant -->
+    <script is:inline>
+  // Back to top
+  const backToTop=document.getElementById('backToTop');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){
+      backToTop.classList.remove('opacity-0','translate-y-6','pointer-events-none');
+    }else{
+      backToTop.classList.add('opacity-0','translate-y-6','pointer-events-none');
+    }
+  },{passive:!0});
+  backToTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  // Quick Sidebar - scroll hide/show
+  var scrollTimeout;
+  const quickSidebar=document.getElementById('quickSidebar');
+  window.addEventListener('scroll',function(){
+    quickSidebar.classList.add('quick-sidebar-hidden');
+    clearTimeout(scrollTimeout);
+    scrollTimeout=setTimeout(function(){
+      quickSidebar.classList.remove('quick-sidebar-hidden')
+    },300)
+  },{passive:!0});
+
+  // Quick Sidebar - open/close s blokom scrollu
+  const quickTrigger=document.getElementById('quickTrigger');
+  const quickPanel=document.getElementById('quickPanel');
+  const quickClose=document.getElementById('quickClose');
+  const quickOverlay=document.getElementById('quickOverlay');
+  var isOpen=!1;
+
+  function openQuickPanel(){
+    quickPanel.classList.remove('opacity-0','invisible','translate-x-[-100%]','md:translate-x-[-32px]');
+    quickPanel.classList.add('translate-x-0');
+    quickOverlay.classList.remove('opacity-0','invisible');
+    document.body.style.overflow='hidden';
+    isOpen=!0;
+  }
+
+  function closeQuickPanel(){
+    quickPanel.classList.add('opacity-0','invisible','translate-x-[-100%]','md:translate-x-[-32px]');
+    quickPanel.classList.remove('translate-x-0');
+    quickOverlay.classList.add('opacity-0','invisible');
+    document.body.style.overflow='';
+    isOpen=!1;
+  }
+
+  quickTrigger.addEventListener('click',function(){
+    isOpen?closeQuickPanel():openQuickPanel()
+  });
+
+  quickClose.addEventListener('click',closeQuickPanel);
+  quickOverlay.addEventListener('click',closeQuickPanel);
+
+  // Category accordion
+  const categoryBtns=document.querySelectorAll('.category-btn');
+  categoryBtns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      const parent=btn.closest('.category-item');
+      const content=parent.querySelector('.category-content');
+      const arrow=btn.querySelector('.category-arrow');
+      const isOpen=content.style.maxHeight&&content.style.maxHeight!=='0px';
+      
+      document.querySelectorAll('.category-content').forEach(function(c){c.style.maxHeight='0'});
+      document.querySelectorAll('.category-arrow').forEach(function(a){a.style.transform='rotate(0deg)'});
+      
+      if(!isOpen&&content){
+        content.style.maxHeight=content.scrollHeight+'px';
+        if(arrow)arrow.style.transform='rotate(180deg)'
+      }
+    })
+  });
+
+  // Royal Asistent
+  const assistantBtn=document.getElementById('assistantBtn');
+  assistantBtn.addEventListener('click',function(){
+    window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia','_blank')
+  });
+</script>
+
     <style>
-      .royal-assistant {
-        position: fixed;
-        bottom: 100px;
-        right: 30px;
-        z-index: 998;
-        display: flex; flex-direction: column; align-items: center; gap: 8px;
+      .quick-sidebar-hidden{transform:translateX(-100%);opacity:0}
+      @media (max-width:768px){
+        .quick-sidebar-hidden{transform:translateX(-100%);opacity:0}
       }
-      .assistant-button {
-        width: 50px; height: 50px;
-        background: linear-gradient(135deg, #ff6b00, #ff8533);
-        border-radius: 18px; display:flex; align-items:center; justify-content:center;
-        cursor: pointer; box-shadow: 0 4px 20px rgba(255,107,0,.3);
-        transition: all .3s ease; border: 2px solid #000; position: relative; overflow: hidden;
-      }
-      .assistant-button::before {
-        content:''; position:absolute; inset:-2px;
-        background: linear-gradient(135deg, #ff8533, #ff6b00);
-        border-radius: 18px; z-index:-1; filter: blur(8px); opacity:0; transition: opacity .3s ease;
-      }
-      .assistant-button:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(255,107,0,.5); }
-      .assistant-button:hover::before { opacity: .7; }
-      .assistant-icon { width: 32px; height: 32px; color:#000; position:relative; z-index:1; }
-      .assistant-icon svg { width:100%; height:100%; filter: drop-shadow(0 0 2px rgba(255,255,255,.3)); }
-      .assistant-badge {
-        position:absolute; top:-5px; right:-5px; width:18px; height:18px;
-        background:#00ff00; border-radius:50%; border:3px solid #0a0a0a; animation: pulse 2s infinite;
-      }
-      .assistant-label {
-        background: rgba(17,17,17,.95); color:#ff6b00; padding:6px 12px; border-radius:8px; font-size:12px;
-        font-weight:700; text-transform:uppercase; letter-spacing:.5px;
-        border:1px solid rgba(255,107,0,.3); backdrop-filter: blur(10px); white-space: nowrap; transition: all .3s ease;
-      }
-      .royal-assistant:hover .assistant-label {
-        background: rgba(255,107,0,.1); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,107,0,.2);
-      }
-      @media (max-width: 768px) {
-        .royal-assistant { bottom: 80px; right: 20px; }
-        .assistant-button { width:55px; height:55px; }
-        .assistant-icon { width:28px; height:28px; }
-        .assistant-label { font-size:11px; padding:5px 10px; }
-      }
-      @media (max-height: 700px) { .royal-assistant { bottom: 80px; } }
-      @keyframes slideInRight { from { transform: translateX(100px); opacity:0; } to { transform: translateX(0); opacity:1; } }
     </style>
-
-    <!-- Script pre Royal Assistant -->
-    <script>
-      const assistantButton = document.querySelector('.assistant-button');
-      const assistantLabel = document.querySelector('.assistant-label');
-
-      assistantButton?.addEventListener('click', () => {
-        console.log('Royal Asistent - otvára sa chat...');
-        window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
-      });
-
-      let isScrolling;
-      window.addEventListener('scroll', () => {
-        if (assistantLabel) {
-          assistantLabel.style.opacity = '0';
-          assistantLabel.style.transform = 'translateY(5px)';
-          clearTimeout(isScrolling);
-          isScrolling = setTimeout(() => {
-            assistantLabel.style.opacity = '1';
-            assistantLabel.style.transform = 'translateY(0)';
-          }, 150);
-        }
-      }, { passive: true });
-
-      setTimeout(() => {
-        const assistant = document.getElementById('royalAssistant');
-        if (assistant) assistant.style.animation = 'slideInRight 0.6s ease';
-      }, 1000);
-    </script>
-
-    <!-- Back to top + Intersection Observer -->
-    <script>
-      const backToTop = document.getElementById('backToTop');
-      if (backToTop) {
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 300) backToTop.classList.add('visible');
-          else backToTop.classList.remove('visible');
-        }, { passive: true });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-      }
-
-      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animate-in'); });
-      }, observerOptions);
-      document.querySelectorAll('[class*="animate"]').forEach(el => observer.observe(el));
-    </script>
   </body>
 </html>

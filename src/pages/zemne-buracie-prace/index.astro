@@ -6,8 +6,9 @@ const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, pla
 <Layout title={TITLE} description={DESC}>
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-wrap">
+    <div class="wrap hero-wrap">
       <div class="hero-text">
+        <div class="badge">Pozemné stavby • Rekonštrukcie • Prípojky</div>
         <h1>Zemné a búracie práce</h1>
         <p>Rýchle termíny • Presná práca • Férové ceny</p>
         <div class="actions">
@@ -16,31 +17,121 @@ const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, pla
         </div>
       </div>
 
-      <!-- HERO FOTO (nahraď vlastnou) -->
       <figure class="hero-img">
         <img src="/images/zemne/hero.webp" alt="Mini-rýpadlo pri výkope základov" loading="eager" />
       </figure>
+    </div>
+    <div class="divider"></div>
+  </section>
+
+  <!-- INTRO / CLAIM -->
+  <section class="intro">
+    <div class="wrap intro-wrap">
+      <p class="lead">
+        Realizujeme výkopy základov, prípojky inžinierskych sietí, búracie práce s hydraulickým kladivom,
+        planírovanie, odvoz sute a dovoz materiálu. Pôsobíme v regióne Senec – Bratislava a okolie.
+      </p>
+      <ul class="chips">
+        <li>Obhliadka a nacenenie</li>
+        <li>Profesionálni strojníci</li>
+        <li>Vlastná doprava</li>
+        <li>Poistenie zodpovednosti</li>
+      </ul>
     </div>
   </section>
 
   <!-- SLUŽBY -->
   <section class="services">
     <div class="wrap">
-      <h2>Čo ponúkame</h2>
+      <h2 class="h-center">Čo ponúkame</h2>
       <ul class="list">
-        <li><span class="dot"></span> Výkopy základov, bazénov, pivníc, žúmp a čističiek</li>
-        <li><span class="dot"></span> Vodovodné a kanalizačné prípojky, inžinierske siete, šachty a montážne jamy</li>
-        <li><span class="dot"></span> Vŕtanie dier pre plotové stĺpiky – vrtáky Ø 300 a 400&nbsp;mm (mini-rýpadlo)</li>
+        <li><span class="dot"></span> Výkopy základov, bazénov, pivníc, žúmp a ČOV</li>
+        <li><span class="dot"></span> Vodovodné a kanalizačné prípojky, inžinierske siete, šachty, montážne jamy</li>
+        <li><span class="dot"></span> Vŕtanie dier pre plotové stĺpiky – vrtáky Ø 300 / 400&nbsp;mm (mini-rýpadlo)</li>
         <li><span class="dot"></span> Búracie práce s hydraulickým kladivom</li>
         <li><span class="dot"></span> Zrovnávanie a úpravy pozemkov (planírovanie)</li>
         <li><span class="dot"></span> Nakládka a vykládka kamiónov manipulačnou technikou</li>
-        <li><span class="dot"></span> Odvoz a likvidácia odpadu – kontajnery 3, 4, 5, 7, 10&nbsp;m³</li>
+        <li><span class="dot"></span> Odvoz a likvidácia odpadu – kontajnery 3 / 4 / 5 / 7 / 10&nbsp;m³</li>
         <li><span class="dot"></span> Dovoz materiálu – štrk, piesok, makadam, zemina</li>
       </ul>
     </div>
   </section>
 
-  <!-- TECHNIKA / OBRÁZKY (iba placeholdre – nahraď) -->
+  <!-- NAŠA TECHNIKA (vycentrovaná mriežka, lepšia čitateľnosť) -->
+  <section class="fleet">
+    <div class="wrap">
+      <h2 class="h-center">Naša technika</h2>
+      <p class="sub h-center">Vlastníme stavebné stroje viacerých kategórií – pravidelne servisované a modernizované.</p>
+
+      <div class="fleet-grid">
+        <div class="col">
+          <h3>Pásové rýpadlá</h3>
+          <ul>
+            <li>CASE 9021</li>
+            <li>Kobelco SK210</li>
+            <li>New Holland e215b</li>
+            <li>JCB JS210</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Mobilné rýpadlá</h3>
+          <ul>
+            <li>JCB 160</li>
+          </ul>
+
+          <h3 class="mt">Rýpadlo – nakladač</h3>
+          <ul>
+            <li>JCB 4CX</li>
+            <li>Fiat Hitachi 100 / 200</li>
+            <li>Fiat Kobelco 110</li>
+            <li>New Holland 115</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Mini rýpadlo</h3>
+          <ul>
+            <li>JCB 801 (a IPH JCB)</li>
+            <li>Komatsu PC12R</li>
+            <li>Bobcat 323</li>
+            <li>Bobcat 430</li>
+            <li>Terex HR18</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Malý nakladač</h3>
+          <ul>
+            <li>Bobcat 185</li>
+            <li>Bobcat 773</li>
+            <li>Bobcat 300</li>
+            <li>IPH Bobcat</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Ďalšie stroje</h3>
+          <ul>
+            <li>Pásový sklápač (Yanmar, Yamahuchi)</li>
+            <li>Vibračný valec (W 1500)</li>
+            <li>Buldozer (Liebherr 732B)</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Doprava</h3>
+          <ul>
+            <li>SCANIA 6×6</li>
+            <li>Mercedes 4×4</li>
+            <li>Avia – odvoz zeminy, štrku, piesku a sute na skládku</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALÉRIA / TECHNIKA -->
   <section class="gallery">
     <div class="wrap grid">
       <figure class="card">
@@ -62,13 +153,43 @@ const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, pla
     </div>
   </section>
 
-  <!-- PREČO MY -->
+  <!-- PREČO MY + PROCES -->
   <section class="reasons">
-    <div class="wrap grid4">
-      <div class="b"><span class="dot"></span><h3>Rýchle termíny</h3><p>Flexibilné nasadenie strojov – Senec, Bratislava a okolie.</p></div>
-      <div class="b"><span class="dot"></span><h3>Férové ceny</h3><p>Transparentne a bez skrytých poplatkov.</p></div>
-      <div class="b"><span class="dot"></span><h3>Presná práca</h3><p>Skúsený tím a moderná technika šetria čas aj náklady.</p></div>
-      <div class="b"><span class="dot"></span><h3>Profesionalita</h3><p>Kvalita, odbornosť a etika sú u nás na prvom mieste.</p></div>
+    <div class="wrap">
+      <h2 class="h-center">Prečo si vybrať nás</h2>
+      <div class="grid4">
+        <div class="b"><span class="dot"></span><h3>Rýchle termíny</h3><p>Flexibilné nasadenie strojov – Senec, Bratislava a okolie.</p></div>
+        <div class="b"><span class="dot"></span><h3>Férové ceny</h3><p>Transparentné kalkulácie bez skrytých poplatkov.</p></div>
+        <div class="b"><span class="dot"></span><h3>Presná práca</h3><p>Skúsený tím a moderná technika šetria čas aj náklady.</p></div>
+        <div class="b"><span class="dot"></span><h3>Profesionálna komunikácia</h3><p>Jasné termíny, priebežné informovanie, fotodokumentácia.</p></div>
+      </div>
+
+      <div class="process">
+        <h3>Postup spolupráce</h3>
+        <ol>
+          <li><strong>Dopyt:</strong> pošlite stručný popis, polohu a termín.</li>
+          <li><strong>Obhliadka & ponuka:</strong> zhodnotíme podmienky, pripravíme cenu.</li>
+          <li><strong>Nasadenie techniky:</strong> príchod strojov a realizácia prác.</li>
+          <li><strong>Odvoz & dočistenie:</strong> likvidácia sute a finálne úpravy.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO BLOK (tvoje texty doplnené a zrovnané) -->
+  <section class="about">
+    <div class="wrap about-wrap">
+      <div class="note">
+        <p>
+          Oslovte s vašou požiadavkou práve nás – firmu, ktorá je skutočným profesionálom svojho odvetvia.
+          Okrem veľkého množstva stavebných strojov a príslušenstva prinášame aj dlhoročné skúsenosti,
+          ktoré sme nazbierali u stovák spokojných zákazníkov.
+        </p>
+        <p>
+          Zadajte nezáväznú objednávku prenájmu našich stavebných strojov pre vašu stavbu a my vám
+          vypracujeme cenovú ponuku.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -76,9 +197,9 @@ const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, pla
   <section class="cta">
     <div class="wrap cta-in">
       <h2>Potrebujete zemné alebo búracie práce?</h2>
-      <p>Zavolajte – dohodneme obhliadku a termín.</p>
+      <p>Zavolajte – dohodneme obhliadku a termín v najbližšom možnom čase.</p>
       <div class="actions">
-        <a class="btn" href="tel:+421948555551">Zavolať 0948 555 551</a>
+        <a class="btn" href="tel:+421948555551">Zavolať +421 948 555 551</a>
         <a class="btn ghost" href="/kontakt">Napísať správu</a>
       </div>
     </div>
@@ -86,40 +207,67 @@ const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, pla
 </Layout>
 
 <style>
-/* FULL-WIDTH SEKCIE */
-.hero, .services, .gallery, .reasons, .cta { margin:0; padding:0; }
-.wrap{ width:100%; max-width:1180px; margin:0 auto; padding:0 22px; }
+/* GRID / WRAP */
+.wrap{ width:100%; max-width:1200px; margin:0 auto; padding:0 24px; }
 
-/* PRÉMIOVÝ ČIERN0-ORANŽOVÝ HERO */
+/* HERO */
 .hero{
   background:
     radial-gradient(160% 220% at 0% 0%, #181818 0%, #111 55%, #0a0a0a 100%),
     linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
-  border-bottom:1px solid rgba(255,255,255,.07);
   color:#fff;
 }
 .hero-wrap{
-  display:grid; grid-template-columns:1.1fr .9fr; gap:24px;
-  align-items:center; padding:42px 22px 34px;
+  display:grid; grid-template-columns:1.05fr .95fr; gap:28px;
+  align-items:center; padding:48px 0 36px;
 }
-.hero-text h1{font-size:clamp(30px,6vw,56px);margin:0 0 8px;font-weight:800}
-.hero-text p{margin:0 0 18px;color:#eaeaea}
+.badge{
+  display:inline-block; margin-bottom:10px;
+  padding:8px 14px; border-radius:999px;
+  background:rgba(255,107,0,.08); border:1px solid rgba(255,107,0,.28);
+  color:#ffa366; font-weight:800; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+}
+.hero-text h1{font-size:clamp(32px,5.5vw,56px);margin:0 0 8px;font-weight:900;letter-spacing:.2px}
+.hero-text p{margin:0 0 18px;color:#eaeaea;font-size:clamp(16px,2vw,18px)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;background:#f66000;color:#fff;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:800;box-shadow:0 6px 24px rgba(246,96,0,.25)}
-.btn:hover{opacity:.9}
+.btn{display:inline-block;background:#f66000;color:#000;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:900;box-shadow:0 6px 24px rgba(246,96,0,.28)}
+.btn:hover{transform:translateY(-1px)}
 .btn.ghost{background:transparent;border:2px solid #f66000;color:#f66000}
 .hero-img img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 60px rgba(0,0,0,.35)}
+.divider{height:2px;background:linear-gradient(90deg,transparent,rgba(255,107,0,.6),transparent)}
 
-/* SLUŽBY – tmavá plocha s oranžovým akcentom */
+/* INTRO */
+.intro{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06) }
+.intro-wrap{ padding:22px 0 }
+.lead{ margin:0 auto; max-width:900px; text-align:center; color:#e5e5e5; font-size:18px }
+.chips{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:14px 0 2px; padding:0; list-style:none }
+.chips li{ padding:8px 12px; border-radius:999px; background:#171717; border:1px solid rgba(255,255,255,.1); color:#cfcfcf; font-weight:700; font-size:13px }
+
+/* NADPISY */
+.h-center{ text-align:center; margin:0 auto 10px; color:#fff; font-size:26px; font-weight:900; letter-spacing:.2px }
+.sub{ color:#cfcfcf; margin-bottom:18px }
+
+/* SLUŽBY */
 .services{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:26px 0 10px }
-.services h2{ margin:0 0 8px; font-size:24px }
-.list{ display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); padding:12px 0 24px; margin:0; list-style:none }
-.list li{
-  background:#171717; border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:12px 14px;
-}
+.list{ display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); padding:12px 0 22px; margin:0; list-style:none }
+.list li{ background:#171717; border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:12px 14px }
 .dot{width:10px;height:10px;border-radius:50%;background:#f66000;box-shadow:0 0 10px rgba(246,96,0,.6);display:inline-block;margin-right:10px;vertical-align:middle}
 
-/* GALÉRIA / TECHNIKA */
+/* FLEET */
+.fleet{ background:#0b0b0b; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:28px 0 }
+.fleet-grid{
+  display:grid; gap:18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.col{
+  background:#141414; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px 16px 14px;
+}
+.col h3{ margin:4px 0 8px; font-size:16px; color:#ffa85c; font-weight:900; letter-spacing:.2px }
+.col ul{ list-style:none; padding:0; margin:0; display:grid; gap:6px }
+.col li{ color:#d6d6d6 }
+.mt{ margin-top:14px }
+
+/* GALÉRIA */
 .gallery{ background:#0b0b0b; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:26px 0 }
 .grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)) }
 .card{
@@ -128,25 +276,41 @@ const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, pla
 }
 .card:hover{ transform:translateY(-2px); box-shadow:0 18px 60px rgba(0,0,0,.35); border-color:rgba(246,96,0,.45) }
 .card img{ width:100%; height:auto; display:block }
-.card figcaption{ padding:10px 12px; font-weight:700 }
+.card figcaption{ padding:10px 12px; font-weight:800 }
 
-/* PREČO MY – tmavý pás so štvoricou benefitov */
+/* PREČO MY + PROCES */
 .reasons{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:28px 0 }
-.grid4{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)) }
+.grid4{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:10px }
 .b{ background:#171717; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px }
-.b h3{ margin:6px 0 6px; font-weight:800 }
+.b h3{ margin:6px 0 6px; font-weight:900 }
 .b p{ margin:0; color:#cfcfcf }
+.process{ margin-top:20px; background:#141414; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px }
+.process h3{ margin:0 0 8px; font-size:18px; color:#ffa85c; font-weight:900 }
+.process ol{ margin:0; padding-left:18px; color:#d6d6d6 }
+.process li{ margin:6px 0 }
 
-/* CTA pás – tmavý prechod s oranžovým akcentom */
-.cta{
-  background:linear-gradient(180deg,#111 0%, #0c0c0c 100%); color:#fff; padding:40px 0 56px;
+/* INFO BLOK */
+.about{ background:#0b0b0b; color:#fff; border-bottom:1px solid rgba(255,255,255,.06) }
+.about-wrap{ padding:22px 0 }
+.note{
+  max-width:950px; margin:0 auto; background:#151515; border:1px solid rgba(255,255,255,.1);
+  border-radius:16px; padding:16px 18px; color:#dcdcdc
 }
+.note p{ margin:0 0 10px }
+
+/* CTA */
+.cta{ background:linear-gradient(180deg,#111 0%, #0c0c0c 100%); color:#fff; padding:40px 0 56px }
 .cta-in{ text-align:center }
-.cta-in h2{ margin:0 0 6px; font-size:clamp(20px,4vw,30px) }
+.cta-in h2{ margin:0 0 6px; font-size:clamp(22px,4vw,32px) }
 .cta-in p{ margin:0 0 12px; color:#e5e5e5 }
 
-/* RESPONSIVE */
+@media (max-width:1024px){
+  .fleet-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width:900px){
-  .hero-wrap{ grid-template-columns:1fr; padding:28px 22px }
+  .hero-wrap{ grid-template-columns:1fr; padding:34px 0 24px }
+}
+@media (max-width:640px){
+  .fleet-grid{ grid-template-columns:1fr; }
 }
 </style>
