@@ -757,4 +757,42 @@ const pageDescription = "Prenájom Makita 6413 vŕtacieho kladiva 450W v Seneci.
     fill: currentColor;
   }
 
+    /* --- RESPONSIVE --- */
+  @media (max-width: 1024px) {
+    .produkt-hero {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .produkt-obrazok {
+      min-height: 320px;
+    }
+    .cennik-hlavny {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+
   @media (max-width: 768px) {
+    .container { padding: 0 16px; }
+
+    .produkt-nazov { font-size: 2rem; }
+    .produkt-typ { margin-bottom: 20px; }
+
+    .produkt-obrazok {
+      padding: 24px;
+      min-height: 260px;
+    }
+
+    .parametre-grid {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+
+    .vlastnosti-list { padding: 20px; }
+
+    .cennik-section { padding: 28px; }
+
+    .cta-section { padding: 40px 24px; }
+    .cta-content h2 { font-size: 1.8rem; }
+  }
+</style>
