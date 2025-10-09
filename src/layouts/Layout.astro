@@ -112,29 +112,27 @@ const quickCategories = [
   <body class="min-h-screen bg-zinc-950 text-white antialiased font-['Inter',system-ui,sans-serif]">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-orange-500 text-black font-bold px-3 py-2 rounded-md z-[10000]">Preskočiť na obsah</a>
 
+    <!-- Background -->
     <div class="fixed inset-0 z-0 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950">
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.05)_1px,transparent_0)] bg-[length:40px_40px] opacity-30"></div>
     </div>
 
     <Header />
 
-    <!-- QUICK SIDEBAR - VYŠŠIE + BEZ IKON -->
-    <div id="quickSidebar" class="fixed left-0 md:left-0 bottom-24 md:bottom-auto md:top-[30%] z-[60] transition-all duration-500 quick-sidebar-hidden">
+    <!-- QUICK SIDEBAR - LEN NA DESKTOP -->
+    <div id="quickSidebar" class="hidden md:block fixed left-0 top-[30%] z-[60] transition-all duration-500 quick-sidebar-hidden">
       <div class="relative">
-        <button id="quickTrigger" class="flex flex-col items-center justify-center gap-2 w-16 h-20 md:w-20 md:h-24 bg-zinc-900/98 backdrop-blur-xl border-r-4 border-t border-b border-orange-500 rounded-r-3xl shadow-2xl shadow-orange-500/20 transition-all duration-300 hover:w-20 md:hover:w-24 hover:shadow-orange-500/40">
-          <svg class="w-8 h-8 md:w-10 md:h-10 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
+        <button id="quickTrigger" class="flex flex-col items-center justify-center gap-2 w-20 h-24 bg-zinc-900/98 backdrop-blur-xl border-r-4 border-t border-b border-orange-500/50 hover:border-orange-500 rounded-r-3xl shadow-2xl shadow-orange-500/20 transition-all duration-300 hover:w-24 hover:shadow-orange-500/40 group">
+          <svg class="w-10 h-10 text-orange-500 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 3L2 9v12h20V9L12 3zm8 16h-4v-4h-4v4H8V9h12v10zM10 11h4v2h-4v-2zm0 4h4v2h-4v-2z"/>
           </svg>
           <div class="text-center">
-            <div class="text-orange-500 font-black text-[8px] md:text-[9px] uppercase tracking-wider leading-tight">Rýchly<br/>prístup</div>
+            <div class="text-orange-500 font-black text-[9px] uppercase tracking-wider leading-tight">Rýchly<br/>prístup</div>
           </div>
           <div class="absolute inset-0 rounded-r-3xl border-2 border-orange-500/50 animate-ping opacity-20"></div>
         </button>
 
-        <!-- Overlay pre mobil -->
-        <div id="quickOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm opacity-0 invisible transition-all duration-300 z-[-1]"></div>
-
-        <div id="quickPanel" class="fixed md:absolute left-0 md:left-full top-0 md:top-0 w-full md:w-96 h-full md:h-auto bg-zinc-900/98 backdrop-blur-2xl border-2 border-orange-500/30 md:rounded-r-3xl shadow-2xl transition-all duration-500 max-h-screen md:max-h-[85vh] overflow-y-auto opacity-0 invisible translate-x-[-100%] md:translate-x-[-32px]">
+        <div id="quickPanel" class="absolute left-full top-0 w-96 bg-zinc-900/98 backdrop-blur-2xl border-2 border-orange-500/30 rounded-r-3xl shadow-2xl transition-all duration-500 max-h-[85vh] overflow-y-auto opacity-0 invisible translate-x-[-32px]">
           <div class="p-5">
             <div class="flex items-center justify-between mb-5 pb-4 border-b-2 border-orange-500/30">
               <div class="flex items-center gap-3">
@@ -151,7 +149,7 @@ const quickCategories = [
             <div class="space-y-2">
               {quickCategories.map((category, idx) => (
                 <div class="category-item">
-                  <button class="category-btn w-full flex items-center justify-between px-4 py-3 text-left bg-gradient-to-r from-orange-500/10 to-transparent border border-orange-500/30 rounded-xl hover:from-orange-500/20 hover:border-orange-500/50 transition-all group" data-index={idx}>
+                  <button class="category-btn w-full flex items-center justify-between px-4 py-3 text-left bg-gradient-to-r from-orange-500/10 to-transparent border border-orange-500/30 hover:border-orange-500 rounded-xl hover:from-orange-500/20 transition-all group" data-index={idx}>
                     <span class="font-bold text-white text-sm group-hover:text-orange-400 transition-colors">{category.title}</span>
                     <svg class="category-arrow w-5 h-5 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 9l-7 7-7-7"/></svg>
                   </button>
@@ -192,104 +190,110 @@ const quickCategories = [
     <main id="main" class="relative z-10"><slot /></main>
     <Footer />
 
-    <!-- BACK TO TOP -->
-    <button id="backToTop" class="fixed bottom-5 right-5 w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-black shadow-lg shadow-orange-500/30 flex items-center justify-center opacity-0 translate-y-6 pointer-events-none transition-all duration-300 z-50 hover:scale-110">
-      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5"/></svg>
+    <!-- BACK TO TOP - UPRAVENÉ -->
+    <button id="backToTop" class="fixed bottom-5 right-5 md:bottom-8 md:right-8 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-black shadow-2xl shadow-orange-500/30 flex items-center justify-center opacity-0 translate-y-6 pointer-events-none transition-all duration-300 z-50 hover:scale-110 hover:shadow-orange-500/60 group">
+      <svg class="w-6 h-6 transition-transform group-hover:-translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+      <div class="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-20"></div>
     </button>
 
-    <!-- ROYAL ASISTENT - NIŽŠIE -->
-    <div id="royalAssistant" class="fixed bottom-5 right-5 md:bottom-24 md:right-5 z-40 flex flex-col items-center gap-2">
-      <button id="assistantBtn" class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 border-2 border-black/20 shadow-lg shadow-orange-500/30 flex items-center justify-center hover:scale-110 hover:rotate-3 transition-all duration-300 group relative">
-        <svg class="w-6 h-6 md:w-7 md:h-7 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        <span class="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-400 border-2 border-zinc-900 animate-pulse"></span>
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity -z-10"></div>
+    <!-- ROYAL ASISTENT - LEN NA DESKTOP -->
+    <div id="royalAssistant" class="hidden md:flex fixed bottom-8 right-8 z-40 flex-col items-center gap-2">
+      <button id="assistantBtn" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 shadow-2xl shadow-orange-500/50 flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 group relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+        <svg class="w-8 h-8 text-black relative z-10 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-green-500 border-2 border-zinc-900 animate-pulse"></span>
+        <div class="absolute inset-0 rounded-2xl border-2 border-orange-400 animate-ping opacity-20"></div>
       </button>
-      <div class="hidden md:block px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-black/80 border border-orange-500/30 text-orange-400 backdrop-blur-sm">Royal Asistent</div>
+      <div class="px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-black/80 border border-orange-500/30 text-orange-400 backdrop-blur-sm">Royal Asistent</div>
     </div>
 
-    <script is:inline>
+    <script>
   // Back to top
-  const backToTop=document.getElementById('backToTop');
-  window.addEventListener('scroll',function(){
-    if(window.scrollY>300){
-      backToTop.classList.remove('opacity-0','translate-y-6','pointer-events-none');
-    }else{
-      backToTop.classList.add('opacity-0','translate-y-6','pointer-events-none');
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+      } else {
+        backToTop.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+      }
+    }, { passive: true });
+    
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Quick Sidebar - scroll hide/show (LEN DESKTOP)
+  const quickSidebar = document.getElementById('quickSidebar');
+  if (quickSidebar && window.innerWidth >= 768) {
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      quickSidebar.classList.add('quick-sidebar-hidden');
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        quickSidebar.classList.remove('quick-sidebar-hidden');
+      }, 300);
+    }, { passive: true });
+  }
+
+  // Quick Sidebar - open/close
+  const quickTrigger = document.getElementById('quickTrigger');
+  const quickPanel = document.getElementById('quickPanel');
+  const quickClose = document.getElementById('quickClose');
+  let isQuickOpen = false;
+
+  if (quickTrigger && quickPanel) {
+    quickTrigger.addEventListener('click', function() {
+      if (isQuickOpen) {
+        quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
+        isQuickOpen = false;
+      } else {
+        quickPanel.classList.remove('opacity-0', 'invisible', 'translate-x-[-32px]');
+        isQuickOpen = true;
+      }
+    });
+
+    if (quickClose) {
+      quickClose.addEventListener('click', function() {
+        quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
+        isQuickOpen = false;
+      });
     }
-  },{passive:!0});
-  backToTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-
-  // Quick Sidebar - scroll hide/show
-  var scrollTimeout;
-  const quickSidebar=document.getElementById('quickSidebar');
-  window.addEventListener('scroll',function(){
-    quickSidebar.classList.add('quick-sidebar-hidden');
-    clearTimeout(scrollTimeout);
-    scrollTimeout=setTimeout(function(){
-      quickSidebar.classList.remove('quick-sidebar-hidden')
-    },300)
-  },{passive:!0});
-
-  // Quick Sidebar - open/close s blokom scrollu
-  const quickTrigger=document.getElementById('quickTrigger');
-  const quickPanel=document.getElementById('quickPanel');
-  const quickClose=document.getElementById('quickClose');
-  const quickOverlay=document.getElementById('quickOverlay');
-  var isOpen=!1;
-
-  function openQuickPanel(){
-    quickPanel.classList.remove('opacity-0','invisible','translate-x-[-100%]','md:translate-x-[-32px]');
-    quickPanel.classList.add('translate-x-0');
-    quickOverlay.classList.remove('opacity-0','invisible');
-    document.body.style.overflow='hidden';
-    isOpen=!0;
   }
-
-  function closeQuickPanel(){
-    quickPanel.classList.add('opacity-0','invisible','translate-x-[-100%]','md:translate-x-[-32px]');
-    quickPanel.classList.remove('translate-x-0');
-    quickOverlay.classList.add('opacity-0','invisible');
-    document.body.style.overflow='';
-    isOpen=!1;
-  }
-
-  quickTrigger.addEventListener('click',function(){
-    isOpen?closeQuickPanel():openQuickPanel()
-  });
-
-  quickClose.addEventListener('click',closeQuickPanel);
-  quickOverlay.addEventListener('click',closeQuickPanel);
 
   // Category accordion
-  const categoryBtns=document.querySelectorAll('.category-btn');
-  categoryBtns.forEach(function(btn){
-    btn.addEventListener('click',function(){
-      const parent=btn.closest('.category-item');
-      const content=parent.querySelector('.category-content');
-      const arrow=btn.querySelector('.category-arrow');
-      const isOpen=content.style.maxHeight&&content.style.maxHeight!=='0px';
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  categoryBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const parent = btn.closest('.category-item');
+      const content = parent.querySelector('.category-content');
+      const arrow = btn.querySelector('.category-arrow');
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
       
-      document.querySelectorAll('.category-content').forEach(function(c){c.style.maxHeight='0'});
-      document.querySelectorAll('.category-arrow').forEach(function(a){a.style.transform='rotate(0deg)'});
+      document.querySelectorAll('.category-content').forEach(function(c) { c.style.maxHeight = '0'; });
+      document.querySelectorAll('.category-arrow').forEach(function(a) { a.style.transform = 'rotate(0deg)'; });
       
-      if(!isOpen&&content){
-        content.style.maxHeight=content.scrollHeight+'px';
-        if(arrow)arrow.style.transform='rotate(180deg)'
+      if (!isOpen && content) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
       }
-    })
+    });
   });
 
   // Royal Asistent
-  const assistantBtn=document.getElementById('assistantBtn');
-  assistantBtn.addEventListener('click',function(){
-    window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia','_blank')
-  });
+  const assistantBtn = document.getElementById('assistantBtn');
+  if (assistantBtn) {
+    assistantBtn.addEventListener('click', function() {
+      window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
+    });
+  }
 </script>
 
     <style>
-      .quick-sidebar-hidden{transform:translateX(-100%);opacity:0}
-      @media (max-width:768px){
-        .quick-sidebar-hidden{transform:translateX(-100%);opacity:0}
+      .quick-sidebar-hidden { 
+        transform: translateX(-100%); 
+        opacity: 0; 
       }
     </style>
   </body>
