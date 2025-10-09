@@ -65,6 +65,24 @@ const brands = [
   { name: "HILTI", logo: "/images/logos/hilti.png" }
 ];
 
+const equipmentImages = [
+  {
+    title: "Bagre a rýpadlá",
+    image: "/images/equipment/bager.webp",
+    alt: "Profesionálne bagre"
+  },
+  {
+    title: "Vŕtacie technika",
+    image: "/images/equipment/vrtacka.webp",
+    alt: "Vŕtacie kladivá"
+  },
+  {
+    title: "Vibračné dosky",
+    image: "/images/equipment/vibracna-doska.webp",
+    alt: "Vibračné dosky"
+  }
+];
+
 const faqItems = [
   {
     question: "Ako funguje prenájom náradia a strojov?",
@@ -95,71 +113,85 @@ const faqItems = [
 
 <Layout title="ROYAL STROJE - Požičovňa náradia a stavebnej techniky" description="Prenájom stavebnej techniky, zemné a búracie práce, dovoz náradia. Bratislava, Senec a okolie.">
   
-  <section class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- HERO SECTION - Optimalizovaná verzia -->
+  <section class="relative min-h-[65vh] md:min-h-[70vh] flex items-center overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img 
         src="/images/hero/hero-main.webp" 
         alt="ROYAL STROJE - Stavebná technika" 
         class="w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
-      <div class="max-w-4xl">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full backdrop-blur-sm mb-8">
-          <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-          <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Profesionálny prenájom • Predaj • Servis</span>
+    <div class="relative z-10 w-full px-4 md:px-6 py-16 md:py-20">
+      <div class="max-w-6xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-orange-600 to-orange-500 border-2 border-orange-400 rounded-full backdrop-blur-sm mb-6 shadow-2xl shadow-orange-500/40">
+          <div class="w-2.5 h-2.5 bg-white rounded-full animate-pulse shadow-lg shadow-white/50"></div>
+          <span class="text-white text-xs md:text-sm font-black uppercase tracking-wider drop-shadow-lg">Profesionálny prenájom • Predaj • Servis</span>
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-          Požičovňa <span class="text-orange-500">náradia</span>, stavebných
-          <span class="text-orange-500">strojov</span> a príslušenstva
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+          Požičovňa <span class="text-orange-500 drop-shadow-[0_2px_15px_rgba(255,107,0,0.8)]">náradia</span>, stavebných
+          <span class="text-orange-500 drop-shadow-[0_2px_15px_rgba(255,107,0,0.8)]">strojov</span> a príslušenstva
         </h1>
 
-        <div class="inline-block bg-black/60 backdrop-blur-sm border border-orange-500/20 rounded-2xl px-6 py-4 mb-8">
-          <p class="text-gray-300 text-lg font-medium">
+        <div class="inline-block bg-black/90 backdrop-blur-md border border-orange-500/30 rounded-2xl px-4 md:px-6 py-3 mb-8 shadow-2xl hover:border-orange-500/60 transition-all duration-300">
+          <p class="text-white text-sm md:text-base lg:text-lg font-bold">
             Jednoduchý prenájom • Férové ceny • Rýchla doprava • Profesionálni strojníci • Vernostné zľavy • Zemné práce • Priateľská komunikácia
           </p>
         </div>
 
-        <div class="bg-black/70 backdrop-blur-sm border border-orange-500/20 rounded-xl px-6 py-4 mb-8">
-          <p class="text-white font-semibold mb-2">
-            <span class="text-orange-500 font-bold">📍 Prevádzka:</span>
-            <span class="text-gray-300 block mt-1">Récka cesta 182, 903 01 Senec</span>
-          </p>
-          <p class="text-white font-semibold mb-3">
-            <span class="text-orange-500 font-bold">⏰ Otváracie hodiny:</span>
-            <span class="text-gray-300 block mt-1">Po-Pi: 7:00 - 16:00</span>
-          </p>
-          <a 
-            href={MAPS_PREVADZKA} 
-            target="_blank"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-bold text-sm rounded-lg hover:scale-105 transition-all duration-300"
-          >
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            👉 Klikni pre navigáciu na prevadzku
-          </a>
+        <div class="bg-black/90 backdrop-blur-md border border-orange-500/30 hover:border-orange-500 rounded-2xl px-5 md:px-6 py-5 shadow-2xl mb-8 max-w-3xl mx-auto transition-all duration-300">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div>
+              <p class="text-white font-black text-base md:text-lg mb-2">
+                <span class="text-orange-500 drop-shadow-lg">📍 Prevádzka:</span>
+              </p>
+              <p class="text-gray-100 font-semibold text-sm md:text-base mb-4">
+                Récka cesta 182, 903 01 Senec
+              </p>
+              <a 
+                href={MAPS_PREVADZKA} 
+                target="_blank"
+                class="inline-flex items-center gap-2 px-4 md:px-5 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black text-sm md:text-base rounded-xl hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/50"
+              >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span class="hidden sm:inline">Navigácia na prevadzku</span>
+                <span class="sm:hidden">Navigácia</span>
+              </a>
+            </div>
+
+            <div>
+              <p class="text-white font-black text-base md:text-lg mb-2">
+                <span class="text-orange-500 drop-shadow-lg">⏰ Otváracie hodiny:</span>
+              </p>
+              <p class="text-gray-100 font-semibold text-sm md:text-base">
+                Pondelok - Piatok: 7:00 - 16:00
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap justify-center gap-3 md:gap-4">
           <a 
             href={`tel:${PHONE.replace(/\s/g,"")}`}
-            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300"
+            class="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black text-base md:text-lg rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300"
           >
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
             </svg>
-            {PHONE}
+            <span class="hidden sm:inline">{PHONE}</span>
+            <span class="sm:hidden">Zavolať</span>
           </a>
 
           <a 
             href={`mailto:${EMAIL}`}
-            class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-bold rounded-full hover:bg-white/20 hover:scale-105 transition-all duration-300"
+            class="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-zinc-800/90 backdrop-blur-sm border-2 border-zinc-700 text-white font-bold text-base md:text-lg rounded-full hover:bg-zinc-700 hover:scale-105 transition-all duration-300 hover:shadow-xl"
           >
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
             Email
@@ -168,71 +200,75 @@ const faqItems = [
           <a 
             href={WHATSAPP}
             target="_blank"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-green-500/90 text-white font-bold rounded-full hover:bg-green-500 hover:scale-105 transition-all duration-300"
+            class="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-zinc-800/90 backdrop-blur-sm border-2 border-zinc-700 text-white font-bold text-base md:text-lg rounded-full hover:bg-zinc-700 hover:scale-105 transition-all duration-300 hover:shadow-xl"
           >
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-            WhatsApp
+            <span class="hidden sm:inline">WhatsApp</span>
+            <span class="sm:hidden">WA</span>
           </a>
 
           <a 
             href={TELEGRAM}
             target="_blank"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-blue-500/90 text-white font-bold rounded-full hover:bg-blue-500 hover:scale-105 transition-all duration-300"
+            class="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-zinc-800/90 backdrop-blur-sm border-2 border-zinc-700 text-white font-bold text-base md:text-lg rounded-full hover:bg-zinc-700 hover:scale-105 transition-all duration-300 hover:shadow-xl"
           >
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
             </svg>
-            Telegram
+            <span class="hidden sm:inline">Telegram</span>
+            <span class="sm:hidden">TG</span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="relative py-12 bg-zinc-950">
+  <!-- DIVIDER -->
+  <div class="relative py-8 bg-zinc-950">
     <div class="max-w-7xl mx-auto px-6">
       <div class="h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent rounded-full"></div>
     </div>
   </div>
 
+  <!-- HLAVNÉ SLUŽBY -->
   <section class="py-20 bg-zinc-950">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <div class="inline-block px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full mb-4">
+        <div class="inline-block px-5 py-2 bg-orange-500/15 border border-orange-500/40 rounded-full mb-4">
           <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Hlavné služby</span>
         </div>
-        <h2 class="text-4xl md:text-6xl font-black text-white mb-4">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4">
           Naše <span class="text-orange-500">služby</span>
         </h2>
-        <p class="text-gray-400 text-xl max-w-3xl mx-auto">Komplexné riešenia pre vaše stavebné potreby</p>
+        <p class="text-gray-300 text-xl font-semibold max-w-3xl mx-auto">Komplexné riešenia pre vaše stavebné potreby</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {mainServices.map((service) => (
           <a 
             href={service.href}
-            class="group relative bg-gradient-to-b from-zinc-900 to-zinc-950 border border-white/10 rounded-3xl overflow-hidden hover:border-orange-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/20"
+            class="group relative bg-gradient-to-b from-zinc-900 to-zinc-950 border border-orange-500/30 hover:border-orange-500 rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-orange-500/30"
           >
             <div class="relative h-72 overflow-hidden">
               <img 
                 src={service.image} 
                 alt={service.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent"></div>
             </div>
 
             <div class="p-8">
-              <h3 class="text-2xl font-black text-white mb-3 group-hover:text-orange-500 transition-colors">
+              <h3 class="text-2xl md:text-3xl font-black text-white mb-4 group-hover:text-orange-500 transition-colors">
                 {service.title}
               </h3>
-              <p class="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
+              <p class="text-gray-300 text-base font-medium mb-6 leading-relaxed">{service.description}</p>
               
-              <div class="inline-flex items-center gap-2 text-orange-500 font-bold group-hover:gap-4 transition-all">
+              <div class="inline-flex items-center gap-3 text-orange-500 font-bold text-lg group-hover:gap-5 transition-all">
                 <span>Zobraziť viac</span>
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <path d="M5 12h14m-7-7l7 7-7 7"/>
                 </svg>
               </div>
@@ -243,41 +279,43 @@ const faqItems = [
     </div>
   </section>
 
-  <div class="relative py-12 bg-zinc-950">
+  <!-- DIVIDER -->
+  <div class="relative py-8 bg-zinc-950">
     <div class="max-w-7xl mx-auto px-6">
       <div class="h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent rounded-full"></div>
     </div>
   </div>
 
+  <!-- DOPLNKOVÉ SLUŽBY -->
   <section class="py-20 bg-zinc-900">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <div class="inline-block px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full mb-4">
+        <div class="inline-block px-5 py-2 bg-orange-500/15 border border-orange-500/40 rounded-full mb-4">
           <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Doplnkové služby</span>
         </div>
         <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
           Kompletný <span class="text-orange-500">servis</span>
         </h2>
-        <p class="text-gray-400 text-xl">Všetko pod jednou strechou pre vašu spokojnosť</p>
+        <p class="text-gray-300 text-xl font-semibold">Všetko pod jednou strechou pre vašu spokojnosť</p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {additionalServices.map((service) => (
-          
-           <a href={service.href}
-            class="group bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-orange-500/50 hover:scale-105 transition-all duration-300"
+          <a 
+            href={service.href}
+            class="group bg-zinc-950 border border-orange-500/30 hover:border-orange-500 rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/30"
           >
-            <div class="relative h-32 overflow-hidden">
+            <div class="relative h-52 overflow-hidden">
               <img 
                 src={service.image} 
                 alt={service.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
             </div>
-            <div class="p-4">
-              <h4 class="text-sm font-bold text-white mb-1 group-hover:text-orange-500 transition-colors">{service.title}</h4>
-              <p class="text-gray-400 text-xs leading-tight">{service.description}</p>
+            <div class="p-5">
+              <h4 class="text-lg font-black text-white mb-2 group-hover:text-orange-500 transition-colors leading-tight">{service.title}</h4>
+              <p class="text-gray-300 text-sm font-semibold leading-relaxed">{service.description}</p>
             </div>
           </a>
         ))}
@@ -285,26 +323,27 @@ const faqItems = [
     </div>
   </section>
 
-  <section class="py-20 bg-zinc-950 border-y border-orange-500/10">
+  <!-- ZNAČKY - Farebné s efektom -->
+  <section class="py-20 bg-zinc-950 border-y-2 border-orange-500/20">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <div class="inline-block px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full mb-4">
+        <div class="inline-block px-5 py-2 bg-orange-500/15 border border-orange-500/40 rounded-full mb-4">
           <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Overení partneri</span>
         </div>
         <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
           Spolupracujeme s <span class="text-orange-500">najlepšími značkami</span>
         </h2>
-        <p class="text-gray-400 text-xl">Profesionálne náradie od svetových výrobcov</p>
+        <p class="text-gray-300 text-xl font-semibold">Profesionálne náradie od svetových výrobcov</p>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {brands.map((brand) => (
-          <div class="group bg-gradient-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-2xl p-6 hover:border-orange-500/30 transition-all duration-300 hover:scale-105">
+          <div class="brand-card group bg-gradient-to-br from-zinc-900 to-zinc-950 border border-orange-500/30 hover:border-orange-500 rounded-2xl p-8 transition-all duration-300 cursor-pointer">
             <div class="relative h-24 flex items-center justify-center">
               <img 
                 src={brand.logo} 
                 alt={brand.name}
-                class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                class="max-h-full max-w-full object-contain transition-all duration-300"
               />
             </div>
           </div>
@@ -313,34 +352,35 @@ const faqItems = [
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="py-20 bg-zinc-900">
     <div class="max-w-4xl mx-auto px-6">
       <div class="text-center mb-16">
-        <div class="inline-block px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full mb-4">
+        <div class="inline-block px-5 py-2 bg-orange-500/15 border border-orange-500/40 rounded-full mb-4">
           <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Často kladené otázky</span>
         </div>
         <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
           Máte <span class="text-orange-500">otázky</span>?
         </h2>
-        <p class="text-gray-400 text-xl">Odpovede na najčastejšie otázky</p>
+        <p class="text-gray-300 text-xl font-semibold">Odpovede na najčastejšie otázky</p>
       </div>
 
       <div class="space-y-4">
         {faqItems.map((item) => (
-          <div class="faq-item bg-zinc-950/50 border border-white/10 rounded-2xl overflow-hidden hover:border-orange-500/30 transition-colors">
+          <div class="faq-item bg-zinc-950/60 border border-orange-500/30 hover:border-orange-500 rounded-2xl overflow-hidden transition-colors">
             <button 
               class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors"
               type="button"
             >
-              <span class="font-bold text-white text-base pr-8">{item.question}</span>
-              <div class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center transition-all">
-                <svg class="w-5 h-5 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <span class="font-black text-white text-lg pr-8">{item.question}</span>
+              <div class="faq-icon flex-shrink-0 w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center transition-all border border-orange-500/40">
+                <svg class="w-6 h-6 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <path d="M19 9l-7 7-7-7"/>
                 </svg>
               </div>
             </button>
             <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-              <div class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">{item.answer}</div>
+              <div class="px-6 pb-6 text-gray-300 text-base font-medium leading-relaxed">{item.answer}</div>
             </div>
           </div>
         ))}
@@ -348,19 +388,20 @@ const faqItems = [
     </div>
   </section>
 
+  <!-- CTA SEKCIA -->
   <section class="py-20 bg-gradient-to-b from-zinc-950 to-zinc-900">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-4xl md:text-5xl font-black text-white mb-6">
         Potrebujete poradiť s <span class="text-orange-500">výberom</span>?
       </h2>
-      <p class="text-gray-400 text-xl mb-10">Náš tím je tu pre vás 24/7. Zavolajte alebo napíšte.</p>
+      <p class="text-gray-300 text-xl font-semibold mb-10">Náš tím je tu pre vás 24/7. Zavolajte alebo napíšte.</p>
       
       <div class="flex flex-wrap justify-center gap-4">
         <a 
           href={`tel:${PHONE.replace(/\s/g,"")}`}
-          class="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black text-lg rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300"
+          class="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black text-xl rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300"
         >
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
             <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
           </svg>
           Zavolať teraz
@@ -368,9 +409,9 @@ const faqItems = [
 
         <a 
           href={`mailto:${EMAIL}`}
-          class="inline-flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-bold text-lg rounded-full hover:bg-white/20 hover:scale-105 transition-all duration-300"
+          class="inline-flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-bold text-xl rounded-full hover:bg-white/20 hover:scale-105 transition-all duration-300"
         >
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
           </svg>
           Napísať email
@@ -379,32 +420,68 @@ const faqItems = [
     </div>
   </section>
 
-  <section class="py-20 bg-zinc-950 border-t border-orange-500/10">
+  <!-- NOVÁ SEKCIA - TRI VEĽKÉ OBRÁZKY -->
+  <section class="py-20 bg-zinc-950 border-t-2 border-orange-500/20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="inline-block px-5 py-2 bg-orange-500/15 border border-orange-500/40 rounded-full mb-4">
+          <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Naša technika</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+          Profesionálne <span class="text-orange-500">vybavenie</span>
+        </h2>
+        <p class="text-gray-300 text-xl font-semibold">Moderná technika pre každý projekt</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {equipmentImages.map((item) => (
+          <div class="group relative overflow-hidden rounded-3xl border border-orange-500/30 hover:border-orange-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30">
+            <div class="relative h-96 overflow-hidden">
+              <img 
+                src={item.image} 
+                alt={item.alt}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <h3 class="text-2xl font-black text-white group-hover:text-orange-500 transition-colors">
+                {item.title}
+              </h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKTNÉ INFORMÁCIE -->
+  <section class="py-20 bg-zinc-900">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <div class="bg-zinc-900/50 border border-white/10 rounded-2xl p-8 hover:border-orange-500/30 transition-colors">
+        <div class="bg-zinc-950/60 border border-orange-500/30 hover:border-orange-500 rounded-2xl p-8 transition-all duration-300 hover:scale-105">
           <h3 class="text-2xl font-black text-orange-500 mb-4">Prevádzka Senec</h3>
-          <p class="text-gray-300 mb-4">
+          <p class="text-gray-200 font-semibold text-base mb-4 leading-relaxed">
             Récka cesta 182<br />
             903 01 Senec
           </p>
-          <p class="text-white font-bold mb-4">Po-Pi: 7:00 - 16:00</p>
+          <p class="text-white font-bold text-base mb-6">Po-Pi: 7:00 - 16:00</p>
           <a 
             href={MAPS_PREVADZKA} 
             target="_blank"
-            class="inline-flex items-center gap-2 text-orange-500 font-bold hover:gap-4 transition-all"
+            class="inline-flex items-center gap-2 text-orange-500 font-bold text-base hover:gap-4 transition-all"
           >
             <span>Zobraziť na mape</span>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M5 12h14m-7-7l7 7-7 7"/>
             </svg>
           </a>
         </div>
 
-        <div class="bg-zinc-900/50 border border-white/10 rounded-2xl p-8 hover:border-orange-500/30 transition-colors">
+        <div class="bg-zinc-950/60 border border-orange-500/30 hover:border-orange-500 rounded-2xl p-8 transition-all duration-300 hover:scale-105">
           <h3 class="text-2xl font-black text-orange-500 mb-4">Sídlo spoločnosti</h3>
-          <p class="text-gray-300 mb-4">
+          <p class="text-gray-200 font-semibold text-base mb-4 leading-relaxed">
             Bajkalská 31<br />
             821 05 Bratislava<br />
             (areál Drudop)
@@ -412,29 +489,29 @@ const faqItems = [
           <a 
             href={MAPS_SIDLO} 
             target="_blank"
-            class="inline-flex items-center gap-2 text-orange-500 font-bold hover:gap-4 transition-all"
+            class="inline-flex items-center gap-2 text-orange-500 font-bold text-base hover:gap-4 transition-all"
           >
             <span>Zobraziť na mape</span>
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M5 12h14m-7-7l7 7-7 7"/>
             </svg>
           </a>
         </div>
 
-        <div class="bg-zinc-900/50 border border-white/10 rounded-2xl p-8 hover:border-orange-500/30 transition-colors">
+        <div class="bg-zinc-950/60 border border-orange-500/30 hover:border-orange-500 rounded-2xl p-8 transition-all duration-300 hover:scale-105">
           <h3 class="text-2xl font-black text-orange-500 mb-4">Platby a kontakt</h3>
-          <p class="text-gray-300 mb-4">
+          <p class="text-gray-200 font-semibold text-base mb-6 leading-relaxed">
             📞 {PHONE}<br />
             ✉️ {EMAIL}
           </p>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1.5 bg-orange-500/10 border border-orange-500/30 rounded-lg text-sm font-bold text-gray-300">
+            <span class="px-4 py-2 bg-orange-500/15 border-2 border-orange-500/40 rounded-lg text-sm font-bold text-gray-200">
               💳 Platba kartou
             </span>
-            <span class="px-3 py-1.5 bg-orange-500/10 border border-orange-500/30 rounded-lg text-sm font-bold text-gray-300">
+            <span class="px-4 py-2 bg-orange-500/15 border-2 border-orange-500/40 rounded-lg text-sm font-bold text-gray-200">
               💵 Hotovosť
             </span>
-            <span class="px-3 py-1.5 bg-orange-500/10 border border-orange-500/30 rounded-lg text-sm font-bold text-gray-300">
+            <span class="px-4 py-2 bg-orange-500/15 border-2 border-orange-500/40 rounded-lg text-sm font-bold text-gray-200">
               📋 Faktúra
             </span>
           </div>
@@ -446,8 +523,15 @@ const faqItems = [
 
 </Layout>
 
+<style>
+  .brand-card img {
+    filter: none;
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // FAQ functionality
     const faqItems = document.querySelectorAll('.faq-item');
     
     faqItems.forEach(item => {
@@ -474,6 +558,27 @@ const faqItems = [
           item.classList.add('border-orange-500/50');
         }
       });
+    });
+
+    // Brand cards scroll animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.transform = 'scale(1.1)';
+        } else {
+          entry.target.style.transform = 'scale(1)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.brand-card').forEach(card => {
+      observer.observe(card);
+      card.style.transition = 'transform 0.5s ease';
     });
   });
 </script>
