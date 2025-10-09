@@ -1,7 +1,23 @@
 ---
-// src/components/header.astro
+import '../styles/global.css';
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
 
-const categories = [
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "ROYAL STROJE - Požičovňa náradia a techniky",
+  description = "Prenájom stavebnej techniky a náradia v Senci a okolí.",
+  ogImage = "/og-image.jpg"
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+
+const quickCategories = [
   {
     title: "Malé náradie",
     url: "/pozicovna-naradia/male-naradie",
@@ -70,324 +86,215 @@ const categories = [
     ]
   }
 ];
-
-const mainNav = [
-  { name: "Domov", url: "/" },
-  { name: "Požičovňa náradia", url: "/pozicovna-naradia", hasDropdown: true },
-  { name: "Zemné a búracie práce", url: "/zemne-buracie-prace" },
-  { name: "Kontakt", url: "/kontakt" }
-];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-950/95 backdrop-blur-2xl border-b border-orange-500/10 shadow-2xl transition-all duration-500" id="header">
-  
-  <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-    <div class="absolute inset-0 bg-gradient-radial from-orange-500/10 via-transparent to-transparent"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.15)_1px,transparent_0)] bg-[length:40px_40px]"></div>
-  </div>
+<!DOCTYPE html>
+<html lang="sk" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#ff6b00" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  </head>
 
-  <div class="max-w-[1600px] mx-auto px-4 md:px-8 relative z-10">
-    <div class="header-wrap flex items-center justify-between h-20 transition-all duration-500">
-      
-      <!-- Logo - Väčšie ale responzívne -->
-      <a href="/" class="flex items-center gap-3 group relative z-50">
-        <div class="brand-logo relative transition-all duration-500">
-          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transition-all duration-500 group-hover:scale-110 relative p-2">
-            <img 
-              src="/logo.png" 
-              alt="ROYAL STROJE Logo" 
-              class="w-full h-full object-contain relative z-10 drop-shadow-2xl filter brightness-110"
-            />
+  <body class="min-h-screen bg-zinc-950 text-white antialiased font-['Inter',system-ui,sans-serif]">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-orange-500 text-black font-bold px-3 py-2 rounded-md z-[10000]">Preskočiť na obsah</a>
+
+    <!-- Background -->
+    <div class="fixed inset-0 z-0 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.05)_1px,transparent_0)] bg-[length:40px_40px] opacity-30"></div>
+    </div>
+
+    <Header />
+
+    <!-- QUICK SIDEBAR - LEN NA DESKTOP -->
+    <div id="quickSidebar" class="hidden md:block fixed left-0 top-[30%] z-[60] transition-all duration-500 quick-sidebar-hidden">
+      <div class="relative">
+        <button id="quickTrigger" class="flex flex-col items-center justify-center gap-2 w-20 h-24 bg-zinc-900/98 backdrop-blur-xl border-r-4 border-t border-b border-orange-500/50 hover:border-orange-500 rounded-r-3xl shadow-2xl shadow-orange-500/20 transition-all duration-300 hover:w-24 hover:shadow-orange-500/40 group">
+          <svg class="w-10 h-10 text-orange-500 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3L2 9v12h20V9L12 3zm8 16h-4v-4h-4v4H8V9h12v10zM10 11h4v2h-4v-2zm0 4h4v2h-4v-2z"/>
+          </svg>
+          <div class="text-center">
+            <div class="text-orange-500 font-black text-[9px] uppercase tracking-wider leading-tight">Rýchly<br/>prístup</div>
           </div>
-          <div class="absolute -inset-2 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
-        </div>
-        
-        <div class="brand-text hidden sm:block transition-all duration-500">
-          <h1 class="text-xl md:text-2xl lg:text-3xl font-black text-white leading-none tracking-tight">
-            ROYAL STROJE
-          </h1>
-          <span class="text-[10px] md:text-[11px] text-orange-500 uppercase tracking-[2px] md:tracking-[3px] font-bold">
-            Požičovňa náradia
-          </span>
-        </div>
-      </a>
+          <div class="absolute inset-0 rounded-r-3xl border-2 border-orange-500/50 animate-ping opacity-20"></div>
+        </button>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center gap-2">
-        {mainNav.map((item) => (
-          <div class="relative nav-item group">
-            <a 
-              href={item.url} 
-              class="nav-link flex items-center gap-2 px-6 py-3 text-gray-300 hover:text-white font-bold text-sm rounded-xl hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-transparent transition-all duration-300 relative overflow-hidden"
-            >
-              <span class="absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/20 to-orange-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-              <span class="relative z-10">{item.name}</span>
-              {item.hasDropdown && (
-                <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              )}
-            </a>
+        <div id="quickPanel" class="absolute left-full top-0 w-96 bg-zinc-900/98 backdrop-blur-2xl border-2 border-orange-500/30 rounded-r-3xl shadow-2xl transition-all duration-500 max-h-[85vh] overflow-y-auto opacity-0 invisible translate-x-[-32px]">
+          <div class="p-5">
+            <div class="flex items-center justify-between mb-5 pb-4 border-b-2 border-orange-500/30">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 9v12h20V9L12 3z"/></svg>
+                </div>
+                <h3 class="text-xl font-black text-white">Rýchly prístup</h3>
+              </div>
+              <button id="quickClose" class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+                <svg class="w-6 h-6 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
 
-            {item.hasDropdown && (
-              <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[460px] bg-gradient-to-b from-zinc-900/98 to-zinc-950/98 backdrop-blur-2xl border border-orange-500/20 rounded-2xl shadow-2xl shadow-black/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 max-h-[68vh] overflow-y-auto">
-                <div class="p-4">
-                  <div class="space-y-1.5 mb-4">
-                    {categories.map((category) => (
-                      <div class="accordion-item border border-white/5 rounded-xl overflow-hidden hover:border-orange-500/30 transition-all duration-300 bg-gradient-to-r from-zinc-800/30 to-zinc-900/20">
-                        <button 
-                          class="accordion-header w-full px-4 py-3 flex items-center justify-between text-left bg-gradient-to-r from-orange-500/5 to-transparent hover:from-orange-500/10 transition-all duration-300 group/btn"
-                          type="button"
-                        >
-                          <span class="font-bold text-white text-xs group-hover/btn:text-orange-400 transition-colors">{category.title}</span>
-                          <svg class="w-4 h-4 text-orange-500 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M19 9l-7 7-7-7"/>
-                          </svg>
-                        </button>
-                        
-                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
-                          <div class="p-4 bg-black/30 backdrop-blur-sm">
-                            <a 
-                              href={category.url} 
-                              class="inline-flex items-center gap-2 px-3 py-2 mb-3 text-xs font-bold text-orange-500 bg-gradient-to-r from-orange-500/10 to-orange-600/5 hover:from-orange-500/20 hover:to-orange-600/10 border border-orange-500/30 hover:border-orange-500/50 rounded-lg transition-all duration-300 hover:translate-x-1"
-                            >
-                              <span>Všetko v kategórii</span>
-                              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <path d="M5 12h14m-7-7l7 7-7 7"/>
-                              </svg>
-                            </a>
-                            
-                            <div class="space-y-1">
-                              {category.items.map((subItem) => (
-                                <a 
-                                  href={subItem.url}
-                                  class="flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-transparent rounded-lg transition-all duration-300 hover:translate-x-2 group/item"
-                                >
-                                  <div class="w-1.5 h-1.5 rounded-full bg-orange-500/40 group-hover/item:bg-orange-500 transition-all duration-300"></div>
-                                  <span class="flex-1 font-medium leading-tight">{subItem.name}</span>
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+            <div class="space-y-2">
+              {quickCategories.map((category, idx) => (
+                <div class="category-item">
+                  <button class="category-btn w-full flex items-center justify-between px-4 py-3 text-left bg-gradient-to-r from-orange-500/10 to-transparent border border-orange-500/30 hover:border-orange-500 rounded-xl hover:from-orange-500/20 transition-all group" data-index={idx}>
+                    <span class="font-bold text-white text-sm group-hover:text-orange-400 transition-colors">{category.title}</span>
+                    <svg class="category-arrow w-5 h-5 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 9l-7 7-7-7"/></svg>
+                  </button>
 
-                  <div class="p-4 bg-gradient-to-br from-orange-500/15 via-orange-600/10 to-transparent border border-orange-500/30 rounded-xl text-center backdrop-blur-sm">
-                    <h4 class="text-white font-black text-base mb-1.5">Potrebujete poradiť?</h4>
-                    <p class="text-gray-400 text-xs mb-3 font-medium">Kontaktujte nás a pomôžeme vám vybrať správne náradie</p>
-                    <a 
-                      href="tel:+421948555551" 
-                      class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] hover:bg-right text-black font-black text-sm rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-500"
-                    >
-                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-                      </svg>
-                      <span>0948 555 551</span>
-                    </a>
+                  <div class="category-content max-h-0 overflow-hidden transition-all duration-300">
+                    <div class="ml-4 mt-2 space-y-1 pl-4 border-l-2 border-orange-500/20">
+                      <a href={category.url} class="flex items-center gap-2 px-3 py-2 text-xs font-bold text-orange-500 bg-orange-500/10 border border-orange-500/30 rounded-lg hover:bg-orange-500/20 hover:scale-105 transition-all mb-2">
+                        <span>Všetko v kategórii</span>
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                      </a>
+
+                      {category.items.map((item) => (
+                        <a href={item.url} class="flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all hover:translate-x-2 group">
+                          <div class="w-1.5 h-1.5 rounded-full bg-orange-500/50 group-hover:bg-orange-500 transition-colors flex-shrink-0"></div>
+                          <span class="leading-tight">{item.name}</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+
+            <div class="mt-5 pt-5 border-t-2 border-orange-500/30">
+              <div class="bg-gradient-to-br from-orange-500/15 to-transparent border border-orange-500/30 rounded-xl p-4 text-center">
+                <p class="text-white font-bold text-sm mb-3">Potrebujete poradiť?</p>
+                <a href="tel:+421948555551" class="flex items-center justify-center gap-2 w-full px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+                  0948 555 551
+                </a>
               </div>
-            )}
+            </div>
           </div>
-        ))}
-      </nav>
-
-      <!-- Header Actions -->
-      <div class="header-actions hidden lg:flex items-center gap-4 transition-all duration-500">
-        
-        <!-- Online Status -->
-        <div class="online-status flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-full backdrop-blur-sm transition-all duration-500">
-          <div class="relative">
-            <div class="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse"></div>
-            <div class="absolute inset-0 w-2.5 h-2.5 bg-orange-500 rounded-full animate-ping"></div>
-          </div>
-          <span class="text-orange-500 text-xs font-black uppercase tracking-wider">ONLINE 24/7</span>
         </div>
-
-        <!-- Phone CTA -->
-        <a 
-          href="tel:+421948555551" 
-          class="phone-cta flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] hover:bg-right text-black font-black rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-500"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-          </svg>
-          <span class="phone-number text-base transition-all duration-500">0948 555 551</span>
-        </a>
       </div>
+    </div>
 
-      <!-- Mobile Menu Button -->
-      <button 
-        class="lg:hidden flex flex-col gap-1.5 w-10 h-10 items-center justify-center rounded-xl hover:bg-orange-500/10 transition-all duration-300 group z-50" 
-        id="mobileMenuBtn"
-        aria-label="Otvoriť menu"
-      >
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-1"></span>
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 mobile-line-2"></span>
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-3"></span>
+    <main id="main" class="relative z-10"><slot /></main>
+    <Footer />
+
+    <!-- BACK TO TOP - UPRAVENÉ -->
+    <button id="backToTop" class="fixed bottom-5 right-5 md:bottom-8 md:right-8 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-black shadow-2xl shadow-orange-500/30 flex items-center justify-center opacity-0 translate-y-6 pointer-events-none transition-all duration-300 z-50 hover:scale-110 hover:shadow-orange-500/60 group">
+      <svg class="w-6 h-6 transition-transform group-hover:-translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+      <div class="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-20"></div>
+    </button>
+
+    <!-- ROYAL ASISTENT - LEN NA DESKTOP -->
+    <div id="royalAssistant" class="hidden md:flex fixed bottom-8 right-8 z-40 flex-col items-center gap-2">
+      <button id="assistantBtn" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 shadow-2xl shadow-orange-500/50 flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 group relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+        <svg class="w-8 h-8 text-black relative z-10 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-green-500 border-2 border-zinc-900 animate-pulse"></span>
+        <div class="absolute inset-0 rounded-2xl border-2 border-orange-400 animate-ping opacity-20"></div>
       </button>
+      <div class="px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-black/80 border border-orange-500/30 text-orange-400 backdrop-blur-sm">Royal Asistent</div>
     </div>
-  </div>
 
-  <!-- Mobile Menu -->
-  <div 
-    class="lg:hidden fixed inset-0 top-20 bg-gradient-to-b from-zinc-950/98 via-zinc-900/98 to-black/98 backdrop-blur-2xl translate-y-full opacity-0 transition-all duration-500 overflow-y-auto z-40" 
-    id="mobileMenu"
-    style="transform: translateY(100%); opacity: 0;"
-  >
-    <div class="p-6 space-y-3 pb-32">
-      {mainNav.map((item) => (
-        <a 
-          href={item.url}
-          class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
-        >
-          {item.name}
-        </a>
-      ))}
-      
-      <div class="pt-6">
-        <a 
-          href="tel:+421948555551" 
-          class="mobile-menu-link flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] text-black font-black text-xl rounded-2xl shadow-2xl shadow-orange-500/30"
-        >
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-          </svg>
-          0948 555 551
-        </a>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Padding pre obsah aby header nezakrýval -->
-<div class="h-20"></div>
-
-<script>
-  // PERFEKTNÝ SCROLL EFEKT
-  const header = document.getElementById('header');
-  const headerWrap = header?.querySelector('.header-wrap');
-  const brandLogo = header?.querySelector('.brand-logo');
-  const brandText = header?.querySelector('.brand-text');
-  const navLinks = header?.querySelectorAll('.nav-link');
-  const headerActions = header?.querySelector('.header-actions');
-  const onlineStatus = header?.querySelector('.online-status');
-  const phoneCta = header?.querySelector('.phone-cta');
-  const phoneNumber = header?.querySelector('.phone-number');
-  
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
+    <script>
+  // Back to top
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+      } else {
+        backToTop.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+      }
+    }, { passive: true });
     
-    if (scrolled > 50) {
-      headerWrap?.style.setProperty('height', '64px');
-      brandLogo?.style.setProperty('transform', 'scale(1.15)');
-      brandText?.style.setProperty('transform', 'scale(0.85)');
-      brandText?.style.setProperty('opacity', '0.9');
-      
-      navLinks?.forEach(link => {
-        link.style.setProperty('padding', '8px 16px');
-        link.style.setProperty('font-size', '13px');
-      });
-      
-      headerActions?.style.setProperty('transform', 'scale(0.9)');
-      onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
-      onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
-      onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
-      phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
-      phoneNumber?.style.setProperty('font-size', '15px');
-      header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
-      
-    } else {
-      headerWrap?.style.setProperty('height', '80px');
-      brandLogo?.style.setProperty('transform', 'scale(1)');
-      brandText?.style.setProperty('transform', 'scale(1)');
-      brandText?.style.setProperty('opacity', '1');
-      
-      navLinks?.forEach(link => {
-        link.style.setProperty('padding', '12px 24px');
-        link.style.setProperty('font-size', '15px');
-      });
-      
-      headerActions?.style.setProperty('transform', 'scale(1)');
-      onlineStatus?.style.removeProperty('background');
-      onlineStatus?.style.removeProperty('border-color');
-      onlineStatus?.style.removeProperty('box-shadow');
-      phoneCta?.style.removeProperty('box-shadow');
-      phoneNumber?.style.setProperty('font-size', '16px');
-      header?.classList.remove('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
-    }
-  }, { passive: true });
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-  // Accordion
-  const accordionHeaders = document.querySelectorAll('.accordion-header');
-  accordionHeaders.forEach(header => {
-    header.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+  // Quick Sidebar - scroll hide/show (LEN DESKTOP)
+  const quickSidebar = document.getElementById('quickSidebar');
+  if (quickSidebar && window.innerWidth >= 768) {
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      quickSidebar.classList.add('quick-sidebar-hidden');
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        quickSidebar.classList.remove('quick-sidebar-hidden');
+      }, 300);
+    }, { passive: true });
+  }
+
+  // Quick Sidebar - open/close
+  const quickTrigger = document.getElementById('quickTrigger');
+  const quickPanel = document.getElementById('quickPanel');
+  const quickClose = document.getElementById('quickClose');
+  let isQuickOpen = false;
+
+  if (quickTrigger && quickPanel) {
+    quickTrigger.addEventListener('click', function() {
+      if (isQuickOpen) {
+        quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
+        isQuickOpen = false;
+      } else {
+        quickPanel.classList.remove('opacity-0', 'invisible', 'translate-x-[-32px]');
+        isQuickOpen = true;
+      }
+    });
+
+    if (quickClose) {
+      quickClose.addEventListener('click', function() {
+        quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
+        isQuickOpen = false;
+      });
+    }
+  }
+
+  // Category accordion
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  categoryBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const parent = btn.closest('.category-item');
+      const content = parent.querySelector('.category-content');
+      const arrow = btn.querySelector('.category-arrow');
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
       
-      const item = header.closest('.accordion-item');
-      const content = item?.querySelector('.accordion-content');
-      const icon = header.querySelector('svg');
-      const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
-      
-      document.querySelectorAll('.accordion-content').forEach(c => { c.style.maxHeight = '0'; });
-      document.querySelectorAll('.accordion-header svg').forEach(i => { i.style.transform = 'rotate(0deg)'; });
+      document.querySelectorAll('.category-content').forEach(function(c) { c.style.maxHeight = '0'; });
+      document.querySelectorAll('.category-arrow').forEach(function(a) { a.style.transform = 'rotate(0deg)'; });
       
       if (!isOpen && content) {
         content.style.maxHeight = content.scrollHeight + 'px';
-        if (icon) icon.style.transform = 'rotate(180deg)';
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
       }
     });
   });
 
-  // Mobile menu - OPRAVENÉ
-  const mobileBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const line1 = mobileBtn?.querySelector('.mobile-line-1');
-  const line2 = mobileBtn?.querySelector('.mobile-line-2');
-  const line3 = mobileBtn?.querySelector('.mobile-line-3');
-  
-  let menuOpen = false;
-  
-  mobileBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('Menu button clicked!', menuOpen);
-    
-    if (menuOpen) {
-      // Zavrieť menu
-      mobileMenu.style.transform = 'translateY(100%)';
-      mobileMenu.style.opacity = '0';
-      document.body.style.overflow = '';
-      line1?.classList.remove('rotate-45', 'translate-y-2');
-      line2?.classList.remove('opacity-0');
-      line3?.classList.remove('-rotate-45', '-translate-y-2');
-      menuOpen = false;
-    } else {
-      // Otvoriť menu
-      mobileMenu.style.transform = 'translateY(0)';
-      mobileMenu.style.opacity = '1';
-      document.body.style.overflow = 'hidden';
-      line1?.classList.add('rotate-45', 'translate-y-2');
-      line2?.classList.add('opacity-0');
-      line3?.classList.add('-rotate-45', '-translate-y-2');
-      menuOpen = true;
-    }
-  });
-
-  // Zavrieť menu pri kliknutí na link
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-  mobileMenuLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.style.transform = 'translateY(100%)';
-      mobileMenu.style.opacity = '0';
-      document.body.style.overflow = '';
-      line1?.classList.remove('rotate-45', 'translate-y-2');
-      line2?.classList.remove('opacity-0');
-      line3?.classList.remove('-rotate-45', '-translate-y-2');
-      menuOpen = false;
+  // Royal Asistent
+  const assistantBtn = document.getElementById('assistantBtn');
+  if (assistantBtn) {
+    assistantBtn.addEventListener('click', function() {
+      window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
     });
-  });
+  }
 </script>
+
+    <style>
+      .quick-sidebar-hidden { 
+        transform: translateX(-100%); 
+        opacity: 0; 
+      }
+    </style>
+  </body>
+</html>
