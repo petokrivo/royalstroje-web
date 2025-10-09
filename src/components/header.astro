@@ -92,7 +92,7 @@ const mainNav = [
       <!-- Logo - Bez rámu, väčšie -->
       <a href="/" class="flex items-center gap-3 group relative z-50">
         <div class="brand-logo relative transition-all duration-500">
-          <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center transition-all duration-500 group-hover:scale-150 relative p-2">
+          <div class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-all duration-500 group-hover:scale-110 relative p-2">
             <img 
               src="/logo.png" 
               alt="ROYAL STROJE Logo" 
@@ -233,14 +233,15 @@ const mainNav = [
 
   <!-- Mobile Menu -->
   <div 
-    class="lg:hidden fixed inset-0 top-20 bg-gradient-to-b from-zinc-950/98 via-zinc-900/98 to-black/98 backdrop-blur-2xl -translate-y-full opacity-0 transition-all duration-500 overflow-y-auto z-40" 
+    class="lg:hidden fixed inset-0 top-20 bg-gradient-to-b from-zinc-950/98 via-zinc-900/98 to-black/98 backdrop-blur-2xl translate-y-full opacity-0 transition-all duration-500 overflow-y-auto z-40" 
     id="mobileMenu"
+    style="transform: translateY(100%); opacity: 0;"
   >
     <div class="p-6 space-y-3 pb-32">
       {mainNav.map((item) => (
         <a 
           href={item.url}
-          class="block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
+          class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
         >
           {item.name}
         </a>
@@ -249,7 +250,7 @@ const mainNav = [
       <div class="pt-6">
         <a 
           href="tel:+421948555551" 
-          class="flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] text-black font-black text-xl rounded-2xl shadow-2xl shadow-orange-500/30"
+          class="mobile-menu-link flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] text-black font-black text-xl rounded-2xl shadow-2xl shadow-orange-500/30"
         >
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
             <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
@@ -260,6 +261,9 @@ const mainNav = [
     </div>
   </div>
 </header>
+
+<!-- Padding pre obsah aby header nezakrýval -->
+<div class="h-20"></div>
 
 <script>
   // PERFEKTNÝ SCROLL EFEKT
@@ -277,39 +281,25 @@ const mainNav = [
     const scrolled = window.scrollY;
     
     if (scrolled > 50) {
-      // Zmenší header
       headerWrap?.style.setProperty('height', '64px');
-      
-      // ZVÄČŠÍ logo
       brandLogo?.style.setProperty('transform', 'scale(1.15)');
-      
-      // Zmenší text
       brandText?.style.setProperty('transform', 'scale(0.85)');
       brandText?.style.setProperty('opacity', '0.9');
       
-      // Zmenší navigáciu
       navLinks?.forEach(link => {
         link.style.setProperty('padding', '8px 16px');
         link.style.setProperty('font-size', '13px');
       });
       
-      // Zmenší actions
       headerActions?.style.setProperty('transform', 'scale(0.9)');
-      
-      // ZVÝRAZNÍ online status
       onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
       onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
       onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
-      
-      // ZVÝRAZNÍ telefón
       phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
       phoneNumber?.style.setProperty('font-size', '15px');
-      
-      // Shadow
       header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
       
     } else {
-      // Vráti normálnu veľkosť
       headerWrap?.style.setProperty('height', '80px');
       brandLogo?.style.setProperty('transform', 'scale(1)');
       brandText?.style.setProperty('transform', 'scale(1)');
@@ -352,38 +342,52 @@ const mainNav = [
     });
   });
 
-  // Mobile menu
+  // Mobile menu - OPRAVENÉ
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const line1 = mobileBtn?.querySelector('.mobile-line-1');
   const line2 = mobileBtn?.querySelector('.mobile-line-2');
   const line3 = mobileBtn?.querySelector('.mobile-line-3');
   
-  mobileBtn?.addEventListener('click', () => {
-    const isOpen = !mobileMenu?.classList.contains('-translate-y-full');
+  let menuOpen = false;
+  
+  mobileBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Menu button clicked!', menuOpen);
     
-    if (isOpen) {
-      mobileMenu?.classList.add('-translate-y-full', 'opacity-0');
+    if (menuOpen) {
+      // Zavrieť menu
+      mobileMenu.style.transform = 'translateY(100%)';
+      mobileMenu.style.opacity = '0';
       document.body.style.overflow = '';
       line1?.classList.remove('rotate-45', 'translate-y-2');
       line2?.classList.remove('opacity-0');
       line3?.classList.remove('-rotate-45', '-translate-y-2');
+      menuOpen = false;
     } else {
-      mobileMenu?.classList.remove('-translate-y-full', 'opacity-0');
+      // Otvoriť menu
+      mobileMenu.style.transform = 'translateY(0)';
+      mobileMenu.style.opacity = '1';
       document.body.style.overflow = 'hidden';
       line1?.classList.add('rotate-45', 'translate-y-2');
       line2?.classList.add('opacity-0');
       line3?.classList.add('-rotate-45', '-translate-y-2');
+      menuOpen = true;
     }
   });
 
-  mobileMenu?.querySelectorAll('a').forEach(link => {
+  // Zavrieť menu pri kliknutí na link
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+  mobileMenuLinks?.forEach(link => {
     link.addEventListener('click', () => {
-      mobileMenu?.classList.add('-translate-y-full', 'opacity-0');
+      mobileMenu.style.transform = 'translateY(100%)';
+      mobileMenu.style.opacity = '0';
       document.body.style.overflow = '';
       line1?.classList.remove('rotate-45', 'translate-y-2');
       line2?.classList.remove('opacity-0');
       line3?.classList.remove('-rotate-45', '-translate-y-2');
+      menuOpen = false;
     });
   });
 </script>
