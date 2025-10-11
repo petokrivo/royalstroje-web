@@ -80,7 +80,6 @@ const mainNav = [
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-950/95 backdrop-blur-2xl border-b border-orange-500/10 shadow-2xl transition-all duration-500" id="header">
-  
   <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
     <div class="absolute inset-0 bg-gradient-radial from-orange-500/10 via-transparent to-transparent"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.15)_1px,transparent_0)] bg-[length:40px_40px]"></div>
@@ -89,27 +88,20 @@ const mainNav = [
   <div class="max-w-[1600px] mx-auto px-4 md:px-8 relative z-10">
     <div class="header-wrap flex items-center justify-between h-20 transition-all duration-500">
       
-      <!-- Logo - Bez rámu, väčšie -->
-      <a href="/" class="flex items-center gap-3 group relative z-50">
+      <!-- Logo (väčšie) -->
+      <a href="/" class="flex items-center gap-3 group relative z-50" aria-label="ROYAL STROJE – Domov">
         <div class="brand-logo relative transition-all duration-500">
-          <div class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-all duration-500 group-hover:scale-110 relative p-2">
+          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transition-all duration-500 group-hover:scale-110 relative p-1.5 md:p-2">
             <img 
               src="/logo.png" 
               alt="ROYAL STROJE Logo" 
               class="w-full h-full object-contain relative z-10 drop-shadow-2xl filter brightness-110"
+              decoding="async"
             />
           </div>
           <div class="absolute -inset-2 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
         </div>
-        
-        <div class="brand-text hidden sm:block transition-all duration-500">
-          <h1 class="text-xl md:text-2xl font-black text-white leading-none tracking-tight">
-            ROYAL STROJE
-          </h1>
-          <span class="text-[9px] md:text-[10px] text-orange-500 uppercase tracking-[2px] md:tracking-[3px] font-bold">
-            Požičovňa náradia
-          </span>
-        </div>
+        <!-- POZN.: brand-text odstránený na požiadanie -->
       </a>
 
       <!-- Desktop Navigation -->
@@ -196,8 +188,6 @@ const mainNav = [
 
       <!-- Header Actions -->
       <div class="header-actions hidden lg:flex items-center gap-4 transition-all duration-500">
-        
-        <!-- Online Status -->
         <div class="online-status flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-full backdrop-blur-sm transition-all duration-500">
           <div class="relative">
             <div class="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse"></div>
@@ -206,7 +196,6 @@ const mainNav = [
           <span class="text-orange-500 text-xs font-black uppercase tracking-wider">ONLINE 24/7</span>
         </div>
 
-        <!-- Phone CTA -->
         <a 
           href="tel:+421948555551" 
           class="phone-cta flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] hover:bg-right text-black font-black rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-500"
@@ -220,13 +209,15 @@ const mainNav = [
 
       <!-- Mobile Menu Button -->
       <button 
-        class="lg:hidden flex flex-col gap-1.5 w-10 h-10 items-center justify-center rounded-xl hover:bg-orange-500/10 transition-all duration-300 group z-50" 
+        class="lg:hidden flex flex-col gap-1.5 w-11 h-11 items-center justify-center rounded-xl hover:bg-orange-500/10 transition-all duration-300 group z-50" 
         id="mobileMenuBtn"
         aria-label="Otvoriť menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
       >
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-1"></span>
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 mobile-line-2"></span>
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-3"></span>
+        <span class="w-7 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-1"></span>
+        <span class="w-7 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 mobile-line-2"></span>
+        <span class="w-7 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-3"></span>
       </button>
     </div>
   </div>
@@ -262,79 +253,69 @@ const mainNav = [
   </div>
 </header>
 
-<!-- Padding pre obsah aby header nezakrýval -->
+<!-- Spacer, aby header nezakrýval obsah -->
 <div class="h-20"></div>
 
 <script>
-  // PERFEKTNÝ SCROLL EFEKT
+  // SCROLL EFEKT – platí aj na mobile
   const header = document.getElementById('header');
   const headerWrap = header?.querySelector('.header-wrap');
-  const brandLogo = header?.querySelector('.brand-logo');
-  const brandText = header?.querySelector('.brand-text');
+  const brandLogo = header?.querySelector('.brand-logo img');
   const navLinks = header?.querySelectorAll('.nav-link');
   const headerActions = header?.querySelector('.header-actions');
   const onlineStatus = header?.querySelector('.online-status');
   const phoneCta = header?.querySelector('.phone-cta');
   const phoneNumber = header?.querySelector('.phone-number');
-  
+
+  const shrink = () => {
+    headerWrap?.style.setProperty('height', '56px'); // menšie aj na mobile
+    brandLogo?.parentElement?.style.setProperty('transform', 'scale(0.9)');
+    navLinks?.forEach(link => {
+      link.style.setProperty('padding', '8px 16px');
+      link.style.setProperty('font-size', '13px');
+    });
+    headerActions?.style.setProperty('transform', 'scale(0.92)');
+    onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
+    onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
+    onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
+    phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
+    phoneNumber?.style.setProperty('font-size', '15px');
+    header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
+  };
+
+  const expand = () => {
+    headerWrap?.style.setProperty('height', '80px');
+    brandLogo?.parentElement?.style.setProperty('transform', 'scale(1)');
+    navLinks?.forEach(link => {
+      link.style.setProperty('padding', '12px 24px');
+      link.style.setProperty('font-size', '15px');
+    });
+    headerActions?.style.setProperty('transform', 'scale(1)');
+    onlineStatus?.style.removeProperty('background');
+    onlineStatus?.style.removeProperty('border-color');
+    onlineStatus?.style.removeProperty('box-shadow');
+    phoneCta?.style.removeProperty('box-shadow');
+    phoneNumber?.style.setProperty('font-size', '16px');
+    header?.classList.remove('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
+  };
+
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    
-    if (scrolled > 50) {
-      headerWrap?.style.setProperty('height', '64px');
-      brandLogo?.style.setProperty('transform', 'scale(1.15)');
-      brandText?.style.setProperty('transform', 'scale(0.85)');
-      brandText?.style.setProperty('opacity', '0.9');
-      
-      navLinks?.forEach(link => {
-        link.style.setProperty('padding', '8px 16px');
-        link.style.setProperty('font-size', '13px');
-      });
-      
-      headerActions?.style.setProperty('transform', 'scale(0.9)');
-      onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
-      onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
-      onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
-      phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
-      phoneNumber?.style.setProperty('font-size', '15px');
-      header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
-      
-    } else {
-      headerWrap?.style.setProperty('height', '80px');
-      brandLogo?.style.setProperty('transform', 'scale(1)');
-      brandText?.style.setProperty('transform', 'scale(1)');
-      brandText?.style.setProperty('opacity', '1');
-      
-      navLinks?.forEach(link => {
-        link.style.setProperty('padding', '12px 24px');
-        link.style.setProperty('font-size', '15px');
-      });
-      
-      headerActions?.style.setProperty('transform', 'scale(1)');
-      onlineStatus?.style.removeProperty('background');
-      onlineStatus?.style.removeProperty('border-color');
-      onlineStatus?.style.removeProperty('box-shadow');
-      phoneCta?.style.removeProperty('box-shadow');
-      phoneNumber?.style.setProperty('font-size', '16px');
-      header?.classList.remove('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
-    }
+    const scrolled = window.scrollY || window.pageYOffset;
+    if (scrolled > 50) shrink(); else expand();
   }, { passive: true });
 
-  // Accordion
+  // ACCORDION (desktop megamenu)
   const accordionHeaders = document.querySelectorAll('.accordion-header');
-  accordionHeaders.forEach(header => {
-    header.addEventListener('click', (e) => {
+  accordionHeaders.forEach(h => {
+    h.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      
-      const item = header.closest('.accordion-item');
+      const item = h.closest('.accordion-item');
       const content = item?.querySelector('.accordion-content');
-      const icon = header.querySelector('svg');
+      const icon = h.querySelector('svg');
       const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
-      
       document.querySelectorAll('.accordion-content').forEach(c => { c.style.maxHeight = '0'; });
       document.querySelectorAll('.accordion-header svg').forEach(i => { i.style.transform = 'rotate(0deg)'; });
-      
       if (!isOpen && content) {
         content.style.maxHeight = content.scrollHeight + 'px';
         if (icon) icon.style.transform = 'rotate(180deg)';
@@ -342,52 +323,55 @@ const mainNav = [
     });
   });
 
-  // Mobile menu - OPRAVENÉ
+  // MOBILE MENU
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const line1 = mobileBtn?.querySelector('.mobile-line-1');
   const line2 = mobileBtn?.querySelector('.mobile-line-2');
   const line3 = mobileBtn?.querySelector('.mobile-line-3');
-  
   let menuOpen = false;
-  
+
+  const openMenu = () => {
+    mobileMenu.style.transform = 'translateY(0)';
+    mobileMenu.style.opacity = '1';
+    document.body.style.overflow = 'hidden';
+    line1?.classList.add('rotate-45','translate-y-2');
+    line2?.classList.add('opacity-0');
+    line3?.classList.add('-rotate-45','-translate-y-2');
+    mobileBtn?.setAttribute('aria-expanded','true');
+    menuOpen = true;
+  };
+
+  const closeMenu = () => {
+    mobileMenu.style.transform = 'translateY(100%)';
+    mobileMenu.style.opacity = '0';
+    document.body.style.overflow = '';
+    line1?.classList.remove('rotate-45','translate-y-2');
+    line2?.classList.remove('opacity-0');
+    line3?.classList.remove('-rotate-45','-translate-y-2');
+    mobileBtn?.setAttribute('aria-expanded','false');
+    menuOpen = false;
+  };
+
   mobileBtn?.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('Menu button clicked!', menuOpen);
-    
-    if (menuOpen) {
-      // Zavrieť menu
-      mobileMenu.style.transform = 'translateY(100%)';
-      mobileMenu.style.opacity = '0';
-      document.body.style.overflow = '';
-      line1?.classList.remove('rotate-45', 'translate-y-2');
-      line2?.classList.remove('opacity-0');
-      line3?.classList.remove('-rotate-45', '-translate-y-2');
-      menuOpen = false;
-    } else {
-      // Otvoriť menu
-      mobileMenu.style.transform = 'translateY(0)';
-      mobileMenu.style.opacity = '1';
-      document.body.style.overflow = 'hidden';
-      line1?.classList.add('rotate-45', 'translate-y-2');
-      line2?.classList.add('opacity-0');
-      line3?.classList.add('-rotate-45', '-translate-y-2');
-      menuOpen = true;
-    }
+    menuOpen ? closeMenu() : openMenu();
   });
 
-  // Zavrieť menu pri kliknutí na link
+  // zavrieť pri kliknutí na link
   const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-  mobileMenuLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.style.transform = 'translateY(100%)';
-      mobileMenu.style.opacity = '0';
-      document.body.style.overflow = '';
-      line1?.classList.remove('rotate-45', 'translate-y-2');
-      line2?.classList.remove('opacity-0');
-      line3?.classList.remove('-rotate-45', '-translate-y-2');
-      menuOpen = false;
-    });
+  mobileMenuLinks?.forEach(link => link.addEventListener('click', closeMenu));
+
+  // zavrieť pri ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) closeMenu();
+  });
+
+  // zavrieť pri kliku mimo
+  document.addEventListener('click', (e) => {
+    if (!menuOpen) return;
+    const within = mobileMenu.contains(e.target) || mobileBtn.contains(e.target);
+    if (!within) closeMenu();
   });
 </script>
