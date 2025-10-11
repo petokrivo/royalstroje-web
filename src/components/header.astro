@@ -80,6 +80,7 @@ const mainNav = [
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-950/95 backdrop-blur-2xl border-b border-orange-500/10 shadow-2xl transition-all duration-500" id="header">
+  
   <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
     <div class="absolute inset-0 bg-gradient-radial from-orange-500/10 via-transparent to-transparent"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.15)_1px,transparent_0)] bg-[length:40px_40px]"></div>
@@ -88,23 +89,28 @@ const mainNav = [
   <div class="max-w-[1600px] mx-auto px-4 md:px-8 relative z-10">
     <div class="header-wrap flex items-center justify-between h-20 transition-all duration-500">
       
-      <!-- Logo (väčšie) -->
-      <a href="/" class="flex items-center gap-3 group relative z-50" aria-label="ROYAL STROJE – Domov">
+      <a href="/" class="flex items-center gap-3 group relative z-50">
         <div class="brand-logo relative transition-all duration-500">
-          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transition-all duration-500 group-hover:scale-110 relative p-1.5 md:p-2">
+          <div class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-all duration-500 group-hover:scale-110 relative p-2">
             <img 
               src="/logo.png" 
               alt="ROYAL STROJE Logo" 
               class="w-full h-full object-contain relative z-10 drop-shadow-2xl filter brightness-110"
-              decoding="async"
             />
           </div>
           <div class="absolute -inset-2 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
         </div>
-        <!-- POZN.: brand-text odstránený na požiadanie -->
+        
+        <div class="brand-text hidden sm:block transition-all duration-500">
+          <h1 class="text-xl md:text-2xl font-black text-white leading-none tracking-tight">
+            ROYAL STROJE
+          </h1>
+          <span class="text-[9px] md:text-[10px] text-orange-500 uppercase tracking-[2px] md:tracking-[3px] font-bold">
+            Požičovňa náradia
+          </span>
+        </div>
       </a>
 
-      <!-- Desktop Navigation -->
       <nav class="hidden lg:flex items-center gap-2">
         {mainNav.map((item) => (
           <div class="relative nav-item group">
@@ -186,7 +192,6 @@ const mainNav = [
         ))}
       </nav>
 
-      <!-- Header Actions -->
       <div class="header-actions hidden lg:flex items-center gap-4 transition-all duration-500">
         <div class="online-status flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-full backdrop-blur-sm transition-all duration-500">
           <div class="relative">
@@ -207,36 +212,95 @@ const mainNav = [
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
       <button 
-        class="lg:hidden flex flex-col gap-1.5 w-11 h-11 items-center justify-center rounded-xl hover:bg-orange-500/10 transition-all duration-300 group z-50" 
+        class="lg:hidden flex flex-col gap-1.5 w-10 h-10 items-center justify-center rounded-xl hover:bg-orange-500/10 transition-all duration-300 group z-50" 
         id="mobileMenuBtn"
         aria-label="Otvoriť menu"
-        aria-expanded="false"
-        aria-controls="mobileMenu"
       >
-        <span class="w-7 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-1"></span>
-        <span class="w-7 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 mobile-line-2"></span>
-        <span class="w-7 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-3"></span>
+        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-1"></span>
+        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 mobile-line-2"></span>
+        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-3"></span>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
   <div 
     class="lg:hidden fixed inset-0 top-20 bg-gradient-to-b from-zinc-950/98 via-zinc-900/98 to-black/98 backdrop-blur-2xl translate-y-full opacity-0 transition-all duration-500 overflow-y-auto z-40" 
     id="mobileMenu"
-    style="transform: translateY(100%); opacity: 0;"
   >
     <div class="p-6 space-y-3 pb-32">
-      {mainNav.map((item) => (
-        <a 
-          href={item.url}
-          class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
+      
+      <a 
+        href="/"
+        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
+      >
+        Domov
+      </a>
+
+      <div class="mobile-nav-dropdown">
+        <button 
+          class="mobile-dropdown-trigger w-full flex items-center justify-between px-6 py-4 text-white font-bold text-lg border border-orange-500/30 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
+          type="button"
         >
-          {item.name}
-        </a>
-      ))}
+          <span>Požičovňa náradia</span>
+          <svg class="w-5 h-5 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+
+        <div class="mobile-dropdown-content max-h-0 overflow-hidden transition-all duration-500">
+          <div class="pt-3 space-y-2">
+            {categories.map((category) => (
+              <div class="mobile-category-item border border-white/5 rounded-xl overflow-hidden bg-zinc-900/50">
+                <button 
+                  class="mobile-category-trigger w-full px-4 py-3 flex items-center justify-between text-left bg-gradient-to-r from-orange-500/5 to-transparent hover:from-orange-500/10 transition-all duration-300"
+                  type="button"
+                >
+                  <span class="font-bold text-white text-sm">{category.title}</span>
+                  <svg class="w-4 h-4 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+                
+                <div class="mobile-category-content max-h-0 overflow-hidden transition-all duration-500">
+                  <div class="p-3 bg-black/30 space-y-1">
+                    <a 
+                      href={category.url}
+                      class="mobile-menu-link block px-3 py-2 text-xs font-bold text-orange-500 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-lg mb-2"
+                    >
+                      Všetko v kategórii →
+                    </a>
+                    
+                    {category.items.map((subItem) => (
+                      <a 
+                        href={subItem.url}
+                        class="mobile-menu-link flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-orange-500/10 rounded-lg transition-all duration-300"
+                      >
+                        <div class="w-1.5 h-1.5 rounded-full bg-orange-500/40"></div>
+                        <span class="flex-1 font-medium">{subItem.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <a 
+        href="/zemne-buracie-prace"
+        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
+      >
+        Zemné a búracie práce
+      </a>
+
+      <a 
+        href="/kontakt"
+        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
+      >
+        Kontakt
+      </a>
       
       <div class="pt-6">
         <a 
@@ -253,69 +317,76 @@ const mainNav = [
   </div>
 </header>
 
-<!-- Spacer, aby header nezakrýval obsah -->
 <div class="h-20"></div>
 
 <script>
-  // SCROLL EFEKT – platí aj na mobile
   const header = document.getElementById('header');
   const headerWrap = header?.querySelector('.header-wrap');
-  const brandLogo = header?.querySelector('.brand-logo img');
+  const brandLogo = header?.querySelector('.brand-logo');
+  const brandText = header?.querySelector('.brand-text');
   const navLinks = header?.querySelectorAll('.nav-link');
   const headerActions = header?.querySelector('.header-actions');
   const onlineStatus = header?.querySelector('.online-status');
   const phoneCta = header?.querySelector('.phone-cta');
   const phoneNumber = header?.querySelector('.phone-number');
-
-  const shrink = () => {
-    headerWrap?.style.setProperty('height', '56px'); // menšie aj na mobile
-    brandLogo?.parentElement?.style.setProperty('transform', 'scale(0.9)');
-    navLinks?.forEach(link => {
-      link.style.setProperty('padding', '8px 16px');
-      link.style.setProperty('font-size', '13px');
-    });
-    headerActions?.style.setProperty('transform', 'scale(0.92)');
-    onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
-    onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
-    onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
-    phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
-    phoneNumber?.style.setProperty('font-size', '15px');
-    header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
-  };
-
-  const expand = () => {
-    headerWrap?.style.setProperty('height', '80px');
-    brandLogo?.parentElement?.style.setProperty('transform', 'scale(1)');
-    navLinks?.forEach(link => {
-      link.style.setProperty('padding', '12px 24px');
-      link.style.setProperty('font-size', '15px');
-    });
-    headerActions?.style.setProperty('transform', 'scale(1)');
-    onlineStatus?.style.removeProperty('background');
-    onlineStatus?.style.removeProperty('border-color');
-    onlineStatus?.style.removeProperty('box-shadow');
-    phoneCta?.style.removeProperty('box-shadow');
-    phoneNumber?.style.setProperty('font-size', '16px');
-    header?.classList.remove('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
-  };
-
+  
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY || window.pageYOffset;
-    if (scrolled > 50) shrink(); else expand();
+    const scrolled = window.scrollY;
+    
+    if (scrolled > 50) {
+      headerWrap?.style.setProperty('height', '64px');
+      brandLogo?.style.setProperty('transform', 'scale(1.15)');
+      brandText?.style.setProperty('transform', 'scale(0.85)');
+      brandText?.style.setProperty('opacity', '0.9');
+      
+      navLinks?.forEach(link => {
+        link.style.setProperty('padding', '8px 16px');
+        link.style.setProperty('font-size', '13px');
+      });
+      
+      headerActions?.style.setProperty('transform', 'scale(0.9)');
+      onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
+      onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
+      onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
+      phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
+      phoneNumber?.style.setProperty('font-size', '15px');
+      header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
+      
+    } else {
+      headerWrap?.style.setProperty('height', '80px');
+      brandLogo?.style.setProperty('transform', 'scale(1)');
+      brandText?.style.setProperty('transform', 'scale(1)');
+      brandText?.style.setProperty('opacity', '1');
+      
+      navLinks?.forEach(link => {
+        link.style.setProperty('padding', '12px 24px');
+        link.style.setProperty('font-size', '15px');
+      });
+      
+      headerActions?.style.setProperty('transform', 'scale(1)');
+      onlineStatus?.style.removeProperty('background');
+      onlineStatus?.style.removeProperty('border-color');
+      onlineStatus?.style.removeProperty('box-shadow');
+      phoneCta?.style.removeProperty('box-shadow');
+      phoneNumber?.style.setProperty('font-size', '16px');
+      header?.classList.remove('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
+    }
   }, { passive: true });
 
-  // ACCORDION (desktop megamenu)
   const accordionHeaders = document.querySelectorAll('.accordion-header');
-  accordionHeaders.forEach(h => {
-    h.addEventListener('click', (e) => {
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const item = h.closest('.accordion-item');
+      
+      const item = header.closest('.accordion-item');
       const content = item?.querySelector('.accordion-content');
-      const icon = h.querySelector('svg');
+      const icon = header.querySelector('svg');
       const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
+      
       document.querySelectorAll('.accordion-content').forEach(c => { c.style.maxHeight = '0'; });
       document.querySelectorAll('.accordion-header svg').forEach(i => { i.style.transform = 'rotate(0deg)'; });
+      
       if (!isOpen && content) {
         content.style.maxHeight = content.scrollHeight + 'px';
         if (icon) icon.style.transform = 'rotate(180deg)';
@@ -323,55 +394,114 @@ const mainNav = [
     });
   });
 
-  // MOBILE MENU
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const line1 = mobileBtn?.querySelector('.mobile-line-1');
   const line2 = mobileBtn?.querySelector('.mobile-line-2');
   const line3 = mobileBtn?.querySelector('.mobile-line-3');
+  
   let menuOpen = false;
-
-  const openMenu = () => {
-    mobileMenu.style.transform = 'translateY(0)';
-    mobileMenu.style.opacity = '1';
-    document.body.style.overflow = 'hidden';
-    line1?.classList.add('rotate-45','translate-y-2');
-    line2?.classList.add('opacity-0');
-    line3?.classList.add('-rotate-45','-translate-y-2');
-    mobileBtn?.setAttribute('aria-expanded','true');
-    menuOpen = true;
-  };
-
-  const closeMenu = () => {
-    mobileMenu.style.transform = 'translateY(100%)';
-    mobileMenu.style.opacity = '0';
-    document.body.style.overflow = '';
-    line1?.classList.remove('rotate-45','translate-y-2');
-    line2?.classList.remove('opacity-0');
-    line3?.classList.remove('-rotate-45','-translate-y-2');
-    mobileBtn?.setAttribute('aria-expanded','false');
-    menuOpen = false;
-  };
-
+  
   mobileBtn?.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    menuOpen ? closeMenu() : openMenu();
+    
+    if (menuOpen) {
+      mobileMenu.style.transform = 'translateY(100%)';
+      mobileMenu.style.opacity = '0';
+      document.body.style.overflow = '';
+      line1?.classList.remove('rotate-45', 'translate-y-2');
+      line2?.classList.remove('opacity-0');
+      line3?.classList.remove('-rotate-45', '-translate-y-2');
+      menuOpen = false;
+    } else {
+      mobileMenu.style.transform = 'translateY(0)';
+      mobileMenu.style.opacity = '1';
+      document.body.style.overflow = 'hidden';
+      line1?.classList.add('rotate-45', 'translate-y-2');
+      line2?.classList.add('opacity-0');
+      line3?.classList.add('-rotate-45', '-translate-y-2');
+      menuOpen = true;
+    }
   });
 
-  // zavrieť pri kliknutí na link
+  const mobileDropdownTrigger = document.querySelector('.mobile-dropdown-trigger');
+  const mobileDropdownContent = document.querySelector('.mobile-dropdown-content');
+  
+  mobileDropdownTrigger?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const icon = mobileDropdownTrigger.querySelector('svg');
+    const isOpen = mobileDropdownContent?.style.maxHeight && mobileDropdownContent.style.maxHeight !== '0px';
+    
+    if (isOpen) {
+      mobileDropdownContent.style.maxHeight = '0';
+      if (icon) icon.style.transform = 'rotate(0deg)';
+    } else {
+      mobileDropdownContent.style.maxHeight = mobileDropdownContent.scrollHeight + 'px';
+      if (icon) icon.style.transform = 'rotate(180deg)';
+    }
+  });
+
+  const mobileCategoryTriggers = document.querySelectorAll('.mobile-category-trigger');
+  
+  mobileCategoryTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const item = trigger.closest('.mobile-category-item');
+      const content = item?.querySelector('.mobile-category-content');
+      const icon = trigger.querySelector('svg');
+      const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
+      
+      mobileCategoryTriggers.forEach(otherTrigger => {
+        if (otherTrigger !== trigger) {
+          const otherItem = otherTrigger.closest('.mobile-category-item');
+          const otherContent = otherItem?.querySelector('.mobile-category-content');
+          const otherIcon = otherTrigger.querySelector('svg');
+          if (otherContent) otherContent.style.maxHeight = '0';
+          if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+      
+      if (isOpen) {
+        if (content) content.style.maxHeight = '0';
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      } else {
+        if (content) content.style.maxHeight = content.scrollHeight + 'px';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+        
+        setTimeout(() => {
+          if (mobileDropdownContent) {
+            mobileDropdownContent.style.maxHeight = mobileDropdownContent.scrollHeight + 'px';
+          }
+        }, 300);
+      }
+    });
+  });
+
   const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-  mobileMenuLinks?.forEach(link => link.addEventListener('click', closeMenu));
-
-  // zavrieť pri ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuOpen) closeMenu();
+  mobileMenuLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateY(100%)';
+      mobileMenu.style.opacity = '0';
+      document.body.style.overflow = '';
+      line1?.classList.remove('rotate-45', 'translate-y-2');
+      line2?.classList.remove('opacity-0');
+      line3?.classList.remove('-rotate-45', '-translate-y-2');
+      menuOpen = false;
+    });
   });
 
-  // zavrieť pri kliku mimo
-  document.addEventListener('click', (e) => {
-    if (!menuOpen) return;
-    const within = mobileMenu.contains(e.target) || mobileBtn.contains(e.target);
-    if (!within) closeMenu();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) {
+      mobileMenu.style.transform = 'translateY(100%)';
+      mobileMenu.style.opacity = '0';
+      document.body.style.overflow = '';
+      line1?.classList.remove('rotate-45', 'translate-y-2');
+      line2?.classList.remove('opacity-0');
+      line3?.classList.remove('-rotate-45', '-translate-y-2');
+      menuOpen = false;
+    }
   });
 </script>
