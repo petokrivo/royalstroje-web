@@ -79,7 +79,7 @@ const mainNav = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-950/95 backdrop-blur-2xl border-b border-orange-500/10 shadow-2xl transition-all duration-500" id="header">
+<header class="fixed top-0 left-0 right-0 z-[200] bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-950/95 backdrop-blur-2xl border-b border-orange-500/10 shadow-2xl transition-all duration-500" id="header">
   
   <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
     <div class="absolute inset-0 bg-gradient-radial from-orange-500/10 via-transparent to-transparent"></div>
@@ -101,7 +101,6 @@ const mainNav = [
           <div class="absolute -inset-3 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
         </div>
         
-        <!-- SEO text - viditeľný len pre vyhľadávače a screen readery -->
         <div class="sr-only">
           <h1>ROYAL STROJE</h1>
           <span>Požičovňa náradia Bratislava</span>
@@ -221,62 +220,104 @@ const mainNav = [
     </div>
   </div>
 
-  <div 
-    class="lg:hidden fixed inset-0 top-20 bg-gradient-to-b from-zinc-950/98 via-zinc-900/98 to-black/98 backdrop-blur-2xl translate-y-full opacity-0 transition-all duration-500 overflow-y-auto z-[100]" 
-    id="mobileMenu"
-  >
-    <div class="p-6 space-y-3 pb-32">
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <div class="mobile-menu-inner">
+      <a href="/" class="mobile-link">Domov</a>
+      <a href="/pozicovna-naradia" class="mobile-link">Požičovňa náradia</a>
+      <a href="/zemne-buracie-prace" class="mobile-link">Zemné a búracie práce</a>
+      <a href="/kontakt" class="mobile-link">Kontakt</a>
       
-      <a 
-        href="/"
-        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
-      >
-        Domov
+      <a href="tel:+421948555551" class="mobile-phone">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+        </svg>
+        0948 555 551
       </a>
-
-      <a 
-        href="/pozicovna-naradia"
-        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
-      >
-        Požičovňa náradia
-      </a>
-
-      <a 
-        href="/zemne-buracie-prace"
-        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
-      >
-        Zemné a búracie práce
-      </a>
-
-      <a 
-        href="/kontakt"
-        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
-      >
-        Kontakt
-      </a>
-      
-      <div class="pt-6">
-        <a 
-          href="tel:+421948555551" 
-          class="mobile-menu-link flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] text-black font-black text-xl rounded-2xl shadow-2xl shadow-orange-500/30"
-        >
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-          </svg>
-          0948 555 551
-        </a>
-      </div>
     </div>
   </div>
 </header>
 
 <div class="h-20"></div>
 
+<style>
+  .mobile-menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 80px;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(9, 9, 11, 0.98), rgba(24, 24, 27, 0.98), rgba(0, 0, 0, 0.98));
+    backdrop-filter: blur(40px);
+    z-index: 100;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    overflow-y: auto;
+  }
+
+  .mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-menu-inner {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 20px 24px;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(249, 115, 22, 0.05);
+  }
+
+  .mobile-link:hover {
+    border-color: rgb(249, 115, 22);
+    background: rgba(249, 115, 22, 0.2);
+  }
+
+  .mobile-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 32px;
+    margin-top: 24px;
+    background: linear-gradient(to right, rgb(249, 115, 22), rgb(234, 88, 12));
+    color: black;
+    font-weight: 900;
+    font-size: 20px;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 20px 60px rgba(249, 115, 22, 0.3);
+  }
+
+  .mobile-phone svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+</style>
+
 <script>
   const header = document.getElementById('header');
   const headerWrap = header?.querySelector('.header-wrap');
   const brandLogo = header?.querySelector('.brand-logo');
-  const brandText = header?.querySelector('.brand-text');
   const navLinks = header?.querySelectorAll('.nav-link');
   const headerActions = header?.querySelector('.header-actions');
   const onlineStatus = header?.querySelector('.online-status');
@@ -287,42 +328,42 @@ const mainNav = [
     const scrolled = window.scrollY;
     
     if (scrolled > 50) {
-      headerWrap?.style.setProperty('height', '64px');
-      brandLogo?.style.setProperty('transform', 'scale(1.15)');
-      brandText?.style.setProperty('transform', 'scale(0.85)');
-      brandText?.style.setProperty('opacity', '0.9');
+      if (headerWrap) headerWrap.style.height = '64px';
+      if (brandLogo) brandLogo.style.transform = 'scale(1.15)';
       
       navLinks?.forEach(link => {
-        link.style.setProperty('padding', '8px 16px');
-        link.style.setProperty('font-size', '13px');
+        link.style.padding = '8px 16px';
+        link.style.fontSize = '13px';
       });
       
-      headerActions?.style.setProperty('transform', 'scale(0.9)');
-      onlineStatus?.style.setProperty('background', 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))');
-      onlineStatus?.style.setProperty('border-color', 'rgba(255,107,0,0.5)');
-      onlineStatus?.style.setProperty('box-shadow', '0 0 20px rgba(255,107,0,0.3)');
-      phoneCta?.style.setProperty('box-shadow', '0 8px 30px rgba(255,107,0,0.5)');
-      phoneNumber?.style.setProperty('font-size', '15px');
-      header?.classList.add('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
+      if (headerActions) headerActions.style.transform = 'scale(0.9)';
+      if (onlineStatus) {
+        onlineStatus.style.background = 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))';
+        onlineStatus.style.borderColor = 'rgba(255,107,0,0.5)';
+        onlineStatus.style.boxShadow = '0 0 20px rgba(255,107,0,0.3)';
+      }
+      if (phoneCta) phoneCta.style.boxShadow = '0 8px 30px rgba(255,107,0,0.5)';
+      if (phoneNumber) phoneNumber.style.fontSize = '15px';
+      header?.classList.add('shadow-orange');
       
     } else {
-      headerWrap?.style.setProperty('height', '80px');
-      brandLogo?.style.setProperty('transform', 'scale(1)');
-      brandText?.style.setProperty('transform', 'scale(1)');
-      brandText?.style.setProperty('opacity', '1');
+      if (headerWrap) headerWrap.style.height = '80px';
+      if (brandLogo) brandLogo.style.transform = 'scale(1)';
       
       navLinks?.forEach(link => {
-        link.style.setProperty('padding', '12px 24px');
-        link.style.setProperty('font-size', '15px');
+        link.style.padding = '12px 24px';
+        link.style.fontSize = '15px';
       });
       
-      headerActions?.style.setProperty('transform', 'scale(1)');
-      onlineStatus?.style.removeProperty('background');
-      onlineStatus?.style.removeProperty('border-color');
-      onlineStatus?.style.removeProperty('box-shadow');
-      phoneCta?.style.removeProperty('box-shadow');
-      phoneNumber?.style.setProperty('font-size', '16px');
-      header?.classList.remove('!shadow-[0_10px_40px_rgba(255,107,0,0.15)]');
+      if (headerActions) headerActions.style.transform = 'scale(1)';
+      if (onlineStatus) {
+        onlineStatus.style.removeProperty('background');
+        onlineStatus.style.removeProperty('border-color');
+        onlineStatus.style.removeProperty('box-shadow');
+      }
+      if (phoneCta) phoneCta.style.removeProperty('box-shadow');
+      if (phoneNumber) phoneNumber.style.fontSize = '16px';
+      header?.classList.remove('shadow-orange');
     }
   }, { passive: true });
 
@@ -353,53 +394,42 @@ const mainNav = [
   const line2 = mobileBtn?.querySelector('.mobile-line-2');
   const line3 = mobileBtn?.querySelector('.mobile-line-3');
   
-  let menuOpen = false;
-  
-  mobileBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  mobileBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('active');
     
-    if (menuOpen) {
-      mobileMenu.style.transform = 'translateY(100%)';
-      mobileMenu.style.opacity = '0';
+    if (isOpen) {
+      mobileMenu?.classList.remove('active');
       document.body.style.overflow = '';
       line1?.classList.remove('rotate-45', 'translate-y-2');
       line2?.classList.remove('opacity-0');
       line3?.classList.remove('-rotate-45', '-translate-y-2');
-      menuOpen = false;
     } else {
-      mobileMenu.style.transform = 'translateY(0)';
-      mobileMenu.style.opacity = '1';
+      mobileMenu?.classList.add('active');
       document.body.style.overflow = 'hidden';
       line1?.classList.add('rotate-45', 'translate-y-2');
       line2?.classList.add('opacity-0');
       line3?.classList.add('-rotate-45', '-translate-y-2');
-      menuOpen = true;
     }
   });
 
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-  mobileMenuLinks?.forEach(link => {
+  const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-phone');
+  mobileLinks?.forEach(link => {
     link.addEventListener('click', () => {
-      mobileMenu.style.transform = 'translateY(100%)';
-      mobileMenu.style.opacity = '0';
+      mobileMenu?.classList.remove('active');
       document.body.style.overflow = '';
       line1?.classList.remove('rotate-45', 'translate-y-2');
       line2?.classList.remove('opacity-0');
       line3?.classList.remove('-rotate-45', '-translate-y-2');
-      menuOpen = false;
     });
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuOpen) {
-      mobileMenu.style.transform = 'translateY(100%)';
-      mobileMenu.style.opacity = '0';
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+      mobileMenu?.classList.remove('active');
       document.body.style.overflow = '';
       line1?.classList.remove('rotate-45', 'translate-y-2');
       line2?.classList.remove('opacity-0');
       line3?.classList.remove('-rotate-45', '-translate-y-2');
-      menuOpen = false;
     }
   });
 </script>

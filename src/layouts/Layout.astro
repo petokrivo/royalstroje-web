@@ -120,7 +120,7 @@ const quickCategories = [
     <Header />
 
     <!-- QUICK SIDEBAR - LEN NA DESKTOP -->
-    <div id="quickSidebar" class="hidden md:block fixed left-0 top-[30%] z-[60] transition-all duration-500 quick-sidebar-hidden">
+    <div id="quickSidebar" class="hidden md:block fixed left-0 top-[30%] z-[30] transition-all duration-500 quick-sidebar-hidden"></>
       <div class="relative">
         <button id="quickTrigger" class="flex flex-col items-center justify-center gap-2 w-20 h-24 bg-zinc-900/98 backdrop-blur-xl border-r-4 border-t border-b border-orange-500/50 hover:border-orange-500 rounded-r-3xl shadow-2xl shadow-orange-500/20 transition-all duration-300 hover:w-24 hover:shadow-orange-500/40 group">
           <svg class="w-10 h-10 text-orange-500 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
@@ -291,10 +291,17 @@ const quickCategories = [
 </script>
 
     <style>
-      .quick-sidebar-hidden { 
-        transform: translateX(-100%); 
-        opacity: 0; 
-      }
-    </style>
+  .quick-sidebar-hidden { 
+    transform: translateX(-100%); 
+    opacity: 0; 
+  }
+  
+  @media (max-width: 1023px) {
+    #quickSidebar,
+    #royalAssistant {
+      display: none !important;
+    }
+  }
+</style>
   </body>
 </html>
