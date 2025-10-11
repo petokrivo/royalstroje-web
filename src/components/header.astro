@@ -91,23 +91,20 @@ const mainNav = [
       
       <a href="/" class="flex items-center gap-3 group relative z-50">
         <div class="brand-logo relative transition-all duration-500">
-          <div class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center transition-all duration-500 group-hover:scale-110 relative p-2">
+          <div class="w-32 h-20 md:w-40 md:h-24 flex items-center justify-center transition-all duration-500 group-hover:scale-105 relative">
             <img 
               src="/logo.png" 
-              alt="ROYAL STROJE Logo" 
+              alt="ROYAL STROJE - Požičovňa náradia Bratislava" 
               class="w-full h-full object-contain relative z-10 drop-shadow-2xl filter brightness-110"
             />
           </div>
-          <div class="absolute -inset-2 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
+          <div class="absolute -inset-3 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
         </div>
         
-        <div class="brand-text hidden sm:block transition-all duration-500">
-          <h1 class="text-xl md:text-2xl font-black text-white leading-none tracking-tight">
-            ROYAL STROJE
-          </h1>
-          <span class="text-[9px] md:text-[10px] text-orange-500 uppercase tracking-[2px] md:tracking-[3px] font-bold">
-            Požičovňa náradia
-          </span>
+        <!-- SEO text - viditeľný len pre vyhľadávače a screen readery -->
+        <div class="sr-only">
+          <h1>ROYAL STROJE</h1>
+          <span>Požičovňa náradia Bratislava</span>
         </div>
       </a>
 
@@ -237,56 +234,12 @@ const mainNav = [
         Domov
       </a>
 
-      <div class="mobile-nav-dropdown">
-        <button 
-          class="mobile-dropdown-trigger w-full flex items-center justify-between px-6 py-4 text-white font-bold text-lg border border-orange-500/30 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
-          type="button"
-        >
-          <span>Požičovňa náradia</span>
-          <svg class="w-5 h-5 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-
-        <div class="mobile-dropdown-content max-h-0 overflow-hidden transition-all duration-500">
-          <div class="pt-3 space-y-2">
-            {categories.map((category) => (
-              <div class="mobile-category-item border border-white/5 rounded-xl overflow-hidden bg-zinc-900/50">
-                <button 
-                  class="mobile-category-trigger w-full px-4 py-3 flex items-center justify-between text-left bg-gradient-to-r from-orange-500/5 to-transparent hover:from-orange-500/10 transition-all duration-300"
-                  type="button"
-                >
-                  <span class="font-bold text-white text-sm">{category.title}</span>
-                  <svg class="w-4 h-4 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M19 9l-7 7-7-7"/>
-                  </svg>
-                </button>
-                
-                <div class="mobile-category-content max-h-0 overflow-hidden transition-all duration-500">
-                  <div class="p-3 bg-black/30 space-y-1">
-                    <a 
-                      href={category.url}
-                      class="mobile-menu-link block px-3 py-2 text-xs font-bold text-orange-500 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-lg mb-2"
-                    >
-                      Všetko v kategórii →
-                    </a>
-                    
-                    {category.items.map((subItem) => (
-                      <a 
-                        href={subItem.url}
-                        class="mobile-menu-link flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-orange-500/10 rounded-lg transition-all duration-300"
-                      >
-                        <div class="w-1.5 h-1.5 rounded-full bg-orange-500/40"></div>
-                        <span class="flex-1 font-medium">{subItem.name}</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <a 
+        href="/pozicovna-naradia"
+        class="mobile-menu-link block px-6 py-4 text-white font-bold text-lg border border-orange-500/30 hover:border-orange-500 rounded-2xl hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-transparent transition-all duration-300"
+      >
+        Požičovňa náradia
+      </a>
 
       <a 
         href="/zemne-buracie-prace"
@@ -423,61 +376,6 @@ const mainNav = [
       line3?.classList.add('-rotate-45', '-translate-y-2');
       menuOpen = true;
     }
-  });
-
-  const mobileDropdownTrigger = document.querySelector('.mobile-dropdown-trigger');
-  const mobileDropdownContent = document.querySelector('.mobile-dropdown-content');
-  
-  mobileDropdownTrigger?.addEventListener('click', (e) => {
-    e.preventDefault();
-    const icon = mobileDropdownTrigger.querySelector('svg');
-    const isOpen = mobileDropdownContent?.style.maxHeight && mobileDropdownContent.style.maxHeight !== '0px';
-    
-    if (isOpen) {
-      mobileDropdownContent.style.maxHeight = '0';
-      if (icon) icon.style.transform = 'rotate(0deg)';
-    } else {
-      mobileDropdownContent.style.maxHeight = mobileDropdownContent.scrollHeight + 'px';
-      if (icon) icon.style.transform = 'rotate(180deg)';
-    }
-  });
-
-  const mobileCategoryTriggers = document.querySelectorAll('.mobile-category-trigger');
-  
-  mobileCategoryTriggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const item = trigger.closest('.mobile-category-item');
-      const content = item?.querySelector('.mobile-category-content');
-      const icon = trigger.querySelector('svg');
-      const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
-      
-      mobileCategoryTriggers.forEach(otherTrigger => {
-        if (otherTrigger !== trigger) {
-          const otherItem = otherTrigger.closest('.mobile-category-item');
-          const otherContent = otherItem?.querySelector('.mobile-category-content');
-          const otherIcon = otherTrigger.querySelector('svg');
-          if (otherContent) otherContent.style.maxHeight = '0';
-          if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-        }
-      });
-      
-      if (isOpen) {
-        if (content) content.style.maxHeight = '0';
-        if (icon) icon.style.transform = 'rotate(0deg)';
-      } else {
-        if (content) content.style.maxHeight = content.scrollHeight + 'px';
-        if (icon) icon.style.transform = 'rotate(180deg)';
-        
-        setTimeout(() => {
-          if (mobileDropdownContent) {
-            mobileDropdownContent.style.maxHeight = mobileDropdownContent.scrollHeight + 'px';
-          }
-        }, 300);
-      }
-    });
   });
 
   const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
