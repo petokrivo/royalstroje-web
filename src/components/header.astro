@@ -1,4 +1,82 @@
 ---
+// src/components/header.astro
+
+const categories = [
+  {
+    title: "Malé náradie",
+    url: "/pozicovna-naradia/male-naradie",
+    icon: "🔨",
+    items: [
+      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky" },
+      { name: "Uhlové, vibračné a pásové brúsky", url: "/pozicovna-naradia/male-naradie/brusky" },
+      { name: "Ručné píly a rezačky", url: "/pozicovna-naradia/male-naradie/pily-rezacky" },
+      { name: "Vysávače, tepovače a tlakové čističe", url: "/pozicovna-naradia/male-naradie/vysavace-cistice" },
+      { name: "Čerpadlá, ohrievače a odvlhčovače", url: "/pozicovna-naradia/male-naradie/cerpadla-ohriavace" },
+      { name: "Zváracia a meracia technika", url: "/pozicovna-naradia/male-naradie/zvaracia-meracia" },
+      { name: "Vibrátory, vibračné lišty a miešadla", url: "/pozicovna-naradia/male-naradie/vibratory-miesadla" },
+      { name: "Lešenie", url: "/pozicovna-naradia/male-naradie/lesenie" },
+      { name: "Záhradná technika", url: "/pozicovna-naradia/male-naradie/zahradna-technika" },
+      { name: "Nádrže na vodu a naftu", url: "/pozicovna-naradia/male-naradie/nadrze" }
+    ]
+  },
+  {
+    title: "Stredná mechanizácia",
+    url: "/pozicovna-naradia/stredna-mechanizacia",
+    icon: "⚙️",
+    items: [
+      { name: "Vibračné dosky a nohy", url: "/pozicovna-naradia/stredna-mechanizacia/vibracne-dosky" },
+      { name: "Elektrocentrály", url: "/pozicovna-naradia/stredna-mechanizacia/elektrocentraly" },
+      { name: "Kompresory", url: "/pozicovna-naradia/stredna-mechanizacia/kompresory" },
+      { name: "Cestné rezačky, frézy a brúsky", url: "/pozicovna-naradia/stredna-mechanizacia/cestne-rezacky" },
+      { name: "Stolové a portálové píly", url: "/pozicovna-naradia/stredna-mechanizacia/stolove-pily" },
+      { name: "Miešačky, hladičky betónu a bádie", url: "/pozicovna-naradia/stredna-mechanizacia/miesacky-betonarske" }
+    ]
+  },
+  {
+    title: "Ťažká technika",
+    url: "/pozicovna-naradia/tazka-technika",
+    icon: "🚜",
+    items: [
+      { name: "Pásové mini-rýpadlá", url: "/pozicovna-naradia/tazka-technika/mini-rypadla" },
+      { name: "Pásové ťažké rýpadlá", url: "/pozicovna-naradia/tazka-technika/tazke-rypadla" },
+      { name: "Kolesové rýpadla a nakladače", url: "/pozicovna-naradia/tazka-technika/kolesove-rypadla" },
+      { name: "Šmykom riadené nakladače", url: "/pozicovna-naradia/tazka-technika/smykom-riadene" },
+      { name: "Dumpre", url: "/pozicovna-naradia/tazka-technika/dumpre" },
+      { name: "Valce", url: "/pozicovna-naradia/tazka-technika/valce" }
+    ]
+  },
+  {
+    title: "Pracovné plošiny",
+    url: "/pozicovna-naradia/pracovne-plosiny",
+    icon: "🏗️",
+    items: [
+      { name: "Interiérové plošiny", url: "/pozicovna-naradia/pracovne-plosiny/interierove-plosiny" },
+      { name: "Exteriérové plošiny", url: "/pozicovna-naradia/pracovne-plosiny/exterierove-plosiny" }
+    ]
+  },
+  {
+    title: "Vybavenie staveniska",
+    url: "/pozicovna-naradia/vybavenie-staveniska",
+    icon: "🏢",
+    items: [
+      { name: "Kancelárske kontajnery a vrátnice", url: "/pozicovna-naradia/vybavenie-staveniska/kontajnery-vratnice" },
+      { name: "Skladové kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/skladove-kontajnery" },
+      { name: "Sanitárne kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/sanitarne-kontajnery" },
+      { name: "Mobilné oplotenie a zábrany", url: "/pozicovna-naradia/vybavenie-staveniska/oplotenie-zabrany" },
+      { name: "Mobilné toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
+    ]
+  },
+  {
+    title: "Autá a prívesné vozíky",
+    url: "/pozicovna-naradia/auta-privesy",
+    icon: "🚗",
+    items: [
+      { name: "Autá a dodávky", url: "/pozicovna-naradia/auta-privesy/auta-dodavky" },
+      { name: "Prívesné vozíky", url: "/pozicovna-naradia/auta-privesy/privesne-voziky" }
+    ]
+  }
+];
+
 const mainNav = [
   { name: "Domov", url: "/" },
   { name: "Požičovňa náradia", url: "/pozicovna-naradia", hasDropdown: true },
@@ -7,136 +85,1029 @@ const mainNav = [
 ];
 ---
 
-<header id="mainHeader">
+<header id="mainHeader" class="pro-header">
+  <!-- Background Effects -->
+  <div class="header-bg">
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    <div class="bg-glow"></div>
+  </div>
+  
   <div class="header-container">
     <div class="header-content">
+      
       <!-- LOGO -->
-      <a href="/" class="logo-link">
-        <div class="logo-wrapper">
-          <img src="/logo.png" alt="ROYAL STROJE" class="logo-img"
+      <a href="/" class="logo-wrapper">
+        <div class="logo-box">
+          <img src="/logo.png" alt="ROYAL STROJE" class="logo-img" 
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="logo-fallback" style="display:none;">
-            <span class="logo-text">ROYAL STROJE</span>
+          <div class="logo-fallback">
+            <span class="logo-text">RS</span>
           </div>
+        </div>
+        <div class="logo-info">
+          <h1 class="logo-title">ROYAL STROJE</h1>
+          <span class="logo-subtitle">Profesionálna technika</span>
         </div>
       </a>
 
-      <!-- DESKTOP NAV -->
-      <nav class="desktop-nav">
+      <!-- DESKTOP NAVIGATION -->
+      <nav class="desktop-nav" aria-label="Hlavné menu">
         {mainNav.map((item) => (
-          <a href={item.url} class="nav-link">{item.name}</a>
+          <div class="nav-item" data-has-dropdown={item.hasDropdown}>
+            <a href={item.url} class="nav-link">
+              <span class="link-text">{item.name}</span>
+              {item.hasDropdown && (
+                <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              )}
+              <span class="link-underline"></span>
+            </a>
+            
+            {item.hasDropdown && (
+              <div class="mega-menu">
+                <div class="mega-container">
+                  <div class="mega-header">
+                    <h2 class="mega-title">Kompletná ponuka náradia a techniky</h2>
+                    <p class="mega-subtitle">Vyberte si z našich kategórií profesionálneho vybavenia</p>
+                  </div>
+                  
+                  <div class="mega-grid">
+                    {categories.map((cat) => (
+                      <div class="mega-category">
+                        <div class="category-header">
+                          <span class="category-icon">{cat.icon}</span>
+                          <h3 class="category-title">
+                            <a href={cat.url}>{cat.title}</a>
+                          </h3>
+                        </div>
+                        <ul class="category-list">
+                          {cat.items.map((item) => (
+                            <li>
+                              <a href={item.url} class="category-link">
+                                <span class="link-bullet">→</span>
+                                <span>{item.name}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div class="mega-footer">
+                    <div class="mega-cta">
+                      <div class="cta-content">
+                        <h4>Potrebujete odbornú radu?</h4>
+                        <p>Naši špecialisti vám pomôžu s výberom</p>
+                      </div>
+                      <a href="tel:+421948555551" class="cta-button">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                        <span>0948 555 551</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         ))}
       </nav>
 
-      <!-- DESKTOP PHONE -->
-      <a href="tel:+421948555551" class="desktop-phone">📞 0948 555 551</a>
+      <!-- DESKTOP ACTIONS -->
+      <div class="desktop-actions">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span class="status-text">ONLINE 24/7</span>
+        </div>
+        
+        <a href="tel:+421948555551" class="phone-button">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+          </svg>
+          <span class="phone-text">0948 555 551</span>
+        </a>
+      </div>
 
       <!-- MOBILE TOGGLE -->
-      <button class="mobile-toggle" data-menu-toggle aria-label="Menu" aria-expanded="false">
-        <span class="hamburger"></span>
-        <span class="hamburger"></span>
-        <span class="hamburger"></span>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
       </button>
     </div>
   </div>
 
   <!-- MOBILE MENU -->
-  <div class="mobile-menu" data-mobile-menu aria-hidden="true">
-    <nav class="mobile-nav">
-      {mainNav.map((item) => (
-        <a href={item.url} class="mobile-link">{item.name}</a>
-      ))}
-      <a href="tel:+421948555551" class="mobile-phone">📞 0948 555 551</a>
-    </nav>
-  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilné menu">
+    <div class="mobile-container">
+      
+      <!-- Mobile Navigation Links -->
+      <div class="mobile-nav">
+        {mainNav.map((item) => (
+          <a href={item.url} class="mobile-link">
+            <span class="mobile-link-text">{item.name}</span>
+            <svg class="mobile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile Categories (expandable) -->
+      <div class="mobile-categories">
+        <h3 class="mobile-section-title">Kategórie náradia</h3>
+        
+        {categories.map((cat) => (
+          <details class="mobile-category">
+            <summary class="category-toggle">
+              <div class="toggle-header">
+                <span class="toggle-icon">{cat.icon}</span>
+                <span class="toggle-title">{cat.title}</span>
+              </div>
+              <svg class="toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="category-dropdown">
+              <a href={cat.url} class="category-main-link">
+                Zobraziť všetko v kategórii →
+              </a>
+              {cat.items.map((item) => (
+                <a href={item.url} class="category-sub-link">
+                  <span class="sub-bullet">•</span>
+                  <span>{item.name}</span>
+                </a>
+              ))}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Mobile Footer -->
+      <div class="mobile-footer">
+        <div class="mobile-status">
+          <span class="status-dot"></span>
+          <span>Online 24/7</span>
+        </div>
+        
+        <a href="tel:+421948555551" class="mobile-call-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+          </svg>
+          <span>Zavolať teraz</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <div class="header-spacer"></div>
 
 <style>
-  #mainHeader{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(9,9,11,.95);backdrop-filter:blur(20px);
-    border-bottom:1px solid rgba(249,115,22,.2);box-shadow:0 4px 20px rgba(0,0,0,.5)}
-  .header-container{max-width:1600px;margin:0 auto;padding:0 1rem}
-  .header-content{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo-link{display:flex;align-items:center;text-decoration:none;z-index:10}
-  .logo-wrapper{position:relative;width:120px;height:48px}
-  .logo-img{width:100%;height:100%;object-fit:contain;filter:brightness(1.1)}
-  .logo-fallback{display:flex;align-items:center;justify-content:center;width:100%;height:100%;
-    background:linear-gradient(135deg,#f97316,#ea580c);border-radius:12px}
-  .logo-text{font-size:14px;font-weight:900;color:#000;text-transform:uppercase;letter-spacing:1px}
-
-  .desktop-nav{display:none;gap:.5rem}
-  .nav-link{padding:.75rem 1.5rem;color:#d4d4d8;text-decoration:none;font-weight:600;font-size:14px;border-radius:12px;transition:.3s}
-  .nav-link:hover{color:#fff;background:rgba(249,115,22,.1)}
-  .desktop-phone{display:none;padding:.75rem 1.5rem;background:linear-gradient(135deg,#f97316,#ea580c);
-    color:#000;text-decoration:none;font-weight:800;font-size:14px;border-radius:50px;transition:.3s}
-  .desktop-phone:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(249,115,22,.4)}
-
-  .mobile-toggle{display:flex;flex-direction:column;gap:4px;width:40px;height:40px;align-items:center;justify-content:center;
-    background:none;border:none;border-radius:8px;cursor:pointer;padding:8px;transition:.3s;z-index:10}
-  .mobile-toggle:hover{background:rgba(249,115,22,.1)}
-  .hamburger{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
-  .mobile-toggle.active .hamburger:nth-child(1){transform:rotate(45deg) translateY(8px)}
-  .mobile-toggle.active .hamburger:nth-child(2){opacity:0}
-  .mobile-toggle.active .hamburger:nth-child(3){transform:rotate(-45deg) translateY(-8px)}
-
-  .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(9,9,11,.98);backdrop-filter:blur(30px);
-    transform:translateY(-100%);opacity:0;transition:.4s;overflow-y:auto;z-index:99998;pointer-events:none}
-  .mobile-menu.active{transform:translateY(0);opacity:1;pointer-events:auto}
-  .mobile-nav{padding:2rem 1rem;display:flex;flex-direction:column;gap:1rem}
-  .mobile-link{display:block;padding:1.25rem 1.5rem;color:#fff;text-decoration:none;font-weight:700;font-size:18px;
-    background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);border-radius:16px;transition:.3s}
-  .mobile-link:hover{background:rgba(249,115,22,.2);border-color:#f97316}
-  .mobile-phone{display:block;margin-top:1rem;padding:1.25rem 2rem;background:linear-gradient(135deg,#f97316,#ea580c);
-    color:#000;text-decoration:none;font-weight:900;font-size:20px;text-align:center;border-radius:16px;
-    box-shadow:0 10px 40px rgba(249,115,22,.3)}
-
-  .header-spacer{height:64px}
-
-  @media (min-width:1024px){
-    .header-content{height:80px}
-    .logo-wrapper{width:160px;height:64px}
-    .desktop-nav{display:flex}
-    .desktop-phone{display:block}
-    .mobile-toggle{display:none}
-    .header-spacer{height:80px}
+  /* CSS Variables */
+  :root {
+    --orange-500: #f97316;
+    --orange-600: #ea580c;
+    --orange-400: #fb923c;
+    --zinc-950: #09090b;
+    --zinc-900: #18181b;
+    --zinc-800: #27272a;
+    --zinc-700: #3f3f46;
+    --zinc-600: #52525b;
+    --zinc-500: #71717a;
+    --zinc-400: #a1a1aa;
+    --zinc-300: #d4d4d8;
+    --zinc-200: #e4e4e7;
+    --zinc-100: #f4f4f5;
   }
-  @media (min-width:768px){.logo-wrapper{width:140px;height:56px}}
-  @supports (height: 100dvh){.mobile-menu{min-height:calc(100dvh - 64px)}}
-</style>
 
-<script is:global>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.querySelector('[data-menu-toggle]');
-    const menu   = document.querySelector('[data-mobile-menu]');
-    if (!toggle || !menu) return;
+  /* Header Base */
+  .pro-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(9, 9, 11, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(249, 115, 22, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-    const openMenu = () => {
-      toggle.classList.add('active');
-      toggle.setAttribute('aria-expanded', 'true');
-      menu.classList.add('active');
-      menu.setAttribute('aria-hidden', 'false');
-      document.documentElement.style.overflow = 'hidden';
-    };
+  .pro-header.scrolled {
+    background: rgba(9, 9, 11, 0.98);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
 
-    const closeMenu = () => {
-      toggle.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-      menu.classList.remove('active');
-      menu.setAttribute('aria-hidden', 'true');
-      document.documentElement.style.overflow = '';
-    };
+  /* Background Effects */
+  .header-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
 
-    toggle.addEventListener('click', () => {
-      menu.classList.contains('active') ? closeMenu() : openMenu();
-    });
+  .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 0%, rgba(249, 115, 22, 0.05) 0%, transparent 40%);
+  }
 
-    // zavri po kliknutí na odkaz
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  .bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(249, 115, 22, 0.08) 1px, transparent 0);
+    background-size: 30px 30px;
+    opacity: 0.3;
+  }
 
-    // zavri ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
-    });
-  });
-</script>
+  .bg-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 100px;
+    background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+
+  /* Container */
+  .header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+  }
+
+  /* Logo */
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .logo-wrapper:hover {
+    transform: translateY(-1px);
+  }
+
+  .logo-box {
+    position: relative;
+    width: 52px;
+    height: 52px;
+  }
+
+  .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(1.1) contrast(1.1);
+  }
+
+  .logo-fallback {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .logo-text {
+    font-size: 18px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-title {
+    font-size: 1.125rem;
+    font-weight: 900;
+    color: white;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-subtitle {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--zinc-400);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    color: var(--zinc-300);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: white;
+    background: rgba(249, 115, 22, 0.1);
+  }
+
+  .link-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .dropdown-arrow {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-item[data-has-dropdown="true"]:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .link-underline {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: calc(100% - 2rem);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange-500), transparent);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover .link-underline {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  /* Mega Menu */
+  .mega-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    width: 1200px;
+    max-width: 90vw;
+    background: linear-gradient(135deg, rgba(24, 24, 27, 0.98) 0%, rgba(9, 9, 11, 0.98) 100%);
+    backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 0 100px rgba(249, 115, 22, 0.1);
+  }
+
+  .nav-item[data-has-dropdown="true"]:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mega-container {
+    padding: 2rem;
+    max-height: 75vh;
+    overflow-y: auto;
+  }
+
+  .mega-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+  }
+
+  .mega-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: white;
+    margin: 0 0 0.5rem;
+    background: linear-gradient(135deg, white, var(--zinc-300));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .mega-subtitle {
+    font-size: 0.875rem;
+    color: var(--zinc-400);
+    margin: 0;
+  }
+
+  .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .mega-category {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
+
+  .mega-category:hover {
+    background: rgba(249, 115, 22, 0.05);
+    border-color: rgba(249, 115, 22, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.15);
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-icon {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(249, 115, 22, 0.3));
+  }
+
+  .category-title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 800;
+  }
+
+  .category-title a {
+    color: var(--orange-500);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .category-title a:hover {
+    color: var(--orange-400);
+  }
+
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .category-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .category-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--zinc-400);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 0.25rem 0;
+    transition: all 0.3s ease;
+  }
+
+  .category-link:hover {
+    color: white;
+    transform: translateX(4px);
+  }
+
+  .link-bullet {
+    color: var(--orange-500);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .category-link:hover .link-bullet {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .mega-footer {
+    border-top: 1px solid rgba(249, 115, 22, 0.2);
+    padding-top: 1.5rem;
+  }
+
+  .mega-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 16px;
+  }
+
+  .cta-content h4 {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  .cta-content p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--zinc-400);
+  }
+
+  .cta-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.5);
+  }
+
+  .cta-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Desktop Actions */
+  .desktop-actions {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 50px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--orange-500);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+  }
+
+  .status-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--orange-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .phone-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .phone-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.5);
+  }
+
+  .phone-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .phone-text {
+    font-size: 0.9375rem;
+  }
+
+  /* Mobile Toggle */
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 48px;
+    height: 48px;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-toggle:hover {
+    background: rgba(249, 115, 22, 0.15);
+    border-color: rgba(249, 115, 22, 0.3);
+  }
+
+  .toggle-line {
+    width: 24px;
+    height: 2.5px;
+    background: var(--orange-500);
+    border-radius: 2px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-toggle.active .toggle-line:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .mobile-toggle.active .toggle-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-toggle.active .toggle-line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(9, 9, 11, 0.98) 0%, rgba(0, 0, 0, 0.98) 100%);
+    backdrop-filter: blur(40px);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+  .mobile-menu.active {
+    transform: translateX(0);
+  }
+
+  .mobile-container {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 100%;
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-link:hover {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: rgba(249, 115, 22, 0.2);
+    transform: translateX(4px);
+  }
+
+  .mobile-link-text {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .mobile-arrow {
+    width: 20px;
+    height: 20px;
+    color: var(--zinc-400);
+  }
+
+  /* Mobile Categories */
+  .mobile-categories {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 1.5rem;
+  }
+
+  .mobile-section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--zinc-300);
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .mobile-category {
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-category[open] {
+    background: rgba(249, 115, 22, 0.05);
+    border-color: rgba(249, 115, 22, 0.2);
+  }
+
+  .category-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.3s ease;
+  }
+
+  .category-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .category-toggle:hover {
+    background: rgba(249, 115, 22, 0.05);
+  }
+
+  .toggle-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .toggle-icon {
+    font-size: 1.25rem;
+  }
+
+  .toggle-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .toggle-arrow {
+    width: 18px;
+    height: 18px;
+    color: var(--orange-500);
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-category[open] .toggle-arrow {
+    transform: rotate(180deg);
+  }
+
+  .category-dropdown {
+    padding: 0 1.25rem 1.25rem;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .category-main-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    margin-bottom: 0.75rem;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.25);
+    border-radius: 10px;
+    color: var(--orange-500);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .category-main-link:hover {
+    background: rgba(249, 115, 22, 0.15);
+    transform: translateX(3px);
+  }
+
+  .category-sub-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--zinc-300);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .category-sub-link:hover {
+    background: rgba(249, 115, 22, 0.08);
+    color: white;
+    transform: translateX(6px);
+  }
+
+  .sub-bullet {
+    color: var(--orange-500);
+    opacity: 0.6;
+  }
+
+  /* Mobile Footer */
+  .mobile-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--orange-500);
+    text-transform: uppercase;
+  }
+
+  .mobile-call-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 25px rgba(249, 115, 22, 0.4);
+  }
+
+  .mobile-call-btn:active {
+    transform: scale(0.98);
+  }
+
+  .mobile-call-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Header Spacer */
+  .header-spacer {
+    height: 80px;
+  }
+
+  /* Responsive */
+  @media (min-width: 1024px) {
+    .desktop-nav {
+      display: flex;
+    }
+    
+    .desktop-actions {
+      display: flex;
+    }
+    
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .header-container {
+      padding: 0 3rem;
+    }
+    
+    .header-content {
+      height: 88px;
+    }
+    
+    .header-spacer {
+      height: 88px;
+    }
+  }
+
+  /* Scroll Effects */
+  .pro-header.scrolled .header-content {
+    height: 72px;
+  }
+
+  .pro-header.scrolled .logo-box {
+    transform: scale(0.9);
+  }
+
+  .pro-header.scrolled .desktop-nav {
+    font-size: 0.875rem;
+  }
+
+  /* Custom Scrollbar */
+  .mobile-menu::-webkit-scrollbar,
+  .mega-container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .mobile-menu::-webkit-scrollbar-track,
+  .mega-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-menu::-webkit-scrollbar-thumb,
+  .mega-container::-webkit-scrollbar-thumb {
+    background: rgba(249, 115, 22, 0.4);
+    border-radius: 4px;
+  }
+
+  .mobile-menu::-webkit-scrollbar-thumb:hover,
+  .mega-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(249, 115, 22, 0.6);
+  }

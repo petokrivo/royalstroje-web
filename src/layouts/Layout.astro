@@ -119,52 +119,57 @@ const quickCategories = [
 
     <Header />
 
-    <!-- QUICK SIDEBAR - LEN NA DESKTOP (min-width: 1280px) -->
-    <div id="quickSidebar" class="hidden xl:block fixed left-0 top-[30%] z-[900] transition-all duration-500 quick-sidebar-hidden">
-      <div class="relative">
-        <button id="quickTrigger" class="flex flex-col items-center justify-center gap-2 w-20 h-24 bg-zinc-900/98 backdrop-blur-xl border-r-4 border-t border-b border-orange-500/50 hover:border-orange-500 rounded-r-3xl shadow-2xl shadow-orange-500/20 transition-all duration-300 hover:w-24 hover:shadow-orange-500/40 group">
-          <svg class="w-10 h-10 text-orange-500 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+    <!-- QUICK SIDEBAR - LEN NA DESKTOP XL+ (1280px+) -->
+    <aside id="quickSidebar" class="quick-sidebar">
+      <div class="quick-wrap">
+        <button id="quickTrigger" class="quick-trigger" aria-label="Rýchly prístup">
+          <svg class="quick-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 3L2 9v12h20V9L12 3zm8 16h-4v-4h-4v4H8V9h12v10zM10 11h4v2h-4v-2zm0 4h4v2h-4v-2z"/>
           </svg>
-          <div class="text-center">
-            <div class="text-orange-500 font-black text-[9px] uppercase tracking-wider leading-tight">Rýchly<br/>prístup</div>
-          </div>
-          <div class="absolute inset-0 rounded-r-3xl border-2 border-orange-500/50 animate-ping opacity-20"></div>
+          <span class="quick-label">Rýchly<br/>prístup</span>
+          <span class="quick-pulse"></span>
         </button>
 
-        <div id="quickPanel" class="absolute left-full top-0 w-96 bg-zinc-900/98 backdrop-blur-2xl border-2 border-orange-500/30 rounded-r-3xl shadow-2xl transition-all duration-500 max-h-[85vh] overflow-y-auto opacity-0 invisible translate-x-[-32px]">
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-5 pb-4 border-b-2 border-orange-500/30">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
-                  <svg class="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 9v12h20V9L12 3z"/></svg>
+        <div id="quickPanel" class="quick-panel">
+          <div class="panel-inner">
+            <div class="panel-header">
+              <div class="header-title">
+                <div class="title-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3L2 9v12h20V9L12 3z"/>
+                  </svg>
                 </div>
-                <h3 class="text-xl font-black text-white">Rýchly prístup</h3>
+                <h3>Rýchly prístup</h3>
               </div>
-              <button id="quickClose" class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
-                <svg class="w-6 h-6 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
+              <button id="quickClose" class="panel-close" aria-label="Zavrieť">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M6 18L18 6M6 6l12 12"/>
+                </svg>
               </button>
             </div>
 
-            <div class="space-y-2">
-              {quickCategories.map((category, idx) => (
-                <div class="category-item">
-                  <button class="category-btn w-full flex items-center justify-between px-4 py-3 text-left bg-gradient-to-r from-orange-500/10 to-transparent border border-orange-500/30 hover:border-orange-500 rounded-xl hover:from-orange-500/20 transition-all group" data-index={idx}>
-                    <span class="font-bold text-white text-sm group-hover:text-orange-400 transition-colors">{category.title}</span>
-                    <svg class="category-arrow w-5 h-5 text-orange-500 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 9l-7 7-7-7"/></svg>
+            <div class="panel-cats">
+              {quickCategories.map((cat) => (
+                <div class="panel-cat">
+                  <button class="cat-btn" data-cat>
+                    <span class="cat-name">{cat.title}</span>
+                    <svg class="cat-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M19 9l-7 7-7-7"/>
+                    </svg>
                   </button>
-
-                  <div class="category-content max-h-0 overflow-hidden transition-all duration-300">
-                    <div class="ml-4 mt-2 space-y-1 pl-4 border-l-2 border-orange-500/20">
-                      <a href={category.url} class="flex items-center gap-2 px-3 py-2 text-xs font-bold text-orange-500 bg-orange-500/10 border border-orange-500/30 rounded-lg hover:bg-orange-500/20 hover:scale-105 transition-all mb-2">
+                  
+                  <div class="cat-list">
+                    <div class="list-inner">
+                      <a href={cat.url} class="view-all-link">
                         <span>Všetko v kategórii</span>
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <path d="M5 12h14m-7-7l7 7-7 7"/>
+                        </svg>
                       </a>
-
-                      {category.items.map((item) => (
-                        <a href={item.url} class="flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all hover:translate-x-2 group">
-                          <div class="w-1.5 h-1.5 rounded-full bg-orange-500/50 group-hover:bg-orange-500 transition-colors flex-shrink-0"></div>
-                          <span class="leading-tight">{item.name}</span>
+                      {cat.items.map((item) => (
+                        <a href={item.url} class="cat-link">
+                          <span class="link-dot"></span>
+                          <span>{item.name}</span>
                         </a>
                       ))}
                     </div>
@@ -173,11 +178,13 @@ const quickCategories = [
               ))}
             </div>
 
-            <div class="mt-5 pt-5 border-t-2 border-orange-500/30">
-              <div class="bg-gradient-to-br from-orange-500/15 to-transparent border border-orange-500/30 rounded-xl p-4 text-center">
-                <p class="text-white font-bold text-sm mb-3">Potrebujete poradiť?</p>
-                <a href="tel:+421948555551" class="flex items-center justify-center gap-2 w-full px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-black text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-orange-500/50 transition-all">
-                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+            <div class="panel-cta">
+              <div class="cta-box">
+                <p class="cta-text">Potrebujete poradiť?</p>
+                <a href="tel:+421948555551" class="cta-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                  </svg>
                   0948 555 551
                 </a>
               </div>
@@ -185,120 +192,248 @@ const quickCategories = [
           </div>
         </div>
       </div>
-    </div>
+    </aside>
 
-    <main id="main" class="relative z-10"><slot /></main>
+    <main id="main" class="relative z-10">
+      <slot />
+    </main>
+    
     <Footer />
 
     <!-- BACK TO TOP -->
-    <button id="backToTop" class="fixed bottom-5 right-5 md:bottom-8 md:right-8 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-black shadow-2xl shadow-orange-500/30 flex items-center justify-center opacity-0 translate-y-6 pointer-events-none transition-all duration-300 z-[800] hover:scale-110 hover:shadow-orange-500/60 group">
-      <svg class="w-6 h-6 transition-transform group-hover:-translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
-      <div class="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-20"></div>
+    <button id="backToTop" class="back-top" aria-label="Späť hore">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M12 19V5m0 0l-7 7m7-7l7 7"/>
+      </svg>
+      <span class="top-pulse"></span>
     </button>
 
-    <!-- ROYAL ASISTENT - VĽAVO DOLE (len desktop) -->
-    <div id="royalAssistant" class="hidden xl:flex fixed bottom-8 left-8 z-[800] flex-col items-center gap-2">
-      <button id="assistantBtn" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 shadow-2xl shadow-orange-500/50 flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 group relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-        <svg class="w-8 h-8 text-black relative z-10 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-green-500 border-2 border-zinc-900 animate-pulse"></span>
-        <div class="absolute inset-0 rounded-2xl border-2 border-orange-400 animate-ping opacity-20"></div>
+    <!-- ROYAL ASISTENT -->
+    <div id="royalAssistant" class="royal-assist">
+      <button id="assistantBtn" class="assist-btn" aria-label="Royal Asistent - WhatsApp">
+        <span class="assist-glow"></span>
+        <svg class="assist-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        <span class="assist-status"></span>
+        <span class="assist-ping"></span>
       </button>
-      <div class="px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide bg-black/80 border border-orange-500/30 text-orange-400 backdrop-blur-sm">Royal Asistent</div>
+      <span class="assist-label">Royal Asistent</span>
     </div>
 
-    <script>
-      // Back to top
-      const backToTop = document.getElementById('backToTop');
-      if (backToTop) {
-        window.addEventListener('scroll', function() {
-          if (window.scrollY > 300) {
-            backToTop.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
-          } else {
-            backToTop.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
-          }
-        }, { passive: true });
-        
-        backToTop.addEventListener('click', function() {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+    <style>
+      /* QUICK SIDEBAR */
+      .quick-sidebar{display:none;position:fixed;left:0;top:30%;z-index:900;transition:all .5s;opacity:1}
+      .quick-sidebar.hidden{transform:translateX(-100%);opacity:0}
+      .quick-trigger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+        width:80px;height:96px;background:rgba(24,24,27,.98);backdrop-filter:blur(30px);
+        border:1px solid rgba(249,115,22,.3);border-left:none;border-top-right-radius:24px;
+        border-bottom-right-radius:24px;cursor:pointer;padding:0;transition:all .3s;position:relative;
+        box-shadow:4px 0 20px rgba(0,0,0,.4)}
+      .quick-trigger:hover{width:88px;border-color:#f97316;box-shadow:4px 0 30px rgba(249,115,22,.3)}
+      .quick-icon{width:36px;height:36px;color:#f97316;transition:transform .3s}
+      .quick-trigger:hover .quick-icon{transform:scale(1.1)}
+      .quick-label{color:#f97316;font-weight:900;font-size:9px;text-transform:uppercase;
+        letter-spacing:.8px;text-align:center;line-height:1.2}
+      .quick-pulse{position:absolute;inset:0;border:2px solid rgba(249,115,22,.4);
+        border-radius:inherit;border-left:none;animation:ringPulse 3s infinite;opacity:0}
+      @keyframes ringPulse{0%,100%{opacity:0;transform:scale(1)}50%{opacity:.6;transform:scale(1.05)}}
+      
+      .quick-panel{position:absolute;left:100%;top:0;width:420px;max-height:82vh;
+        background:rgba(18,18,20,.98);backdrop-filter:blur(40px);
+        border:2px solid rgba(249,115,22,.25);border-left:none;border-top-right-radius:24px;
+        border-bottom-right-radius:24px;box-shadow:8px 0 40px rgba(0,0,0,.6);
+        opacity:0;visibility:hidden;transform:translateX(-40px);transition:all .5s cubic-bezier(.4,0,.2,1);
+        overflow-y:auto}
+      .quick-panel.active{opacity:1;visibility:visible;transform:translateX(0)}
+      .panel-inner{padding:24px}
+      
+      .panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;
+        padding-bottom:20px;border-bottom:2px solid rgba(249,115,22,.2)}
+      .header-title{display:flex;align-items:center;gap:12px}
+      .title-icon{width:44px;height:44px;background:linear-gradient(135deg,#f97316,#ea580c);
+        border-radius:12px;display:flex;align-items:center;justify-content:center;
+        box-shadow:0 4px 20px rgba(249,115,22,.4)}
+      .title-icon svg{width:24px;height:24px;fill:#000}
+      .header-title h3{font-size:19px;font-weight:900;color:#fff;margin:0}
+      .panel-close{width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+        background:rgba(255,255,255,.05);border:none;border-radius:10px;cursor:pointer;
+        transition:all .3s}
+      .panel-close:hover{background:rgba(249,115,22,.15)}
+      .panel-close svg{width:20px;height:20px;color:#9ca3af}
+      
+      .panel-cats{display:flex;flex-direction:column;gap:10px}
+      .panel-cat{border:1px solid rgba(255,255,255,.06);border-radius:14px;
+        background:rgba(255,255,255,.02);overflow:hidden;transition:all .3s}
+      .panel-cat:hover{border-color:rgba(249,115,22,.2);background:rgba(249,115,22,.04)}
+      .cat-btn{width:100%;display:flex;align-items:center;justify-content:space-between;
+        padding:14px 16px;background:linear-gradient(to right,rgba(249,115,22,.08),transparent);
+        border:none;cursor:pointer;transition:all .3s;text-align:left}
+      .cat-btn:hover{background:linear-gradient(to right,rgba(249,115,22,.12),rgba(249,115,22,.04))}
+      .cat-name{color:#fff;font-weight:800;font-size:13px}
+      .cat-arrow{width:16px;height:16px;stroke:#f97316;transition:transform .3s}
+      .cat-btn.active .cat-arrow{transform:rotate(180deg)}
+      
+      .cat-list{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+      .cat-list.active{max-height:600px}
+      .list-inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:6px}
+      .view-all-link{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;
+        margin-bottom:8px;font-size:11px;font-weight:800;color:#f97316;
+        background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.25);
+        border-radius:10px;text-decoration:none;transition:all .3s}
+      .view-all-link:hover{background:rgba(249,115,22,.18);transform:translateX(4px)}
+      .view-all-link svg{width:12px;height:12px}
+      .cat-link{display:flex;align-items:center;gap:10px;padding:10px 12px;color:#a1a1aa;
+        text-decoration:none;font-size:12px;font-weight:500;border-radius:8px;
+        transition:all .3s}
+      .cat-link:hover{color:#fff;background:rgba(249,115,22,.08);transform:translateX(8px)}
+      .link-dot{width:5px;height:5px;background:rgba(249,115,22,.5);border-radius:50%;
+        flex-shrink:0;transition:all .3s}
+      .cat-link:hover .link-dot{background:#f97316;transform:scale(1.4)}
+      
+      .panel-cta{margin-top:20px;padding-top:20px;border-top:2px solid rgba(249,115,22,.2)}
+      .cta-box{padding:20px;background:linear-gradient(135deg,rgba(249,115,22,.12),rgba(249,115,22,.06));
+        border:1px solid rgba(249,115,22,.3);border-radius:14px;text-align:center}
+      .cta-text{color:#fff;font-weight:700;font-size:13px;margin:0 0 14px}
+      .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+        padding:12px 28px;background:linear-gradient(135deg,#f97316,#ea580c);color:#000;
+        text-decoration:none;font-weight:900;font-size:14px;border-radius:50px;
+        transition:all .3s;box-shadow:0 4px 20px rgba(249,115,22,.3)}
+      .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,.5)}
+      .cta-btn svg{width:16px;height:16px}
+      
+      /* BACK TO TOP */
+      .back-top{position:fixed;bottom:20px;right:20px;width:54px;height:54px;
+        border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);color:#000;
+        border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+        opacity:0;transform:translateY(20px);pointer-events:none;transition:all .4s;
+        box-shadow:0 8px 30px rgba(249,115,22,.4);z-index:800}
+      .back-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+      .back-top:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 40px rgba(249,115,22,.6)}
+      .back-top svg{width:24px;height:24px;transition:transform .3s}
+      .back-top:hover svg{transform:translateY(-2px)}
+      .top-pulse{position:absolute;inset:-4px;border:2px solid #fb923c;border-radius:50%;
+        animation:pulse 2s infinite;opacity:0}
+      
+      /* ROYAL ASISTENT */
+      .royal-assist{display:none;position:fixed;bottom:32px;left:32px;z-index:800;
+        flex-direction:column;align-items:center;gap:10px}
+      .assist-btn{width:68px;height:68px;border-radius:20px;
+        background:linear-gradient(135deg,#f97316,#ea580c,#dc2626);border:none;cursor:pointer;
+        display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s;
+        box-shadow:0 8px 30px rgba(249,115,22,.5)}
+      .assist-btn:hover{transform:scale(1.08) rotate(6deg);box-shadow:0 12px 40px rgba(249,115,22,.7)}
+      .assist-glow{position:absolute;inset:-6px;background:linear-gradient(135deg,#fb923c,#f97316);
+        border-radius:22px;filter:blur(20px);opacity:.4;transition:opacity .4s;z-index:-1}
+      .assist-btn:hover .assist-glow{opacity:.7}
+      .assist-icon{width:34px;height:34px;fill:#000;position:relative;z-index:1;transition:transform .4s}
+      .assist-btn:hover .assist-icon{transform:scale(1.15)}
+      .assist-status{position:absolute;top:-4px;right:-4px;width:18px;height:18px;
+        background:#22c55e;border:3px solid #18181b;border-radius:50%;animation:pulse 2s infinite}
+      .assist-ping{position:absolute;inset:0;border:3px solid #fb923c;border-radius:inherit;
+        animation:ping 2s cubic-bezier(0,0,.2,1) infinite;opacity:0}
+      .assist-label{padding:6px 14px;border-radius:10px;font-size:10px;font-weight:800;
+        text-transform:uppercase;letter-spacing:.8px;color:#f97316;
+        background:rgba(0,0,0,.8);border:1px solid rgba(249,115,22,.3);backdrop-filter:blur(10px)}
+      
+      /* RESPONSIVE */
+      @media (min-width:1280px){
+        .quick-sidebar{display:block}
+        .royal-assist{display:flex}
       }
-
-      // Quick Sidebar - scroll hide/show (LEN DESKTOP XL+)
-      const quickSidebar = document.getElementById('quickSidebar');
-      if (quickSidebar && window.innerWidth >= 1280) {
-        let scrollTimeout: number;
-        window.addEventListener('scroll', function() {
-          quickSidebar.classList.add('quick-sidebar-hidden');
-          clearTimeout(scrollTimeout);
-          scrollTimeout = window.setTimeout(function() {
-            quickSidebar.classList.remove('quick-sidebar-hidden');
-          }, 300);
-        }, { passive: true });
+      
+      @media (min-width:768px){
+        .back-top{width:60px;height:60px;bottom:32px;right:32px}
+        .back-top svg{width:28px;height:28px}
       }
+      
+      /* SCROLLBAR */
+      .quick-panel::-webkit-scrollbar{width:8px}
+      .quick-panel::-webkit-scrollbar-track{background:rgba(0,0,0,.3)}
+      .quick-panel::-webkit-scrollbar-thumb{background:rgba(249,115,22,.4);border-radius:4px}
+      .quick-panel::-webkit-scrollbar-thumb:hover{background:rgba(249,115,22,.6)}
+    </style>
 
-      // Quick Sidebar - open/close
-      const quickTrigger = document.getElementById('quickTrigger');
-      const quickPanel = document.getElementById('quickPanel');
-      const quickClose = document.getElementById('quickClose');
-      let isQuickOpen = false;
-
-      if (quickTrigger && quickPanel) {
-        quickTrigger.addEventListener('click', function() {
-          if (isQuickOpen) {
-            quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
-            isQuickOpen = false;
-          } else {
-            quickPanel.classList.remove('opacity-0', 'invisible', 'translate-x-[-32px]');
-            isQuickOpen = true;
-          }
-        });
-
-        if (quickClose) {
-          quickClose.addEventListener('click', function() {
-            quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
-            isQuickOpen = false;
+    <script is:global>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Back to top
+        const backTop = document.getElementById('backToTop');
+        if (backTop) {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+              backTop.classList.add('visible');
+            } else {
+              backTop.classList.remove('visible');
+            }
+          }, { passive: true });
+          
+          backTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
-      }
 
-      // Category accordion
-      const categoryBtns = document.querySelectorAll('.category-btn');
-      categoryBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          const parent = btn.closest('.category-item');
-          const content = parent?.querySelector('.category-content') as HTMLElement;
-          const arrow = btn.querySelector('.category-arrow') as HTMLElement;
-          const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
+        // Quick Sidebar (len desktop XL+)
+        const quickSidebar = document.getElementById('quickSidebar');
+        const quickTrigger = document.getElementById('quickTrigger');
+        const quickPanel = document.getElementById('quickPanel');
+        const quickClose = document.getElementById('quickClose');
+        
+        if (quickSidebar && window.innerWidth >= 1280) {
+          // Hide on scroll
+          let scrollTimeout: number;
+          window.addEventListener('scroll', () => {
+            quickSidebar.classList.add('hidden');
+            clearTimeout(scrollTimeout);
+            scrollTimeout = window.setTimeout(() => {
+              quickSidebar.classList.remove('hidden');
+            }, 300);
+          }, { passive: true });
           
-          document.querySelectorAll('.category-content').forEach(function(c) { 
-            (c as HTMLElement).style.maxHeight = '0'; 
-          });
-          document.querySelectorAll('.category-arrow').forEach(function(a) { 
-            (a as HTMLElement).style.transform = 'rotate(0deg)'; 
+          // Toggle panel
+          let isOpen = false;
+          quickTrigger?.addEventListener('click', () => {
+            if (isOpen) {
+              quickPanel?.classList.remove('active');
+              isOpen = false;
+            } else {
+              quickPanel?.classList.add('active');
+              isOpen = true;
+            }
           });
           
-          if (!isOpen && content) {
-            content.style.maxHeight = content.scrollHeight + 'px';
-            if (arrow) arrow.style.transform = 'rotate(180deg)';
-          }
-        });
-      });
+          quickClose?.addEventListener('click', () => {
+            quickPanel?.classList.remove('active');
+            isOpen = false;
+          });
+          
+          // Category accordions
+          const catBtns = document.querySelectorAll('[data-cat]');
+          catBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+              const parent = btn.closest('.panel-cat');
+              const list = parent?.querySelector('.cat-list');
+              const arrow = btn.querySelector('.cat-arrow');
+              const isActive = list?.classList.contains('active');
+              
+              // Close all
+              document.querySelectorAll('.cat-list').forEach(l => l.classList.remove('active'));
+              document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+              
+              // Open clicked
+              if (!isActive) {
+                list?.classList.add('active');
+                btn.classList.add('active');
+              }
+            });
+          });
+        }
 
-      // Royal Asistent
-      const assistantBtn = document.getElementById('assistantBtn');
-      if (assistantBtn) {
-        assistantBtn.addEventListener('click', function() {
+        // Royal Assistant
+        const assistBtn = document.getElementById('assistantBtn');
+        assistBtn?.addEventListener('click', () => {
           window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
         });
-      }
+      });
     </script>
-
-    <style>
-      .quick-sidebar-hidden { 
-        transform: translateX(-100%); 
-        opacity: 0; 
-      }
-    </style>
   </body>
 </html>
