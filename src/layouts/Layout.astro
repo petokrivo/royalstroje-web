@@ -119,8 +119,8 @@ const quickCategories = [
 
     <Header />
 
-    <!-- QUICK SIDEBAR - LEN NA DESKTOP -->
-    <div id="quickSidebar" class="hidden md:block fixed left-0 top-[30%] z-[30] transition-all duration-500 quick-sidebar-hidden"></>
+    <!-- QUICK SIDEBAR - LEN NA DESKTOP (min-width: 1280px) -->
+    <div id="quickSidebar" class="hidden xl:block fixed left-0 top-[30%] z-[900] transition-all duration-500 quick-sidebar-hidden">
       <div class="relative">
         <button id="quickTrigger" class="flex flex-col items-center justify-center gap-2 w-20 h-24 bg-zinc-900/98 backdrop-blur-xl border-r-4 border-t border-b border-orange-500/50 hover:border-orange-500 rounded-r-3xl shadow-2xl shadow-orange-500/20 transition-all duration-300 hover:w-24 hover:shadow-orange-500/40 group">
           <svg class="w-10 h-10 text-orange-500 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
@@ -190,14 +190,14 @@ const quickCategories = [
     <main id="main" class="relative z-10"><slot /></main>
     <Footer />
 
-    <!-- BACK TO TOP - UPRAVENÉ -->
-    <button id="backToTop" class="fixed bottom-5 right-5 md:bottom-8 md:right-8 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-black shadow-2xl shadow-orange-500/30 flex items-center justify-center opacity-0 translate-y-6 pointer-events-none transition-all duration-300 z-50 hover:scale-110 hover:shadow-orange-500/60 group">
+    <!-- BACK TO TOP -->
+    <button id="backToTop" class="fixed bottom-5 right-5 md:bottom-8 md:right-8 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-black shadow-2xl shadow-orange-500/30 flex items-center justify-center opacity-0 translate-y-6 pointer-events-none transition-all duration-300 z-[800] hover:scale-110 hover:shadow-orange-500/60 group">
       <svg class="w-6 h-6 transition-transform group-hover:-translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
       <div class="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-20"></div>
     </button>
 
-    <!-- ROYAL ASISTENT - VĽAVO DOLE -->
-    <div id="royalAssistant" class="hidden md:flex fixed bottom-8 left-8 z-40 flex-col items-center gap-2">
+    <!-- ROYAL ASISTENT - VĽAVO DOLE (len desktop) -->
+    <div id="royalAssistant" class="hidden xl:flex fixed bottom-8 left-8 z-[800] flex-col items-center gap-2">
       <button id="assistantBtn" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 shadow-2xl shadow-orange-500/50 flex items-center justify-center hover:scale-110 hover:rotate-6 transition-all duration-300 group relative">
         <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
         <svg class="w-8 h-8 text-black relative z-10 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -208,100 +208,97 @@ const quickCategories = [
     </div>
 
     <script>
-  // Back to top
-  const backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 300) {
-        backToTop.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
-      } else {
-        backToTop.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+      // Back to top
+      const backToTop = document.getElementById('backToTop');
+      if (backToTop) {
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 300) {
+            backToTop.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+          } else {
+            backToTop.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+          }
+        }, { passive: true });
+        
+        backToTop.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
       }
-    }, { passive: true });
-    
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
 
-  // Quick Sidebar - scroll hide/show (LEN DESKTOP)
-  const quickSidebar = document.getElementById('quickSidebar');
-  if (quickSidebar && window.innerWidth >= 768) {
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-      quickSidebar.classList.add('quick-sidebar-hidden');
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(function() {
-        quickSidebar.classList.remove('quick-sidebar-hidden');
-      }, 300);
-    }, { passive: true });
-  }
-
-  // Quick Sidebar - open/close
-  const quickTrigger = document.getElementById('quickTrigger');
-  const quickPanel = document.getElementById('quickPanel');
-  const quickClose = document.getElementById('quickClose');
-  let isQuickOpen = false;
-
-  if (quickTrigger && quickPanel) {
-    quickTrigger.addEventListener('click', function() {
-      if (isQuickOpen) {
-        quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
-        isQuickOpen = false;
-      } else {
-        quickPanel.classList.remove('opacity-0', 'invisible', 'translate-x-[-32px]');
-        isQuickOpen = true;
+      // Quick Sidebar - scroll hide/show (LEN DESKTOP XL+)
+      const quickSidebar = document.getElementById('quickSidebar');
+      if (quickSidebar && window.innerWidth >= 1280) {
+        let scrollTimeout: number;
+        window.addEventListener('scroll', function() {
+          quickSidebar.classList.add('quick-sidebar-hidden');
+          clearTimeout(scrollTimeout);
+          scrollTimeout = window.setTimeout(function() {
+            quickSidebar.classList.remove('quick-sidebar-hidden');
+          }, 300);
+        }, { passive: true });
       }
-    });
 
-    if (quickClose) {
-      quickClose.addEventListener('click', function() {
-        quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
-        isQuickOpen = false;
+      // Quick Sidebar - open/close
+      const quickTrigger = document.getElementById('quickTrigger');
+      const quickPanel = document.getElementById('quickPanel');
+      const quickClose = document.getElementById('quickClose');
+      let isQuickOpen = false;
+
+      if (quickTrigger && quickPanel) {
+        quickTrigger.addEventListener('click', function() {
+          if (isQuickOpen) {
+            quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
+            isQuickOpen = false;
+          } else {
+            quickPanel.classList.remove('opacity-0', 'invisible', 'translate-x-[-32px]');
+            isQuickOpen = true;
+          }
+        });
+
+        if (quickClose) {
+          quickClose.addEventListener('click', function() {
+            quickPanel.classList.add('opacity-0', 'invisible', 'translate-x-[-32px]');
+            isQuickOpen = false;
+          });
+        }
+      }
+
+      // Category accordion
+      const categoryBtns = document.querySelectorAll('.category-btn');
+      categoryBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const parent = btn.closest('.category-item');
+          const content = parent?.querySelector('.category-content') as HTMLElement;
+          const arrow = btn.querySelector('.category-arrow') as HTMLElement;
+          const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
+          
+          document.querySelectorAll('.category-content').forEach(function(c) { 
+            (c as HTMLElement).style.maxHeight = '0'; 
+          });
+          document.querySelectorAll('.category-arrow').forEach(function(a) { 
+            (a as HTMLElement).style.transform = 'rotate(0deg)'; 
+          });
+          
+          if (!isOpen && content) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            if (arrow) arrow.style.transform = 'rotate(180deg)';
+          }
+        });
       });
-    }
-  }
 
-  // Category accordion
-  const categoryBtns = document.querySelectorAll('.category-btn');
-  categoryBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      const parent = btn.closest('.category-item');
-      const content = parent.querySelector('.category-content');
-      const arrow = btn.querySelector('.category-arrow');
-      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
-      
-      document.querySelectorAll('.category-content').forEach(function(c) { c.style.maxHeight = '0'; });
-      document.querySelectorAll('.category-arrow').forEach(function(a) { a.style.transform = 'rotate(0deg)'; });
-      
-      if (!isOpen && content) {
-        content.style.maxHeight = content.scrollHeight + 'px';
-        if (arrow) arrow.style.transform = 'rotate(180deg)';
+      // Royal Asistent
+      const assistantBtn = document.getElementById('assistantBtn');
+      if (assistantBtn) {
+        assistantBtn.addEventListener('click', function() {
+          window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
+        });
       }
-    });
-  });
-
-  // Royal Asistent
-  const assistantBtn = document.getElementById('assistantBtn');
-  if (assistantBtn) {
-    assistantBtn.addEventListener('click', function() {
-      window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
-    });
-  }
-</script>
+    </script>
 
     <style>
-  .quick-sidebar-hidden { 
-    transform: translateX(-100%); 
-    opacity: 0; 
-  }
-  
-  @media (max-width: 1023px) {
-    #quickSidebar,
-    #royalAssistant {
-      display: none !important;
-    }
-  }
-</style>
+      .quick-sidebar-hidden { 
+        transform: translateX(-100%); 
+        opacity: 0; 
+      }
+    </style>
   </body>
 </html>

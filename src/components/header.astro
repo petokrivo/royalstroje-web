@@ -1,76 +1,4 @@
 ---
-// src/components/header.astro
-
-const categories = [
-  {
-    title: "Malé náradie",
-    url: "/pozicovna-naradia/male-naradie",
-    items: [
-      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky" },
-      { name: "Uhlové, vibračné a pásové brúsky", url: "/pozicovna-naradia/male-naradie/brusky" },
-      { name: "Ručné píly a rezačky", url: "/pozicovna-naradia/male-naradie/pily-rezacky" },
-      { name: "Vysávače, tepovače a tlakové čističe", url: "/pozicovna-naradia/male-naradie/vysavace-cistice" },
-      { name: "Čerpadlá, ohrievače a odvlhčovače", url: "/pozicovna-naradia/male-naradie/cerpadla-ohriavace" },
-      { name: "Zváracia a meracia technika", url: "/pozicovna-naradia/male-naradie/zvaracia-meracia" },
-      { name: "Vibrátory, vibračné lišty a miešadla", url: "/pozicovna-naradia/male-naradie/vibratory-miesadla" },
-      { name: "Lešenie", url: "/pozicovna-naradia/male-naradie/lesenie" },
-      { name: "Záhradná technika", url: "/pozicovna-naradia/male-naradie/zahradna-technika" },
-      { name: "Nádrže na vodu a naftu", url: "/pozicovna-naradia/male-naradie/nadrze" }
-    ]
-  },
-  {
-    title: "Stredná mechanizácia",
-    url: "/pozicovna-naradia/stredna-mechanizacia",
-    items: [
-      { name: "Vibračné dosky a nohy", url: "/pozicovna-naradia/stredna-mechanizacia/vibracne-dosky" },
-      { name: "Elektrocentrály", url: "/pozicovna-naradia/stredna-mechanizacia/elektrocentraly" },
-      { name: "Kompresory", url: "/pozicovna-naradia/stredna-mechanizacia/kompresory" },
-      { name: "Cestné rezačky, frézy a brúsky", url: "/pozicovna-naradia/stredna-mechanizacia/cestne-rezacky" },
-      { name: "Stolové a portálové píly", url: "/pozicovna-naradia/stredna-mechanizacia/stolove-pily" },
-      { name: "Miešačky, hladičky betónu a bádie", url: "/pozicovna-naradia/stredna-mechanizacia/miesacky-betonarske" }
-    ]
-  },
-  {
-    title: "Ťažká technika",
-    url: "/pozicovna-naradia/tazka-technika",
-    items: [
-      { name: "Pásové mini-rýpadlá", url: "/pozicovna-naradia/tazka-technika/mini-rypadla" },
-      { name: "Pásové ťažké rýpadlá", url: "/pozicovna-naradia/tazka-technika/tazke-rypadla" },
-      { name: "Kolesové rýpadla a nakladače", url: "/pozicovna-naradia/tazka-technika/kolesove-rypadla" },
-      { name: "Šmykom riadené nakladače", url: "/pozicovna-naradia/tazka-technika/smykom-riadene" },
-      { name: "Dumpre", url: "/pozicovna-naradia/tazka-technika/dumpre" },
-      { name: "Valce", url: "/pozicovna-naradia/tazka-technika/valce" }
-    ]
-  },
-  {
-    title: "Pracovné plošiny",
-    url: "/pozicovna-naradia/pracovne-plosiny",
-    items: [
-      { name: "Interiérové plošiny", url: "/pozicovna-naradia/pracovne-plosiny/interierove-plosiny" },
-      { name: "Exteriérové plošiny", url: "/pozicovna-naradia/pracovne-plosiny/exterierove-plosiny" }
-    ]
-  },
-  {
-    title: "Vybavenie staveniska",
-    url: "/pozicovna-naradia/vybavenie-staveniska",
-    items: [
-      { name: "Kancelárske kontajnery a vrátnice", url: "/pozicovna-naradia/vybavenie-staveniska/kontajnery-vratnice" },
-      { name: "Skladové kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/skladove-kontajnery" },
-      { name: "Sanitárne kontajnery", url: "/pozicovna-naradia/vybavenie-staveniska/sanitarne-kontajnery" },
-      { name: "Mobilné oplotenie a zábrany", url: "/pozicovna-naradia/vybavenie-staveniska/oplotenie-zabrany" },
-      { name: "Mobilné toalety", url: "/pozicovna-naradia/vybavenie-staveniska/mobilne-toalety" }
-    ]
-  },
-  {
-    title: "Autá a prívesné vozíky",
-    url: "/pozicovna-naradia/auta-privesy",
-    items: [
-      { name: "Autá a dodávky", url: "/pozicovna-naradia/auta-privesy/auta-dodavky" },
-      { name: "Prívesné vozíky", url: "/pozicovna-naradia/auta-privesy/privesne-voziky" }
-    ]
-  }
-];
-
 const mainNav = [
   { name: "Domov", url: "/" },
   { name: "Požičovňa náradia", url: "/pozicovna-naradia", hasDropdown: true },
@@ -79,357 +7,136 @@ const mainNav = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-[200] bg-gradient-to-b from-zinc-950/95 via-zinc-900/95 to-zinc-950/95 backdrop-blur-2xl border-b border-orange-500/10 shadow-2xl transition-all duration-500" id="header">
-  
-  <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-    <div class="absolute inset-0 bg-gradient-radial from-orange-500/10 via-transparent to-transparent"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.15)_1px,transparent_0)] bg-[length:40px_40px]"></div>
-  </div>
-
-  <div class="max-w-[1600px] mx-auto px-4 md:px-8 relative z-10">
-    <div class="header-wrap flex items-center justify-between h-20 transition-all duration-500">
-      
-      <a href="/" class="flex items-center gap-3 group relative z-50">
-        <div class="brand-logo relative transition-all duration-500">
-          <div class="w-32 h-20 md:w-40 md:h-24 flex items-center justify-center transition-all duration-500 group-hover:scale-105 relative">
-            <img 
-              src="/logo.png" 
-              alt="ROYAL STROJE - Požičovňa náradia Bratislava" 
-              class="w-full h-full object-contain relative z-10 drop-shadow-2xl filter brightness-110"
-            />
+<header id="mainHeader">
+  <div class="header-container">
+    <div class="header-content">
+      <!-- LOGO -->
+      <a href="/" class="logo-link">
+        <div class="logo-wrapper">
+          <img src="/logo.png" alt="ROYAL STROJE" class="logo-img"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="logo-fallback" style="display:none;">
+            <span class="logo-text">ROYAL STROJE</span>
           </div>
-          <div class="absolute -inset-3 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 -z-10"></div>
-        </div>
-        
-        <div class="sr-only">
-          <h1>ROYAL STROJE</h1>
-          <span>Požičovňa náradia Bratislava</span>
         </div>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-2">
+      <!-- DESKTOP NAV -->
+      <nav class="desktop-nav">
         {mainNav.map((item) => (
-          <div class="relative nav-item group">
-            <a 
-              href={item.url} 
-              class="nav-link flex items-center gap-2 px-6 py-3 text-gray-300 hover:text-white font-bold text-sm rounded-xl hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-transparent transition-all duration-300 relative overflow-hidden"
-            >
-              <span class="absolute inset-0 bg-gradient-to-r from-orange-500/0 via-orange-500/20 to-orange-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-              <span class="relative z-10">{item.name}</span>
-              {item.hasDropdown && (
-                <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              )}
-            </a>
-
-            {item.hasDropdown && (
-              <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[460px] bg-gradient-to-b from-zinc-900/98 to-zinc-950/98 backdrop-blur-2xl border border-orange-500/20 rounded-2xl shadow-2xl shadow-black/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 max-h-[68vh] overflow-y-auto">
-                <div class="p-4">
-                  <div class="space-y-1.5 mb-4">
-                    {categories.map((category) => (
-                      <div class="accordion-item border border-white/5 rounded-xl overflow-hidden hover:border-orange-500/30 transition-all duration-300 bg-gradient-to-r from-zinc-800/30 to-zinc-900/20">
-                        <button 
-                          class="accordion-header w-full px-4 py-3 flex items-center justify-between text-left bg-gradient-to-r from-orange-500/5 to-transparent hover:from-orange-500/10 transition-all duration-300 group/btn"
-                          type="button"
-                        >
-                          <span class="font-bold text-white text-xs group-hover/btn:text-orange-400 transition-colors">{category.title}</span>
-                          <svg class="w-4 h-4 text-orange-500 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M19 9l-7 7-7-7"/>
-                          </svg>
-                        </button>
-                        
-                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
-                          <div class="p-4 bg-black/30 backdrop-blur-sm">
-                            <a 
-                              href={category.url} 
-                              class="inline-flex items-center gap-2 px-3 py-2 mb-3 text-xs font-bold text-orange-500 bg-gradient-to-r from-orange-500/10 to-orange-600/5 hover:from-orange-500/20 hover:to-orange-600/10 border border-orange-500/30 hover:border-orange-500/50 rounded-lg transition-all duration-300 hover:translate-x-1"
-                            >
-                              <span>Všetko v kategórii</span>
-                              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <path d="M5 12h14m-7-7l7 7-7 7"/>
-                              </svg>
-                            </a>
-                            
-                            <div class="space-y-1">
-                              {category.items.map((subItem) => (
-                                <a 
-                                  href={subItem.url}
-                                  class="flex items-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-transparent rounded-lg transition-all duration-300 hover:translate-x-2 group/item"
-                                >
-                                  <div class="w-1.5 h-1.5 rounded-full bg-orange-500/40 group-hover/item:bg-orange-500 transition-all duration-300"></div>
-                                  <span class="flex-1 font-medium leading-tight">{subItem.name}</span>
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div class="p-4 bg-gradient-to-br from-orange-500/15 via-orange-600/10 to-transparent border border-orange-500/30 rounded-xl text-center backdrop-blur-sm">
-                    <h4 class="text-white font-black text-base mb-1.5">Potrebujete poradiť?</h4>
-                    <p class="text-gray-400 text-xs mb-3 font-medium">Kontaktujte nás a pomôžeme vám vybrať správne náradie</p>
-                    <a 
-                      href="tel:+421948555551" 
-                      class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] hover:bg-right text-black font-black text-sm rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-500"
-                    >
-                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-                      </svg>
-                      <span>0948 555 551</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+          <a href={item.url} class="nav-link">{item.name}</a>
         ))}
       </nav>
 
-      <div class="header-actions hidden lg:flex items-center gap-4 transition-all duration-500">
-        <div class="online-status flex items-center gap-2.5 px-4 py-2.5 bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/30 rounded-full backdrop-blur-sm transition-all duration-500">
-          <div class="relative">
-            <div class="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse"></div>
-            <div class="absolute inset-0 w-2.5 h-2.5 bg-orange-500 rounded-full animate-ping"></div>
-          </div>
-          <span class="text-orange-500 text-xs font-black uppercase tracking-wider">ONLINE 24/7</span>
-        </div>
+      <!-- DESKTOP PHONE -->
+      <a href="tel:+421948555551" class="desktop-phone">📞 0948 555 551</a>
 
-        <a 
-          href="tel:+421948555551" 
-          class="phone-cta flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-[length:200%_100%] hover:bg-right text-black font-black rounded-full shadow-lg shadow-orange-500/30 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-500"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-          </svg>
-          <span class="phone-number text-base transition-all duration-500">0948 555 551</span>
-        </a>
-      </div>
-
-      <button 
-        class="lg:hidden flex flex-col gap-1.5 w-10 h-10 items-center justify-center rounded-xl hover:bg-orange-500/10 transition-all duration-300 group z-50" 
-        id="mobileMenuBtn"
-        aria-label="Otvoriť menu"
-      >
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-1"></span>
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 mobile-line-2"></span>
-        <span class="w-6 h-0.5 bg-white group-hover:bg-orange-500 transition-all duration-300 origin-center mobile-line-3"></span>
+      <!-- MOBILE TOGGLE -->
+      <button class="mobile-toggle" data-menu-toggle aria-label="Menu" aria-expanded="false">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
       </button>
     </div>
   </div>
 
   <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="mobile-menu">
-    <div class="mobile-menu-inner">
-      <a href="/" class="mobile-link">Domov</a>
-      <a href="/pozicovna-naradia" class="mobile-link">Požičovňa náradia</a>
-      <a href="/zemne-buracie-prace" class="mobile-link">Zemné a búracie práce</a>
-      <a href="/kontakt" class="mobile-link">Kontakt</a>
-      
-      <a href="tel:+421948555551" class="mobile-phone">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-        </svg>
-        0948 555 551
-      </a>
-    </div>
+  <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <nav class="mobile-nav">
+      {mainNav.map((item) => (
+        <a href={item.url} class="mobile-link">{item.name}</a>
+      ))}
+      <a href="tel:+421948555551" class="mobile-phone">📞 0948 555 551</a>
+    </nav>
   </div>
 </header>
 
-<div class="h-20"></div>
+<div class="header-spacer"></div>
 
 <style>
-  .mobile-menu {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 80px;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(9, 9, 11, 0.98), rgba(24, 24, 27, 0.98), rgba(0, 0, 0, 0.98));
-    backdrop-filter: blur(40px);
-    z-index: 100;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: all 0.5s ease;
-    overflow-y: auto;
-  }
+  #mainHeader{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(9,9,11,.95);backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(249,115,22,.2);box-shadow:0 4px 20px rgba(0,0,0,.5)}
+  .header-container{max-width:1600px;margin:0 auto;padding:0 1rem}
+  .header-content{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo-link{display:flex;align-items:center;text-decoration:none;z-index:10}
+  .logo-wrapper{position:relative;width:120px;height:48px}
+  .logo-img{width:100%;height:100%;object-fit:contain;filter:brightness(1.1)}
+  .logo-fallback{display:flex;align-items:center;justify-content:center;width:100%;height:100%;
+    background:linear-gradient(135deg,#f97316,#ea580c);border-radius:12px}
+  .logo-text{font-size:14px;font-weight:900;color:#000;text-transform:uppercase;letter-spacing:1px}
 
-  .mobile-menu.active {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  .desktop-nav{display:none;gap:.5rem}
+  .nav-link{padding:.75rem 1.5rem;color:#d4d4d8;text-decoration:none;font-weight:600;font-size:14px;border-radius:12px;transition:.3s}
+  .nav-link:hover{color:#fff;background:rgba(249,115,22,.1)}
+  .desktop-phone{display:none;padding:.75rem 1.5rem;background:linear-gradient(135deg,#f97316,#ea580c);
+    color:#000;text-decoration:none;font-weight:800;font-size:14px;border-radius:50px;transition:.3s}
+  .desktop-phone:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(249,115,22,.4)}
 
-  .mobile-menu-inner {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+  .mobile-toggle{display:flex;flex-direction:column;gap:4px;width:40px;height:40px;align-items:center;justify-content:center;
+    background:none;border:none;border-radius:8px;cursor:pointer;padding:8px;transition:.3s;z-index:10}
+  .mobile-toggle:hover{background:rgba(249,115,22,.1)}
+  .hamburger{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+  .mobile-toggle.active .hamburger:nth-child(1){transform:rotate(45deg) translateY(8px)}
+  .mobile-toggle.active .hamburger:nth-child(2){opacity:0}
+  .mobile-toggle.active .hamburger:nth-child(3){transform:rotate(-45deg) translateY(-8px)}
 
-  .mobile-link {
-    display: block;
-    padding: 20px 24px;
-    color: white;
-    font-weight: 700;
-    font-size: 18px;
-    border: 1px solid rgba(249, 115, 22, 0.3);
-    border-radius: 16px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    background: rgba(249, 115, 22, 0.05);
-  }
+  .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(9,9,11,.98);backdrop-filter:blur(30px);
+    transform:translateY(-100%);opacity:0;transition:.4s;overflow-y:auto;z-index:99998;pointer-events:none}
+  .mobile-menu.active{transform:translateY(0);opacity:1;pointer-events:auto}
+  .mobile-nav{padding:2rem 1rem;display:flex;flex-direction:column;gap:1rem}
+  .mobile-link{display:block;padding:1.25rem 1.5rem;color:#fff;text-decoration:none;font-weight:700;font-size:18px;
+    background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);border-radius:16px;transition:.3s}
+  .mobile-link:hover{background:rgba(249,115,22,.2);border-color:#f97316}
+  .mobile-phone{display:block;margin-top:1rem;padding:1.25rem 2rem;background:linear-gradient(135deg,#f97316,#ea580c);
+    color:#000;text-decoration:none;font-weight:900;font-size:20px;text-align:center;border-radius:16px;
+    box-shadow:0 10px 40px rgba(249,115,22,.3)}
 
-  .mobile-link:hover {
-    border-color: rgb(249, 115, 22);
-    background: rgba(249, 115, 22, 0.2);
-  }
+  .header-spacer{height:64px}
 
-  .mobile-phone {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 20px 32px;
-    margin-top: 24px;
-    background: linear-gradient(to right, rgb(249, 115, 22), rgb(234, 88, 12));
-    color: black;
-    font-weight: 900;
-    font-size: 20px;
-    border-radius: 16px;
-    text-decoration: none;
-    box-shadow: 0 20px 60px rgba(249, 115, 22, 0.3);
+  @media (min-width:1024px){
+    .header-content{height:80px}
+    .logo-wrapper{width:160px;height:64px}
+    .desktop-nav{display:flex}
+    .desktop-phone{display:block}
+    .mobile-toggle{display:none}
+    .header-spacer{height:80px}
   }
-
-  .mobile-phone svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  @media (min-width: 1024px) {
-    .mobile-menu {
-      display: none;
-    }
-  }
+  @media (min-width:768px){.logo-wrapper{width:140px;height:56px}}
+  @supports (height: 100dvh){.mobile-menu{min-height:calc(100dvh - 64px)}}
 </style>
 
-<script>
-  const header = document.getElementById('header');
-  const headerWrap = header?.querySelector('.header-wrap');
-  const brandLogo = header?.querySelector('.brand-logo');
-  const navLinks = header?.querySelectorAll('.nav-link');
-  const headerActions = header?.querySelector('.header-actions');
-  const onlineStatus = header?.querySelector('.online-status');
-  const phoneCta = header?.querySelector('.phone-cta');
-  const phoneNumber = header?.querySelector('.phone-number');
-  
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    
-    if (scrolled > 50) {
-      if (headerWrap) headerWrap.style.height = '64px';
-      if (brandLogo) brandLogo.style.transform = 'scale(1.15)';
-      
-      navLinks?.forEach(link => {
-        link.style.padding = '8px 16px';
-        link.style.fontSize = '13px';
-      });
-      
-      if (headerActions) headerActions.style.transform = 'scale(0.9)';
-      if (onlineStatus) {
-        onlineStatus.style.background = 'linear-gradient(to right, rgba(255,107,0,0.2), rgba(255,139,58,0.1))';
-        onlineStatus.style.borderColor = 'rgba(255,107,0,0.5)';
-        onlineStatus.style.boxShadow = '0 0 20px rgba(255,107,0,0.3)';
-      }
-      if (phoneCta) phoneCta.style.boxShadow = '0 8px 30px rgba(255,107,0,0.5)';
-      if (phoneNumber) phoneNumber.style.fontSize = '15px';
-      header?.classList.add('shadow-orange');
-      
-    } else {
-      if (headerWrap) headerWrap.style.height = '80px';
-      if (brandLogo) brandLogo.style.transform = 'scale(1)';
-      
-      navLinks?.forEach(link => {
-        link.style.padding = '12px 24px';
-        link.style.fontSize = '15px';
-      });
-      
-      if (headerActions) headerActions.style.transform = 'scale(1)';
-      if (onlineStatus) {
-        onlineStatus.style.removeProperty('background');
-        onlineStatus.style.removeProperty('border-color');
-        onlineStatus.style.removeProperty('box-shadow');
-      }
-      if (phoneCta) phoneCta.style.removeProperty('box-shadow');
-      if (phoneNumber) phoneNumber.style.fontSize = '16px';
-      header?.classList.remove('shadow-orange');
-    }
-  }, { passive: true });
+<script is:global>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('[data-menu-toggle]');
+    const menu   = document.querySelector('[data-mobile-menu]');
+    if (!toggle || !menu) return;
 
-  const accordionHeaders = document.querySelectorAll('.accordion-header');
-  accordionHeaders.forEach(header => {
-    header.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const item = header.closest('.accordion-item');
-      const content = item?.querySelector('.accordion-content');
-      const icon = header.querySelector('svg');
-      const isOpen = content?.style.maxHeight && content.style.maxHeight !== '0px';
-      
-      document.querySelectorAll('.accordion-content').forEach(c => { c.style.maxHeight = '0'; });
-      document.querySelectorAll('.accordion-header svg').forEach(i => { i.style.transform = 'rotate(0deg)'; });
-      
-      if (!isOpen && content) {
-        content.style.maxHeight = content.scrollHeight + 'px';
-        if (icon) icon.style.transform = 'rotate(180deg)';
-      }
+    const openMenu = () => {
+      toggle.classList.add('active');
+      toggle.setAttribute('aria-expanded', 'true');
+      menu.classList.add('active');
+      menu.setAttribute('aria-hidden', 'false');
+      document.documentElement.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('active');
+      menu.setAttribute('aria-hidden', 'true');
+      document.documentElement.style.overflow = '';
+    };
+
+    toggle.addEventListener('click', () => {
+      menu.classList.contains('active') ? closeMenu() : openMenu();
     });
-  });
 
-  const mobileBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const line1 = mobileBtn?.querySelector('.mobile-line-1');
-  const line2 = mobileBtn?.querySelector('.mobile-line-2');
-  const line3 = mobileBtn?.querySelector('.mobile-line-3');
-  
-  mobileBtn?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.classList.contains('active');
-    
-    if (isOpen) {
-      mobileMenu?.classList.remove('active');
-      document.body.style.overflow = '';
-      line1?.classList.remove('rotate-45', 'translate-y-2');
-      line2?.classList.remove('opacity-0');
-      line3?.classList.remove('-rotate-45', '-translate-y-2');
-    } else {
-      mobileMenu?.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      line1?.classList.add('rotate-45', 'translate-y-2');
-      line2?.classList.add('opacity-0');
-      line3?.classList.add('-rotate-45', '-translate-y-2');
-    }
-  });
+    // zavri po kliknutí na odkaz
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-  const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-phone');
-  mobileLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.remove('active');
-      document.body.style.overflow = '';
-      line1?.classList.remove('rotate-45', 'translate-y-2');
-      line2?.classList.remove('opacity-0');
-      line3?.classList.remove('-rotate-45', '-translate-y-2');
+    // zavri ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
     });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
-      mobileMenu?.classList.remove('active');
-      document.body.style.overflow = '';
-      line1?.classList.remove('rotate-45', 'translate-y-2');
-      line2?.classList.remove('opacity-0');
-      line3?.classList.remove('-rotate-45', '-translate-y-2');
-    }
   });
 </script>
