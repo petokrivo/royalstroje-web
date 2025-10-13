@@ -1,7 +1,7 @@
 ---
-import '../styles/global.css';
-import Header from "../components/header.astro";
-import Footer from "../components/footer.astro";
+// src/layouts/Layout.astro
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 export interface Props {
   title?: string;
@@ -22,7 +22,7 @@ const quickCategories = [
     title: "Malé náradie",
     url: "/pozicovna-naradia/male-naradie",
     items: [
-      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky" },
+      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva" },
       { name: "Uhlové, vibračné a pásové brúsky", url: "/pozicovna-naradia/male-naradie/brusky" },
       { name: "Ručné píly a rezačky", url: "/pozicovna-naradia/male-naradie/pily-rezacky" },
       { name: "Vysávače, tepovače a tlakové čističe", url: "/pozicovna-naradia/male-naradie/vysavace-cistice" },
@@ -103,18 +103,20 @@ const quickCategories = [
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#ff6b00" />
+    <meta name="theme-color" content="#FF6600" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
 
-  <body class="min-h-screen bg-zinc-950 text-white antialiased font-['Inter',system-ui,sans-serif]">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-orange-500 text-black font-bold px-3 py-2 rounded-md z-[10000]">Preskočiť na obsah</a>
+  <body class="min-h-screen bg-black text-white antialiased font-['Inter',system-ui,sans-serif]">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-[#FF6600] text-white font-bold px-3 py-2 rounded-md z-[10000]">
+      Preskočiť na obsah
+    </a>
 
-    <!-- Background -->
-    <div class="fixed inset-0 z-0 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,107,0,0.05)_1px,transparent_0)] bg-[length:40px_40px] opacity-30"></div>
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 z-0 bg-gradient-to-b from-black via-zinc-950 to-black">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,102,0,0.05)_1px,transparent_0)] bg-[length:40px_40px] opacity-30"></div>
     </div>
 
     <Header />
@@ -226,22 +228,22 @@ const quickCategories = [
       .quick-sidebar{display:none;position:fixed;left:0;top:30%;z-index:900;transition:all .5s;opacity:1}
       .quick-sidebar.hidden{transform:translateX(-100%);opacity:0}
       .quick-trigger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-        width:80px;height:96px;background:rgba(24,24,27,.98);backdrop-filter:blur(30px);
-        border:1px solid rgba(249,115,22,.3);border-left:none;border-top-right-radius:24px;
+        width:80px;height:96px;background:rgba(0,0,0,.98);backdrop-filter:blur(30px);
+        border:1px solid rgba(255,102,0,.3);border-left:none;border-top-right-radius:24px;
         border-bottom-right-radius:24px;cursor:pointer;padding:0;transition:all .3s;position:relative;
         box-shadow:4px 0 20px rgba(0,0,0,.4)}
-      .quick-trigger:hover{width:88px;border-color:#f97316;box-shadow:4px 0 30px rgba(249,115,22,.3)}
-      .quick-icon{width:36px;height:36px;color:#f97316;transition:transform .3s}
+      .quick-trigger:hover{width:88px;border-color:#FF6600;box-shadow:4px 0 30px rgba(255,102,0,.3)}
+      .quick-icon{width:36px;height:36px;color:#FF6600;transition:transform .3s}
       .quick-trigger:hover .quick-icon{transform:scale(1.1)}
-      .quick-label{color:#f97316;font-weight:900;font-size:9px;text-transform:uppercase;
+      .quick-label{color:#FF6600;font-weight:900;font-size:9px;text-transform:uppercase;
         letter-spacing:.8px;text-align:center;line-height:1.2}
-      .quick-pulse{position:absolute;inset:0;border:2px solid rgba(249,115,22,.4);
+      .quick-pulse{position:absolute;inset:0;border:2px solid rgba(255,102,0,.4);
         border-radius:inherit;border-left:none;animation:ringPulse 3s infinite;opacity:0}
       @keyframes ringPulse{0%,100%{opacity:0;transform:scale(1)}50%{opacity:.6;transform:scale(1.05)}}
       
       .quick-panel{position:absolute;left:100%;top:0;width:420px;max-height:82vh;
-        background:rgba(18,18,20,.98);backdrop-filter:blur(40px);
-        border:2px solid rgba(249,115,22,.25);border-left:none;border-top-right-radius:24px;
+        background:rgba(0,0,0,.98);backdrop-filter:blur(40px);
+        border:2px solid rgba(255,102,0,.25);border-left:none;border-top-right-radius:24px;
         border-bottom-right-radius:24px;box-shadow:8px 0 40px rgba(0,0,0,.6);
         opacity:0;visibility:hidden;transform:translateX(-40px);transition:all .5s cubic-bezier(.4,0,.2,1);
         overflow-y:auto}
@@ -249,67 +251,67 @@ const quickCategories = [
       .panel-inner{padding:24px}
       
       .panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;
-        padding-bottom:20px;border-bottom:2px solid rgba(249,115,22,.2)}
+        padding-bottom:20px;border-bottom:2px solid rgba(255,102,0,.2)}
       .header-title{display:flex;align-items:center;gap:12px}
-      .title-icon{width:44px;height:44px;background:linear-gradient(135deg,#f97316,#ea580c);
+      .title-icon{width:44px;height:44px;background:linear-gradient(135deg,#FF6600,#f19000);
         border-radius:12px;display:flex;align-items:center;justify-content:center;
-        box-shadow:0 4px 20px rgba(249,115,22,.4)}
+        box-shadow:0 4px 20px rgba(255,102,0,.4)}
       .title-icon svg{width:24px;height:24px;fill:#000}
       .header-title h3{font-size:19px;font-weight:900;color:#fff;margin:0}
       .panel-close{width:40px;height:40px;display:flex;align-items:center;justify-content:center;
         background:rgba(255,255,255,.05);border:none;border-radius:10px;cursor:pointer;
         transition:all .3s}
-      .panel-close:hover{background:rgba(249,115,22,.15)}
+      .panel-close:hover{background:rgba(255,102,0,.15)}
       .panel-close svg{width:20px;height:20px;color:#9ca3af}
       
       .panel-cats{display:flex;flex-direction:column;gap:10px}
       .panel-cat{border:1px solid rgba(255,255,255,.06);border-radius:14px;
         background:rgba(255,255,255,.02);overflow:hidden;transition:all .3s}
-      .panel-cat:hover{border-color:rgba(249,115,22,.2);background:rgba(249,115,22,.04)}
+      .panel-cat:hover{border-color:rgba(255,102,0,.2);background:rgba(255,102,0,.04)}
       .cat-btn{width:100%;display:flex;align-items:center;justify-content:space-between;
-        padding:14px 16px;background:linear-gradient(to right,rgba(249,115,22,.08),transparent);
+        padding:14px 16px;background:linear-gradient(to right,rgba(255,102,0,.08),transparent);
         border:none;cursor:pointer;transition:all .3s;text-align:left}
-      .cat-btn:hover{background:linear-gradient(to right,rgba(249,115,22,.12),rgba(249,115,22,.04))}
+      .cat-btn:hover{background:linear-gradient(to right,rgba(255,102,0,.12),rgba(255,102,0,.04))}
       .cat-name{color:#fff;font-weight:800;font-size:13px}
-      .cat-arrow{width:16px;height:16px;stroke:#f97316;transition:transform .3s}
+      .cat-arrow{width:16px;height:16px;stroke:#FF6600;transition:transform .3s}
       .cat-btn.active .cat-arrow{transform:rotate(180deg)}
       
       .cat-list{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
       .cat-list.active{max-height:600px}
       .list-inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:6px}
       .view-all-link{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;
-        margin-bottom:8px;font-size:11px;font-weight:800;color:#f97316;
-        background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.25);
+        margin-bottom:8px;font-size:11px;font-weight:800;color:#FF6600;
+        background:rgba(255,102,0,.1);border:1px solid rgba(255,102,0,.25);
         border-radius:10px;text-decoration:none;transition:all .3s}
-      .view-all-link:hover{background:rgba(249,115,22,.18);transform:translateX(4px)}
+      .view-all-link:hover{background:rgba(255,102,0,.18);transform:translateX(4px)}
       .view-all-link svg{width:12px;height:12px}
       .cat-link{display:flex;align-items:center;gap:10px;padding:10px 12px;color:#a1a1aa;
         text-decoration:none;font-size:12px;font-weight:500;border-radius:8px;
         transition:all .3s}
-      .cat-link:hover{color:#fff;background:rgba(249,115,22,.08);transform:translateX(8px)}
-      .link-dot{width:5px;height:5px;background:rgba(249,115,22,.5);border-radius:50%;
+      .cat-link:hover{color:#fff;background:rgba(255,102,0,.08);transform:translateX(8px)}
+      .link-dot{width:5px;height:5px;background:rgba(255,102,0,.5);border-radius:50%;
         flex-shrink:0;transition:all .3s}
-      .cat-link:hover .link-dot{background:#f97316;transform:scale(1.4)}
+      .cat-link:hover .link-dot{background:#FF6600;transform:scale(1.4)}
       
-      .panel-cta{margin-top:20px;padding-top:20px;border-top:2px solid rgba(249,115,22,.2)}
-      .cta-box{padding:20px;background:linear-gradient(135deg,rgba(249,115,22,.12),rgba(249,115,22,.06));
-        border:1px solid rgba(249,115,22,.3);border-radius:14px;text-align:center}
+      .panel-cta{margin-top:20px;padding-top:20px;border-top:2px solid rgba(255,102,0,.2)}
+      .cta-box{padding:20px;background:linear-gradient(135deg,rgba(255,102,0,.12),rgba(255,102,0,.06));
+        border:1px solid rgba(255,102,0,.3);border-radius:14px;text-align:center}
       .cta-text{color:#fff;font-weight:700;font-size:13px;margin:0 0 14px}
       .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
-        padding:12px 28px;background:linear-gradient(135deg,#f97316,#ea580c);color:#000;
+        padding:12px 28px;background:linear-gradient(135deg,#FF6600,#f19000);color:#000;
         text-decoration:none;font-weight:900;font-size:14px;border-radius:50px;
-        transition:all .3s;box-shadow:0 4px 20px rgba(249,115,22,.3)}
-      .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,.5)}
+        transition:all .3s;box-shadow:0 4px 20px rgba(255,102,0,.3)}
+      .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,102,0,.5)}
       .cta-btn svg{width:16px;height:16px}
       
       /* BACK TO TOP */
       .back-top{position:fixed;bottom:20px;right:20px;width:54px;height:54px;
-        border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);color:#000;
+        border-radius:50%;background:linear-gradient(135deg,#FF6600,#f19000);color:#000;
         border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
         opacity:0;transform:translateY(20px);pointer-events:none;transition:all .4s;
-        box-shadow:0 8px 30px rgba(249,115,22,.4);z-index:800}
+        box-shadow:0 8px 30px rgba(255,102,0,.4);z-index:800}
       .back-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-      .back-top:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 40px rgba(249,115,22,.6)}
+      .back-top:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 40px rgba(255,102,0,.6)}
       .back-top svg{width:24px;height:24px;transition:transform .3s}
       .back-top:hover svg{transform:translateY(-2px)}
       .top-pulse{position:absolute;inset:-4px;border:2px solid #fb923c;border-radius:50%;
@@ -319,22 +321,25 @@ const quickCategories = [
       .royal-assist{display:none;position:fixed;bottom:32px;left:32px;z-index:800;
         flex-direction:column;align-items:center;gap:10px}
       .assist-btn{width:68px;height:68px;border-radius:20px;
-        background:linear-gradient(135deg,#f97316,#ea580c,#dc2626);border:none;cursor:pointer;
+        background:linear-gradient(135deg,#FF6600,#f19000,#dc2626);border:none;cursor:pointer;
         display:flex;align-items:center;justify-content:center;position:relative;transition:all .4s;
-        box-shadow:0 8px 30px rgba(249,115,22,.5)}
-      .assist-btn:hover{transform:scale(1.08) rotate(6deg);box-shadow:0 12px 40px rgba(249,115,22,.7)}
-      .assist-glow{position:absolute;inset:-6px;background:linear-gradient(135deg,#fb923c,#f97316);
+        box-shadow:0 8px 30px rgba(255,102,0,.5)}
+      .assist-btn:hover{transform:scale(1.08) rotate(6deg);box-shadow:0 12px 40px rgba(255,102,0,.7)}
+      .assist-glow{position:absolute;inset:-6px;background:linear-gradient(135deg,#fb923c,#FF6600);
         border-radius:22px;filter:blur(20px);opacity:.4;transition:opacity .4s;z-index:-1}
       .assist-btn:hover .assist-glow{opacity:.7}
       .assist-icon{width:34px;height:34px;fill:#000;position:relative;z-index:1;transition:transform .4s}
       .assist-btn:hover .assist-icon{transform:scale(1.15)}
       .assist-status{position:absolute;top:-4px;right:-4px;width:18px;height:18px;
-        background:#22c55e;border:3px solid #18181b;border-radius:50%;animation:pulse 2s infinite}
+        background:#22c55e;border:3px solid #000;border-radius:50%;animation:pulse 2s infinite}
       .assist-ping{position:absolute;inset:0;border:3px solid #fb923c;border-radius:inherit;
         animation:ping 2s cubic-bezier(0,0,.2,1) infinite;opacity:0}
       .assist-label{padding:6px 14px;border-radius:10px;font-size:10px;font-weight:800;
-        text-transform:uppercase;letter-spacing:.8px;color:#f97316;
-        background:rgba(0,0,0,.8);border:1px solid rgba(249,115,22,.3);backdrop-filter:blur(10px)}
+        text-transform:uppercase;letter-spacing:.8px;color:#FF6600;
+        background:rgba(0,0,0,.8);border:1px solid rgba(255,102,0,.3);backdrop-filter:blur(10px)}
+      
+      @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.2)}}
+      @keyframes ping{75%,100%{transform:scale(1.5);opacity:0}}
       
       /* RESPONSIVE */
       @media (min-width:1280px){
@@ -350,8 +355,8 @@ const quickCategories = [
       /* SCROLLBAR */
       .quick-panel::-webkit-scrollbar{width:8px}
       .quick-panel::-webkit-scrollbar-track{background:rgba(0,0,0,.3)}
-      .quick-panel::-webkit-scrollbar-thumb{background:rgba(249,115,22,.4);border-radius:4px}
-      .quick-panel::-webkit-scrollbar-thumb:hover{background:rgba(249,115,22,.6)}
+      .quick-panel::-webkit-scrollbar-thumb{background:rgba(255,102,0,.4);border-radius:4px}
+      .quick-panel::-webkit-scrollbar-thumb:hover{background:rgba(255,102,0,.6)}
     </style>
 
     <script is:global>
@@ -380,7 +385,7 @@ const quickCategories = [
         
         if (quickSidebar && window.innerWidth >= 1280) {
           // Hide on scroll
-          let scrollTimeout: number;
+          let scrollTimeout;
           window.addEventListener('scroll', () => {
             quickSidebar.classList.add('hidden');
             clearTimeout(scrollTimeout);
@@ -412,7 +417,6 @@ const quickCategories = [
             btn.addEventListener('click', () => {
               const parent = btn.closest('.panel-cat');
               const list = parent?.querySelector('.cat-list');
-              const arrow = btn.querySelector('.cat-arrow');
               const isActive = list?.classList.contains('active');
               
               // Close all

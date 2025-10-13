@@ -106,53 +106,55 @@ const mainNav = [
           </a>
           
           {item.hasDropdown && (
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[1000px] max-w-[90vw] bg-black border-2 border-[#FF6600] rounded-xl mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:mt-2 transition-all duration-300 shadow-[0_10px_40px_rgba(255,102,0,0.2)]">
+            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[500px] max-w-[90vw] bg-black border-2 border-[#FF6600] rounded-xl mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:mt-2 transition-all duration-300 shadow-[0_10px_40px_rgba(255,102,0,0.2)]">
               <div class="p-6">
-                <div class="flex gap-6">
-                  <!-- Ľavý stĺpec - Kategórie pod sebou -->
-                  <div class="flex flex-col gap-2 w-[280px] flex-shrink-0">
-                    {categories.map((category, index) => (
+                <!-- AKORDEON - Kategórie pod sebou -->
+                <div class="flex flex-col gap-3">
+                  {categories.map((category, index) => (
+                    <div class="accordion-item border border-[#FF6600]/30 rounded-xl overflow-hidden bg-[#FF6600]/5 hover:border-[#FF6600]/50 transition-all duration-300">
                       <button 
-                        class="category-tab text-left px-5 py-4 bg-transparent border border-[#FF6600]/30 rounded-lg text-white font-semibold text-sm transition-all duration-300 hover:bg-[#FF6600]/10 hover:border-[#FF6600] hover:translate-x-1"
-                        data-category-index={index}
+                        class="accordion-header w-full flex items-center justify-between px-5 py-4 text-left bg-gradient-to-r from-[#FF6600]/10 to-transparent hover:from-[#FF6600]/20 transition-all duration-300"
+                        data-accordion-index={index}
                       >
-                        {category.title}
+                        <span class="text-white font-bold text-base">{category.title}</span>
+                        <svg class="accordion-arrow w-5 h-5 text-[#FF6600] transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
                       </button>
-                    ))}
-                  </div>
-                  
-                  <!-- Pravý stĺpec - Obsah kategórie -->
-                  <div class="flex-1 category-contents min-h-[450px] border-l border-[#FF6600]/20 pl-6">
-                    {categories.map((category, index) => (
-                      <div class="category-content hidden" data-content-index={index}>
-                        <div class="mb-5">
-                          <a href={category.url} class="inline-flex items-center gap-2 text-[#FF6600] font-bold text-xl hover:text-[#f19000] transition-colors">
-                            {category.title}
-                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                      
+                      <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease;">
+                        <div class="px-5 py-4 bg-black/40">
+                          <a href={category.url} class="inline-flex items-center gap-2 px-4 py-2 mb-3 text-sm font-bold text-[#FF6600] bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-lg hover:bg-[#FF6600]/20 transition-all duration-300">
+                            <span>Všetko v kategórii</span>
+                            <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                             </svg>
                           </a>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 gap-2">
-                          {category.items.map((subItem) => (
-                            <a href={subItem.url} class="flex items-center gap-3 px-4 py-3 text-white text-sm hover:text-[#FF6600] hover:bg-[#FF6600]/10 rounded-lg transition-all duration-300 group">
-                              <span class="text-[#FF6600] opacity-0 group-hover:opacity-100 transition-opacity text-lg">▸</span>
-                              <span>{subItem.name}</span>
-                            </a>
-                          ))}
+                          
+                          <div class="flex flex-col gap-1">
+                            {category.items.map((subItem) => (
+                              <a href={subItem.url} class="flex items-center gap-3 px-4 py-2.5 text-white/80 text-sm rounded-lg hover:text-white hover:bg-[#FF6600]/10 transition-all duration-300 group">
+                                <span class="w-1 h-1 bg-[#FF6600]/50 rounded-full group-hover:bg-[#FF6600] group-hover:scale-150 transition-all duration-300"></span>
+                                <span>{subItem.name}</span>
+                              </a>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
                 
-                <div class="border-t border-[#FF6600]/20 pt-5 mt-6 text-center">
-                  <p class="text-white text-base mb-2">Potrebujete poradiť?</p>
-                  <a href="tel:+421948555551" class="text-[#FF6600] text-xl font-bold hover:text-[#f19000] transition-colors">
-                    Zavolajte nám 0948 555 551
+                <!-- Footer CTA -->
+                <div class="border-t-2 border-[#FF6600]/20 pt-5 mt-6 text-center">
+                  <p class="text-white text-sm font-semibold mb-2">Potrebujete poradiť?</p>
+                  <a href="tel:+421948555551" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-black bg-gradient-to-r from-[#FF6600] to-[#f19000] rounded-full hover:shadow-[0_8px_30px_rgba(255,102,0,0.5)] hover:-translate-y-0.5 transition-all duration-300">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                    </svg>
+                    <span>0948 555 551</span>
                   </a>
-                  <p class="text-white/70 text-sm mt-2">Sme tu pre vás 24/7</p>
+                  <p class="text-white/60 text-xs mt-2">Sme tu pre vás 24/7</p>
                 </div>
               </div>
             </div>
@@ -253,24 +255,12 @@ const mainNav = [
     transform: rotate(-45deg) translate(6px, -6px);
   }
   
-  .category-tab.active {
-    @apply bg-[#FF6600] border-[#FF6600] text-white;
+  .accordion-item.active .accordion-arrow {
+    transform: rotate(180deg);
   }
   
-  .category-content.active {
-    display: block;
-    animation: slideInRight 0.3s ease;
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .accordion-item.active .accordion-content {
+    max-height: 800px !important;
   }
   
   @keyframes pulse {
@@ -279,76 +269,83 @@ const mainNav = [
   }
 </style>
 
-<script>
+<script is:inline>
   // Header scroll
-  const header = document.getElementById('rsHeader');
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 50) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
-  });
+  window.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('rsHeader');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 50) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    }, { passive: true });
 
-  // Mobile menu
-  const mobileToggle = document.getElementById('mobileToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-  mobileToggle?.addEventListener('click', () => {
-    mobileToggle.classList.toggle('active');
-    mobileMenu?.classList.toggle('translate-x-0');
-    mobileMenu?.classList.toggle('-translate-x-full');
-    document.body.style.overflow = mobileMenu?.classList.contains('translate-x-0') ? 'hidden' : '';
-  });
-
-  // Close mobile menu on link click
-  const mobileLinks = mobileMenu?.querySelectorAll('a');
-  mobileLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileToggle?.classList.remove('active');
-      mobileMenu?.classList.add('-translate-x-full');
-      mobileMenu?.classList.remove('translate-x-0');
-      document.body.style.overflow = '';
+    mobileToggle?.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      mobileMenu?.classList.toggle('translate-x-0');
+      mobileMenu?.classList.toggle('-translate-x-full');
+      document.body.style.overflow = mobileMenu?.classList.contains('translate-x-0') ? 'hidden' : '';
     });
-  });
 
-  // Close mobile menu on escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu?.classList.contains('translate-x-0')) {
-      mobileToggle?.classList.remove('active');
-      mobileMenu?.classList.add('-translate-x-full');
-      mobileMenu?.classList.remove('translate-x-0');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Accordion functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const categoryTabs = document.querySelectorAll('.category-tab');
-    const categoryContents = document.querySelectorAll('.category-content');
-    
-    // Aktivuj prvú kategóriu pri načítaní
-    if (categoryTabs.length > 0 && categoryContents.length > 0) {
-      categoryTabs[0].classList.add('active');
-      categoryContents[0].classList.add('active');
-    }
-    
-    categoryTabs.forEach((tab) => {
-      tab.addEventListener('click', (e) => {
-        e.preventDefault();
-        const index = tab.getAttribute('data-category-index');
-        
-        // Odstráň active zo všetkých tabov a obsahov
-        categoryTabs.forEach(t => t.classList.remove('active'));
-        categoryContents.forEach(c => c.classList.remove('active'));
-        
-        // Pridaj active na kliknutý tab a zodpovedajúci obsah
-        tab.classList.add('active');
-        const content = document.querySelector(`[data-content-index="${index}"]`);
-        if (content) {
-          content.classList.add('active');
-        }
+    // Close mobile menu on link click
+    const mobileLinks = mobileMenu?.querySelectorAll('a');
+    mobileLinks?.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle?.classList.remove('active');
+        mobileMenu?.classList.add('-translate-x-full');
+        mobileMenu?.classList.remove('translate-x-0');
+        document.body.style.overflow = '';
       });
     });
+
+    // Close mobile menu on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu?.classList.contains('translate-x-0')) {
+        mobileToggle?.classList.remove('active');
+        mobileMenu?.classList.add('-translate-x-full');
+        mobileMenu?.classList.remove('translate-x-0');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ACCORDION FUNCTIONALITY - OPRAVENÉ A ZJEDNODUŠENÉ
+    setTimeout(() => {
+      const accordionHeaders = document.querySelectorAll('.accordion-header');
+      
+      console.log('Found accordion headers:', accordionHeaders.length);
+      
+      accordionHeaders.forEach((header, index) => {
+        console.log('Adding listener to accordion', index);
+        
+        header.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Accordion clicked!', index);
+          
+          const parent = this.parentElement;
+          const isActive = parent.classList.contains('active');
+          
+          // Zavri vsetky akordiony
+          document.querySelectorAll('.accordion-item').forEach(item => {
+            item.classList.remove('active');
+          });
+          
+          // Ak nebol aktivny, otvor ho
+          if (!isActive) {
+            parent.classList.add('active');
+            console.log('Opening accordion', index);
+          } else {
+            console.log('Closing accordion', index);
+          }
+        });
+      });
+    }, 100);
   });
 </script>
