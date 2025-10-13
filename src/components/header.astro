@@ -79,44 +79,80 @@ const mainNav = [
 ];
 ---
 
-<header class="rs-header" id="rsHeader">
-  <div class="header-container">
+<header class="fixed top-0 left-0 right-0 z-[1000] bg-black border-b-2 border-[#FF6600] transition-all duration-300" id="rsHeader">
+  <div class="max-w-[1400px] mx-auto px-8 flex items-center justify-between h-[90px] transition-all duration-300">
+    
     <!-- Logo -->
-    <a href="/" class="logo-link">
-      <img src="/logo.png" alt="ROYAL STROJE" class="logo-img" />
+    <a href="/" class="flex items-center gap-4 z-[1001]">
+      <img src="/logo.png" alt="ROYAL STROJE" class="h-[60px] w-auto transition-all duration-300" id="headerLogo" />
+      <div class="flex flex-col">
+        <span class="hidden md:block text-white font-bold text-lg leading-tight">Požičovňa náradia</span>
+        <span class="hidden md:block text-white font-bold text-lg leading-tight">a stavebnej techniky</span>
+        <span class="block md:hidden text-white font-bold text-base">Požičovňa</span>
+      </div>
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
+    <nav class="hidden lg:flex gap-2">
       {mainNav.map((item) => (
-        <div class="nav-item">
-          <a href={item.url} class="nav-link">
+        <div class="relative group">
+          <a href={item.url} class="flex items-center gap-2 px-5 py-3 text-white font-semibold text-[0.95rem] rounded-lg transition-all duration-300 hover:bg-[#FF6600] whitespace-nowrap">
             {item.name}
             {item.hasDropdown && (
-              <svg class="dropdown-icon" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="w-[18px] h-[18px] transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             )}
           </a>
           
           {item.hasDropdown && (
-            <div class="mega-dropdown">
-              <div class="mega-content">
-                <div class="mega-grid">
-                  {categories.map((category) => (
-                    <div class="mega-column">
-                      <h3 class="mega-title">
-                        <a href={category.url}>{category.title}</a>
-                      </h3>
-                      <ul class="mega-list">
-                        {category.items.map((subItem) => (
-                          <li>
-                            <a href={subItem.url}>{subItem.name}</a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[1000px] max-w-[90vw] bg-black border-2 border-[#FF6600] rounded-xl mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:mt-2 transition-all duration-300 shadow-[0_10px_40px_rgba(255,102,0,0.2)]">
+              <div class="p-6">
+                <div class="flex gap-6">
+                  <!-- Ľavý stĺpec - Kategórie pod sebou -->
+                  <div class="flex flex-col gap-2 w-[280px] flex-shrink-0">
+                    {categories.map((category, index) => (
+                      <button 
+                        class="category-tab text-left px-5 py-4 bg-transparent border border-[#FF6600]/30 rounded-lg text-white font-semibold text-sm transition-all duration-300 hover:bg-[#FF6600]/10 hover:border-[#FF6600] hover:translate-x-1"
+                        data-category-index={index}
+                      >
+                        {category.title}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  <!-- Pravý stĺpec - Obsah kategórie -->
+                  <div class="flex-1 category-contents min-h-[450px] border-l border-[#FF6600]/20 pl-6">
+                    {categories.map((category, index) => (
+                      <div class="category-content hidden" data-content-index={index}>
+                        <div class="mb-5">
+                          <a href={category.url} class="inline-flex items-center gap-2 text-[#FF6600] font-bold text-xl hover:text-[#f19000] transition-colors">
+                            {category.title}
+                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                          </a>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-2">
+                          {category.items.map((subItem) => (
+                            <a href={subItem.url} class="flex items-center gap-3 px-4 py-3 text-white text-sm hover:text-[#FF6600] hover:bg-[#FF6600]/10 rounded-lg transition-all duration-300 group">
+                              <span class="text-[#FF6600] opacity-0 group-hover:opacity-100 transition-opacity text-lg">▸</span>
+                              <span>{subItem.name}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div class="border-t border-[#FF6600]/20 pt-5 mt-6 text-center">
+                  <p class="text-white text-base mb-2">Potrebujete poradiť?</p>
+                  <a href="tel:+421948555551" class="text-[#FF6600] text-xl font-bold hover:text-[#f19000] transition-colors">
+                    Zavolajte nám 0948 555 551
+                  </a>
+                  <p class="text-white/70 text-sm mt-2">Sme tu pre vás 24/7</p>
                 </div>
               </div>
             </div>
@@ -126,468 +162,193 @@ const mainNav = [
     </nav>
 
     <!-- Desktop Actions -->
-    <div class="desktop-actions">
-      <div class="online-badge">
-        <span class="pulse-dot"></span>
-        <span class="online-text">ONLINE 24/7</span>
+    <div class="hidden lg:flex items-center gap-6">
+      <div class="flex items-center gap-2 px-4 py-2 bg-[#FF6600]/10 border border-[#FF6600] rounded-full">
+        <span class="w-2 h-2 bg-[#FF6600] rounded-full animate-pulse"></span>
+        <span class="text-[#FF6600] font-bold text-[0.85rem] tracking-wider">ONLINE 24/7</span>
       </div>
-      <a href="tel:+421948555551" class="phone-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor">
+      <a href="tel:+421948555551" class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#FF6600] to-[#f19000] text-white font-bold text-base rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-[0_4px_15px_rgba(255,102,0,0.3)] hover:shadow-[0_6px_20px_rgba(255,102,0,0.5)]">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
         </svg>
-        0948 555 551
+        <span>0948 555 551</span>
       </a>
     </div>
 
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+    <!-- Mobile Toggle -->
+    <button class="flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border-2 border-[#FF6600] rounded-lg p-2 z-[1001]" id="mobileToggle" aria-label="Menu">
+      <span class="w-full h-[3px] bg-[#FF6600] rounded-sm transition-all duration-300"></span>
+      <span class="w-full h-[3px] bg-[#FF6600] rounded-sm transition-all duration-300"></span>
+      <span class="w-full h-[3px] bg-[#FF6600] rounded-sm transition-all duration-300"></span>
     </button>
   </div>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <nav class="mobile-nav">
-      {mainNav.map((item) => (
-        <a href={item.url} class="mobile-link">{item.name}</a>
-      ))}
-    </nav>
+  <div class="fixed top-[90px] left-0 right-0 bottom-0 bg-black -translate-x-full transition-transform duration-300 overflow-y-auto z-[999]" id="mobileMenu">
+    <div class="flex flex-col min-h-full">
+      <nav class="flex flex-col p-6 gap-2 flex-grow">
+        {mainNav.map((item) => (
+          <a href={item.url} class="px-5 py-5 text-white font-semibold text-lg border-b border-[#FF6600]/20 hover:bg-[#FF6600] hover:rounded-lg transition-all duration-300">
+            {item.name}
+          </a>
+        ))}
+      </nav>
+      
+      <!-- Mobile Footer CTA -->
+      <div class="bg-gradient-to-br from-[#FF6600] via-[#f19000] to-[#FF6600] p-8 relative overflow-hidden">
+        <!-- Dekoratívne pozadie -->
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative z-10 text-center">
+          <div class="mb-6">
+            <p class="text-white text-xl font-bold mb-2">Potrebujete poradiť?</p>
+            <p class="text-white/90 text-sm">Sme tu pre vás 24/7</p>
+          </div>
+          
+          <a href="tel:+421948555551" class="flex items-center justify-center gap-3 bg-white text-[#FF6600] font-bold text-xl px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+            </svg>
+            <span>0948 555 551</span>
+          </a>
+          
+          <div class="mt-4 flex items-center justify-center gap-2">
+            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+            <span class="text-white text-sm font-semibold">ONLINE 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <!-- Header Spacer -->
-<div class="header-spacer"></div>
+<div class="h-[90px]"></div>
 
 <style>
-  /* Variables */
-  :root {
-    --orange-primary: #FF6600;
-    --orange-secondary: #f19000;
-    --black: #000000;
-    --white: #ffffff;
-    --gray-light: #f5f5f5;
-    --gray-dark: #333333;
+  #rsHeader.scrolled {
+    @apply h-[70px];
   }
-
-  /* Header Base */
-  .rs-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: var(--black);
-    border-bottom: 2px solid var(--orange-primary);
-    transition: all 0.3s ease;
+  
+  #rsHeader.scrolled .h-\[90px\] {
+    @apply h-[70px];
   }
-
-  .rs-header.scrolled {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  #rsHeader.scrolled #headerLogo {
+    @apply h-[45px];
   }
-
-  .rs-header.scrolled .logo-img {
-    height: 45px;
+  
+  .mobile-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
   }
-
-  .header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 90px;
-    transition: height 0.3s ease;
-  }
-
-  .rs-header.scrolled .header-container {
-    height: 70px;
-  }
-
-  /* Logo */
-  .logo-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    z-index: 1001;
-  }
-
-  .logo-img {
-    height: 60px;
-    width: auto;
-    transition: all 0.3s ease;
-  }
-
-  /* Desktop Navigation */
-  .desktop-nav {
-    display: none;
-    gap: 0.5rem;
-  }
-
-  .nav-item {
-    position: relative;
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-  }
-
-  .nav-link:hover {
-    background: var(--orange-primary);
-    color: var(--white);
-  }
-
-  .dropdown-icon {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.3s ease;
-  }
-
-  .nav-item:hover .dropdown-icon {
-    transform: rotate(180deg);
-  }
-
-  /* Mega Dropdown */
-  .mega-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1100px;
-    max-width: 90vw;
-    background: var(--black);
-    border: 2px solid var(--orange-primary);
-    border-radius: 12px;
-    margin-top: 1rem;
+  
+  .mobile-toggle.active span:nth-child(2) {
     opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 40px rgba(255, 102, 0, 0.2);
   }
-
-  .nav-item:hover .mega-dropdown {
-    opacity: 1;
-    visibility: visible;
-    margin-top: 0.5rem;
+  
+  .mobile-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
   }
-
-  .mega-content {
-    padding: 2rem;
+  
+  .category-tab.active {
+    @apply bg-[#FF6600] border-[#FF6600] text-white;
   }
-
-  .mega-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+  
+  .category-content.active {
+    display: block;
+    animation: slideInRight 0.3s ease;
   }
-
-  .mega-column {
-    min-width: 0;
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
-
-  .mega-title {
-    margin: 0 0 1rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-  }
-
-  .mega-title a {
-    color: var(--orange-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .mega-title a:hover {
-    color: var(--orange-secondary);
-  }
-
-  .mega-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .mega-list li {
-    margin-bottom: 0.5rem;
-  }
-
-  .mega-list a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    display: inline-block;
-  }
-
-  .mega-list a:hover {
-    color: var(--orange-primary);
-    transform: translateX(5px);
-  }
-
-  /* Desktop Actions */
-  .desktop-actions {
-    display: none;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .online-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 102, 0, 0.1);
-    border: 1px solid var(--orange-primary);
-    border-radius: 50px;
-  }
-
-  .pulse-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--orange-primary);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
+  
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(1.2); }
   }
-
-  .online-text {
-    color: var(--orange-primary);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-  }
-
-  .phone-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, var(--orange-primary), var(--orange-secondary));
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
-  }
-
-  .phone-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.5);
-  }
-
-  .phone-btn svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Mobile Toggle */
-  .mobile-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 2px solid var(--orange-primary);
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 1001;
-  }
-
-  .mobile-toggle span {
-    width: 100%;
-    height: 3px;
-    background: var(--orange-primary);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-
-  .mobile-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  /* Mobile Menu */
-  .mobile-menu {
-    position: fixed;
-    top: 90px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--black);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    z-index: 999;
-  }
-
-  .mobile-menu.active {
-    transform: translateX(0);
-  }
-
-  .mobile-nav {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    gap: 0.5rem;
-  }
-
-  .mobile-link {
-    padding: 1.25rem;
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    border-bottom: 1px solid rgba(255, 102, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-
-  .mobile-link:hover {
-    background: var(--orange-primary);
-    border-radius: 8px;
-  }
-
-  /* Header Spacer */
-  .header-spacer {
-    height: 90px;
-  }
-
-  /* Desktop */
-  @media (min-width: 1024px) {
-    .desktop-nav {
-      display: flex;
-    }
-
-    .desktop-actions {
-      display: flex;
-    }
-
-    .mobile-toggle {
-      display: none;
-    }
-
-    .mobile-menu {
-      display: none;
-    }
-  }
-
-  /* Tablet */
-  @media (max-width: 1023px) and (min-width: 768px) {
-    .mega-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  /* Mobile */
-  @media (max-width: 767px) {
-    .header-container {
-      padding: 0 1rem;
-      height: 70px;
-    }
-
-    .rs-header.scrolled .header-container {
-      height: 60px;
-    }
-
-    .logo-img {
-      height: 50px;
-    }
-
-    .rs-header.scrolled .logo-img {
-      height: 40px;
-    }
-
-    .header-spacer {
-      height: 70px;
-    }
-
-    .mobile-menu {
-      top: 70px;
-    }
-
-    .rs-header.scrolled + .header-spacer {
-      height: 60px;
-    }
-  }
 </style>
 
 <script>
-  // Header scroll functionality
+  // Header scroll
   const header = document.getElementById('rsHeader');
-  const mobileToggle = document.getElementById('mobileToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  // Scroll detection
-  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
+    if (window.pageYOffset > 50) {
       header?.classList.add('scrolled');
     } else {
       header?.classList.remove('scrolled');
     }
-    
-    lastScroll = currentScroll;
   });
 
-  // Mobile menu toggle
+  // Mobile menu
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
   mobileToggle?.addEventListener('click', () => {
     mobileToggle.classList.toggle('active');
-    mobileMenu?.classList.toggle('active');
-    document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
+    mobileMenu?.classList.toggle('translate-x-0');
+    mobileMenu?.classList.toggle('-translate-x-full');
+    document.body.style.overflow = mobileMenu?.classList.contains('translate-x-0') ? 'hidden' : '';
   });
 
-  // Close mobile menu when clicking links
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  mobileLinks.forEach(link => {
+  // Close mobile menu on link click
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
     link.addEventListener('click', () => {
       mobileToggle?.classList.remove('active');
-      mobileMenu?.classList.remove('active');
+      mobileMenu?.classList.add('-translate-x-full');
+      mobileMenu?.classList.remove('translate-x-0');
       document.body.style.overflow = '';
     });
   });
 
   // Close mobile menu on escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('translate-x-0')) {
       mobileToggle?.classList.remove('active');
-      mobileMenu?.classList.remove('active');
+      mobileMenu?.classList.add('-translate-x-full');
+      mobileMenu?.classList.remove('translate-x-0');
       document.body.style.overflow = '';
     }
   });
 
-  // Close mega menu when clicking outside
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (!target.closest('.nav-item')) {
-      // Close all mega menus
+  // Accordion functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const categoryContents = document.querySelectorAll('.category-content');
+    
+    // Aktivuj prvú kategóriu pri načítaní
+    if (categoryTabs.length > 0 && categoryContents.length > 0) {
+      categoryTabs[0].classList.add('active');
+      categoryContents[0].classList.add('active');
     }
+    
+    categoryTabs.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const index = tab.getAttribute('data-category-index');
+        
+        // Odstráň active zo všetkých tabov a obsahov
+        categoryTabs.forEach(t => t.classList.remove('active'));
+        categoryContents.forEach(c => c.classList.remove('active'));
+        
+        // Pridaj active na kliknutý tab a zodpovedajúci obsah
+        tab.classList.add('active');
+        const content = document.querySelector(`[data-content-index="${index}"]`);
+        if (content) {
+          content.classList.add('active');
+        }
+      });
+    });
   });
 </script>
