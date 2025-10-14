@@ -10,8 +10,8 @@ const MAPS_SIDLO = "https://www.google.com/maps/search/?api=1&query=Bajkalská+3
 
 const mainServices = [
   {
-    title: "Požičovňa náradia a techniky",
-    description: "Profesionálny prenájom stavebného náradia, strojov a príslušenstva. Denný aj dlhodobý prenájom s možnosťou dopravy.",
+    title: "Požičovňa náradia a stavebnej techniky",
+    description: "Profesionálny prenájom stavebného náradia, strojov a príslušenstva. Poldenný, denný aj dlhodobý prenájom s možnosťou dopravy.",
     href: "/pozicovna-naradia",
     image: "/images/services/pozicovna.webp"
   },
@@ -32,12 +32,12 @@ const additionalServices = [
 ];
 
 const brands = [
-  { name: "MAKITA", logo: "/logos/makita.png" },
-  { name: "HONDA", logo: "/logos/honda.png" },
-  { name: "ATLAS-COPCO", logo: "/logos/atlas-copco.png" },
-  { name: "MILWAUKEE", logo: "/logos/milwaukee.png" },
-  { name: "BOSCH", logo: "/logos/bosch.png" },
-  { name: "HILTI", logo: "/logos/hilti.png" }
+  { name: "MAKITA", logo: "/images/logos/makita.png" },
+  { name: "HONDA", logo: "/images/logos/honda.png" },
+  { name: "ATLAS-COPCO", logo: "/images/logos/atlas-copco.png" },
+  { name: "MILWAUKEE", logo: "/images/logos/milwaukee.png" },
+  { name: "BOSCH", logo: "/images/logos/kubota.png" },
+  { name: "HILTI", logo: "/images/logos/nivel.png" }
 ];
 
 const equipmentImages = [
@@ -74,8 +74,8 @@ const faqItems = [
 ];
 
 const newsItems = [
-  { title: "Zľava na elektrocentrály", desc: "Pri prenájme na 3+ dni zľava 20%", badge: "-20%", image: "/images/akcie/akcia1.webp" },
-  { title: "Nové mini rýpadlá", desc: "Rozšírili sme vozový park o 3 nové stroje", badge: "NOVINKA", image: "/images/akcie/akcia2.webp" },
+  { title: "Akcia pre nových zákazníkov", desc: "Každý novoregistrovaný zákazník ma u nás nájomné na jeden deň zdarma na malé náradie viac info na našej prevádzke", badge: "1-deň ZDARMA", image: "/images/akcie/akcia1.webp" },
+  { title: "Fukár na listie", desc: "Máte listie všade kam sa pozriete? Prídťe si k nám požičiať výkonný fúkar ", badge: "NOVINKA 10€/deň", image: "/images/akcie/akcia2.webp" },
   { title: "Víkendová akcia 2+1", desc: "Platíte len 2 dni namiesto 3", badge: "2+1", image: "/images/akcie/akcia3.webp" },
   { title: "Vernostný program", desc: "Stáli zákazníci získavajú až 15% zľavu", badge: "VIP", image: "/images/akcie/akcia4.webp" },
   { title: "Doprava zdarma", desc: "Pri objednávke nad 200€ po BA a Senec", badge: "ZDARMA", image: "/images/akcie/akcia5.webp" }
@@ -466,7 +466,7 @@ const newsItems = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
         {newsItems.map((item) => (
           <a 
-            href="/pozicovna-naradia"
+            href="/pozicovna-naradia/male-naradie"
             class="group bg-zinc-900 border border-[#FF6600]/20 hover:border-[#FF6600] rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02]"
           >
             <div class="relative h-48 overflow-hidden">
