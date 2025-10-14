@@ -6,125 +6,255 @@ const categories = [
     title: "Malé náradie",
     url: "/pozicovna-naradia/male-naradie",
     image: "/images/categories/male-naradie.webp",
-    description:
-      "Ručné náradie, malá stavebná mechanizácia, vykurovacie zariadenia, čerpadlá, meracia technika, záhradná technika.",
+    description: "Ručné náradie, vŕtačky, brúsky, píly, vysávače, čerpadlá, meracia technika",
+    badge: "BESTSELLER"
   },
   {
     title: "Stredná mechanizácia",
     url: "/pozicovna-naradia/stredna-mechanizacia",
     image: "/images/categories/stredna-mechanizacia.webp",
-    description:
-      "Vibračné nohy a dosky, cestné píly, elektrocentrály, kompresory, miešačky a ďalšie.",
+    description: "Vibračné dosky, elektrocentrály, kompresory, cestné rezačky, miešačky",
+    badge: null
   },
   {
     title: "Ťažká technika",
     url: "/pozicovna-naradia/tazka-technika",
     image: "/images/categories/tazka-technika.webp",
-    description:
-      "Pásové mini a midi rýpadlá, veľké pásové a kolesové rýpadlá, nakladače, dumpre, valce.",
+    description: "Bagre, rýpadlá, nakladače, dumpre, valce - s obsluhou aj bez",
+    badge: "S OBSLUHOU"
   },
   {
     title: "Pracovné plošiny",
     url: "/pozicovna-naradia/pracovne-plosiny",
     image: "/images/categories/pracovne-plosiny.webp",
-    description:
-      "Pracovné plošiny – interiérové aj exteriérové pre prácu vo výške.",
+    description: "Interiérové a exteriérové plošiny pre prácu vo výške až do 18m",
+    badge: null
   },
   {
     title: "Vybavenie staveniska",
     url: "/pozicovna-naradia/vybavenie-staveniska",
     image: "/images/categories/vybavenie-staveniska.webp",
-    description:
-      "Kontajnery (kancelárske, skladové, sanitárne), vrátnice, mobilné oplotenie a zábrany, mobilné toalety.",
+    description: "Kontajnery, vrátnice, oplotenie, zábrany, mobilné toalety",
+    badge: null
   },
   {
-    title: "Autá a prívesné vozíky",
+    title: "Autá a prívesy",
     url: "/pozicovna-naradia/auta-privesy",
     image: "/images/categories/auta-privesy.webp",
-    description:
-      "Autá, dodávky a prívesné vozíky na prevoz techniky a materiálu.",
+    description: "Dodávky, nákladné autá, prívesné vozíky na prepravu techniky",
+    badge: null
   },
 ];
 
 const benefits = [
-  { icon: "🚚", title: "Rýchla doprava", description: "Dovoz techniky na stavbu do 24 hodín" },
-  { icon: "🔧", title: "Servis v cene", description: "Technická podpora a urgentné opravy zadarmo" },
-  { icon: "💳", title: "Flexibilné platby", description: "Platba kartou, hotovosť alebo faktúra" },
-  { icon: "👨‍🔧", title: "S obsluhou", description: "Stroje s kvalifikovanou obsluhou na požiadanie" },
-  { icon: "📞", title: "24/7 podpora", description: "Non-stop technická linka a pohotovosť" },
+  { 
+    icon: "🚚", 
+    title: "Rýchla doprava", 
+    description: "Dovoz na stavbu do 24h"
+  },
+  { 
+    icon: "🔧", 
+    title: "Servis v cene", 
+    description: "Opravy a podpora zadarmo"
+  },
+  { 
+    icon: "💳", 
+    title: "Flexibilné platby", 
+    description: "Karta, hotovosť, faktúra"
+  },
+  { 
+    icon: "👨‍🔧", 
+    title: "S obsluhou", 
+    description: "Stroje s kvalifikovaným strojníkom"
+  },
+  { 
+    icon: "📞", 
+    title: "Non-stop linka", 
+    description: "Podpora 24/7, aj cez víkend"
+  },
 ];
 
 const vipBenefits = [
-  { icon: "💎", title: "VIP zľavy až 25%", description: "Exkluzívne cenové zvýhodnenia pre stálych klientov" },
-  { icon: "🎯", title: "Prioritná rezervácia", description: "Prednostné právo na najnovšie a najpopulárnejšie stroje" },
-  { icon: "🚛", title: "Bezplatná doprava", description: "Dovoz a odvoz techniky zadarmo v rámci Bratislavy" },
-  { icon: "⚡", title: "Express servis", description: "Prioritné riešenie požiadaviek a urgentné zásahy" },
-  { icon: "📊", title: "Osobný manažér", description: "Dedikovaný kontakt pre všetky vaše projekty" },
+  { 
+    icon: "💎", 
+    title: "Zľavy až 25%", 
+    description: "Exkluzívne ceny pre VIP"
+  },
+  { 
+    icon: "🎯", 
+    title: "Priorita", 
+    description: "Prednostné rezervácie"
+  },
+  { 
+    icon: "🚛", 
+    title: "Doprava zdarma", 
+    description: "V rámci Bratislavy"
+  },
+  { 
+    icon: "⚡", 
+    title: "Express", 
+    description: "Urgentné požiadavky"
+  },
+  { 
+    icon: "📊", 
+    title: "Osobný manager", 
+    description: "Dedikovaný kontakt"
+  },
 ];
 
 const newMachines = [
-  { title: "Makita HM1203C", category: "Búracie kladivá", image: "/images/new-machines/makita-hm1203c.webp", price: "7€/deň", description: "Výkonné búracie kladivo s SDS-MAX uchytením", features: ["1100W","8,3kg","SDS-MAX"] },
-  { title: "Vibračný valec RD24", category: "Vibračné valce", image: "/images/new-machines/valec-rd24.webp", price: "45€/deň", description: "Kompaktný vibračný valec pre menšie plochy", features: ["680kg","850mm","Diesel"] },
-  { title: "Elektrocentrála 15kW", category: "Elektrocentrály", image: "/images/new-machines/elektrocentrala-15kw.webp", price: "35€/deň", description: "Výkonná elektrocentrála s tichým chodom", features: ["15kW","400V/230V","Diesel"] },
-  { title: "Fúkar na lístie", category: "Záhradná technika", image: "/images/new-machines/fukar-listie.webp", price: "10€/deň", description: "Výkonný fúkar pre jesenné upratovanie", features: ["2-takt","1,2kW","Benzín"] },
+  { 
+    title: "Makita HM1203C", 
+    category: "Búracie kladivá", 
+    image: "/images/new/makita-hm1203c.webp", 
+    price: "7€/deň", 
+    description: "Výkonné búracie kladivo 1100W s SDS-MAX", 
+    features: ["1100W","8,3kg","SDS-MAX"]
+  },
+  { 
+    title: "RD24 Vibračný valec", 
+    category: "Zhutňovanie", 
+    image: "/images/new/valec-rd24.webp", 
+    price: "45€/deň", 
+    description: "Kompaktný vibračný valec 680kg", 
+    features: ["680kg","850mm","Diesel"]
+  },
+  { 
+    title: "Elektrocentrála 15kW", 
+    category: "Energetika", 
+    image: "/images/new/centrala-15kw.webp", 
+    price: "35€/deň", 
+    description: "Výkonná elektrocentrála s tichým chodom", 
+    features: ["15kW","400V/230V","Diesel"]
+  },
+  { 
+    title: "Stihl BG 86 Fúkač", 
+    category: "Záhradná technika", 
+    image: "/images/new/fukar-bg86.webp", 
+    price: "10€/deň", 
+    description: "Profesionálny fúkač na lístie", 
+    features: ["2-takt","1,2kW","Benzín"]
+  },
+];
+
+const popularMachines = [
+  { name: "Hilti TE 3000-AVR", category: "Búracie kladivá", price: "12€/deň" },
+  { name: "Wacker Neuson DPU 4045", category: "Vibračné dosky", price: "18€/deň" },
+  { name: "Honda EU30i", category: "Elektrocentrály", price: "28€/deň" },
+  { name: "Yanmar SV17", category: "Mini bagre", price: "95€/deň" },
+  { name: "JLG 1930ES", category: "Pracovné plošiny", price: "65€/deň" },
+  { name: "Husqvarna K970", category: "Rezačky", price: "22€/deň" },
 ];
 ---
 
-<Layout title="Požičovňa náradia - ROYAL STROJE" description="Profesionálny prenájom stavebnej techniky a náradia. Malé náradie, ťažká technika, manipulačná technika. Senec a celé Slovensko.">
-  <!-- HERO – kompaktný a technický (V2) -->
-  <section class="relative py-14 md:py-20">
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="h-px w-full bg-gradient-to-r from-transparent via-orange-500/40 to-transparent"></div>
+<Layout 
+  title="Požičovňa náradia a stavebnej techniky | ROYAL STROJE Senec"
+  description="Profesionálny prenájom stavebného náradia, strojov a techniky v Senci. Bagre, rýpadlá, elektrocentrály, vibračné dosky, pracovné plošiny. Doprava zdarma. ☎ 0948 555 551"
+>
+  
+  <!-- HERO -->
+  <section class="relative py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-900 to-black"></div>
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-[#FF6600]/20 rounded-full blur-3xl"></div>
     </div>
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <span class="inline-block font-sub tracking-[.18em] text-[11px] md:text-xs text-orange-400/90 border border-orange-500/30 rounded-full px-3 py-1 bg-white/[0.03]">
-        Profesionálny prenájom náradia
-      </span>
-      <h1 class="font-display text-3xl md:text-5xl font-black mt-4 leading-tight">
-        Požičovňa náradia pre domácich majstrov, živnostníkov a firmy
-      </h1>
-      <p class="text-zinc-400 mt-4 md:mt-5 max-w-3xl mx-auto">
-        Široký výber <span class="text-orange-400 font-semibold">profesionálneho náradia</span> a stavebnej techniky za férové ceny.
-        Od ručného náradia až po ťažkú mechanizáciu.
-      </p>
-      <!-- drobné štatistiky – decentné -->
-      <div class="mt-6 md:mt-8 flex items-center justify-center gap-5 md:gap-8 text-zinc-400">
-        <div class="text-center"><div class="font-black text-2xl text-orange-500">500+</div><div class="text-[11px] uppercase tracking-wide">strojov</div></div>
-        <span class="text-zinc-600">•</span>
-        <div class="text-center"><div class="font-black text-2xl text-orange-500">25+</div><div class="text-[11px] uppercase tracking-wide">rokov</div></div>
-        <span class="text-zinc-600">•</span>
-        <div class="text-center"><div class="font-black text-2xl text-orange-500">1000+</div><div class="text-[11px] uppercase tracking-wide">klientov</div></div>
+
+    <div class="relative max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center max-w-4xl mx-auto">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-4">
+          Profesionálny prenájom
+        </span>
+        
+        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-5">
+          Požičovňa náradia<br class="hidden sm:block"/>
+          a <span class="text-[#FF6600]">stavebnej techniky</span>
+        </h1>
+
+        <p class="text-white/90 text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-8">
+          Od ručného náradia až po ťažkú mechanizáciu. Profesionálne vybavenie pre domácich majstrov, živnostníkov a firmy. Doprava na stavbu do 24 hodín.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a 
+            href="tel:+421948555551"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-base rounded-full hover:scale-105 transition-all duration-300 shadow-xl w-full sm:w-auto justify-center"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            0948 555 551
+          </a>
+          <a 
+            href="#kategorie"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white font-bold rounded-full hover:bg-white/10 hover:border-white/30 transition-all w-full sm:w-auto justify-center"
+          >
+            Zobraziť kategórie
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 9l-7 7-7-7"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- KATEGÓRIE – grid 3×2, karty V2 -->
-  <section class="relative py-12 md:py-16 bg-zinc-950/60">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-8 md:mb-12">
-        <h2 class="font-display text-2xl md:text-4xl font-black">Naše kategórie</h2>
-        <p class="text-zinc-400 mt-3">Vyberte si z ponuky profesionálnej techniky</p>
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- KATEGÓRIE -->
+  <section id="kategorie" class="py-16 md:py-20 bg-zinc-950">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
+          Široká ponuka
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Naše <span class="text-[#FF6600]">kategórie</span>
+        </h2>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto">
+          Vyberte si z ponuky profesionálnej techniky pre každý typ projektu
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {categories.map((c, i) => (
-          <a href={c.url} class="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] hover:border-orange-500/40 transition shadow-[0_6px_30px_rgba(0,0,0,.25)] reveal" style={`animation-delay:${i*60}ms`}>
-            <div class="relative h-56">
-              <!-- obrazok + jemný tmavý gradient ktorý ide až po úplné dno -->
-              <img src={c.image} alt={c.title} loading="lazy"
-                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
-              <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/40"></div>
-              <!-- jemný spodný glass panel, aby text čitateľný a žiadna „neprefiltrovaná“ hrana -->
-              <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent"></div>
+        {categories.map((cat) => (
+          <a 
+            href={cat.url}
+            class="group overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 hover:border-[#FF6600]/50 transition-all duration-300"
+          >
+            {/* Image */}
+            <div class="relative h-56 overflow-hidden">
+              <img 
+                src={cat.image} 
+                alt={cat.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+              
+              {/* Badge */}
+              {cat.badge && (
+                <span class="absolute top-4 right-4 px-3 py-1 bg-[#FF6600] text-black text-xs font-black tracking-wide rounded-full">
+                  {cat.badge}
+                </span>
+              )}
             </div>
 
-            <div class="p-5 md:p-6">
-              <h3 class="font-extrabold text-lg md:text-xl">{c.title}</h3>
-              <p class="text-sm text-zinc-400 mt-1.5">{c.description}</p>
+            {/* Content */}
+            <div class="p-6">
+              <h3 class="text-xl font-black text-white group-hover:text-[#FF6600] transition-colors mb-3">
+                {cat.title}
+              </h3>
 
-              <div class="mt-4 inline-flex items-center gap-2 text-orange-400 font-semibold text-sm border border-orange-500/30 rounded-md px-3 py-2 bg-white/[0.02] group-hover:bg-white/[0.04] group-hover:translate-x-0.5 transition">
-                Zobraziť ponuku
-                <svg viewBox="0 0 24 24" class="w-4 h-4"><path d="M5 12h14m-7-7 7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <p class="text-white/70 text-sm leading-relaxed mb-4">
+                {cat.description}
+              </p>
+
+              <div class="inline-flex items-center gap-2 text-[#FF6600] font-bold text-sm group-hover:gap-3 transition-all">
+                <span>Zobraziť ponuku</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14m-7-7l7 7-7 7"/>
+                </svg>
               </div>
             </div>
           </a>
@@ -133,58 +263,91 @@ const newMachines = [
     </div>
   </section>
 
-  <!-- BENEFITY – elegantné chips-karty -->
-  <section class="relative py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-8 md:mb-12">
-        <h2 class="font-display text-2xl md:text-4xl font-black">Prečo ROYAL STROJE?</h2>
-        <p class="text-zinc-400 mt-3">Profesionálne služby s osobným prístupom</p>
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- BENEFITY -->
+  <section class="py-16 md:py-20 bg-zinc-900">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Prečo si vybrať <span class="text-[#FF6600]">ROYAL STROJE</span>?
+        </h2>
+        <p class="text-white/80 text-lg">
+          Profesionálne služby s osobným prístupom
+        </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
-        {benefits.map((b,i)=>(
-          <div class="reveal rounded-xl border border-white/10 bg-white/[0.03] px-4 py-5 text-center hover:border-orange-500/40 transition" style={`animation-delay:${i*60}ms`}>
-            <div class="text-3xl mb-2">{b.icon}</div>
-            <div class="font-bold">{b.title}</div>
-            <div class="text-xs text-zinc-400 mt-1">{b.description}</div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        {benefits.map((benefit) => (
+          <div class="bg-zinc-950 border border-white/10 rounded-xl p-6 text-center hover:border-[#FF6600]/50 hover:bg-zinc-900 transition-all duration-300">
+            <div class="text-4xl mb-3">{benefit.icon}</div>
+            <h4 class="font-bold text-white text-sm mb-2">{benefit.title}</h4>
+            <p class="text-white/60 text-xs leading-relaxed">{benefit.description}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- NOVÉ STROJE – karty so značkou NOVINKA -->
-  <section class="relative py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-8 md:mb-12">
-        <h2 class="font-display text-2xl md:text-4xl font-black">Nové stroje v požičovni</h2>
-        <p class="text-zinc-400 mt-3">Najnovšie prírastky v našej flotile</p>
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- NOVÉ STROJE -->
+  <section class="py-16 md:py-20 bg-zinc-950">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
+          Novinky
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Nové stroje v <span class="text-[#FF6600]">ponuke</span>
+        </h2>
+        <p class="text-white/80 text-lg">
+          Najnovšie prírastky v našej flotile
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {newMachines.map((m,i)=>(
-          <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] hover:border-orange-500/40 transition shadow-[0_6px_30px_rgba(0,0,0,.25)] reveal" style={`animation-delay:${i*60}ms`}>
-            <div class="relative h-44">
-              <img src={m.image} alt={m.title} loading="lazy"
-                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-[1.06]" />
-              <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/35"></div>
-              <span class="absolute top-2 right-2 text-[10px] font-black tracking-wide px-2 py-1 rounded-md bg-orange-500 text-black">
+        {newMachines.map((machine) => (
+          <div class="group bg-zinc-900 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/50 transition-all duration-300">
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src={machine.image} 
+                alt={machine.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2 py-1 bg-[#FF6600] text-black text-xs font-black rounded">
                 NOVINKA
               </span>
             </div>
+
             <div class="p-5">
-              <div class="flex items-center justify-between text-xs mb-2">
-                <span class="px-2 py-1 rounded bg-white/5 text-zinc-400 border border-white/10 uppercase">{m.category}</span>
-                <span class="font-extrabold text-orange-400">{m.price}</span>
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-white/70">
+                  {machine.category}
+                </span>
+                <span class="font-black text-[#FF6600]">{machine.price}</span>
               </div>
-              <h3 class="font-bold">{m.title}</h3>
-              <p class="text-sm text-zinc-400 mt-1">{m.description}</p>
-              <div class="flex flex-wrap gap-1.5 mt-3">
-                {m.features.map(f=>(
-                  <span class="text-[11px] px-2 py-1 rounded border border-orange-500/30 text-orange-400 bg-white/[0.02]">{f}</span>
+
+              <h4 class="font-bold text-white mb-2">{machine.title}</h4>
+              <p class="text-white/60 text-sm mb-3">{machine.description}</p>
+
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {machine.features.map((feature) => (
+                  <span class="text-xs px-2 py-1 bg-[#FF6600]/10 border border-[#FF6600]/30 text-[#FF6600] rounded">
+                    {feature}
+                  </span>
                 ))}
               </div>
-              <a href="tel:+421948555551" class="mt-4 w-full inline-flex justify-center items-center gap-2 rounded-md bg-gradient-to-br from-orange-500 to-orange-600 text-black font-extrabold py-2 hover:brightness-110 transition">
+
+              <a 
+                href="tel:+421948555551"
+                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-sm rounded-lg hover:scale-105 transition-all"
+              >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                </svg>
                 Rezervovať
               </a>
             </div>
@@ -194,41 +357,60 @@ const newMachines = [
     </div>
   </section>
 
-  <!-- VIP PROGRAM – zlaté akcenty, V2 -->
-  <section class="relative py-12 md:py-16 bg-zinc-950/60 overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="mx-auto max-w-6xl h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent"></div>
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- VIP PROGRAM -->
+  <section class="relative py-16 md:py-20 bg-zinc-900 overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
     </div>
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-8 md:mb-12">
-        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full font-extrabold text-[11px] tracking-[.18em] bg-gradient-to-br from-yellow-400 to-yellow-300 text-black shadow">
-          <span>👑</span> VIP PROGRAM
+
+    <div class="relative max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-yellow-400 to-yellow-300 text-black text-xs font-black uppercase tracking-wide rounded-full mb-4">
+          <span>👑</span>
+          VIP PROGRAM
         </span>
-        <h2 class="font-display text-2xl md:text-4xl font-black mt-4">Staňte sa <span class="bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">VIP klientom</span></h2>
-        <p class="text-zinc-400 mt-3">Exkluzívne výhody a prémiové služby pre našich partnerov</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Staňte sa <span class="bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">VIP klientom</span>
+        </h2>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto">
+          Exkluzívne výhody a prémiové služby pre našich partnerov
+        </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5 mb-8">
-        {vipBenefits.map((v,i)=>(
-          <div class="reveal rounded-xl border border-yellow-300/25 bg-yellow-300/[0.06] px-4 py-5 text-center hover:border-yellow-300/50 transition" style={`animation-delay:${i*60}ms`}>
-            <div class="text-3xl mb-2">{v.icon}</div>
-            <div class="font-bold text-yellow-300">{v.title}</div>
-            <div class="text-xs text-zinc-300 mt-1">{v.description}</div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-10">
+        {vipBenefits.map((benefit) => (
+          <div class="bg-yellow-300/5 border border-yellow-300/30 rounded-xl p-6 text-center hover:border-yellow-300/50 hover:bg-yellow-300/10 transition-all duration-300">
+            <div class="text-4xl mb-3">{benefit.icon}</div>
+            <h4 class="font-bold text-yellow-300 text-sm mb-2">{benefit.title}</h4>
+            <p class="text-white/70 text-xs">{benefit.description}</p>
           </div>
         ))}
       </div>
 
-      <div class="rounded-2xl border border-yellow-300/30 bg-gradient-to-br from-yellow-300/10 to-orange-500/10 p-6 md:p-8 text-center">
-        <h3 class="font-display text-xl md:text-2xl font-black">Ako získať VIP status?</h3>
-        <p class="text-zinc-300 mt-2 max-w-2xl mx-auto">
+      <div class="bg-gradient-to-br from-yellow-300/10 to-[#FF6600]/10 border border-yellow-300/30 rounded-2xl p-8 md:p-10 text-center">
+        <h3 class="text-2xl md:text-3xl font-black text-white mb-3">
+          Ako získať VIP status?
+        </h3>
+        <p class="text-white/80 text-base max-w-2xl mx-auto mb-6">
           VIP status získate automaticky podľa objemu prenájmov alebo po osobnej konzultácii. Kontaktujte nás a pripravíme vám riešenie na mieru.
         </p>
-        <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href="tel:+421948555551" class="inline-flex items-center gap-2 rounded-md bg-gradient-to-br from-yellow-300 to-yellow-200 text-black font-extrabold px-5 py-2 shadow hover:brightness-110 transition">
-            <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 0 1 1-1H6.7a1 1 0 0 1 1 1c0 1.27.2 2.47.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
-            Zavolajte teraz
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a 
+            href="tel:+421948555551"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-yellow-300 to-yellow-200 text-black font-black rounded-full hover:scale-105 transition-all shadow-xl"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            Zavolať teraz
           </a>
-          <a href="/kontakt" class="inline-flex items-center gap-2 rounded-md border border-yellow-300/60 text-yellow-300 font-bold px-5 py-2 hover:bg-yellow-300/10 transition">
+          <a 
+            href="/kontakt"
+            class="inline-flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-yellow-300/50 text-yellow-300 font-bold rounded-full hover:bg-yellow-300/10 transition-all"
+          >
             Získať VIP status
           </a>
         </div>
@@ -236,37 +418,312 @@ const newMachines = [
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="relative py-12 md:py-16">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-transparent p-6 md:p-10 text-center">
-        <h3 class="font-display text-2xl md:text-3xl font-black">Potrebujete poradiť s výberom?</h3>
-        <p class="text-zinc-300 mt-2">Odpovieme rýchlo a odporučíme vhodný stroj pre váš projekt.</p>
-        <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href="tel:+421948555551" class="inline-flex items-center gap-2 rounded-md bg-gradient-to-br from-orange-500 to-orange-600 text-black font-extrabold px-6 py-3 shadow hover:brightness-110 transition">
-            ☎️ 0948 555 551
-          </a>
-          <a href="/kontakt" class="inline-flex items-center gap-2 rounded-md border border-orange-500/60 text-orange-400 font-bold px-6 py-3 hover:bg-orange-500/10 transition">
-            Kontaktný formulár
-          </a>
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- POPULÁRNE STROJE -->
+  <section class="py-16 md:py-20 bg-zinc-950">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">
+          Najpopulárnejšie <span class="text-[#FF6600]">stroje</span>
+        </h2>
+        <p class="text-white/80 text-lg">
+          Najčastejšie požičiavané položky našimi zákazníkmi
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {popularMachines.map((machine) => (
+          <div class="flex items-center justify-between p-5 bg-zinc-900 border border-white/10 rounded-xl hover:border-[#FF6600]/50 hover:bg-zinc-800 transition-all">
+            <div>
+              <h4 class="font-bold text-white mb-1">{machine.name}</h4>
+              <p class="text-white/60 text-sm">{machine.category}</p>
+            </div>
+            <div class="text-right">
+              <div class="font-black text-[#FF6600]">{machine.price}</div>
+              <a href="tel:+421948555551" class="text-xs text-white/60 hover:text-white transition">
+                Rezervovať →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- FAQ -->
+  <section class="py-16 md:py-20 bg-zinc-900">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
+          Často kladené otázky
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Máte <span class="text-[#FF6600]">otázky</span>?
+        </h2>
+        <p class="text-white/80 text-lg">
+          Odpovede na najčastejšie otázky o prenájme
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="space-y-4">
+          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
+            <button 
+              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="font-bold text-white text-base">Ako funguje prenájom náradia?</span>
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
+                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
+              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
+                Prenájom je jednoduchý: zavolajte nám, vyberte si náradie, dohodnite termín. Pri preberaní podpíšete zmluvu a zložíte kauciu. Minimálna doba prenájmu je 1 deň. Náradie si môžete vyzdvihnúť osobne alebo vám ho dovezieme na stavbu.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
+            <button 
+              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="font-bold text-white text-base">Aké dokumenty potrebujem?</span>
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
+                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
+              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
+                Pre fyzické osoby: občiansky preukaz a druhý doklad. Pre firmy: výpis z OR, IČO a oprávnenie konať. Pri niektorých strojoch vyžadujeme strojnícky preukaz. Kauciu možno zložiť hotovosťou, kartou alebo faktúrou.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
+            <button 
+              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="font-bold text-white text-base">Poskytujete dopravu techniky?</span>
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
+                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
+              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
+                Áno, zabezpečujeme kompletnú dopravu vlastným vozovým parkom. Pre Bratislavu a okolie do 20 km účtujeme 30-50€ za cestu. Pre vzdalenejšie lokality vypracujeme individuálnu cenovú ponuku. VIP klienti majú dopravu v BA zdarma.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
+            <button 
+              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="font-bold text-white text-base">Môžem prenajať stroje s obsluhou?</span>
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
+                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
+              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
+                Samozrejme! Väčšinu ťažkej techniky poskytujeme aj s kvalifikovanou obsluhou. Cena zahŕňa hodinovú sadzbu strojníka, PHM a základné poistenie. Minimálny čas objednávky je 4 hodiny. Obsluha je dostupná aj cez víkend.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
+            <button 
+              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="font-bold text-white text-base">Čo v prípade poruchy stroja?</span>
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
+                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
+              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
+                Pri technickej poruche, ktorá nie je spôsobená nesprávnym používaním, okamžite poskytneme náhradný stroj bez dodatočných poplatkov. Máme non-stop servisnú linku. Pri poškodení spôsobenom užívateľom sa škoda rieši z kaucie.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
+            <button 
+              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="font-bold text-white text-base">Aké sú platobné možnosti?</span>
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
+                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
+              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
+                Akceptujeme platbu kartou, hotovosť aj faktúru pre firmy. Kauciu možno zložiť rovnakým spôsobom. Pre verných zákazníkov ponúkame dlhodobé zmluvy s mesačným vyúčtovaním a špeciálnymi zľavami.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:sticky lg:top-24">
+          <div class="bg-zinc-950 border border-[#FF6600]/30 rounded-2xl p-8 md:p-10">
+            <div class="mb-6 rounded-xl overflow-hidden border-2 border-[#FF6600]/20">
+              <img 
+                src="/images/faq-support.webp" 
+                alt="Potrebujete poradiť?"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+            
+            <div class="bg-black/40 rounded-xl p-6 text-center">
+              <div class="text-4xl mb-4">🤝</div>
+              <h3 class="text-2xl font-black text-white mb-3">Potrebujete radu?</h3>
+              <p class="text-white/80 text-base mb-6">
+                Náš tím odborníkov vám ochotne pomôže s výberom vhodného náradia a techniky pre váš projekt.
+              </p>
+              
+              <a 
+                href="tel:+421948555551"
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold rounded-full hover:scale-105 transition-all duration-300 mb-3"
+              >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                </svg>
+                0948 555 551
+              </a>
+
+              <div class="flex items-center justify-center gap-2 text-white/60 text-xs">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span>Online 24/7 • Odpovedáme do 5 minút</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- FINÁLNE CTA -->
+  <section class="py-16 md:py-20 bg-zinc-950">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <div class="bg-gradient-to-br from-[#FF6600]/10 to-transparent border-2 border-[#FF6600]/30 rounded-2xl p-8 md:p-12 text-center">
+        <div class="text-4xl md:text-5xl mb-6">🚀</div>
+        <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Potrebujete poradiť s <span class="text-[#FF6600]">výberom</span>?
+        </h3>
+        <p class="text-white/90 text-lg md:text-xl mb-3 max-w-2xl mx-auto">
+          Náš tím odborníkov vám ochotne pomôže nájsť správne riešenie pre váš projekt.
+        </p>
+        <p class="text-white/70 text-base mb-8">
+          Zavolajte alebo napíšte. Odpovedáme do 5 minút. Sme tu pre vás 24/7.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a 
+            href="tel:+421948555551"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-xl"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            Zavolať teraz
+          </a>
+
+          <a 
+            href="mailto:info@royalstroje.sk"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-zinc-800 border-2 border-zinc-700 text-white font-bold text-lg rounded-full hover:bg-zinc-700 hover:scale-105 transition-all duration-300"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            Napísať email
+          </a>
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
+          <a href="https://wa.me/421948555551" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            WhatsApp
+          </a>
+          <a href="https://t.me/petokrivo" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            Telegram
+          </a>
+          <span class="text-white/40">|</span>
+          <span class="flex items-center gap-2 text-white/60">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            Online non-stop
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>
 
-<style is:global>
-  /* Reveal fallback (naväzuje na Layout V2) */
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.is-visible{opacity:1;transform:none}
-</style>
-
 <script>
-  // Reveal on scroll (bez konfliktu s Layoutom – duplicitné je safe)
-  (function(){
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }});
-    }, { threshold:.12, rootMargin:'0px 0px -60px 0px' });
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-  })();
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      
+      if (!question || !answer || !icon) return;
+      
+      question.addEventListener('click', () => {
+        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+        
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          a.style.maxHeight = '0';
+        });
+        document.querySelectorAll('.faq-icon').forEach(i => {
+          i.style.transform = 'rotate(0deg)';
+        });
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.setAttribute('aria-expanded', 'false');
+        });
+        
+        if (!isOpen) {
+          answer.style.maxHeight = `${answer.scrollHeight}px`;
+          icon.style.transform = 'rotate(180deg)';
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
 </script>

@@ -29,96 +29,179 @@ const infoLinks = [
 ];
 ---
 
-<footer class="relative mt-24">
-  <!-- pozadie -->
-  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950" aria-hidden="true"></div>
-  <!-- jemné radiálne svetlá -->
-  <div
-    class="pointer-events-none absolute inset-0 -z-10
-           before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(60%_60%_at_12%_15%,rgba(255,107,0,0.12),transparent_60%)]
-           after:content-[''] after:absolute after:inset-0 after:bg-[radial-gradient(65%_60%_at_88%_85%,rgba(255,138,51,0.08),transparent_58%)]"
-    aria-hidden="true"
-  ></div>
-  <!-- horná akcentová linka -->
-  <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-orange-500/70 to-transparent"></div>
+<footer class="relative mt-24 overflow-hidden">
+  <!-- Pozadie -->
+  <div class="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-900 to-black"></div>
+  
+  <!-- Jemný radiálny gradient -->
+  <div class="absolute inset-0 opacity-30">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#FF6600]/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FF6600]/10 rounded-full blur-3xl"></div>
+  </div>
 
-  <div class="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 md:gap-12">
-      <!-- Brand & social -->
-      <div class="reveal">
-        <div class="flex items-center gap-4">
-          <!-- pevný rozmer loga -->
-          <img src="/images/logo.png" alt="ROYAL STROJE" class="h-16 w-auto"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="hidden h-16 w-16 items-center justify-center rounded-xl bg-white text-black font-extrabold">RS</div>
+  <!-- Horná separácia -->
+  <div class="h-px w-full bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
+
+  <div class="relative max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-16">
+    
+    <!-- Hlavný obsah -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
+      
+      <!-- Brand & Social -->
+      <div class="lg:col-span-1 footer-fade" data-delay="0">
+        <a href="/" class="inline-flex items-center gap-3 mb-6 group">
+          <img 
+            src="/images/logo.png" 
+            alt="ROYAL STROJE" 
+            class="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+            onerror="this.style.display='none'"
+          />
           <div>
-            <h3 class="text-white font-black text-xl leading-tight">ROYAL STROJE</h3>
-            <p class="text-orange-400 uppercase text-xs font-bold tracking-wider">
-              Prenájom • Predaj • Servis • Dovoz stavebnej techniky
+            <h3 class="text-white font-black text-lg leading-tight">ROYAL STROJE</h3>
+            <p class="text-[#FF6600] text-xs font-bold tracking-wide uppercase">
+              Prenájom • Predaj • Servis
             </p>
           </div>
-        </div>
+        </a>
 
-        <p class="text-zinc-300 mt-4 max-w-md">
-          Profesionálny prenájom náradia a stavebných strojov pre BA–SC a okolie. Rýchly servis, férové ceny a spoľahlivá doprava.
+        <p class="text-zinc-400 text-sm leading-relaxed mb-6 max-w-xs">
+          Profesionálny prenájom náradia a stavebných strojov pre Bratislavu, Senec a okolie. Spoľahlivosť a férové ceny.
         </p>
 
-        <div class="flex items-center gap-2 mt-5">
-          <a href="https://www.facebook.com/royalstroje" target="_blank" rel="noopener noreferrer"
-             class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-zinc-200 hover:text-white hover:bg-white/10 transition" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.62.77-1.62 1.56v1.86h2.76l-.44 2.91h-2.32V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/royalstroje" target="_blank" rel="noopener noreferrer"
-             class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-zinc-200 hover:text-white hover:bg-white/10 transition" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 4a6 6 0 1 0 .001 12.001A6 6 0 0 0 12 6zm0 2.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zM18 6.8a1.2 1.2 0 1 0 1.2 1.2A1.2 1.2 0 0 0 18 6.8z"/></svg>
-          </a>
-
-          <!-- WhatsApp/Telegram – logo, ale firemné farby -->
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
-             class="inline-flex h-10 px-3 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 text-black font-semibold border border-white/10 hover:brightness-110 transition" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M.057 24l1.687-6.163A11.93 11.93 0 0 1 0 11.993C0 5.373 5.373 0 11.994 0c6.62 0 11.993 5.373 11.993 11.993 0 6.62-5.373 11.994-11.993 11.994a11.95 11.95 0 0 1-6.119-1.688L.057 24zM6.6 19.2c1.676.995 3.25 1.59 5.392 1.59 5.405 0 9.799-4.393 9.799-9.798 0-5.405-4.394-9.799-9.799-9.799-5.405 0-9.798 4.394-9.798 9.799 0 2.142.596 3.716 1.59 5.392l-.999 3.646 3.815-1.83zm11.387-5.809c-.149-.074-.883-.435-1.02-.485-.137-.05-.237-.074-.336.074-.099.149-.386.485-.473.584-.087.099-.174.112-.323.037-.149-.074-.63-.232-1.2-.74-.443-.394-.743-.883-.83-1.032-.087-.149-.009-.232.065-.306.067-.066.149-.174.224-.261.074-.087.099-.149.149-.248.05-.099.025-.186-.013-.261-.037-.075-.336-.808-.462-1.105-.122-.29-.246-.253-.337-.258-.087-.004-.186-.005-.285-.005-.099 0-.261.037-.398.186-.137.149-.522.557-.522 1.359s.535 1.576.609 1.685c.074.099 1.048 1.603 2.538 2.247.354.152.63.244.846.312.355.113.678.097.933.059.285-.042.878-.359 1.002-.706.124-.347.124-.624.087-.684-.037-.06-.136-.096-.286-.17z"/></svg>
-            <span class="text-sm">WhatsApp</span>
+        <!-- Sociálne siete -->
+        <div class="flex items-center gap-3">
+          <a 
+            href="https://www.facebook.com/royalstroje" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-[#FF6600] hover:border-[#FF6600] transition-all duration-300"
+            aria-label="Facebook"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.62.77-1.62 1.56v1.86h2.76l-.44 2.91h-2.32V22c4.78-.79 8.44-4.94 8.44-9.94z"/>
+            </svg>
           </a>
 
-          <a href={TELEGRAM} target="_blank" rel="noopener noreferrer"
-             class="inline-flex h-10 px-3 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 text-black font-semibold border border-white/10 hover:brightness-110 transition" aria-label="Telegram">
-            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M9.036 15.803l-.375 5.29c.537 0 .769-.231 1.045-.508l2.507-2.396 5.197 3.805c.953.526 1.63.251 1.89-.884l3.425-16.04.001-.002c.304-1.418-.512-1.969-1.436-1.625L1.7 9.3c-1.381.537-1.36 1.311-.235 1.659l5.3 1.654L18.9 6.37c.58-.381 1.109-.171.674.21"/></svg>
-            <span class="text-sm">Telegram</span>
+          <a 
+            href="https://www.instagram.com/royalstroje" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-[#FF6600] hover:border-[#FF6600] transition-all duration-300"
+            aria-label="Instagram"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 4a6 6 0 1 0 .001 12.001A6 6 0 0 0 12 6zm0 2.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zM18 6.8a1.2 1.2 0 1 0 1.2 1.2A1.2 1.2 0 0 0 18 6.8z"/>
+            </svg>
+          </a>
+
+          <a 
+            href={WHATSAPP} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 h-10 px-4 rounded-lg bg-[#FF6600]/10 border border-[#FF6600]/30 text-[#FF6600] hover:bg-[#FF6600] hover:text-white font-semibold text-sm transition-all duration-300"
+            aria-label="WhatsApp"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163A11.93 11.93 0 0 1 0 11.993C0 5.373 5.373 0 11.994 0c6.62 0 11.993 5.373 11.993 11.993 0 6.62-5.373 11.994-11.993 11.994a11.95 11.95 0 0 1-6.119-1.688L.057 24z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+
+          <a 
+            href={TELEGRAM} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 h-10 px-4 rounded-lg bg-[#FF6600]/10 border border-[#FF6600]/30 text-[#FF6600] hover:bg-[#FF6600] hover:text-white font-semibold text-sm transition-all duration-300"
+            aria-label="Telegram"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.036 15.803l-.375 5.29c.537 0 .769-.231 1.045-.508l2.507-2.396 5.197 3.805c.953.526 1.63.251 1.89-.884l3.425-16.04.001-.002c.304-1.418-.512-1.969-1.436-1.625L1.7 9.3c-1.381.537-1.36 1.311-.235 1.659l5.3 1.654L18.9 6.37c.58-.381 1.109-.171.674.21"/>
+            </svg>
+            <span>Telegram</span>
           </a>
         </div>
       </div>
 
       <!-- Kontakt -->
-      <div class="reveal">
-        <h4 class="text-white font-extrabold uppercase tracking-wide mb-4">Kontakt</h4>
-        <ul class="space-y-3 text-zinc-300">
-          <li class="flex items-center gap-3">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
-            <a href={`tel:${PHONE.replace(/\s/g,"")}`} class="hover:text-white font-semibold">{PHONE}</a>
+      <div class="footer-fade" data-delay="100">
+        <h4 class="text-white font-bold text-base uppercase tracking-wide mb-6 relative inline-block">
+          Kontakt
+          <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-[#FF6600]"></span>
+        </h4>
+        <ul class="space-y-4">
+          <li>
+            <a 
+              href={`tel:${PHONE.replace(/\s/g,"")}`}
+              class="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group"
+            >
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:bg-[#FF6600] group-hover:border-[#FF6600] transition-all">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                </svg>
+              </div>
+              <span class="font-medium">{PHONE}</span>
+            </a>
           </li>
-          <li class="flex items-center gap-3">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5"/></svg>
-            <a href={`mailto:${EMAIL}`} class="hover:text-white font-semibold">{EMAIL}</a>
+          <li>
+            <a 
+              href={`mailto:${EMAIL}`}
+              class="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group"
+            >
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:bg-[#FF6600] group-hover:border-[#FF6600] transition-all">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5"/>
+                </svg>
+              </div>
+              <span class="font-medium">{EMAIL}</span>
+            </a>
           </li>
-          <li class="flex items-center gap-3">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z"/></svg>
-            <a href={MAPS_PREVADZKA} target="_blank" rel="noopener" class="hover:text-white">Récka cesta 182, Senec</a>
+          <li>
+            <a 
+              href={MAPS_PREVADZKA} 
+              target="_blank" 
+              rel="noopener"
+              class="flex items-start gap-3 text-zinc-400 hover:text-white transition-colors group"
+            >
+              <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 group-hover:bg-[#FF6600] group-hover:border-[#FF6600] transition-all flex-shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium">Récka cesta 182</p>
+                <p class="text-sm">903 01 Senec</p>
+              </div>
+            </a>
           </li>
-          <li class="flex items-center gap-3">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M12 20a8 8 0 100-16 8 8 0 000 16zm1-9V7h-2v4H7v2h4v4h2v-4h4v-2z"/></svg>
-            <span class="font-semibold">PO–PI: 7:00 – 16:00</span>
+          <li class="flex items-center gap-3 text-zinc-400">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 20a8 8 0 100-16 8 8 0 000 16zm1-9V7h-2v4H7v2h4v4h2v-4h4v-2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-white">Po–Pi: 7:00 – 16:00</p>
+              <p class="text-sm">So–Ne: zatvorené</p>
+            </div>
           </li>
         </ul>
       </div>
 
       <!-- Služby -->
-      <div class="reveal">
-        <h4 class="text-white font-extrabold uppercase tracking-wide mb-4">Naše služby</h4>
-        <ul class="grid grid-cols-1 gap-2">
-          {serviceLinks.map((l) => (
+      <div class="footer-fade" data-delay="200">
+        <h4 class="text-white font-bold text-base uppercase tracking-wide mb-6 relative inline-block">
+          Naše služby
+          <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-[#FF6600]"></span>
+        </h4>
+        <ul class="space-y-2.5">
+          {serviceLinks.map((link) => (
             <li>
-              <a href={l.url} class="text-zinc-300 hover:text-white inline-flex items-center gap-2">
-                <span class="h-1 w-1 rounded-full bg-orange-500"></span>{l.name}
+              <a 
+                href={link.url}
+                class="text-zinc-400 hover:text-white text-sm transition-colors inline-flex items-center gap-2 group"
+              >
+                <span class="w-1 h-1 rounded-full bg-zinc-600 group-hover:bg-[#FF6600] transition-colors"></span>
+                {link.name}
               </a>
             </li>
           ))}
@@ -126,92 +209,151 @@ const infoLinks = [
       </div>
 
       <!-- Informácie -->
-      <div class="reveal">
-        <h4 class="text-white font-extrabold uppercase tracking-wide mb-4">Informácie</h4>
-        <ul class="grid grid-cols-1 gap-2">
-          {infoLinks.map((l) => (
+      <div class="footer-fade" data-delay="300">
+        <h4 class="text-white font-bold text-base uppercase tracking-wide mb-6 relative inline-block">
+          Informácie
+          <span class="absolute bottom-0 left-0 w-12 h-0.5 bg-[#FF6600]"></span>
+        </h4>
+        <ul class="space-y-2.5">
+          {infoLinks.map((link) => (
             <li>
-              <a href={l.url} class="text-zinc-300 hover:text-white inline-flex items-center gap-2">
-                <span class="h-1 w-1 rounded-full bg-orange-500"></span>{l.name}
+              <a 
+                href={link.url}
+                class="text-zinc-400 hover:text-white text-sm transition-colors inline-flex items-center gap-2 group"
+              >
+                <span class="w-1 h-1 rounded-full bg-zinc-600 group-hover:bg-[#FF6600] transition-colors"></span>
+                {link.name}
               </a>
             </li>
           ))}
         </ul>
       </div>
+
     </div>
 
     <!-- Firemné údaje -->
-    <div class="border-y border-white/10 py-8 md:py-10 mt-4 reveal">
-      <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="border-y border-zinc-800 py-10 mb-8 footer-fade" data-delay="400">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h5 class="text-white font-black uppercase tracking-wide mb-2">Sídlo spoločnosti</h5>
-          <address class="not-italic text-zinc-300 leading-relaxed">
-            ROYAL STROJE s.r.o.<br/>Bajkalská 31, 821 05 Bratislava<br/>IČO: 12345678 • DIČ: 2023456789
+          <h5 class="text-white font-bold text-sm uppercase tracking-wide mb-3">Sídlo spoločnosti</h5>
+          <address class="not-italic text-zinc-400 text-sm leading-relaxed">
+            ROYAL STROJE s.r.o.<br/>
+            Bajkalská 31<br/>
+            821 05 Bratislava<br/>
+            IČO: 12345678 • DIČ: 2023456789
           </address>
         </div>
         <div>
-          <h5 class="text-white font-black uppercase tracking-wide mb-2">Prevádzka</h5>
-          <address class="not-italic text-zinc-300 leading-relaxed">
-            Récka cesta 182, 903 01 Senec<br/>PO–PI: 7:00 – 16:00 • SO–NE: zatvorené
+          <h5 class="text-white font-bold text-sm uppercase tracking-wide mb-3">Prevádzka</h5>
+          <address class="not-italic text-zinc-400 text-sm leading-relaxed">
+            Récka cesta 182<br/>
+            903 01 Senec<br/>
+            Po–Pi: 7:00 – 16:00<br/>
+            So–Ne: zatvorené
           </address>
         </div>
         <div>
-          <h5 class="text-white font-black uppercase tracking-wide mb-2">Platby</h5>
-          <div class="flex flex-wrap gap-2 text-sm">
-            <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-zinc-200">💳 Karta</span>
-            <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-zinc-200">💵 Hotovosť</span>
-            <span class="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-zinc-200">📄 Faktúra</span>
+          <h5 class="text-white font-bold text-sm uppercase tracking-wide mb-3">Platobné možnosti</h5>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-400 text-xs font-medium">
+              Platobná karta
+            </span>
+            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-400 text-xs font-medium">
+              Hotovosť
+            </span>
+            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-400 text-xs font-medium">
+              Faktúra
+            </span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Bottom -->
-    <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3 py-6">
-      <p class="text-zinc-400 text-sm">&copy; {currentYear} ROYAL STROJE s.r.o. Všetky práva vyhradené.</p>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left footer-fade" data-delay="500">
       <p class="text-zinc-500 text-sm">
-        Vytvoril <a href="https://royalstroje.sk" target="_blank" rel="noopener" class="text-zinc-300 hover:text-white font-semibold">Peter Krivosudský</a>
+        &copy; {currentYear} ROYAL STROJE s.r.o. Všetky práva vyhradené.
+      </p>
+      <p class="text-zinc-600 text-sm">
+        Vytvoril <a href="https://royalstroje.sk" target="_blank" rel="noopener" class="text-zinc-400 hover:text-white font-medium transition-colors">Peter Krivosudský</a>
       </p>
     </div>
   </div>
 
   <!-- JSON-LD -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ROYAL STROJE s.r.o.",
-      "telephone": "+421948555551",
-      "email": "info@royalstroje.sk",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Récka cesta 182",
-        "addressLocality": "Senec",
-        "postalCode": "903 01",
-        "addressCountry": "SK"
-      },
-      "geo": { "@type": "GeoCoordinates", "latitude": 48.22442423409257, "longitude": 17.41841256196949 },
-      "openingHours": "Mo-Fr 07:00-16:00",
-      "url": "https://royalstroje.sk"
-    }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ROYAL STROJE s.r.o.",
+    "telephone": "+421948555551",
+    "email": "info@royalstroje.sk",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Récka cesta 182",
+      "addressLocality": "Senec",
+      "postalCode": "903 01",
+      "addressCountry": "SK"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.22442423409257,
+      "longitude": 17.41841256196949
+    },
+    "openingHours": "Mo-Fr 07:00-16:00",
+    "url": "https://royalstroje.sk"
+  })} />
 </footer>
 
-<style is:global>
-  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
-  .reveal.is-visible{opacity:1; transform:translateY(0)}
+<style>
+  /* Footer fade-in animácia */
+  .footer-fade {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .footer-fade.animate {
+    animation: footerFadeIn 0.8s ease-out forwards;
+  }
+
+  @keyframes footerFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .footer-fade {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
 </style>
 
 <script>
-  (function(){
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
+  // Intersection Observer pre footer animácie
+  document.addEventListener('DOMContentLoaded', () => {
+    const footerElements = document.querySelectorAll('.footer-fade');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.getAttribute('data-delay') || '0';
+          setTimeout(() => {
+            entry.target.classList.add('animate');
+          }, parseInt(delay));
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('footer .reveal').forEach(el => io.observe(el));
-  })();
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    footerElements.forEach(el => {
+      observer.observe(el);
+    });
+  });
 </script>
