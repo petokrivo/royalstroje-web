@@ -6,7 +6,7 @@ const categories = [
     title: "Malé náradie",
     url: "/pozicovna-naradia/male-naradie",
     items: [
-      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva" },
+      { name: "Vŕtacie búracie kladivá a vŕtačky", url: "/pozicovna-naradia/male-naradie/vrtacie-buracie-kladiva-a-vrtacky" },
       { name: "Uhlové, vibračné a pásové brúsky", url: "/pozicovna-naradia/male-naradie/brusky" },
       { name: "Ručné píly a rezačky", url: "/pozicovna-naradia/male-naradie/pily-rezacky" },
       { name: "Vysávače, tepovače a tlakové čističe", url: "/pozicovna-naradia/male-naradie/vysavace-cistice" },
@@ -79,8 +79,8 @@ const mainNav = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-[1000] bg-black border-b-2 border-[#FF6600] transition-all duration-300" id="rsHeader">
-  <div class="max-w-[1800px] mx-auto px-8 flex items-center justify-between h-[90px] transition-all duration-300">
+<header class="fixed top-0 left-0 right-0 z-[1000] bg-black border-b-2 border-primary-orange transition-all duration-300" id="rsHeader">
+  <div class="max-w-[1800px] mx-auto px-8 flex items-center justify-between h-90 transition-all duration-300">
     
     <!-- Logo -->
     <a href="/" class="flex items-center gap-4 z-[1001]">
@@ -96,7 +96,7 @@ const mainNav = [
     <nav class="hidden lg:flex gap-2">
       {mainNav.map((item) => (
         <div class="relative group">
-          <a href={item.url} class="flex items-center gap-2 px-5 py-3 text-white font-semibold text-[0.95rem] rounded-lg transition-all duration-300 hover:bg-[#FF6600] whitespace-nowrap">
+          <a href={item.url} class="flex items-center gap-2 px-5 py-3 text-white font-semibold text-[0.95rem] rounded-lg transition-all duration-300 hover:bg-primary-orange whitespace-nowrap">
             {item.name}
             {item.hasDropdown && (
               <svg class="w-[18px] h-[18px] transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
@@ -106,25 +106,32 @@ const mainNav = [
           </a>
           
           {item.hasDropdown && (
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[500px] max-w-[90vw] bg-black border-2 border-[#FF6600] rounded-xl mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:mt-2 transition-all duration-300 shadow-[0_10px_40px_rgba(255,102,0,0.2)]">
+            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[500px] max-w-[90vw] bg-black border-2 border-primary-orange rounded-xl mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:mt-2 transition-all duration-300 shadow-orange-2xl">
               <div class="p-6">
                 <!-- AKORDEON - Kategórie pod sebou -->
                 <div class="flex flex-col gap-3">
                   {categories.map((category, index) => (
-                    <div class="accordion-item border border-[#FF6600]/30 rounded-xl overflow-hidden bg-[#FF6600]/5 hover:border-[#FF6600]/50 transition-all duration-300">
+                    <div class="accordion-item border border-primary-orange/30 rounded-xl overflow-hidden bg-primary-orange/5 hover:border-primary-orange/50 transition-all duration-300">
                       <button 
-                        class="accordion-header w-full flex items-center justify-between px-5 py-4 text-left bg-gradient-to-r from-[#FF6600]/10 to-transparent hover:from-[#FF6600]/20 transition-all duration-300"
+                        type="button"
+                        class="accordion-header w-full flex items-center justify-between px-5 py-4 text-left bg-gradient-to-r from-primary-orange/10 to-transparent hover:from-primary-orange/20 transition-all duration-300"
                         data-accordion-index={index}
+                        aria-expanded="false"
+                        aria-controls={`accordion-content-${index}`}
                       >
                         <span class="text-white font-bold text-base">{category.title}</span>
-                        <svg class="accordion-arrow w-5 h-5 text-[#FF6600] transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                        <svg class="accordion-arrow w-5 h-5 text-primary-orange transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                       </button>
                       
-                      <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease;">
+                      <div 
+                        id={`accordion-content-${index}`}
+                        class="accordion-content overflow-hidden transition-all duration-400 ease-in-out"
+                        style="max-height: 0;"
+                      >
                         <div class="px-5 py-4 bg-black/40">
-                          <a href={category.url} class="inline-flex items-center gap-2 px-4 py-2 mb-3 text-sm font-bold text-[#FF6600] bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-lg hover:bg-[#FF6600]/20 transition-all duration-300">
+                          <a href={category.url} class="inline-flex items-center gap-2 px-4 py-2 mb-3 text-sm font-bold text-primary-orange bg-primary-orange/10 border border-primary-orange/30 rounded-lg hover:bg-primary-orange/20 transition-all duration-300">
                             <span>Všetko v kategórii</span>
                             <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -133,8 +140,8 @@ const mainNav = [
                           
                           <div class="flex flex-col gap-1">
                             {category.items.map((subItem) => (
-                              <a href={subItem.url} class="flex items-center gap-3 px-4 py-2.5 text-white/80 text-sm rounded-lg hover:text-white hover:bg-[#FF6600]/10 transition-all duration-300 group">
-                                <span class="w-1 h-1 bg-[#FF6600]/50 rounded-full group-hover:bg-[#FF6600] group-hover:scale-150 transition-all duration-300"></span>
+                              <a href={subItem.url} class="flex items-center gap-3 px-4 py-2.5 text-white/80 text-sm rounded-lg hover:text-white hover:bg-primary-orange/10 transition-all duration-300 group">
+                                <span class="w-1 h-1 bg-primary-orange/50 rounded-full group-hover:bg-primary-orange group-hover:scale-150 transition-all duration-300"></span>
                                 <span>{subItem.name}</span>
                               </a>
                             ))}
@@ -146,9 +153,9 @@ const mainNav = [
                 </div>
                 
                 <!-- Footer CTA -->
-                <div class="border-t-2 border-[#FF6600]/20 pt-5 mt-6 text-center">
+                <div class="border-t-2 border-primary-orange/20 pt-5 mt-6 text-center">
                   <p class="text-white text-sm font-semibold mb-2">Potrebujete poradiť?</p>
-                  <a href="tel:+421948555551" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-black bg-gradient-to-r from-[#FF6600] to-[#f19000] rounded-full hover:shadow-[0_8px_30px_rgba(255,102,0,0.5)] hover:-translate-y-0.5 transition-all duration-300">
+                  <a href="tel:+421948555551" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-black bg-gradient-to-r from-primary-orange to-primary-light rounded-full hover:shadow-orange-md hover:-translate-y-0.5 transition-all duration-300">
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
                     </svg>
@@ -165,11 +172,11 @@ const mainNav = [
 
     <!-- Desktop Actions -->
     <div class="hidden lg:flex items-center gap-6">
-      <div class="flex items-center gap-2 px-4 py-2 bg-[#FF6600]/10 border border-[#FF6600] rounded-full">
-        <span class="w-2 h-2 bg-[#FF6600] rounded-full animate-pulse"></span>
-        <span class="text-[#FF6600] font-bold text-[0.85rem] tracking-wider">ONLINE 24/7</span>
+      <div class="flex items-center gap-2 px-4 py-2 bg-primary-orange/10 border border-primary-orange rounded-full">
+        <span class="w-2 h-2 bg-primary-orange rounded-full animate-pulse"></span>
+        <span class="text-primary-orange font-bold text-[0.85rem] tracking-wider">ONLINE 24/7</span>
       </div>
-      <a href="tel:+421948555551" class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#FF6600] to-[#f19000] text-white font-bold text-base rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-[0_4px_15px_rgba(255,102,0,0.3)] hover:shadow-[0_6px_20px_rgba(255,102,0,0.5)]">
+      <a href="tel:+421948555551" class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary-orange to-primary-light text-white font-bold text-base rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-orange-sm hover:shadow-orange-md">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
         </svg>
@@ -178,26 +185,26 @@ const mainNav = [
     </div>
 
     <!-- Mobile Toggle -->
-    <button class="flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border-2 border-[#FF6600] rounded-lg p-2 z-[1001]" id="mobileToggle" aria-label="Menu">
-      <span class="w-full h-[3px] bg-[#FF6600] rounded-sm transition-all duration-300"></span>
-      <span class="w-full h-[3px] bg-[#FF6600] rounded-sm transition-all duration-300"></span>
-      <span class="w-full h-[3px] bg-[#FF6600] rounded-sm transition-all duration-300"></span>
+    <button class="flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border-2 border-primary-orange rounded-lg p-2 z-[1001]" id="mobileToggle" aria-label="Menu" aria-expanded="false">
+      <span class="w-full h-[3px] bg-primary-orange rounded-sm transition-all duration-300"></span>
+      <span class="w-full h-[3px] bg-primary-orange rounded-sm transition-all duration-300"></span>
+      <span class="w-full h-[3px] bg-primary-orange rounded-sm transition-all duration-300"></span>
     </button>
   </div>
 
   <!-- Mobile Menu -->
-  <div class="fixed top-[90px] left-0 right-0 bottom-0 bg-black -translate-x-full transition-transform duration-300 overflow-y-auto z-[999]" id="mobileMenu">
+  <div class="fixed top-90 left-0 right-0 bottom-0 bg-black -translate-x-full transition-transform duration-300 overflow-y-auto z-[999]" id="mobileMenu">
     <div class="flex flex-col min-h-full">
       <nav class="flex flex-col p-6 gap-2 flex-grow">
         {mainNav.map((item) => (
-          <a href={item.url} class="px-5 py-5 text-white font-semibold text-lg border-b border-[#FF6600]/20 hover:bg-[#FF6600] hover:rounded-lg transition-all duration-300">
+          <a href={item.url} class="px-5 py-5 text-white font-semibold text-lg border-b border-primary-orange/20 hover:bg-primary-orange hover:rounded-lg transition-all duration-300">
             {item.name}
           </a>
         ))}
       </nav>
       
       <!-- Mobile Footer CTA -->
-      <div class="bg-gradient-to-br from-[#FF6600] via-[#f19000] to-[#FF6600] p-8 relative overflow-hidden">
+      <div class="bg-gradient-to-br from-primary-orange via-primary-accent to-primary-orange p-8 relative overflow-hidden">
         <!-- Dekoratívne pozadie -->
         <div class="absolute inset-0 opacity-10">
           <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl"></div>
@@ -210,7 +217,7 @@ const mainNav = [
             <p class="text-white/90 text-sm">Sme tu pre vás 24/7</p>
           </div>
           
-          <a href="tel:+421948555551" class="flex items-center justify-center gap-3 bg-white text-[#FF6600] font-bold text-xl px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+          <a href="tel:+421948555551" class="flex items-center justify-center gap-3 bg-white text-primary-orange font-bold text-xl px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
             </svg>
@@ -228,124 +235,154 @@ const mainNav = [
 </header>
 
 <!-- Header Spacer -->
-<div class="h-[90px]"></div>
+<div class="h-90"></div>
 
 <style>
   #rsHeader.scrolled {
-    @apply h-[70px];
+    @apply h-70;
   }
   
-  #rsHeader.scrolled .h-\[90px\] {
-    @apply h-[70px];
+  #rsHeader.scrolled .h-90 {
+    @apply h-70;
   }
   
   #rsHeader.scrolled #headerLogo {
     @apply h-[45px];
   }
   
-  .mobile-toggle.active span:nth-child(1) {
+  #mobileToggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
   }
   
-  .mobile-toggle.active span:nth-child(2) {
+  #mobileToggle.active span:nth-child(2) {
     opacity: 0;
   }
   
-  .mobile-toggle.active span:nth-child(3) {
+  #mobileToggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
   }
   
   .accordion-item.active .accordion-arrow {
     transform: rotate(180deg);
   }
-  
-  .accordion-item.active .accordion-content {
-    max-height: 800px !important;
-  }
-  
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.2); }
-  }
-</style>
+  </style>
 
-<script is:inline>
-  // Header scroll
-  window.addEventListener('DOMContentLoaded', () => {
+<script>
+  // Header scroll effect
+  function initHeaderScroll(): void {
     const header = document.getElementById('rsHeader');
+    if (!header) return;
     
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 50) {
-        header?.classList.add('scrolled');
-      } else {
-        header?.classList.remove('scrolled');
+    let ticking = false;
+    
+    const handleScroll = (): void => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.pageYOffset > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    }, { passive: true });
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
 
-    // Mobile menu
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
+  // Mobile menu toggle
+  function initMobileMenu(): void {
+    const mobileToggle = document.getElementById('mobileToggle') as HTMLButtonElement;
+    const mobileMenu = document.getElementById('mobileMenu') as HTMLDivElement;
+    
+    if (!mobileToggle || !mobileMenu) return;
 
-    mobileToggle?.addEventListener('click', () => {
-      mobileToggle.classList.toggle('active');
-      mobileMenu?.classList.toggle('translate-x-0');
-      mobileMenu?.classList.toggle('-translate-x-full');
-      document.body.style.overflow = mobileMenu?.classList.contains('translate-x-0') ? 'hidden' : '';
-    });
+    const toggleMenu = (): void => {
+      const isOpen = mobileMenu.classList.contains('translate-x-0');
+      
+      if (isOpen) {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('-translate-x-full');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      } else {
+        mobileMenu.classList.add('translate-x-0');
+        mobileMenu.classList.remove('-translate-x-full');
+        mobileToggle.classList.add('active');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+    };
 
-    // Close mobile menu on link click
-    const mobileLinks = mobileMenu?.querySelectorAll('a');
-    mobileLinks?.forEach(link => {
+    mobileToggle.addEventListener('click', toggleMenu);
+
+    // Close menu on link click
+    const mobileLinks = mobileMenu.querySelectorAll<HTMLAnchorElement>('a');
+    mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileToggle?.classList.remove('active');
-        mobileMenu?.classList.add('-translate-x-full');
-        mobileMenu?.classList.remove('translate-x-0');
+        mobileMenu.classList.add('-translate-x-full');
+        mobileMenu.classList.remove('translate-x-0');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
     });
 
-    // Close mobile menu on escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileMenu?.classList.contains('translate-x-0')) {
-        mobileToggle?.classList.remove('active');
-        mobileMenu?.classList.add('-translate-x-full');
-        mobileMenu?.classList.remove('translate-x-0');
+    // Close menu on Escape key
+    const handleEscape = (e: KeyboardEvent): void => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('translate-x-0')) {
+        mobileMenu.classList.add('-translate-x-full');
+        mobileMenu.classList.remove('translate-x-0');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       }
-    });
+    };
+    
+    document.addEventListener('keydown', handleEscape);
+  }
 
-    // ACCORDION FUNCTIONALITY - OPRAVENÉ A ZJEDNODUŠENÉ
-    setTimeout(() => {
-      const accordionHeaders = document.querySelectorAll('.accordion-header');
-      
-      console.log('Found accordion headers:', accordionHeaders.length);
-      
-      accordionHeaders.forEach((header, index) => {
-        console.log('Adding listener to accordion', index);
+  // Desktop accordion functionality
+  function initAccordion(): void {
+    const accordionHeaders = document.querySelectorAll<HTMLButtonElement>('.accordion-header');
+    
+    accordionHeaders.forEach((header) => {
+      header.addEventListener('click', function(this: HTMLButtonElement, e: MouseEvent) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        header.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          console.log('Accordion clicked!', index);
-          
-          const parent = this.parentElement;
-          const isActive = parent.classList.contains('active');
-          
-          // Zavri vsetky akordiony
-          document.querySelectorAll('.accordion-item').forEach(item => {
-            item.classList.remove('active');
-          });
-          
-          // Ak nebol aktivny, otvor ho
-          if (!isActive) {
-            parent.classList.add('active');
-            console.log('Opening accordion', index);
-          } else {
-            console.log('Closing accordion', index);
+        const parent = this.closest('.accordion-item') as HTMLElement | null;
+        const content = parent?.querySelector<HTMLElement>('.accordion-content');
+        const isActive = parent?.classList.contains('active');
+        
+        // Close all accordions
+        document.querySelectorAll<HTMLElement>('.accordion-item').forEach(item => {
+          item.classList.remove('active');
+          const itemContent = item.querySelector<HTMLElement>('.accordion-content');
+          if (itemContent) {
+            itemContent.style.maxHeight = '0';
           }
         });
+        
+        // Open clicked accordion if it wasn't active
+        if (!isActive && content && parent) {
+          parent.classList.add('active');
+          content.style.maxHeight = `${content.scrollHeight}px`;
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          this.setAttribute('aria-expanded', 'false');
+        }
       });
-    }, 100);
+    });
+  }
+
+  // Initialize all functionality when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    initHeaderScroll();
+    initMobileMenu();
+    initAccordion();
   });
 </script>

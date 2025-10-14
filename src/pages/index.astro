@@ -755,32 +755,37 @@ const newsItems = [
   }
 </style>
 
-<script lang="ts">
+<script>
+  // Počkaj na plné načítanie DOM
   document.addEventListener('DOMContentLoaded', () => {
-    const faqItems = document.querySelectorAll<HTMLElement>('.faq-item');
+    const faqItems = document.querySelectorAll('.faq-item');
     
     faqItems.forEach((item) => {
-      const question = item.querySelector<HTMLElement>('.faq-question');
-      const answer   = item.querySelector<HTMLElement>('.faq-answer');
-      const icon     = item.querySelector<SVGElement>('.faq-icon svg');
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon svg');
       
-      question?.addEventListener('click', () => {
-        const isOpen = !!answer && !!answer.style.maxHeight && answer.style.maxHeight !== '0px';
+      if (!question || !answer || !icon) return; // Safety check
+      
+      question.addEventListener('click', () => {
+        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
         
-        document.querySelectorAll<HTMLElement>('.faq-answer').forEach(a => {
+        // Zatvor všetky ostatné FAQ
+        document.querySelectorAll('.faq-answer').forEach(a => {
           a.style.maxHeight = '0';
         });
-        document.querySelectorAll<SVGElement>('.faq-icon svg').forEach(i => {
+        document.querySelectorAll('.faq-icon svg').forEach(i => {
           i.style.transform = 'rotate(0deg)';
         });
-        document.querySelectorAll<HTMLElement>('.faq-question').forEach(q => {
+        document.querySelectorAll('.faq-question').forEach(q => {
           q.setAttribute('aria-expanded', 'false');
         });
         
-        if (!isOpen && answer) {
+        // Otvor aktuálny FAQ (ak nebol otvorený)
+        if (!isOpen) {
           answer.style.maxHeight = `${answer.scrollHeight}px`;
-          if (icon) icon.style.transform = 'rotate(180deg)';
-          if (question) question.setAttribute('aria-expanded', 'true');
+          icon.style.transform = 'rotate(180deg)';
+          question.setAttribute('aria-expanded', 'true');
         }
       });
     });
