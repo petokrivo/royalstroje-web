@@ -1,316 +1,715 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-const TITLE = "Zemné a búracie práce – ROYAL STROJE";
-const DESC  = "Výkopy, búracie práce s hydraulickým kladivom, prípojky, planírovanie, odvoz odpadu a dovoz materiálu. Senec • Bratislava a okolie.";
+
+const PHONE = "+421 948 555 551";
+const EMAIL = "info@royalstroje.sk";
+const WHATSAPP = "https://wa.me/421948555551";
+const TELEGRAM = "https://t.me/petokrivo";
+
+const services = [
+  {
+    icon: "⚒️",
+    title: "Výkopy a základy",
+    description: "Výkopy základov, bazénov, pivníc, žúmp a ČOV. Práca s presnosťou na milimetre.",
+    features: ["Základy domov", "Bazény", "Pivnice", "Žumpy a ČOV"]
+  },
+  {
+    icon: "🔧",
+    title: "Inžinierske siete",
+    description: "Vodovodné a kanalizačné prípojky, šachty, montážne jamy, uloženie sietí.",
+    features: ["Vodovod", "Kanalizácia", "Plyn", "Elektroinštalácie"]
+  },
+  {
+    icon: "🔨",
+    title: "Búracie práce",
+    description: "Demolácia s hydraulickým kladivom. Bezpečné a efektívne búranie konštrukcií.",
+    features: ["Búranie stien", "Hydraulické kladivo", "Demolácia objektov", "Spevnené plochy"]
+  },
+  {
+    icon: "🚜",
+    title: "Terénne úpravy",
+    description: "Zrovnávanie pozemkov, planírovanie, sadové úpravy, odvodnenie.",
+    features: ["Planírovanie", "Odvodnenie", "Terasy", "Záhrady"]
+  },
+  {
+    icon: "🔩",
+    title: "Vŕtanie stĺpikov",
+    description: "Presné vŕtanie dier pre plotové stĺpiky vrtákmi Ø 300 / 400 mm.",
+    features: ["Ploty", "Pergoly", "Prístrešky", "Brány"]
+  },
+  {
+    icon: "🚛",
+    title: "Odvoz a dovoz",
+    description: "Likvidácia odpadu kontajnermi 3–10 m³, dovoz štrku, piesku, makadamu.",
+    features: ["Odvoz sute", "Dovoz materiálu", "Kontajnery", "Preprava"]
+  }
+];
+
+const fleet = [
+  {
+    category: "Pásové rýpadlá",
+    machines: [
+      { name: "CASE 9021", type: "Ťažké výkopy" },
+      { name: "Kobelco SK210", type: "Univerzálne" },
+      { name: "New Holland e215b", type: "Výkonné" },
+      { name: "JCB JS210", type: "Presné" }
+    ]
+  },
+  {
+    category: "Mini rýpadlá",
+    machines: [
+      { name: "JCB 801", type: "Kompaktné" },
+      { name: "Komatsu PC12R", type: "Malé priestory" },
+      { name: "Bobcat 323", type: "Záhrady" },
+      { name: "Bobcat 430", type: "Základy" },
+      { name: "Terex HR18", type: "Prípojky" }
+    ]
+  },
+  {
+    category: "Mobilné rýpadlá",
+    machines: [
+      { name: "JCB 160", type: "Flexible" }
+    ]
+  },
+  {
+    category: "Rýpadlo-nakladač",
+    machines: [
+      { name: "JCB 4CX", type: "Kombinácia" },
+      { name: "Fiat Hitachi 100/200", type: "Výkonné" },
+      { name: "Fiat Kobelco 110", type: "Stavby" },
+      { name: "New Holland 115", type: "Terénne úpravy" }
+    ]
+  },
+  {
+    category: "Nakladače",
+    machines: [
+      { name: "Bobcat 185", type: "Malé práce" },
+      { name: "Bobcat 773", type: "Stredné" },
+      { name: "Bobcat 300", type: "Veľké" }
+    ]
+  },
+  {
+    category: "Ďalšie stroje",
+    machines: [
+      { name: "Pásový sklápač", type: "Yanmar, Yamahuchi" },
+      { name: "Vibračný valec W 1500", type: "Zhutňovanie" },
+      { name: "Buldozer Liebherr 732B", type: "Planírovanie" }
+    ]
+  },
+  {
+    category: "Doprava",
+    machines: [
+      { name: "SCANIA 6×6", type: "Ťažká doprava" },
+      { name: "Mercedes 4×4", type: "Terénna doprava" },
+      { name: "Avia", type: "Odvoz odpadu" }
+    ]
+  }
+];
+
+const gallery = [
+  {
+    image: "/images/zemne/hydraulicke-kladivo.webp",
+    title: "Hydraulické kladivo",
+    desc: "Búracie práce a demolácie"
+  },
+  {
+    image: "/images/zemne/scania.webp",
+    title: "Zemné práce",
+    desc: "Nakládka a prevoz materiálu"
+  },
+  {
+    image: "/images/zemne/kontajnery-odvoz.webp",
+    title: "Kontajnery 3-10 m³",
+    desc: "Odvoz sute a odpadu"
+  },
+  {
+    image: "/images/zemne/hydraulicke-klieste.webp",
+    title: "Hydraulické kliešte",
+    desc: "Likvidácia betónového sila"
+  },
+  {
+    image: "/images/zemne/kolesove-rypadlo.webp",
+    title: "Výkopy základov",
+    desc: "Kolesové rýpadlo JCB"
+  },
+  {
+    image: "/images/zemne/traktor-bager.webp",
+    title: "Úprava svahu dunaja",
+    desc: "Práce v obmedzených priestoroch"
+  }
+];
+
+const benefits = [
+  {
+    icon: "⚡",
+    title: "Rýchle termíny",
+    description: "Flexibilné nasadenie strojov podľa vašich potrieb"
+  },
+  {
+    icon: "💰",
+    title: "Férové ceny",
+    description: "Transparentné kalkulácie bez skrytých poplatkov"
+  },
+  {
+    icon: "🎯",
+    title: "Presná práca",
+    description: "Moderná GPS technika a skúsený tím"
+  },
+  {
+    icon: "📋",
+    title: "Komplexný servis",
+    description: "Od obhliadky až po finálne úpravy terénu"
+  },
+  {
+    icon: "📸",
+    title: "Dokumentácia",
+    description: "Fotodokumentácia priebehu prác"
+  }
+];
+
+const processSteps = [
+  {
+    number: "01",
+    title: "Dopyt a konzultácia",
+    description: "Kontaktujte nás s popisom projektu, polohou a požadovaným termínom. Poradíme vám s výberom techniky."
+  },
+  {
+    number: "02",
+    title: "Obhliadka a cenová ponuka",
+    description: "Zhodnotíme podmienky na mieste, pripravíme presnú kalkuláciu. Obhliadka je ZDARMA."
+  },
+  {
+    number: "03",
+    title: "Nasadenie techniky",
+    description: "Príchod strojov v dohodnutom termíne. Začiatok prác s priebežným informovaním zákazníka."
+  },
+  {
+    number: "04",
+    title: "Odvoz a dokončenie",
+    description: "Likvidácia odpadu, finálne úpravy terénu, odovzdanie diela a fotodokumentácia."
+  }
+];
+
+const faqItems = [
+  {
+    question: "Aký je rozsah pôsobenia vašich služieb?",
+    answer: "Primárne pôsobíme v regióne Senec, Bratislava a okolie do 50 km. Pre väčšie projekty pôsobíme aj v celom západoslovenskom regióne. Kontaktujte nás a dohodneme podmienky."
+  },
+  {
+    question: "Ako rýchlo môžete začať s prácami?",
+    answer: "Štandardne dokážeme nasadiť techniku do 2-5 pracovných dní od obhliadky. Pri urgentných prípadoch aj skôr, v závislosti od dostupnosti strojov a pracovníkov."
+  },
+  {
+    question: "Potrebujem na práce stavebné povolenie?",
+    answer: "Závisí od typu a rozsahu prác. Základy domov a väčšie terénne úpravy zvyčajne vyžadujú stavebné povolenie. Menší výkop pre bazén alebo prípojky inžinierskych sietí niekedy nie. Poradíme vám pri konzultácii."
+  },
+  {
+    question: "Ako sa stanovuje cena za práce?",
+    answer: "Cena závisí od typu práce, náročnosti terénu, vzdialenosti a požadovanej techniky. Kalkulujeme spravedlivo podľa odpracovaných hodín alebo m³. Po obhliadke dostanete presnú cenovú ponuku."
+  },
+  {
+    question: "Čo je potrebné zabezpečiť pred začatím prác?",
+    answer: "Prístup pre stroje (min. šírka 2,5-3m), označenie inžinierskych sietí, povolenie od správcu komunikácie pri práci na verejnom priestranstve. Detaily prejdeme pri obhliadke."
+  },
+  {
+    question: "Zabezpečujete aj odvoz a dovoz materiálu?",
+    answer: "Áno, máme vlastnú dopravu. Odvážame suť kontajnermi 3-10 m³, dovážame štrk, piesok, makadam, zeminu. Môžeme zabezpečiť aj likvidáciu odpadu vrátane papierov."
+  }
+];
 ---
-<Layout title={TITLE} description={DESC}>
+
+<Layout 
+  title="Zemné a búracie práce - ROYAL STROJE | Senec, Bratislava"
+  description="Profesionálne zemné a búracie práce v Senci a Bratislave. Výkopy základov, prípojky, demolácie s hydraulickým kladivom, terénne úpravy, odvoz odpadu. ☎ 0948 555 551"
+>
+
   <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-wrap">
-      <div class="hero-text">
-        <div class="badge">Pozemné stavby • Rekonštrukcie • Prípojky</div>
-        <h1>Zemné a búracie práce</h1>
-        <p>Rýchle termíny • Presná práca • Férové ceny</p>
-        <div class="actions">
-          <a class="btn" href="tel:+421948555551">Zavolať 0948 555 551</a>
-          <a class="btn ghost" href="/kontakt">Napísať správu</a>
+  <section class="relative min-h-[70vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/zemne/hero-excavator.webp" 
+        alt="Zemné a búracie práce - ROYAL STROJE" 
+        class="w-full h-full object-cover brightness-[1.05]"
+        loading="eager"
+        width="1920"
+        height="1080"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-16 md:py-20">
+      <div class="max-w-4xl">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#FF6600]/20 backdrop-blur-sm border border-[#FF6600]/40 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-4 shadow-lg">
+          <span>⚒️</span>
+          Pozemné stavby • Rekonštrukcie • Prípojky
+        </span>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6 drop-shadow-2xl">
+          Zemné a <span class="text-[#FF6600]">búracie práce</span>
+        </h1>
+
+        <p class="text-white/95 text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed mb-8 drop-shadow-lg">
+          Výkopy základov, prípojky inžinierskych sietí, búracie práce s hydraulickým kladivom, terénne úpravy a odvoz odpadu.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-8">
+          <span class="flex items-center gap-2 text-white/90 text-sm md:text-base font-semibold">
+            <span class="text-[#FF6600]">✓</span> Rýchle termíny
+          </span>
+          <span class="hidden sm:inline text-[#FF6600]">|</span>
+          <span class="flex items-center gap-2 text-white/90 text-sm md:text-base font-semibold">
+            <span class="text-[#FF6600]">✓</span> Presná práca
+          </span>
+          <span class="hidden sm:inline text-[#FF6600]">|</span>
+          <span class="flex items-center gap-2 text-white/90 text-sm md:text-base font-semibold">
+            <span class="text-[#FF6600]">✓</span> Férové ceny
+          </span>
+          <span class="hidden md:inline text-[#FF6600]">|</span>
+          <span class="flex items-center gap-2 text-white/90 text-sm md:text-base font-semibold">
+            <span class="text-[#FF6600]">✓</span> Vlastná doprava
+          </span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <a 
+            href={`tel:${PHONE.replace(/\s/g,"")}`}
+            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-base rounded-full hover:scale-105 transition-all duration-300 shadow-2xl w-full sm:w-auto justify-center"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            {PHONE}
+          </a>
+
+          <a 
+            href="/kontakt"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-black/50 backdrop-blur-md border-2 border-white/30 text-white font-bold rounded-full hover:bg-black/60 hover:border-white/40 transition-all w-full sm:w-auto justify-center shadow-xl"
+          >
+            Napísať správu
+          </a>
         </div>
       </div>
-
-      <figure class="hero-img">
-        <img src="/images/zemne/hero.webp" alt="Mini-rýpadlo pri výkope základov" loading="eager" />
-      </figure>
-    </div>
-    <div class="divider"></div>
-  </section>
-
-  <!-- INTRO / CLAIM -->
-  <section class="intro">
-    <div class="wrap intro-wrap">
-      <p class="lead">
-        Realizujeme výkopy základov, prípojky inžinierskych sietí, búracie práce s hydraulickým kladivom,
-        planírovanie, odvoz sute a dovoz materiálu. Pôsobíme v regióne Senec – Bratislava a okolie.
-      </p>
-      <ul class="chips">
-        <li>Obhliadka a nacenenie</li>
-        <li>Profesionálni strojníci</li>
-        <li>Vlastná doprava</li>
-        <li>Poistenie zodpovednosti</li>
-      </ul>
     </div>
   </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- INTRO -->
+  <section class="py-16 bg-zinc-950">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-white/95 text-lg md:text-xl lg:text-2xl leading-relaxed mb-8">
+          Realizujeme výkopy základov, prípojky inžinierskych sietí, búracie práce s hydraulickým kladivom, 
+          planírovanie terénu, odvoz sute a dovoz materiálu. Pôsobíme v regióne <strong class="text-[#FF6600] font-black">Senec – Bratislava a okolie</strong>.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <span class="px-4 py-2 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-white/90 text-sm font-bold">
+            📋 Obhliadka zdarma
+          </span>
+          <span class="px-4 py-2 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-white/90 text-sm font-bold">
+            👨‍🔧 Profesionálni strojníci
+          </span>
+          <span class="px-4 py-2 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-white/90 text-sm font-bold">
+            🚛 Vlastná doprava
+          </span>
+          <span class="px-4 py-2 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-white/90 text-sm font-bold">
+            🛡️ Poistenie
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- SLUŽBY -->
-  <section class="services">
-    <div class="wrap">
-      <h2 class="h-center">Čo ponúkame</h2>
-      <ul class="list">
-        <li><span class="dot"></span> Výkopy základov, bazénov, pivníc, žúmp a ČOV</li>
-        <li><span class="dot"></span> Vodovodné a kanalizačné prípojky, inžinierske siete, šachty, montážne jamy</li>
-        <li><span class="dot"></span> Vŕtanie dier pre plotové stĺpiky – vrtáky Ø 300 / 400&nbsp;mm (mini-rýpadlo)</li>
-        <li><span class="dot"></span> Búracie práce s hydraulickým kladivom</li>
-        <li><span class="dot"></span> Zrovnávanie a úpravy pozemkov (planírovanie)</li>
-        <li><span class="dot"></span> Nakládka a vykládka kamiónov manipulačnou technikou</li>
-        <li><span class="dot"></span> Odvoz a likvidácia odpadu – kontajnery 3 / 4 / 5 / 7 / 10&nbsp;m³</li>
-        <li><span class="dot"></span> Dovoz materiálu – štrk, piesok, makadam, zemina</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- NAŠA TECHNIKA (vycentrovaná mriežka, lepšia čitateľnosť) -->
-  <section class="fleet">
-    <div class="wrap">
-      <h2 class="h-center">Naša technika</h2>
-      <p class="sub h-center">Vlastníme stavebné stroje viacerých kategórií – pravidelne servisované a modernizované.</p>
-
-      <div class="fleet-grid">
-        <div class="col">
-          <h3>Pásové rýpadlá</h3>
-          <ul>
-            <li>CASE 9021</li>
-            <li>Kobelco SK210</li>
-            <li>New Holland e215b</li>
-            <li>JCB JS210</li>
-          </ul>
-        </div>
-
-        <div class="col">
-          <h3>Mobilné rýpadlá</h3>
-          <ul>
-            <li>JCB 160</li>
-          </ul>
-
-          <h3 class="mt">Rýpadlo – nakladač</h3>
-          <ul>
-            <li>JCB 4CX</li>
-            <li>Fiat Hitachi 100 / 200</li>
-            <li>Fiat Kobelco 110</li>
-            <li>New Holland 115</li>
-          </ul>
-        </div>
-
-        <div class="col">
-          <h3>Mini rýpadlo</h3>
-          <ul>
-            <li>JCB 801 (a IPH JCB)</li>
-            <li>Komatsu PC12R</li>
-            <li>Bobcat 323</li>
-            <li>Bobcat 430</li>
-            <li>Terex HR18</li>
-          </ul>
-        </div>
-
-        <div class="col">
-          <h3>Malý nakladač</h3>
-          <ul>
-            <li>Bobcat 185</li>
-            <li>Bobcat 773</li>
-            <li>Bobcat 300</li>
-            <li>IPH Bobcat</li>
-          </ul>
-        </div>
-
-        <div class="col">
-          <h3>Ďalšie stroje</h3>
-          <ul>
-            <li>Pásový sklápač (Yanmar, Yamahuchi)</li>
-            <li>Vibračný valec (W 1500)</li>
-            <li>Buldozer (Liebherr 732B)</li>
-          </ul>
-        </div>
-
-        <div class="col">
-          <h3>Doprava</h3>
-          <ul>
-            <li>SCANIA 6×6</li>
-            <li>Mercedes 4×4</li>
-            <li>Avia – odvoz zeminy, štrku, piesku a sute na skládku</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALÉRIA / TECHNIKA -->
-  <section class="gallery">
-    <div class="wrap grid">
-      <figure class="card">
-        <img src="/images/zemne/kladivo.webp" alt="Hydraulické kladivo – búracie práce" loading="lazy" />
-        <figcaption>Hydraulické kladivo – búracie práce</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="/images/zemne/nakladac.webp" alt="Nakladač – nakládka a prevoz materiálu" loading="lazy" />
-        <figcaption>Nakladač – nakládka a prevoz</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="/images/zemne/kontajner.webp" alt="Kontajnery 3–10 m³ – odvoz odpadu" loading="lazy" />
-        <figcaption>Kontajnery 3–10 m³ – odvoz odpadu</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="/images/zemne/material.webp" alt="Dovoz materiálu: štrk, piesok, makadam, zemina" loading="lazy" />
-        <figcaption>Dovoz štrku, piesku, makadamu</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- PREČO MY + PROCES -->
-  <section class="reasons">
-    <div class="wrap">
-      <h2 class="h-center">Prečo si vybrať nás</h2>
-      <div class="grid4">
-        <div class="b"><span class="dot"></span><h3>Rýchle termíny</h3><p>Flexibilné nasadenie strojov – Senec, Bratislava a okolie.</p></div>
-        <div class="b"><span class="dot"></span><h3>Férové ceny</h3><p>Transparentné kalkulácie bez skrytých poplatkov.</p></div>
-        <div class="b"><span class="dot"></span><h3>Presná práca</h3><p>Skúsený tím a moderná technika šetria čas aj náklady.</p></div>
-        <div class="b"><span class="dot"></span><h3>Profesionálna komunikácia</h3><p>Jasné termíny, priebežné informovanie, fotodokumentácia.</p></div>
-      </div>
-
-      <div class="process">
-        <h3>Postup spolupráce</h3>
-        <ol>
-          <li><strong>Dopyt:</strong> pošlite stručný popis, polohu a termín.</li>
-          <li><strong>Obhliadka & ponuka:</strong> zhodnotíme podmienky, pripravíme cenu.</li>
-          <li><strong>Nasadenie techniky:</strong> príchod strojov a realizácia prác.</li>
-          <li><strong>Odvoz & dočistenie:</strong> likvidácia sute a finálne úpravy.</li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- INFO BLOK (tvoje texty doplnené a zrovnané) -->
-  <section class="about">
-    <div class="wrap about-wrap">
-      <div class="note">
-        <p>
-          Oslovte s vašou požiadavkou práve nás – firmu, ktorá je skutočným profesionálom svojho odvetvia.
-          Okrem veľkého množstva stavebných strojov a príslušenstva prinášame aj dlhoročné skúsenosti,
-          ktoré sme nazbierali u stovák spokojných zákazníkov.
-        </p>
-        <p>
-          Zadajte nezáväznú objednávku prenájmu našich stavebných strojov pre vašu stavbu a my vám
-          vypracujeme cenovú ponuku.
+  <section class="py-16 md:py-20 bg-zinc-900">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
+          Čo ponúkame
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Kompletné <span class="text-[#FF6600]">zemné práce</span>
+        </h2>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto">
+          Od prvého výkopu až po finálne terénne úpravy
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- CTA PÁS -->
-  <section class="cta">
-    <div class="wrap cta-in">
-      <h2>Potrebujete zemné alebo búracie práce?</h2>
-      <p>Zavolajte – dohodneme obhliadku a termín v najbližšom možnom čase.</p>
-      <div class="actions">
-        <a class="btn" href="tel:+421948555551">Zavolať +421 948 555 551</a>
-        <a class="btn ghost" href="/kontakt">Napísať správu</a>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service) => (
+          <div class="bg-zinc-950 border border-white/10 rounded-xl p-6 hover:border-[#FF6600]/50 hover:bg-zinc-900 transition-all duration-300">
+            <div class="text-4xl mb-4">{service.icon}</div>
+            <h3 class="text-xl font-black text-white mb-3">{service.title}</h3>
+            <p class="text-white/80 text-sm leading-relaxed mb-4">{service.description}</p>
+            
+            <ul class="space-y-2">
+              {service.features.map((feature) => (
+                <li class="flex items-center gap-2 text-white/70 text-sm">
+                  <span class="w-1.5 h-1.5 bg-[#FF6600] rounded-full"></span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- NAŠA TECHNIKA -->
+  <section class="py-16 md:py-20 bg-zinc-950">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
+          Vozový park
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Naša <span class="text-[#FF6600]">technika</span>
+        </h2>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto">
+          Vlastníme široké portfólio stavebných strojov – pravidelně servisované a modernizované
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {fleet.map((category) => (
+          <div class="bg-zinc-900 border border-white/10 rounded-xl p-6 hover:border-[#FF6600]/30 transition-all">
+            <h3 class="text-lg font-black text-[#FF6600] mb-4">{category.category}</h3>
+            <ul class="space-y-3">
+              {category.machines.map((machine) => (
+                <li class="border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                  <div class="font-bold text-white text-sm mb-1">{machine.name}</div>
+                  <div class="text-white/60 text-xs">{machine.type}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- GALÉRIA -->
+  <section class="py-16 md:py-20 bg-zinc-900">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
+          Realizácie
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Naše <span class="text-[#FF6600]">stroje v akcii</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {gallery.map((item) => (
+          <div class="group bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/50 transition-all duration-300">
+            <div class="relative h-64 overflow-hidden">
+              <img 
+                src={item.image} 
+                alt={item.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-125"
+                loading="lazy"
+                width="600"
+                height="400"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-black text-white mb-2">{item.title}</h3>
+              <p class="text-white/70 text-sm">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- PREČO MY -->
+  <section class="py-16 md:py-20 bg-zinc-950">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Prečo si vybrať <span class="text-[#FF6600]">nás</span>?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {benefits.map((benefit) => (
+          <div class="bg-zinc-900 border border-white/10 rounded-xl p-6 text-center hover:border-[#FF6600]/50 hover:bg-zinc-950 transition-all">
+            <div class="text-4xl mb-4">{benefit.icon}</div>
+            <h3 class="text-lg font-bold text-white mb-2">{benefit.title}</h3>
+            <p class="text-white/70 text-sm">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- PROCES -->
+      <div class="bg-gradient-to-br from-[#FF6600]/5 to-transparent border border-[#FF6600]/20 rounded-2xl p-8 md:p-10">
+        <h3 class="text-2xl md:text-3xl font-black text-white mb-8 text-center">
+          Ako prebieha <span class="text-[#FF6600]">spolupráca</span>
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {processSteps.map((step) => (
+            <div class="relative">
+              <div class="bg-zinc-900 border border-white/10 rounded-xl p-6 h-full">
+                <div class="text-5xl font-black text-[#FF6600]/20 mb-4">{step.number}</div>
+                <h4 class="text-lg font-bold text-white mb-3">{step.title}</h4>
+                <p class="text-white/70 text-sm leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- FAQ -->
+  <section class="py-16 md:py-20 bg-zinc-900">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
+          Často kladené otázky
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Máte <span class="text-[#FF6600]">otázky</span>?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="space-y-4">
+          {faqItems.map((item, index) => (
+            <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
+              <button 
+                class="faq-question w-full px-6 py-4 text-left flex items-center justify-between gap-4"
+                type="button"
+                aria-expanded="false"
+                aria-controls={`faq-zemne-${index}`}
+              >
+                <span class="font-bold text-white text-base">{item.question}</span>
+                <div class="faq-icon flex-shrink-0 w-10 h-10 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
+                  <svg class="w-5 h-5 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500" id={`faq-zemne-${index}`}>
+                <div class="px-6 pb-5 text-white/85 text-sm leading-relaxed">{item.answer}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="lg:sticky lg:top-24">
+          <div class="bg-zinc-950 border border-[#FF6600]/30 rounded-2xl p-8">
+            <div class="mb-6 rounded-xl overflow-hidden border-2 border-[#FF6600]/20">
+              <img 
+                src="/images/zemne/cta-support.webp" 
+                alt="Kontaktujte nás pre nezáväznú konzultáciu"
+                class="w-full h-48 object-cover"
+                loading="lazy"
+                width="600"
+                height="300"
+              />
+            </div>
+            
+            <div class="bg-black/40 rounded-xl p-6 text-center">
+              <div class="text-4xl mb-4">🤝</div>
+              <h3 class="text-2xl font-black text-white mb-3">Potrebujete poradiť?</h3>
+              <p class="text-white/90 text-base mb-6">
+                Náš tím vám ochotne pomôže zhodnotiť vaš projekt a pripraví cenovú ponuku na mieru.
+              </p>
+              
+              <div class="space-y-3">
+                <a 
+                  href={`tel:${PHONE.replace(/\s/g,"")}`}
+                  class="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold rounded-full hover:scale-105 transition-all duration-300"
+                >
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                  </svg>
+                  {PHONE}
+                </a>
+
+                <a 
+                  href={`mailto:${EMAIL}`}
+                  class="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-zinc-800 border border-zinc-700 text-white font-bold rounded-full hover:bg-zinc-700 transition-all"
+                >
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                  Napísať email
+                </a>
+              </div>
+
+              <div class="flex items-center justify-center gap-2 text-white/60 text-xs mt-4">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span>Online 24/7 • Obhliadka ZDARMA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- INFO SEKCIA -->
+  <section class="py-16 bg-zinc-950">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-[#FF6600]/10 to-transparent border border-[#FF6600]/20 rounded-2xl p-8 md:p-10">
+          <div class="text-center mb-8">
+            <div class="text-5xl mb-4">⚒️</div>
+            <h3 class="text-2xl md:text-3xl font-black text-white mb-4">
+              Oslovte <span class="text-[#FF6600]">profesionálov</span>
+            </h3>
+          </div>
+
+          <div class="space-y-6 text-white/85 text-base leading-relaxed">
+            <p>
+              Firma <strong class="text-white font-bold">ROYAL STROJE</strong> je skutočným profesionálom v oblasti 
+              zemných a búracích prác. Okrem veľkého množstva stavebných strojov a príslušenstva prinášame 
+              aj <strong class="text-[#FF6600] font-bold">dlhoročné skúsenosti</strong>, ktoré sme nazbierali 
+              u stoviek spokojných zákazníkov.
+            </p>
+            
+            <p>
+              Disponujeme vlastným vozovým parkom, ktorý zahŕňa mini rýpadlá, pásové rýpadlá, nakladače, 
+              hydraulické kladivá, vibračné valce a ďalšiu špecializovanú techniku. Všetky stroje sú 
+              pravidelne servisované a modernizované.
+            </p>
+
+            <p>
+              Realizujeme projekty rôzneho rozsahu – od výkopov prípojok pre rodinné domy až po 
+              rozsiahle terénne úpravy a demolácie. Pôsobíme primárne v regióne 
+              <strong class="text-white font-bold">Senec, Bratislava a okolie</strong>.
+            </p>
+
+            <div class="bg-black/30 rounded-xl p-6 mt-8 border border-[#FF6600]/20">
+              <p class="text-center font-bold text-lg text-white mb-2">
+                💡 Zaujíma vás cenová ponuka?
+              </p>
+              <p class="text-center text-white/80">
+                Zadajte nezáväznú objednávku a my vám vypracujeme kalkuláciu presne na mieru vášho projektu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- FINÁLNE CTA -->
+  <section class="py-16 md:py-20 bg-zinc-950">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <div class="bg-gradient-to-br from-[#FF6600]/10 to-transparent border-2 border-[#FF6600]/30 rounded-2xl p-8 md:p-12 text-center">
+        <div class="text-4xl md:text-5xl mb-6">🚜</div>
+        <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          Potrebujete zemné alebo <span class="text-[#FF6600]">búracie práce</span>?
+        </h3>
+        <p class="text-white/90 text-lg md:text-xl mb-3 max-w-2xl mx-auto">
+          Zavolajte nám ešte dnes – dohodneme obhliadku a termín v najbližšom možnom čase.
+        </p>
+        <p class="text-white/70 text-base mb-8">
+          Obhliadka je ZDARMA • Transparentné ceny • Rýchle termíny
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a 
+            href={`tel:${PHONE.replace(/\s/g,"")}`}
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-xl"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            Zavolať teraz
+          </a>
+
+          <a 
+            href={`mailto:${EMAIL}`}
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-zinc-800 border-2 border-zinc-700 text-white font-bold text-lg rounded-full hover:bg-zinc-700 hover:scale-105 transition-all duration-300"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            Napísať email
+          </a>
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
+          <a href={WHATSAPP} target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            WhatsApp
+          </a>
+          <a href={TELEGRAM} target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            Telegram
+          </a>
+          <span class="text-white/40">|</span>
+          <span class="flex items-center gap-2 text-white/60">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            Online non-stop
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>
 
-<style>
-/* GRID / WRAP */
-.wrap{ width:100%; max-width:1200px; margin:0 auto; padding:0 24px; }
-
-/* HERO */
-.hero{
-  background:
-    radial-gradient(160% 220% at 0% 0%, #181818 0%, #111 55%, #0a0a0a 100%),
-    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
-  color:#fff;
-}
-.hero-wrap{
-  display:grid; grid-template-columns:1.05fr .95fr; gap:28px;
-  align-items:center; padding:48px 0 36px;
-}
-.badge{
-  display:inline-block; margin-bottom:10px;
-  padding:8px 14px; border-radius:999px;
-  background:rgba(255,107,0,.08); border:1px solid rgba(255,107,0,.28);
-  color:#ffa366; font-weight:800; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
-}
-.hero-text h1{font-size:clamp(32px,5.5vw,56px);margin:0 0 8px;font-weight:900;letter-spacing:.2px}
-.hero-text p{margin:0 0 18px;color:#eaeaea;font-size:clamp(16px,2vw,18px)}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;background:#f66000;color:#000;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:900;box-shadow:0 6px 24px rgba(246,96,0,.28)}
-.btn:hover{transform:translateY(-1px)}
-.btn.ghost{background:transparent;border:2px solid #f66000;color:#f66000}
-.hero-img img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 60px rgba(0,0,0,.35)}
-.divider{height:2px;background:linear-gradient(90deg,transparent,rgba(255,107,0,.6),transparent)}
-
-/* INTRO */
-.intro{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06) }
-.intro-wrap{ padding:22px 0 }
-.lead{ margin:0 auto; max-width:900px; text-align:center; color:#e5e5e5; font-size:18px }
-.chips{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:14px 0 2px; padding:0; list-style:none }
-.chips li{ padding:8px 12px; border-radius:999px; background:#171717; border:1px solid rgba(255,255,255,.1); color:#cfcfcf; font-weight:700; font-size:13px }
-
-/* NADPISY */
-.h-center{ text-align:center; margin:0 auto 10px; color:#fff; font-size:26px; font-weight:900; letter-spacing:.2px }
-.sub{ color:#cfcfcf; margin-bottom:18px }
-
-/* SLUŽBY */
-.services{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:26px 0 10px }
-.list{ display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); padding:12px 0 22px; margin:0; list-style:none }
-.list li{ background:#171717; border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:12px 14px }
-.dot{width:10px;height:10px;border-radius:50%;background:#f66000;box-shadow:0 0 10px rgba(246,96,0,.6);display:inline-block;margin-right:10px;vertical-align:middle}
-
-/* FLEET */
-.fleet{ background:#0b0b0b; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:28px 0 }
-.fleet-grid{
-  display:grid; gap:18px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.col{
-  background:#141414; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px 16px 14px;
-}
-.col h3{ margin:4px 0 8px; font-size:16px; color:#ffa85c; font-weight:900; letter-spacing:.2px }
-.col ul{ list-style:none; padding:0; margin:0; display:grid; gap:6px }
-.col li{ color:#d6d6d6 }
-.mt{ margin-top:14px }
-
-/* GALÉRIA */
-.gallery{ background:#0b0b0b; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:26px 0 }
-.grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)) }
-.card{
-  background:#141414; border:1px solid rgba(255,255,255,.10); border-radius:16px; overflow:hidden;
-  transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.card:hover{ transform:translateY(-2px); box-shadow:0 18px 60px rgba(0,0,0,.35); border-color:rgba(246,96,0,.45) }
-.card img{ width:100%; height:auto; display:block }
-.card figcaption{ padding:10px 12px; font-weight:800 }
-
-/* PREČO MY + PROCES */
-.reasons{ background:#0f0f0f; color:#fff; border-bottom:1px solid rgba(255,255,255,.06); padding:28px 0 }
-.grid4{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:10px }
-.b{ background:#171717; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px }
-.b h3{ margin:6px 0 6px; font-weight:900 }
-.b p{ margin:0; color:#cfcfcf }
-.process{ margin-top:20px; background:#141414; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px }
-.process h3{ margin:0 0 8px; font-size:18px; color:#ffa85c; font-weight:900 }
-.process ol{ margin:0; padding-left:18px; color:#d6d6d6 }
-.process li{ margin:6px 0 }
-
-/* INFO BLOK */
-.about{ background:#0b0b0b; color:#fff; border-bottom:1px solid rgba(255,255,255,.06) }
-.about-wrap{ padding:22px 0 }
-.note{
-  max-width:950px; margin:0 auto; background:#151515; border:1px solid rgba(255,255,255,.1);
-  border-radius:16px; padding:16px 18px; color:#dcdcdc
-}
-.note p{ margin:0 0 10px }
-
-/* CTA */
-.cta{ background:linear-gradient(180deg,#111 0%, #0c0c0c 100%); color:#fff; padding:40px 0 56px }
-.cta-in{ text-align:center }
-.cta-in h2{ margin:0 0 6px; font-size:clamp(22px,4vw,32px) }
-.cta-in p{ margin:0 0 12px; color:#e5e5e5 }
-
-@media (max-width:1024px){
-  .fleet-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width:900px){
-  .hero-wrap{ grid-template-columns:1fr; padding:34px 0 24px }
-}
-@media (max-width:640px){
-  .fleet-grid{ grid-template-columns:1fr; }
-}
-</style>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon svg');
+      
+      if (!question || !answer || !icon) return;
+      
+      question.addEventListener('click', () => {
+        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+        
+        // Zatvor všetky FAQ
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          a.style.maxHeight = '0';
+        });
+        document.querySelectorAll('.faq-icon svg').forEach(i => {
+          i.style.transform = 'rotate(0deg)';
+        });
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.setAttribute('aria-expanded', 'false');
+        });
+        
+        // Otvor aktuálny (ak nebol otvorený)
+        if (!isOpen) {
+          answer.style.maxHeight = `${answer.scrollHeight}px`;
+          icon.style.transform = 'rotate(180deg)';
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>
