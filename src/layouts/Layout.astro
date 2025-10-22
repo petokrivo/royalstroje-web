@@ -114,10 +114,33 @@ const quickCategories = [
       Preskočiť na obsah
     </a>
 
-    <!-- Background Pattern -->
-    <div class="fixed inset-0 z-0 bg-gradient-to-b from-black via-zinc-950 to-black">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,102,0,0.05)_1px,transparent_0)] bg-[length:40px_40px] opacity-30"></div>
-    </div>
+   <!-- ROYAL BACKGROUND (upravené poradie + z-indexy) -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+  <!-- Gradient základ (podklad) -->
+  <div class="absolute inset-0 z-0 bg-gradient-to-br from-white via-[#FF6600]/10 to-black"></div>
+
+  <!-- Svetelné hotspoty (polopriehľadné) -->
+  <div class="absolute inset-0 z-10 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_60%),radial-gradient(circle_at_80%_80%,rgba(255,102,0,0.15),transparent_60%)]"></div>
+
+
+
+  <!-- Rohové osvetlenie -->
+  <div class="absolute inset-0 z-30 bg-[radial-gradient(600px_400px_at_15%_8%,rgba(255,255,255,0.35),transparent_70%),radial-gradient(700px_500px_at_78%_18%,rgba(255,102,0,0.22),transparent_72%)]"></div>
+
+  <!-- ✨ METALICKÁ TEXTÚRA – POSLEDNÁ VRSTVA (viditeľná) -->
+  <div
+    class="absolute inset-0 z-90 bg-center bg-cover opacity-30 mix-blend-medium-dark"
+    style="background-image:url('/images/bg/metal-texture.webp');"
+  ></div>
+</div>
+
+
+  <!-- 5) Rohové osvetlenie (jemné) -->
+  <div class="absolute inset-0 bg-[radial-gradient(600px_400px_at_15%_8%,rgba(255,255,255,0.35),transparent_70%),radial-gradient(700px_500px_at_78%_18%,rgba(255,102,0,0.22),transparent_72%)]"></div>
+</div>
+
+
+
 
     <Header />
 
