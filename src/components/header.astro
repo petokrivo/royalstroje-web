@@ -75,181 +75,270 @@ const mainNav = [
   { name: "Domov", url: "/" },
   { name: "Požičovňa náradia", url: "/pozicovna-naradia", hasDropdown: true },
   { name: "Zemné a búracie práce", url: "/zemne-buracie-prace" },
+  { name: "Partnerstvá", url: "/partnerstva" },
   { name: "Kontakt", url: "/kontakt" }
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-[1000] bg-black border-b-2 border-primary-orange transition-all duration-300" id="rsHeader">
-  <div class="max-w-[1800px] mx-auto px-8 flex items-center justify-between h-90 transition-all duration-300">
-    
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-4 z-[1001]">
-      <img src="/logo.png" alt="ROYAL STROJE" class="h-[60px] w-auto transition-all duration-300" id="headerLogo" />
-      <div class="flex flex-col">
-        <span class="hidden md:block text-white font-bold text-lg leading-tight">Požičovňa náradia</span>
-        <span class="hidden md:block text-white font-bold text-lg leading-tight">a stavebnej techniky</span>
-        <span class="block md:hidden text-white font-bold text-base">Požičovňa</span>
-      </div>
-    </a>
+<header class="fixed top-0 left-0 right-0 z-[1000] bg-black border-b-2 border-[#FF6600]" id="rsHeader">
+  <div class="max-w-[1800px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
+    <div class="flex items-center justify-between h-[85px]">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 lg:gap-4 z-[1001] shrink-0">
+        <img src="/logo.png" alt="ROYAL STROJE" class="h-[55px] w-auto" />
+        <div class="flex flex-col">
+          <span class="hidden md:block text-white font-bold text-base lg:text-lg leading-tight">Požičovňa náradia</span>
+          <span class="hidden md:block text-white font-bold text-base lg:text-lg leading-tight">a stavebnej techniky</span>
+          <span class="block md:hidden text-white font-bold text-sm">Požičovňa</span>
+        </div>
+      </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex gap-2">
-      {mainNav.map((item) => (
-        <div class="relative group">
-          <a href={item.url} class="flex items-center gap-2 px-5 py-3 text-white font-semibold text-[0.95rem] rounded-lg transition-all duration-300 hover:bg-primary-orange whitespace-nowrap">
-            {item.name}
-            {item.hasDropdown && (
-              <svg class="w-[18px] h-[18px] transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            )}
-          </a>
-          
-          {item.hasDropdown && (
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[500px] max-w-[90vw] bg-black border-2 border-primary-orange rounded-xl mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:mt-2 transition-all duration-300 shadow-orange-2xl">
-              <div class="p-6">
-                <!-- AKORDEON - Kategórie pod sebou -->
-                <div class="flex flex-col gap-3">
-                  {categories.map((category, index) => (
-                    <div class="accordion-item border border-primary-orange/30 rounded-xl overflow-hidden bg-primary-orange/5 hover:border-primary-orange/50 transition-all duration-300">
-                      <button 
-                        type="button"
-                        class="accordion-header w-full flex items-center justify-between px-5 py-4 text-left bg-gradient-to-r from-primary-orange/10 to-transparent hover:from-primary-orange/20 transition-all duration-300"
-                        data-accordion-index={index}
-                        aria-expanded="false"
-                        aria-controls={`accordion-content-${index}`}
-                      >
-                        <span class="text-white font-bold text-base">{category.title}</span>
-                        <svg class="accordion-arrow w-5 h-5 text-primary-orange transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                      </button>
-                      
-                      <div 
-                        id={`accordion-content-${index}`}
-                        class="accordion-content overflow-hidden transition-all duration-400 ease-in-out"
-                        style="max-height: 0;"
-                      >
-                        <div class="px-5 py-4 bg-black/40">
-                          <a href={category.url} class="inline-flex items-center gap-2 px-4 py-2 mb-3 text-sm font-bold text-primary-orange bg-primary-orange/10 border border-primary-orange/30 rounded-lg hover:bg-primary-orange/20 transition-all duration-300">
-                            <span>Všetko v kategórii</span>
-                            <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      <!-- Desktop Navigation + CTA -->
+      <div class="hidden lg:flex items-center gap-6 xl:gap-8">
+        <!-- Main Navigation -->
+        <nav class="flex gap-1">
+          {mainNav.map((item) => (
+            <div class="relative group">
+              <a 
+                href={item.url} 
+                class="flex items-center gap-2 px-4 py-3 text-white font-semibold text-[0.95rem] rounded-lg transition-all duration-300 hover:bg-[#FF6600] whitespace-nowrap"
+              >
+                {item.name}
+                {item.hasDropdown && (
+                  <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                )}
+              </a>
+              
+              {item.hasDropdown && (
+                <div class="absolute top-full left-1/2 -translate-x-1/2 w-[500px] max-w-[90vw] bg-black border-2 border-[#FF6600] rounded-xl mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:mt-2 transition-all duration-300 shadow-2xl shadow-[#FF6600]/20">
+                  <div class="p-6">
+                    <!-- Akordeon kategórie -->
+                    <div class="flex flex-col gap-3">
+                      {categories.map((category, index) => (
+                        <div class="accordion-item border border-[#FF6600]/30 rounded-xl overflow-hidden bg-[#FF6600]/5 hover:border-[#FF6600]/50 transition-all duration-300">
+                          <button 
+                            type="button"
+                            class="accordion-header w-full flex items-center justify-between px-5 py-4 text-left bg-gradient-to-r from-[#FF6600]/10 to-transparent hover:from-[#FF6600]/20 transition-all duration-300"
+                            data-accordion-index={index}
+                            aria-expanded="false"
+                            aria-controls={`accordion-content-${index}`}
+                          >
+                            <span class="text-white font-bold text-base">{category.title}</span>
+                            <svg class="accordion-arrow w-5 h-5 text-[#FF6600] transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
-                          </a>
+                          </button>
                           
-                          <div class="flex flex-col gap-1">
-                            {category.items.map((subItem) => (
-                              <a href={subItem.url} class="flex items-center gap-3 px-4 py-2.5 text-white/80 text-sm rounded-lg hover:text-white hover:bg-primary-orange/10 transition-all duration-300 group">
-                                <span class="w-1 h-1 bg-primary-orange/50 rounded-full group-hover:bg-primary-orange group-hover:scale-150 transition-all duration-300"></span>
-                                <span>{subItem.name}</span>
+                          <div 
+                            id={`accordion-content-${index}`}
+                            class="accordion-content overflow-hidden transition-all duration-400 ease-in-out"
+                            style="max-height: 0;"
+                          >
+                            <div class="px-5 py-4 bg-black/40">
+                              <a href={category.url} class="inline-flex items-center gap-2 px-4 py-2 mb-3 text-sm font-bold text-[#FF6600] bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-lg hover:bg-[#FF6600]/20 transition-all duration-300">
+                                <span>Všetko v kategórii</span>
+                                <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
                               </a>
-                            ))}
+                              
+                              <div class="flex flex-col gap-1">
+                                {category.items.map((subItem) => (
+                                  <a href={subItem.url} class="flex items-center gap-3 px-4 py-2.5 text-white/80 text-sm rounded-lg hover:text-white hover:bg-[#FF6600]/10 transition-all duration-300 group">
+                                    <span class="w-1 h-1 bg-[#FF6600]/50 rounded-full group-hover:bg-[#FF6600] group-hover:scale-150 transition-all duration-300"></span>
+                                    <span>{subItem.name}</span>
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
+                    
+                    <!-- Footer CTA v dropdowne -->
+                    <div class="border-t-2 border-[#FF6600]/20 pt-5 mt-6 text-center">
+                      <p class="text-white text-sm font-semibold mb-2">Potrebujete poradiť?</p>
+                      <a href="tel:+421948555551" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-black bg-gradient-to-r from-[#FF6600] to-[#ff8533] rounded-full hover:shadow-lg hover:shadow-[#FF6600]/50 hover:-translate-y-0.5 transition-all duration-300">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                        </svg>
+                        <span>0948 555 551</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                
-                <!-- Footer CTA -->
-                <div class="border-t-2 border-primary-orange/20 pt-5 mt-6 text-center">
-                  <p class="text-white text-sm font-semibold mb-2">Potrebujete poradiť?</p>
-                  <a href="tel:+421948555551" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-bold text-black bg-gradient-to-r from-primary-orange to-primary-light rounded-full hover:shadow-orange-md hover:-translate-y-0.5 transition-all duration-300">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-                    </svg>
-                    <span>0948 555 551</span>
-                  </a>
-                  <p class="text-white/60 text-xs mt-2">Sme tu pre vás 24/7</p>
-                </div>
-              </div>
+              )}
             </div>
-          )}
-        </div>
-      ))}
-    </nav>
+          ))}
+        </nav>
 
-    <!-- Desktop Actions -->
-    <div class="hidden lg:flex items-center gap-6">
-      <div class="flex items-center gap-2 px-4 py-2 bg-primary-orange/10 border border-primary-orange rounded-full">
-        <span class="w-2 h-2 bg-primary-orange rounded-full animate-pulse"></span>
-        <span class="text-primary-orange font-bold text-[0.85rem] tracking-wider">ONLINE 24/7</span>
-      </div>
-      <a href="tel:+421948555551" class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary-orange to-primary-light text-white font-bold text-base rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-orange-sm hover:shadow-orange-md">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-        </svg>
-        <span>0948 555 551</span>
-      </a>
-    </div>
-
-    <!-- Mobile Toggle -->
-    <button class="flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border-2 border-primary-orange rounded-lg p-2 z-[1001]" id="mobileToggle" aria-label="Menu" aria-expanded="false">
-      <span class="w-full h-[3px] bg-primary-orange rounded-sm transition-all duration-300"></span>
-      <span class="w-full h-[3px] bg-primary-orange rounded-sm transition-all duration-300"></span>
-      <span class="w-full h-[3px] bg-primary-orange rounded-sm transition-all duration-300"></span>
-    </button>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div class="fixed top-90 left-0 right-0 bottom-0 bg-black -translate-x-full transition-transform duration-300 overflow-y-auto z-[999]" id="mobileMenu">
-    <div class="flex flex-col min-h-full">
-      <nav class="flex flex-col p-6 gap-2 flex-grow">
-        {mainNav.map((item) => (
-          <a href={item.url} class="px-5 py-5 text-white font-semibold text-lg border-b border-primary-orange/20 hover:bg-primary-orange hover:rounded-lg transition-all duration-300">
-            {item.name}
-          </a>
-        ))}
-      </nav>
-      
-      <!-- Mobile Footer CTA -->
-      <div class="bg-gradient-to-br from-primary-orange via-primary-accent to-primary-orange p-8 relative overflow-hidden">
-        <!-- Dekoratívne pozadie -->
-        <div class="absolute inset-0 opacity-10">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl"></div>
-          <div class="absolute bottom-0 left-0 w-40 h-40 bg-white rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="relative z-10 text-center">
-          <div class="mb-6">
-            <p class="text-white text-xl font-bold mb-2">Potrebujete poradiť?</p>
-            <p class="text-white/90 text-sm">Sme tu pre vás 24/7</p>
+        <!-- CTA Tlačidlá vpravo -->
+        <div class="flex items-center gap-3 pl-6 border-l-2 border-white/10">
+          <!-- Messenger ikony -->
+          <div class="flex items-center gap-2">
+            <a 
+              href="https://wa.me/421948555551" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white hover:bg-[#25D366] hover:border-[#25D366] hover:scale-110 transition-all duration-300 group"
+              aria-label="WhatsApp kontakt"
+              title="Napíšte nám na WhatsApp"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </a>
+            
+            <a 
+              href="https://t.me/petokrivo" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white hover:bg-[#0088cc] hover:border-[#0088cc] hover:scale-110 transition-all duration-300 group"
+              aria-label="Telegram kontakt"
+              title="Napíšte nám na Telegram"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.099.155.232.171.326.016.093.036.306.02.472z"/>
+              </svg>
+            </a>
           </div>
-          
-          <a href="tel:+421948555551" class="flex items-center justify-center gap-3 bg-white text-primary-orange font-bold text-xl px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+
+          <!-- Telefón CTA -->
+          <a 
+            href="tel:+421948555551" 
+            class="flex items-center gap-2.5 px-5 py-2.5 text-sm xl:text-base font-bold text-white bg-gradient-to-r from-[#FF6600] to-[#ff8533] rounded-full hover:shadow-lg hover:shadow-[#FF6600]/50 hover:scale-105 transition-all duration-300 whitespace-nowrap"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
             </svg>
             <span>0948 555 551</span>
           </a>
-          
-          <div class="mt-4 flex items-center justify-center gap-2">
-            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-            <span class="text-white text-sm font-semibold">ONLINE 24/7</span>
+
+          <!-- ONLINE badge -->
+          <div class="flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-full">
+            <span class="w-2 h-2 bg-[#FF6600] rounded-full animate-pulse"></span>
+            <span class="text-white text-xs font-semibold whitespace-nowrap">ONLINE 24/7</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        id="mobileToggle"
+        type="button"
+        class="lg:hidden flex flex-col gap-1.5 w-10 h-10 justify-center items-center z-[1001]"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="fixed top-0 left-0 w-full h-screen bg-black z-[999] -translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto"
+  >
+    <div class="pt-[100px] pb-8 px-6">
+      <!-- Mobile Navigation -->
+      <nav class="flex flex-col gap-2 mb-8">
+        {mainNav.map((item, index) => (
+          <div class="mobile-nav-item">
+            {item.hasDropdown ? (
+              <>
+                <button
+                  type="button"
+                  class="mobile-dropdown-toggle w-full flex items-center justify-between px-5 py-4 text-white font-semibold text-base bg-white/5 border border-white/10 rounded-xl hover:bg-[#FF6600]/10 hover:border-[#FF6600]/30 transition-all duration-300"
+                  data-mobile-index={index}
+                  aria-expanded="false"
+                >
+                  <span>{item.name}</span>
+                  <svg class="mobile-dropdown-arrow w-5 h-5 text-[#FF6600] transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                
+                <div 
+                  id={`mobile-dropdown-${index}`}
+                  class="mobile-dropdown-content overflow-hidden transition-all duration-400 ease-in-out"
+                  style="max-height: 0;"
+                >
+                  <div class="pt-3 pb-2 px-3 space-y-2">
+                    {categories.map((category) => (
+                      <div class="border border-white/10 rounded-lg overflow-hidden bg-white/5">
+                        <a href={category.url} class="block px-4 py-3 text-white/90 text-sm font-semibold hover:bg-[#FF6600]/10 transition-all duration-300">
+                          {category.title}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <a href={item.url} class="block px-5 py-4 text-white font-semibold text-base bg-white/5 border border-white/10 rounded-xl hover:bg-[#FF6600]/10 hover:border-[#FF6600]/30 transition-all duration-300">
+                {item.name}
+              </a>
+            )}
+          </div>
+        ))}
+      </nav>
+
+      <!-- Mobile CTA sekcia -->
+      <div class="space-y-4 pt-6 border-t-2 border-white/10">
+        <!-- Primárny telefón CTA -->
+        <a 
+          href="tel:+421948555551" 
+          class="flex items-center justify-center gap-3 w-full px-6 py-4 text-base font-bold text-black bg-gradient-to-r from-[#FF6600] to-[#ff8533] rounded-full hover:shadow-lg hover:shadow-[#FF6600]/50 transition-all duration-300"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+          </svg>
+          <span>0948 555 551</span>
+        </a>
+
+        <!-- Messenger tlačidlá -->
+        <div class="grid grid-cols-2 gap-3">
+          <a 
+            href="https://wa.me/421948555551" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-white bg-[#25D366] rounded-full hover:bg-[#20ba5a] transition-all duration-300"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+          
+          <a 
+            href="https://t.me/petokrivo" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-white bg-[#0088cc] rounded-full hover:bg-[#0077b3] transition-all duration-300"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.099.155.232.171.326.016.093.036.306.02.472z"/>
+            </svg>
+            <span>Telegram</span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- Header Spacer -->
-<div class="h-90"></div>
+<!-- Header Spacer - fixná výška bez zmeny -->
+<div class="h-[85px]"></div>
 
 <style>
-  #rsHeader.scrolled {
-    @apply h-70;
-  }
-  
-  #rsHeader.scrolled .h-90 {
-    @apply h-70;
-  }
-  
-  #rsHeader.scrolled #headerLogo {
-    @apply h-[45px];
-  }
-  
+  /* Mobile toggle animation */
   #mobileToggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
   }
@@ -262,36 +351,18 @@ const mainNav = [
     transform: rotate(-45deg) translate(6px, -6px);
   }
   
+  /* Desktop accordion animation */
   .accordion-item.active .accordion-arrow {
     transform: rotate(180deg);
   }
-  </style>
+
+  /* Mobile dropdown animation */
+  .mobile-nav-item.active .mobile-dropdown-arrow {
+    transform: rotate(180deg);
+  }
+</style>
 
 <script>
-  // Header scroll effect
-  function initHeaderScroll(): void {
-    const header = document.getElementById('rsHeader');
-    if (!header) return;
-    
-    let ticking = false;
-    
-    const handleScroll = (): void => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (window.pageYOffset > 50) {
-            header.classList.add('scrolled');
-          } else {
-            header.classList.remove('scrolled');
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-  }
-
   // Mobile menu toggle
   function initMobileMenu(): void {
     const mobileToggle = document.getElementById('mobileToggle') as HTMLButtonElement;
@@ -320,7 +391,7 @@ const mainNav = [
     mobileToggle.addEventListener('click', toggleMenu);
 
     // Close menu on link click
-    const mobileLinks = mobileMenu.querySelectorAll<HTMLAnchorElement>('a');
+    const mobileLinks = mobileMenu.querySelectorAll<HTMLAnchorElement>('a:not(.mobile-dropdown-toggle)');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('-translate-x-full');
@@ -332,7 +403,7 @@ const mainNav = [
     });
 
     // Close menu on Escape key
-    const handleEscape = (e: KeyboardEvent): void => {
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenu.classList.contains('translate-x-0')) {
         mobileMenu.classList.add('-translate-x-full');
         mobileMenu.classList.remove('translate-x-0');
@@ -340,9 +411,7 @@ const mainNav = [
         mobileToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       }
-    };
-    
-    document.addEventListener('keydown', handleEscape);
+    });
   }
 
   // Desktop accordion functionality
@@ -379,10 +448,42 @@ const mainNav = [
     });
   }
 
+  // Mobile dropdown functionality
+  function initMobileDropdown(): void {
+    const dropdownToggles = document.querySelectorAll<HTMLButtonElement>('.mobile-dropdown-toggle');
+    
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener('click', function(this: HTMLButtonElement) {
+        const parent = this.closest('.mobile-nav-item') as HTMLElement | null;
+        const index = this.getAttribute('data-mobile-index');
+        const content = document.getElementById(`mobile-dropdown-${index}`) as HTMLElement | null;
+        const isActive = parent?.classList.contains('active');
+        
+        // Close all mobile dropdowns
+        document.querySelectorAll<HTMLElement>('.mobile-nav-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        document.querySelectorAll<HTMLElement>('.mobile-dropdown-content').forEach(dropdown => {
+          dropdown.style.maxHeight = '0';
+        });
+        
+        // Open clicked dropdown if it wasn't active
+        if (!isActive && content && parent) {
+          parent.classList.add('active');
+          content.style.maxHeight = `${content.scrollHeight}px`;
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
   // Initialize all functionality when DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
-    initHeaderScroll();
     initMobileMenu();
     initAccordion();
+    initMobileDropdown();
   });
 </script>

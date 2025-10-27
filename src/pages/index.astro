@@ -17,7 +17,7 @@ const allServices = [
   },
   {
     title: "Zemné a búracie práce",
-    description: "Výkopy základov, demolácie objektov, terénne úpravy. Práca s modernou technikou a certifikovanými strojníkmi.",
+    description: "Výkopy základov, demolácie objektov, terénne úpravy. Práca s modernou technikou a certifikovanými strojníkmi. Pracujeme rychlo efektivne a setrime cas a peniaze. Nevahajte nas kontaktovat",
     href: "/zemne-buracie-prace",
     image: "/images/services/zemne-prace.webp"
   },
@@ -233,7 +233,7 @@ const newsItems = [
     </div>
 
     <!-- PÁS VÝHOD - Na spodku hero sekcie s jemným scroll efektom -->
-    <div class="absolute bottom-0 left-0 right-0 z-20 features-bar">
+    <div class="hidden md:block absolute bottom-0 left-0 right-0 z-20 features-bar">
       <div class="bg-black/40 backdrop-blur-sm border-t border-white/10 py-3">
         <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
           <div class="flex flex-wrap justify-center items-center gap-3 md:gap-5 lg:gap-6 text-white/90">
@@ -303,8 +303,11 @@ const newsItems = [
           rel="noopener noreferrer"
           class="flex items-center gap-2.5 hover:text-[#FF6600] transition-all duration-300 group"
         >
-          <div class="flex items-center justify-center w-10 h-10 bg-[#FF6600] rounded-full group-hover:scale-110 transition-transform duration-300 border-2 border-black shadow-lg">
-            <span class="text-xl">📍</span>
+          <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-full group-hover:scale-110 transition-transform duration-300 shadow-xl">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
           </div>
           <div>
             <p class="text-white/60 text-xs font-bold uppercase tracking-wide mb-0.5">Prevádzka</p>
@@ -317,8 +320,10 @@ const newsItems = [
 
         <!-- Otváracie hodiny -->
         <div class="flex items-center gap-2.5">
-          <div class="flex items-center justify-center w-10 h-10 bg-[#FF6600] rounded-full border-2 border-black shadow-lg">
-            <span class="text-xl">🕐</span>
+          <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-full shadow-xl">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
           </div>
           <div>
             <p class="text-white/60 text-xs font-bold uppercase tracking-wide mb-0.5">Otváracie hodiny</p>
@@ -331,8 +336,10 @@ const newsItems = [
 
         <!-- Non-stop linka -->
         <div class="flex items-center gap-2.5">
-          <div class="flex items-center justify-center w-10 h-10 bg-[#FF6600] rounded-full border-2 border-black shadow-lg animate-pulse">
-            <span class="text-xl">⚡</span>
+          <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-xl animate-pulse">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
           </div>
           <div>
             <p class="text-white/60 text-xs font-bold uppercase tracking-wide mb-0.5">Pohotovosť</p>
@@ -382,10 +389,10 @@ const newsItems = [
               <img 
                 src={service.image} 
                 alt={service.title}
-                class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ease-out brightness-110 group-hover:brightness-125"
+                class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ease-out brightness-[1.15] group-hover:brightness-[1.25]"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
               
               <!-- Premium badge -->
               <div class="absolute top-4 right-4 px-3 py-1.5 bg-[#FF6600] text-white text-xs font-black rounded-lg uppercase tracking-widest shadow-2xl border border-white/30 backdrop-blur-sm">
@@ -393,8 +400,12 @@ const newsItems = [
               </div>
             </div>
 
-            <!-- Elegantný oddelovač -->
-            <div class="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+            <!-- Elegantný oddelovač s hrúbkou v strede -->
+            <div class="relative h-[2px] w-full">
+              <div class="absolute left-0 right-0 h-px top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+              <div class="absolute left-1/4 right-1/4 h-[2px] top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+              <div class="absolute left-[40%] right-[40%] h-[3px] top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/60 to-transparent blur-[0.5px]"></div>
+            </div>
 
             <!-- Obsah s vysokým kontrastom -->
             <div class="p-6 flex flex-col bg-gradient-to-b from-black/95 to-black relative z-10">
@@ -406,7 +417,15 @@ const newsItems = [
               </p>
               
               <!-- CTA s "Zistiť viac" -->
-              <div class="mt-auto pt-5 border-t border-white/10 flex items-center justify-between">
+              <div class="mt-auto pt-5 relative">
+                <!-- Elegantný oddelovač nad CTA -->
+                <div class="absolute top-0 left-0 right-0 h-[2px]">
+                  <div class="absolute left-0 right-0 h-[1.5px] top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+                  <div class="absolute left-1/4 right-1/4 h-[3px] top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent"></div>
+                  <div class="absolute left-[40%] right-[40%] h-[4px] top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/35 to-transparent blur-[0.5px]"></div>
+                </div>
+                
+                <div class="flex items-center justify-between">
                 <span class="text-[#FF6600] font-bold text-sm group-hover:text-white transition-colors duration-300">
                   Zistiť viac
                 </span>
@@ -416,10 +435,11 @@ const newsItems = [
                   </svg>
                 </div>
               </div>
-            </div>
+                </div>
+              </div>
 
             <!-- Jemný spodný glow -->
-            <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF6600]/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
           </a>
         ))}
       </div>
@@ -483,98 +503,202 @@ const newsItems = [
       </div>
 
       <!-- Mapa a info -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Google mapa -->
-        <div class="relative h-96 rounded-2xl overflow-hidden border-2 border-zinc-800">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2655.8421!2d17.41841256196949!3d48.22442423409257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDEzJzI3LjkiTiAxN8KwMjUnMDYuMyJF!5e0!3m2!1ssk!2ssk!4v1234567890"
-            width="100%"
-            height="100%"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Mapa ROYAL STROJE - Récka cesta 182, Senec"
-          ></iframe>
-        </div>
-
-        <!-- Kontaktné info -->
-        <div class="bg-zinc-950 border-2 border-zinc-800 rounded-2xl p-8">
-          <h3 class="text-3xl font-black text-white mb-6">Kontaktujte nás</h3>
+      <!-- Mapa a kontaktné info - Kompaktný prémiový dizajn -->
+      <div class="relative group">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#FF6600] to-[#ff8533] rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+        <div class="relative grid grid-cols-1 lg:grid-cols-5 gap-0 rounded-2xl overflow-hidden border-2 border-white/10 bg-gradient-to-br from-zinc-900 to-black shadow-2xl">
           
-          <div class="space-y-4 mb-8">
-            <div>
-              <p class="text-[#FF6600] font-bold text-sm mb-1">📍 Adresa</p>
+          <!-- Google mapa - 3 stĺpce -->
+          <div class="lg:col-span-3 h-[400px] lg:h-auto">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2655.8421!2d17.41841256196949!3d48.22442423409257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDEzJzI3LjkiTiAxN8KwMjUnMDYuMyJF!5e0!3m2!1ssk!2ssk!4v1234567890"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa ROYAL STROJE - Récka cesta 182, Senec"
+            ></iframe>
+          </div>
+
+          <!-- Kontaktné info - 2 stĺpce -->
+          <div class="lg:col-span-2 p-6 lg:p-8 flex flex-col">
+            
+            <h3 class="text-2xl lg:text-3xl font-black text-white mb-6 flex items-center gap-3">
+              <span class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-lg">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </span>
+              Kontaktujte nás
+            </h3>
+            
+            <div class="space-y-4 flex-1">
+              
+              <!-- Adresa -->
+              <div class="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-[#FF6600]/30 transition-all duration-300">
+                <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-lg">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-[#FF6600] font-bold text-xs uppercase tracking-wide mb-0.5">Adresa</p>
+                  <a 
+                    href={MAPS_PREVADZKA} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="text-white text-sm font-semibold hover:text-[#FF6600] transition-colors leading-snug"
+                  >
+                    Récka cesta 182<br/>903 01 Senec
+                  </a>
+                </div>
+              </div>
+
+              <!-- Otváracie hodiny -->
+              <div class="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-[#FF6600]/30 transition-all duration-300">
+                <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-lg">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-[#FF6600] font-bold text-xs uppercase tracking-wide mb-0.5">Otváracie hodiny</p>
+                  <p class="text-white text-sm font-semibold">Pondelok - Piatok</p>
+                  <p class="text-white/80 text-sm">7:00 - 16:00</p>
+                </div>
+              </div>
+
+              <!-- Kontakt -->
+              <div class="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-[#FF6600]/30 transition-all duration-300">
+                <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-lg">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                  </svg>
+                </div>
+                <div class="flex-1 space-y-1.5">
+                  <p class="text-[#FF6600] font-bold text-xs uppercase tracking-wide mb-1">Kontakt</p>
+                  <a 
+                    href={`tel:${PHONE.replace(/\s/g,"")}`} 
+                    class="flex items-center gap-2 text-white text-sm font-semibold hover:text-[#FF6600] transition-colors"
+                  >
+                    <svg class="w-3.5 h-3.5 text-[#FF6600]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                    </svg>
+                    <span>{PHONE}</span>
+                  </a>
+                  <a 
+                    href={`mailto:${EMAIL}`} 
+                    class="flex items-center gap-2 text-white text-sm font-semibold hover:text-[#FF6600] transition-colors"
+                  >
+                    <svg class="w-3.5 h-3.5 text-[#FF6600]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    <span>{EMAIL}</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CTA tlačidlá -->
+            <div class="mt-6 space-y-3">
+              <!-- Google Maps -->
               <a 
-                href={MAPS_PREVADZKA} 
-                target="_blank" 
+                href={MAPS_PREVADZKA}
+                target="_blank"
                 rel="noopener noreferrer"
-                class="text-white/95 hover:text-white font-semibold text-base transition-colors"
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-sm rounded-lg hover:scale-[1.02] hover:shadow-xl hover:shadow-[#FF6600]/50 transition-all duration-300"
               >
-                Récka cesta 182<br/>903 01 Senec
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                Navigovať na Google Maps
               </a>
-            </div>
 
-            <div>
-              <p class="text-[#FF6600] font-bold text-sm mb-1">🕐 Otváracie hodiny</p>
-              <p class="text-white/95 font-semibold text-base">Pondelok - Piatok</p>
-              <p class="text-white/80 text-base">7:00 - 16:00</p>
-            </div>
-
-            <div>
-              <p class="text-[#FF6600] font-bold text-sm mb-2">📞 Kontakt</p>
-              <div class="space-y-2">
-                <a href={`tel:${PHONE.replace(/\s/g,"")}`} class="flex items-center gap-2 text-white/95 hover:text-white font-semibold transition-colors">
-                  <span>Telefón:</span>
-                  <span>{PHONE}</span>
+              <!-- WhatsApp + Telegram -->
+              <div class="grid grid-cols-2 gap-3">
+                <a 
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-[#25D366] text-white font-bold text-sm rounded-lg hover:scale-[1.02] hover:shadow-lg transition-all duration-300"
+                >
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                  WhatsApp
                 </a>
-                <a href={`mailto:${EMAIL}`} class="flex items-center gap-2 text-white/95 hover:text-white font-semibold transition-colors">
-                  <span>Email:</span>
-                  <span>{EMAIL}</span>
+
+                <a 
+                  href={TELEGRAM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-[#0088cc] text-white font-bold text-sm rounded-lg hover:scale-[1.02] hover:shadow-lg transition-all duration-300"
+                >
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  </svg>
+                  Telegram
                 </a>
               </div>
             </div>
+
           </div>
 
-          <a 
-            href={MAPS_PREVADZKA}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-base rounded-full hover:scale-105 transition-all duration-300 shadow-lg"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            Navigovať na Google Maps
-          </a>
         </div>
       </div>
-
     </div>
   </section>
 
-  <div class="h-1 bg-gradient-to-r from-transparent via-[#FF6600] to-transparent"></div>
+  <!-- Elegantný oddelovač -->
+  <div class="py-12 md:py-16">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="relative h-[3px] w-full">
+        <div class="absolute left-0 right-0 h-px top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+        <div class="absolute left-1/4 right-1/4 h-[3px] top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+        <div class="absolute left-[40%] right-[40%] h-[4px] top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-[#FF6600]/60 to-transparent blur-[0.5px]"></div>
+      </div>
+    </div>
+  </div>
 
-  <!-- ZNAČKY -->
-  <section class="py-14 md:py-16 relative">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 relative z-10">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white text-center mb-10 md:mb-12 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] fade-in-section">
-        Spolupracujeme s <span class="text-[#FF6600]">lídrami</span> trhu
-      </h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
-        {brands.map((brand) => (
-          <div class="stagger-item flex items-center justify-center p-6 md:p-8 bg-white/5 backdrop-blur-xl border-2 border-white/10 rounded-2xl hover:bg-white/10 hover:border-[#FF6600]/50 transition-all duration-300 group hover:-translate-y-1 shadow-lg aspect-square">
+  <!-- ZNAČKY - Prémiový dizajn s animáciami -->
+  <section class="py-16 md:py-20 bg-black">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      
+      <div class="text-center mb-12 fade-in-section">
+        <span class="inline-block px-5 py-2 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-sm font-bold uppercase tracking-wide mb-4">
+          Prémiové značky
+        </span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4">
+          Dôverujeme <span class="text-[#FF6600]">kvalite</span>
+        </h2>
+        <p class="text-white/80 text-lg md:text-xl max-w-3xl mx-auto">
+          Spolupracujeme s najlepšími výrobcami stavebnej techniky
+        </p>
+      </div>
+
+      <!-- Grid značiek -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {brands.map((brand, index) => (
+          <div 
+            class="stagger-item group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#FF6600]/50 transition-all duration-500 p-8 flex items-center justify-center aspect-square hover:bg-white/10 hover:scale-105"
+            style={`animation-delay: ${index * 0.1}s`}
+          >
             <img 
               src={brand.logo} 
               alt={`${brand.name} logo`}
-              class="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity filter grayscale group-hover:grayscale-0"
+              class="max-w-full max-h-full object-contain transition-all duration-500 opacity-90 group-hover:opacity-100"
               loading="lazy"
             />
           </div>
         ))}
       </div>
+
     </div>
   </section>
 

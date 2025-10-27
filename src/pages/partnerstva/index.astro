@@ -1,0 +1,357 @@
+---
+// src/pages/partnerstva/index.astro
+import Layout from "../../layouts/Layout.astro";
+
+const PHONE = "+421 948 555 551";
+const EMAIL = "info@royalstroje.sk";
+
+// Placeholder partneri - neskôr vymeníš za reálne dáta
+const partners = [
+  {
+    name: "M&M WOOD s.r.o.",
+    location: "Smolenice",
+    category: "Stolárske práce",
+    stars: 5,
+    review: "M&M WOOD je náš dlhoročný obchodný partner. Spoľahlivá firma s profesionálnym prístupom. Radi s nimi spolupracujeme.",
+    since: "2021",
+    logo: "/images/partnerstva/mmwood.webp",
+    website: "https://www.mmwood.sk",
+    phone: "0907 187 541",
+    mapsUrl: "https://www.google.sk/maps/place/M%26M+WOOD+s.r.o./@48.5149802,17.4400715,17z/data=!4m15!1m8!3m7!1s0x476cbaacad7225b3:0xe1e95c5378f10777!2sTov%C3%A1rensk%C3%A1+1127,+919+04+Smolenice!3b1!8m2!3d48.5149767!4d17.4426464!16s%2Fg%2F11c4wy1flh!3m5!1s0x476cbb005296abb5:0xd25e8e9a6bdc4f77!8m2!3d48.5156699!4d17.4424612!16s%2Fg%2F11vww_nn8h?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D"
+    // ☝️ ZMENIŤ: Nahraď URL adresou partnera z Google Maps
+    // Ako získať správnu adresu:
+    // 1. Otvor Google Maps (maps.google.com)
+    // 2. Vyhľadaj adresu firmy partnera
+    // 3. Klikni na "Zdieľať" -> "Skopírovať odkaz"
+    // 4. Vlož sem namiesto mojej adresy
+  },
+  {
+    name: "Stolárstvo Novák",
+    location: "Bratislava",
+    category: "Stolárstvo a truhlárstvo",
+    stars: 5,
+    review: "Stolárstvo Novák vyniká precíznosťou a vysokou kvalitou práce. Odporúčame ich služby všetkým, ktorí hľadajú skúsených truhlárov.",
+    since: "2021",
+    logo: "/images/partnerstva/stolarstvo-novak.webp",
+    website: "https://www.stolarstvonovak.sk",
+    phone: "+421 910 234 567",
+    mapsUrl: "https://www.google.com/maps/place/R%C3%A9cka+cesta+182,+903+01+Senec/@48.2244242,17.4184126,17z/data=!3m1!4b1!4m6!3m5!1s0x476c8e7c8e7c8e7d:0x8e7c8e7c8e7c8e7e!8m2!3d48.2244242!4d17.4184126!16s%2Fg%2F11c5m5m5m5"
+  },
+  {
+    name: "REKON-PROFI s.r.o.",
+    location: "Pezinok",
+    category: "Rekonštrukcie a murárstvo",
+    stars: 5,
+    review: "Profesionálna firma špecializujúca sa na komplexné rekonštrukcie. Ich práca je vždy na vysokej úrovni a termíny dodržiavajú presne.",
+    since: "2023",
+    logo: "/images/partnerstva/rekon-profi.webp",
+    website: "https://www.rekonprofi.sk",
+    phone: "+421 920 345 678",
+    mapsUrl: "https://www.google.com/maps/place/R%C3%A9cka+cesta+182,+903+01+Senec/@48.2244242,17.4184126,17z/data=!3m1!4b1!4m6!3m5!1s0x476c8e7c8e7c8e7d:0x8e7c8e7c8e7c8e7e!8m2!3d48.2244242!4d17.4184126!16s%2Fg%2F11c5m5m5m5"
+  },
+  {
+    name: "Elektro Inštalácie Horváth",
+    location: "Senec",
+    category: "Elektrikárske práce",
+    stars: 5,
+    review: "Spoľahlivý partner pre všetky elektrikárske práce. Rýchla komunikácia, odbornosť a dodržiavanie bezpečnostných noriem.",
+    since: "2020",
+    logo: "/images/partnerstva/elektro-horvath.webp",
+    website: "https://www.elektrohorvath.sk",
+    phone: "+421 930 456 789",
+    mapsUrl: "https://www.google.com/maps/place/R%C3%A9cka+cesta+182,+903+01+Senec/@48.2244242,17.4184126,17z/data=!3m1!4b1!4m6!3m5!1s0x476c8e7c8e7c8e7d:0x8e7c8e7c8e7c8e7e!8m2!3d48.2244242!4d17.4184126!16s%2Fg%2F11c5m5m5m5"
+  },
+  {
+    name: "Zelené Oázy",
+    location: "Bratislava",
+    category: "Záhradnícke služby",
+    stars: 5,
+    review: "Odborníci na krajinnú architektúru a údržbu zelene. Kreatívny prístup a dôraz na detail robia z každého projektu umelecké dielo.",
+    since: "2022",
+    logo: "/images/partnerstva/zelene-oazy.webp",
+    website: "https://www.zeleneoazy.sk",
+    phone: "+421 940 567 890",
+    mapsUrl: "https://www.google.com/maps/place/R%C3%A9cka+cesta+182,+903+01+Senec/@48.2244242,17.4184126,17z/data=!3m1!4b1!4m6!3m5!1s0x476c8e7c8e7c8e7d:0x8e7c8e7c8e7c8e7e!8m2!3d48.2244242!4d17.4184126!16s%2Fg%2F11c5m5m5m5"
+  },
+  {
+    name: "Hydraulik Servis Plus",
+    location: "Senec",
+    category: "Inštalatérske práce",
+    stars: 5,
+    review: "Rýchle a kvalitné riešenia v oblasti vody, kúrenia a kanalizácie. Sú naším partnerom už niekoľko rokov a nikdy nesklámali.",
+    since: "2021",
+    logo: "/images/partnerstva/hydraulik-plus.webp",
+    website: "https://www.hydraulikplus.sk",
+    phone: "+421 950 678 901",
+    mapsUrl: "https://www.google.com/maps/place/R%C3%A9cka+cesta+182,+903+01+Senec/@48.2244242,17.4184126,17z/data=!3m1!4b1!4m6!3m5!1s0x476c8e7c8e7c8e7d:0x8e7c8e7c8e7c8e7e!8m2!3d48.2244242!4d17.4184126!16s%2Fg%2F11c5m5m5m5"
+  }
+];
+---
+
+<Layout 
+  title="Partnerstvá - Overené firmy | ROYAL STROJE"
+  description="Zoznam dôveryhodných stavebných firiem, stolárstiev a dodávateľov, ktorí spolupracujú s Royal Stroje v Senci a okolí. Overení partneri s referencami."
+>
+
+  <!-- HERO SEKCIA -->
+  <section class="relative overflow-hidden min-h-[60vh] flex items-center">
+    <!-- Background image -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/hero-partnerstva.webp" 
+        alt="Partnerstvá Royal Stroje" 
+        class="w-full h-full object-cover brightness-50"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+      <!-- Smooth fade to transparent na spodku -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black"></div>
+    </div>
+
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-16 md:py-24 relative z-10">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF6600]/10 border border-[#FF6600]/25 mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#FF6600] animate-pulse"></span>
+        <span class="text-[#FF6600] text-xs md:text-sm font-bold tracking-wider uppercase">Overení profesionáli</span>
+      </div>
+
+      <!-- Nadpis -->
+      <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">
+        Naše <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6600] to-[#ff8533]">partnerstvá</span>
+      </h1>
+
+      <!-- Popis -->
+      <p class="text-white/80 text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed">
+        Spolupracujeme s overenými profesionálmi zo Senca, Bratislavy a okolia. Títo partneri nám dôverujú a pravidelne využívajú naše služby pre svoje projekty.
+      </p>
+    </div>
+  </section>
+
+  <!-- KARTY PARTNEROV -->
+  <section class="py-16 md:py-20 -mt-32 relative z-20">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      
+      <!-- Grid kariet -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {partners.map((partner) => (
+          <div class="group relative transform transition-all duration-500 hover:-translate-y-2">
+            <!-- Glow efekt -->
+            <div class="absolute -inset-1 bg-gradient-to-r from-[#FF6600] to-[#ff8533] rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+            
+            <!-- Karta -->
+            <div class="relative bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden hover:border-[#FF6600]/30 transition-all duration-300 shadow-2xl hover:shadow-[#FF6600]/20">
+              
+              <!-- Logo sekcia -->
+              <div class="relative h-64 bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center p-6 border-b border-white/5">
+                <div class="w-full h-full flex items-center justify-center">
+                  <!-- Logo obrázok -->
+                  <img 
+                    src={partner.logo} 
+                    alt={`Logo ${partner.name}`}
+                    class="max-w-[200px] max-h-[200px] w-auto h-auto object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                
+                <!-- Badge "Partner od..." -->
+                <div class="absolute top-4 right-4 px-3 py-1 bg-[#FF6600] text-black text-xs font-black rounded-full shadow-lg">
+                  🏷️ Partner od {partner.since}
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="p-6">
+                <!-- Názov firmy -->
+                <h3 class="text-xl font-black text-white mb-2 group-hover:text-[#FF6600] transition-colors">
+                  {partner.name}
+                </h3>
+
+                <!-- Lokácia + Kategória -->
+                <div class="flex flex-wrap items-center gap-3 mb-4 text-sm">
+                  <span class="flex items-center gap-1.5 text-white/70">
+                    <svg class="w-4 h-4 text-[#FF6600]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    {partner.location}
+                  </span>
+                  <span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                  <span class="flex items-center gap-1.5 text-white/70">
+                    <svg class="w-4 h-4 text-[#FF6600]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 12 7.4l3.38 4.6L17 10.83 14.92 8H20v6z"/>
+                    </svg>
+                    {partner.category}
+                  </span>
+                </div>
+
+                <!-- Hodnotenie -->
+                <div class="flex items-center gap-1 mb-4">
+                  {Array.from({ length: partner.stars }).map(() => (
+                    <svg class="w-5 h-5 text-[#FF6600]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                  ))}
+                </div>
+
+                <!-- Recenzia od Royal Stroje -->
+                <div class="relative bg-[#FF6600]/5 border border-[#FF6600]/20 rounded-xl p-4 mb-4">
+                  <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-[#FF6600] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M7.8 2.1c-.4-.1-.8.2-.9.6L5.3 9.3H2c-.6 0-1 .4-1 1v11c0 .6.4 1 1 1h12c.4 0 .8-.3.9-.7l3-11c.1-.5-.2-1.1-.8-1.2-.1 0-.1 0-.2 0H9.7L11.2 3c.1-.4-.1-.8-.5-.9-.1 0-.2 0-.3 0L7.8 2.1zm13.2 7.2h-4l1.5-6.4c.1-.4-.1-.8-.5-.9-.1 0-.2 0-.3 0h-2.5c-.4-.1-.8.2-.9.6l-1.6 6.7H8V21h12c.4 0 .8-.3.9-.7l3-11c.1-.5-.2-1.1-.8-1.2-.1 0-.1 0-.1 0z"/>
+                    </svg>
+                    <div class="flex-1">
+                      <p class="text-white/80 text-sm leading-relaxed mb-2">
+                        "{partner.review}"
+                      </p>
+                      <p class="text-[#FF6600] text-xs font-bold">
+                        — Peter Krivosudský, Royal Stroje
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CTA tlačidlá -->
+                <div class="grid grid-cols-3 gap-2">
+                  <a 
+                    href={partner.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white text-xs font-bold rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-[#FF6600]/50 transition-all duration-300"
+                  >
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Web
+                  </a>
+                  <a 
+                    href={`tel:${partner.phone.replace(/\s/g, "")}`}
+                    class="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-white/5 border border-white/20 text-white text-xs font-bold rounded-lg hover:bg-white/10 hover:border-[#FF6600]/50 transition-all duration-300"
+                  >
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                    </svg>
+                    Volať
+                  </a>
+                  <a 
+                    href={partner.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-white/5 border border-white/20 text-white text-xs font-bold rounded-lg hover:bg-white/10 hover:border-[#FF6600]/50 transition-all duration-300"
+                    title="Otvoriť v Google Maps"
+                  >
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    Mapa
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliaca čiara -->
+  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+  <!-- CTA SEKCIA - Staňte sa partnerom -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="relative max-w-5xl mx-auto">
+        <!-- Glow efekt -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#FF6600] to-[#ff8533] rounded-3xl blur opacity-20"></div>
+        
+        <!-- CTA Box -->
+        <div class="relative bg-gradient-to-br from-zinc-900 to-black border-2 border-[#FF6600]/30 rounded-3xl p-8 md:p-12 lg:p-16">
+          <div class="text-center">
+            <!-- Ikona -->
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-2xl mb-6 shadow-2xl shadow-[#FF6600]/30">
+              <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
+            </div>
+
+            <!-- Nadpis -->
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+              Chcete sa stať našim <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6600] to-[#ff8533]">partnerom</span>?
+            </h2>
+
+            <!-- Popis -->
+            <p class="text-white/70 text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
+              Ste profesionálna firma pôsobiaca v Senci alebo okolí? Kontaktujte nás a staňte sa súčasťou nášho partnerského programu. Získate prístup k výhodnému prenájmu techniky a referencie od spoľahlivého partnera.
+            </p>
+
+            <!-- CTA tlačidlá -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a 
+                href={`tel:${PHONE.replace(/\s/g, "")}`}
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white text-base font-bold rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-[#FF6600]/50 transition-all duration-300"
+              >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+                </svg>
+                <span>{PHONE}</span>
+              </a>
+
+              <a 
+                href={`mailto:${EMAIL}?subject=Partnerstvo s Royal Stroje`}
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border-2 border-white/20 text-white text-base font-bold rounded-full hover:bg-white/10 hover:border-[#FF6600]/50 transition-all duration-300"
+              >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <span>Napísať email</span>
+              </a>
+            </div>
+
+            <!-- Benefit body -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-xl flex items-center justify-center mb-3">
+                  <svg class="w-6 h-6 text-[#FF6600]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <h3 class="text-white font-bold text-base mb-2">Výhodné ceny</h3>
+                <p class="text-white/60 text-sm">Špeciálne podmienky pre partnerov</p>
+              </div>
+
+              <div class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-xl flex items-center justify-center mb-3">
+                  <svg class="w-6 h-6 text-[#FF6600]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                  </svg>
+                </div>
+                <h3 class="text-white font-bold text-base mb-2">Prioritná podpora</h3>
+                <p class="text-white/60 text-sm">Rýchla dostupnosť techniky</p>
+              </div>
+
+              <div class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-xl flex items-center justify-center mb-3">
+                  <svg class="w-6 h-6 text-[#FF6600]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <h3 class="text-white font-bold text-base mb-2">Referencie</h3>
+                <p class="text-white/60 text-sm">Zverejnenie na našom webe</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GDPR DISCLAIMER -->
+  <section class="py-8 border-t border-white/5">
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-white/50 text-xs md:text-sm leading-relaxed">
+          <strong class="text-white/70">Ochrana osobných údajov:</strong> Všetci naši obchodní partneri uvedení na tejto stránke poskytli písomný súhlas so zverejnením ich kontaktných údajov, loga a recenzií v súlade s nariadením GDPR (Všeobecné nariadenie o ochrane údajov). Zverejnené informácie slúžia výhradne na prezentáciu našich obchodných partnerstiev a nebudú použité na iné účely bez ich výslovného súhlasu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -152,56 +152,73 @@ const popularMachines = [
   description="Profesionálny prenájom stavebného náradia, strojov a techniky v Senci. Bagre, rýpadlá, elektrocentrály, vibračné dosky, pracovné plošiny. Doprava zdarma. ☎ 0948 555 551"
 >
   
-  <!-- HERO -->
-  <section class="relative min-h-[60vh] md:min-h-[70vh] flex items-center overflow-hidden">
+  <!-- HERO - Kompaktná verzia -->
+  <section class="relative min-h-[40vh] md:min-h-[45vh] flex items-center overflow-hidden">
     {/* Background Image */}
     <div class="absolute inset-0 z-0">
       <img 
         src="/images/hero/pozicovna-hero.webp" 
         alt="Požičovňa náradia ROYAL STROJE - Profesionálna stavebná technika" 
-        class="w-full h-full object-cover brightness-[0.85]"
+        class="w-full h-full object-cover brightness-[0.7]"
         loading="eager"
         width="1920"
         height="1080"
       />
-      {/* Gradient Overlays */}
-      <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/50"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-      {/* Subtle orange glow */}
+      {/* Gradient Overlays - silnejší na okrajoch aby bolo vidieť pozadie */}
+      <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-black/95"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90"></div>
+      {/* Orange glow */}
       <div class="absolute inset-0 bg-[#FF6600]/5"></div>
     </div>
 
-    <div class="relative z-10 w-full max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-16 md:py-20">
-      <div class="max-w-4xl">
+    <div class="relative z-10 w-full max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-12 md:py-16">
+      <div class="max-w-3xl">
         <span class="inline-block px-4 py-1.5 bg-[#FF6600]/20 backdrop-blur-sm border border-[#FF6600]/40 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-4 shadow-lg">
-          Profesionálny prenájom
+          Najväčšia požičovňa v regióne
         </span>
         
-        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-5 drop-shadow-2xl">
-          Požičovňa náradia<br class="hidden sm:block"/>
-          a <span class="text-[#FF6600]">stavebnej techniky</span>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-4 drop-shadow-2xl">
+          Prenájom náradia<br class="hidden sm:block"/>
+          a <span class="bg-gradient-to-r from-[#FF6600] to-[#ff8533] bg-clip-text text-transparent">stavebnej techniky</span>
         </h1>
 
-        <p class="text-white/95 text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed mb-8 drop-shadow-lg">
-          Od ručného náradia až po ťažkú mechanizáciu. Profesionálne vybavenie pre domácich majstrov, živnostníkov a firmy. Doprava na stavbu do 24 hodín.
+        <p class="text-white/95 text-base md:text-lg max-w-2xl leading-relaxed mb-6 drop-shadow-lg">
+          Profesionálne náradie, stroje a mechanizácia pre stavby všetkých veľkostí. 
+          <span class="text-[#FF6600] font-bold">S dopravou na stavbu do 24 hodín.</span>
         </p>
 
+        <!-- Quick Stats -->
+        <div class="flex flex-wrap gap-3 md:gap-4 mb-8">
+          <div class="flex items-center gap-2 px-3 py-2 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full">
+            <span class="text-lg">🚚</span>
+            <div class="text-white text-sm font-semibold">Doprava do 24h</div>
+          </div>
+          <div class="flex items-center gap-2 px-3 py-2 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full">
+            <span class="text-lg">🔧</span>
+            <div class="text-white text-sm font-semibold">Servis v cene</div>
+          </div>
+          <div class="flex items-center gap-2 px-3 py-2 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full">
+            <span class="text-lg">📞</span>
+            <div class="text-white text-sm font-semibold">Non-stop 24/7</div>
+          </div>
+        </div>
+
         <!-- CTA buttons -->
-        <div class="flex flex-col sm:flex-row items-start gap-4">
+        <div class="flex flex-col sm:flex-row items-start gap-3">
           <a 
             href="tel:+421948555551"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-base rounded-full hover:scale-105 transition-all duration-300 shadow-2xl w-full sm:w-auto justify-center"
+            class="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-base rounded-full hover:scale-105 transition-all duration-300 shadow-2xl w-full sm:w-auto justify-center"
           >
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
             </svg>
-            0948 555 551
+            Zavolať teraz
           </a>
           <a 
             href="#kategorie"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-black/50 backdrop-blur-md border-2 border-white/30 text-white font-bold rounded-full hover:bg-black/60 hover:border-white/40 transition-all w-full sm:w-auto justify-center shadow-xl"
+            class="inline-flex items-center gap-2 px-7 py-3.5 bg-black/50 backdrop-blur-md border-2 border-white/30 text-white font-bold rounded-full hover:bg-black/60 hover:border-white/40 transition-all w-full sm:w-auto justify-center shadow-xl"
           >
-            Zobraziť kategórie
+            Zobraziť katalóg
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M19 9l-7 7-7-7"/>
             </svg>
@@ -211,10 +228,11 @@ const popularMachines = [
     </div>
   </section>
 
+  <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- KATEGÓRIE -->
-  <section id="kategorie" class="py-16 md:py-20 bg-zinc-950">
+  <section id="kategorie" class="py-16 md:py-20 lg:py-24">
     <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
       <div class="text-center mb-12">
         <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
@@ -275,10 +293,11 @@ const popularMachines = [
     </div>
   </section>
 
+  <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- BENEFITY -->
-  <section class="py-16 md:py-20 bg-zinc-900">
+  <section class="py-16 md:py-20 lg:py-24">
     <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
@@ -301,10 +320,11 @@ const popularMachines = [
     </div>
   </section>
 
+  <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- NOVÉ STROJE -->
-  <section class="py-16 md:py-20 bg-zinc-950">
+  <section class="py-16 md:py-20 lg:py-24">
     <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
       <div class="text-center mb-12">
         <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
@@ -369,10 +389,13 @@ const popularMachines = [
     </div>
   </section>
 
+  <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- VIP PROGRAM -->
-  <section class="relative py-16 md:py-20 bg-zinc-900 overflow-hidden">
+  <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden">
+    {/* Gradient background overlay for VIP section */}
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-yellow-500/5 to-transparent"></div>
     <div class="absolute inset-0 opacity-10">
       <div class="absolute top-0 left-0 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
@@ -430,10 +453,11 @@ const popularMachines = [
     </div>
   </section>
 
+  <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- POPULÁRNE STROJE -->
-  <section class="py-16 md:py-20 bg-zinc-950">
+  <section class="py-16 md:py-20 lg:py-24">
     <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-black text-white mb-4">
@@ -463,10 +487,11 @@ const popularMachines = [
     </div>
   </section>
 
+  <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- FAQ -->
-  <section class="py-16 md:py-20 bg-zinc-900">
+  <section class="py-16 md:py-20 lg:py-24">
     <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
       <div class="text-center mb-12">
         <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
@@ -642,10 +667,11 @@ const popularMachines = [
     </div>
   </section>
 
+  <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
   <!-- FINÁLNE CTA -->
-  <section class="py-16 md:py-20 bg-zinc-950">
+  <section class="py-16 md:py-20 lg:py-24">
     <div class="max-w-5xl mx-auto px-4 md:px-8">
       <div class="bg-gradient-to-br from-[#FF6600]/10 to-transparent border-2 border-[#FF6600]/30 rounded-2xl p-8 md:p-12 text-center">
         <div class="text-4xl md:text-5xl mb-6">🚀</div>

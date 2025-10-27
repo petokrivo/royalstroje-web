@@ -5,7 +5,7 @@ const pageTitle = "Malé náradie – ROYAL STROJE";
 const pageDescription =
   "Profesionálne malé stavebné náradie na prenájom v Senci a okolí. Vŕtačky, brúsky, píly, vysávače, čerpadlá, zváracia a meracia technika, betonárske náradie, lešenie a záhrada.";
 
-// Kategórie malého náradia (opravené URL + ALT + poradie)
+// Kategórie malého náradia (obsah zachovaný)
 const naradia = [
   {
     title: "Vŕtacie búracie kladivá a vŕtačky",
@@ -81,176 +81,207 @@ const naradia = [
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <section class="male-naradie">
-    <div class="container">
-      <!-- Breadcrumbs -->
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="/">Domov</a></li>
-          <li><a href="/pozicovna-naradia">Požičovňa náradia</a></li>
-          <li aria-current="page">Malé náradie</li>
-        </ol>
-      </nav>
 
-      <!-- Header -->
-      <header class="header">
-        <span class="badge">Malé náradie</span>
-        <h1>Profesionálne náradie pre každý projekt</h1>
-        <p>
-          Kompletný sortiment malého stavebného náradia a techniky pre profesionálov
-          aj domácich majstrov. Spoľahlivé stroje, férové ceny a rýchla dostupnosť.
-        </p>
-      </header>
+  <!-- GLOBAL BACKDROP – ako na domovskej, bezpečne pod všetkým -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10">
+    <img 
+      src="/images/hero/pozicovna-hero.webp"
+      alt=""
+      class="w-full h-full object-cover brightness-[0.95]"
+      width="1920" height="1080" loading="eager"
+    />
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="absolute inset-0 bg-[#FF6600]/8 mix-blend-overlay"></div>
+  </div>
 
-      <!-- Grid náradia -->
-      <div class="grid">
-        {naradia.map((item) => (
-          <article class="card">
-            <a href={item.url} class="image" aria-label={item.title}>
-              <img src={item.image} alt={item.alt} loading="lazy" />
-              <span class="overlay"></span>
-            </a>
-            <div class="content">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <a href={item.url} class="btn-link">
-                Zobraziť ponuku
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+  <!-- HERO HLAVIČKA STRÁNKY (štýl indexu) -->
+  <section class="relative min-h-[38vh] md:min-h-[42vh] flex items-center justify-center overflow-hidden">
+    <!-- jemné gradienty pre čitateľnosť -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
+    </div>
 
-      <!-- CTA sekcia -->
-      <section class="cta">
-        <div class="cta-in">
-          <h2>Potrebujete poradiť s výberom?</h2>
-          <p>Naši technici pomôžu vybrať správne náradie a pripravia rýchlu ponuku.</p>
-          <div class="actions">
-            <a href="tel:+421948555551" class="btn-primary">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
-              0948 555 551
-            </a>
-            <a href="/kontakt" class="btn-ghost">Kontaktný formulár</a>
-          </div>
+    <div class="relative z-10 w-full px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-10 text-center">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6600] rounded-full mb-4 shadow-lg">
+          <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+          <span class="text-white text-xs md:text-sm font-bold uppercase tracking-wide">Požičovňa • Malé náradie</span>
         </div>
-      </section>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)]">
+          Profesionálne <span class="text-[#FF6600]">malé náradie</span>
+        </h1>
+
+        <p class="text-white text-base md:text-lg lg:text-xl mb-6 font-medium max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          Kompletný sortiment pre každý projekt. Spoľahlivé stroje, férové ceny a rýchla dostupnosť.
+        </p>
+
+        <!-- Breadcrumbs -->
+        <nav class="inline-flex items-center gap-2 px-4 py-2 bg-black/35 backdrop-blur-sm border border-white/10 rounded-full text-white/90 text-xs md:text-sm" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition">Domov</a>
+          <span class="opacity-60">/</span>
+          <a href="/pozicovna-naradia" class="hover:text-white transition">Požičovňa náradia</a>
+          <span class="opacity-60">/</span>
+          <span class="text-white">Malé náradie</span>
+        </nav>
+      </div>
     </div>
   </section>
+
+  <div class="h-1 bg-gradient-to-r from-transparent via-[#FF6600] to-transparent"></div>
+
+  <!-- GRID KATEGÓRIÍ – karty v štýle domovskej -->
+  <section class="py-16 md:py-20 relative">
+    <!-- jemné pozadie pre čitateľnosť (len sekčne) -->
+    <div class="absolute inset-0 bg-black/55 backdrop-blur-[2px]"></div>
+
+    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 relative z-10">
+      <div class="text-center mb-10 fade-in-section">
+        <span class="inline-block px-5 py-2 bg-[#FF6600] border-2 border-[#FF6600] rounded-full text-white text-sm font-bold uppercase tracking-wider mb-5 shadow-2xl shadow-[#FF6600]/50">
+          Malé náradie
+        </span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5 leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          Vyberte si <span class="text-[#FF6600]">kategóriu</span>
+        </h2>
+        <p class="text-white text-lg md:text-xl max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          Vŕtačky, brúsky, píly, vysávače, čerpadlá, zváracia a meracia technika, betonárske náradie, lešenie a záhrada.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {naradia.map((item, index) => (
+          <a 
+            href={item.url}
+            class="service-card group relative overflow-hidden rounded-2xl bg-black/90 backdrop-blur-xl border-2 border-white/20 hover:border-[#FF6600] transition-all duration-500 shadow-2xl hover:shadow-[0_20px_60px_rgba(255,102,0,0.4)] hover:-translate-y-2"
+            style={`animation-delay: ${index * 0.08}s`}
+            aria-label={item.title}
+          >
+            <!-- Obrázok -->
+            <div class="relative h-56 overflow-hidden">
+              <img 
+                src={item.image} 
+                alt={item.alt}
+                class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ease-out brightness-110 group-hover:brightness-125"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+
+              <!-- Badge -->
+              <div class="absolute top-4 right-4 px-3 py-1.5 bg-[#FF6600] text-white text-xs font-black rounded-lg uppercase tracking-widest shadow-2xl border border-white/30 backdrop-blur-sm">
+                Premium
+              </div>
+            </div>
+
+            <!-- Deliaca línia -->
+            <div class="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+
+            <!-- Obsah -->
+            <div class="p-6 flex flex-col bg-gradient-to-b from-black/95 to-black relative z-10">
+              <h3 class="text-xl lg:text-2xl font-black text-white mb-3 group-hover:text-[#FF6600] transition-colors duration-500 leading-tight">
+                {item.title}
+              </h3>
+              <p class="text-white/90 text-sm lg:text-base leading-relaxed mb-5 font-normal">
+                {item.description}
+              </p>
+
+              <div class="mt-auto pt-5 border-t border-white/10 flex items-center justify-between">
+                <span class="text-[#FF6600] font-bold text-sm group-hover:text-white transition-colors duration-300">
+                  Zobraziť ponuku
+                </span>
+                <div class="flex items-center justify-center w-10 h-10 bg-[#FF6600] rounded-full group-hover:bg-white transition-all duration-300 shadow-lg border border-white/20">
+                  <svg class="w-4 h-4 text-white group-hover:text-[#FF6600] group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Jemný spodný glow -->
+            <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="h-1 bg-gradient-to-r from-transparent via-[#FF6600] to-transparent"></div>
+
+  <!-- CTA PANEL (štýl finálneho CTA z indexu, bez sekčného overlayu) -->
+  <section class="py-12 md:py-14">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
+      <div class="scale-in bg-black/90 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-10 lg:p-12 shadow-2xl hover:border-[#FF6600]/50 transition-all duration-500">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          Potrebujete poradiť s <span class="text-[#FF6600]">výberom</span>?
+        </h2>
+        <p class="text-white text-lg mb-3 font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          Naši technici pomôžu vybrať správne náradie a pripravia rýchlu ponuku.
+        </p>
+        <p class="text-white/80 text-base mb-8 font-medium">Zavolajte alebo napíšte. Sme tu pre vás.</p>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+          <a 
+            href="tel:+421948555551"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-lg rounded-full hover:scale-110 transition-all duration-300 shadow-2xl shadow-[#FF6600]/60 border-2 border-black"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+            </svg>
+            0948 555 551
+          </a>
+
+          <a 
+            href="/kontakt"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-zinc-800 border-2 border-zinc-700 text-white font-bold text-lg rounded-full hover:bg-zinc-700 hover:scale-110 transition-all duration-300"
+          >
+            Kontaktný formulár
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jemný neškodný prechod pred footerom -->
+  <div class="h-12 pointer-events-none">
+    <div class="h-full bg-gradient-to-b from-transparent via-white/10 to-transparent opacity-20"></div>
+  </div>
+
 </Layout>
 
 <style>
-/* LAYOUT */
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.male-naradie{
-  position:relative; min-height:calc(100vh - 80px);
-  padding:36px 0 110px; overflow:hidden;
-  background:linear-gradient(135deg,#0a0a0a 0%,#111 50%,#0b0b0b 100%);
-}
-.male-naradie::before{
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background:
-    radial-gradient(60% 60% at 18% 12%, rgba(255,107,0,.08), transparent 60%),
-    radial-gradient(60% 60% at 85% 88%, rgba(255,138,51,.06), transparent 58%);
-}
-.male-naradie::after{
-  content:""; position:absolute; inset:0; pointer-events:none; opacity:.18;
-  background-image:radial-gradient(circle at 2px 2px, rgba(255,107,0,.12) 1px, transparent 0);
-  background-size:40px 40px;
-}
+  /* Animácie a zjednotenie so štýlom domovskej */
+  .service-card { opacity: 0; transform: translateY(40px); transition: opacity .8s ease-out, transform .8s ease-out; }
+  .service-card.in-view { opacity: 1; transform: none; }
 
-/* BREADCRUMBS */
-.breadcrumbs{margin-bottom:28px}
-.breadcrumbs ol{display:flex;gap:10px;align-items:center;list-style:none;margin:0;padding:0;font-size:14px}
-.breadcrumbs li{display:flex;gap:10px;align-items:center;color:var(--text-dim)}
-.breadcrumbs li+li::before{
-  content:""; display:inline-block; width:18px; height:18px; opacity:.7;
-  mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="white" d="M9 18l6-6-6-6"/></svg>') no-repeat center/contain;
-  background:var(--text-dim);
-}
-.breadcrumbs a{color:var(--brand); text-decoration:none; font-weight:700}
-.breadcrumbs a:hover{color:var(--brand-light)}
+  .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity .6s ease-out, transform .6s ease-out; }
+  .fade-in-section.in-view { opacity: 1; transform: none; }
 
-/* HEADER */
-.header{ text-align:center; margin:16px 0 56px }
-.badge{
-  display:inline-block; margin-bottom:14px; padding:8px 18px; border-radius:999px;
-  background:rgba(255,107,0,.1); border:1px solid rgba(255,107,0,.28);
-  color:var(--brand); font-size:12px; font-weight:900; letter-spacing:.1em; text-transform:uppercase
-}
-.header h1{
-  margin:0 0 10px; font-size:clamp(28px,4.8vw,44px); font-weight:900;
-  background:linear-gradient(135deg,var(--text) 0%, var(--text-dim) 100%);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-}
-.header p{ margin:0 auto; max-width:720px; color:var(--text-dim); line-height:1.7 }
+  .scale-in { opacity: 0; transform: scale(.95); transition: opacity .6s ease-out, transform .6s ease-out; }
+  .scale-in.in-view { opacity: 1; transform: scale(1); }
 
-/* GRID */
-.grid{
-  display:grid; gap:28px;
-  grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
-  margin-bottom:70px;
-}
-.card{
-  position:relative; display:flex; flex-direction:column; height:100%;
-  background:rgba(17,17,17,.8); border:1px solid rgba(255,255,255,.1);
-  border-radius:22px; overflow:hidden; transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
-  backdrop-filter:blur(16px);
-}
-.card:hover{ transform:translateY(-6px); border-color:rgba(255,107,0,.42); box-shadow:0 22px 60px rgba(255,107,0,.16) }
-.image{ position:relative; display:block; height:200px; background:#0f0f0f; overflow:hidden }
-.image img{ width:100%; height:100%; object-fit:cover; transform:scale(1); transition:transform .4s ease }
-.card:hover .image img{ transform:scale(1.06) }
-.overlay{
-  position:absolute; inset:0;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.0) 35%, rgba(0,0,0,.25) 100%);
-  pointer-events:none;
-}
-.content{ padding:24px 24px 22px; display:flex; flex-direction:column; gap:10px; flex:1 }
-.content h3{ margin:0; color:var(--text); font-weight:900; font-size:18px; line-height:1.35 }
-.content p{ margin:0 0 12px; color:var(--text-dim); line-height:1.6; flex:1 }
-.btn-link{
-  align-self:flex-start; display:inline-flex; align-items:center; gap:10px;
-  padding:12px 18px; border-radius:999px; text-decoration:none;
-  background:linear-gradient(135deg, var(--brand), var(--brand-light)); color:#000; font-weight:900; font-size:13px; letter-spacing:.06em; text-transform:uppercase;
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.btn-link:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,107,0,.35) }
-.btn-link svg{ width:18px; height:18px; fill:currentColor; }
+  .stagger-item { opacity: 0; transform: translateY(20px); transition: opacity .5s ease-out, transform .5s ease-out; }
+  .stagger-item.in-view { opacity: 1; transform: none; }
+  .stagger-item:nth-child(1){transition-delay:.1s}
+  .stagger-item:nth-child(2){transition-delay:.2s}
+  .stagger-item:nth-child(3){transition-delay:.3s}
+  .stagger-item:nth-child(4){transition-delay:.4s}
+  .stagger-item:nth-child(5){transition-delay:.5s}
+  .stagger-item:nth-child(6){transition-delay:.6s}
 
-/* CTA */
-.cta{ position:relative; border:1px solid rgba(255,107,0,.3); border-radius:24px; overflow:hidden;
-      background:linear-gradient(135deg, rgba(255,107,0,.1), rgba(255,107,0,.05)); }
-.cta-in{ text-align:center; padding:52px 26px }
-.cta h2{ margin:0 0 8px; color:var(--text); font-size:clamp(22px,3.6vw,30px); font-weight:900 }
-.cta p{ margin:0 auto 18px; color:var(--text-dim); max-width:560px }
-.actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
-.btn-primary{
-  display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border-radius:999px;
-  background:linear-gradient(135deg, var(--brand), var(--brand-light)); color:#000; font-weight:900; text-decoration:none;
-  box-shadow:0 8px 26px rgba(255,107,0,.32); transition:transform .2s ease, box-shadow .2s ease;
-}
-.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 34px rgba(255,107,0,.4) }
-.btn-primary svg{ width:18px; height:18px; fill:currentColor }
-.btn-ghost{
-  display:inline-flex; align-items:center; padding:12px 20px; border-radius:999px; text-decoration:none;
-  border:2px solid var(--brand); color:var(--brand); font-weight:900; transition:background .2s ease, color .2s ease, transform .2s ease;
-}
-.btn-ghost:hover{ background:var(--brand); color:#000; transform:translateY(-2px) }
+  @media (prefers-reduced-motion: reduce) {
+    .service-card, .fade-in-section, .scale-in, .stagger-item { transition: none; opacity: 1; transform: none; }
+  }
 
-/* RESPONSIVE */
-@media (max-width:820px){
-  .grid{ gap:22px }
-  .image{ height:180px }
-}
-@media (max-width:520px){
-  .breadcrumbs{margin-bottom:20px}
-  .image{ height:160px }
-  .content{ padding:20px }
-}
-@media (prefers-reduced-motion:reduce){
-  *{ transition:none !important; animation:none !important }
-}
+  /* Poistka pre footer nad globálnym pozadím (ak by Safari blbol) */
+  footer, .site-footer { position: relative; z-index: 20; }
 </style>
+
+<script>
+  // Intersection Observer na animácie (rovnako ako na domovskej)
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+    document.querySelectorAll('.service-card, .fade-in-section, .scale-in, .stagger-item').forEach(el => observer.observe(el));
+  });
+</script>
