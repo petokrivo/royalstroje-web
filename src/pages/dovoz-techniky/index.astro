@@ -1,0 +1,728 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const PHONE = "+421 948 555 551";
+const EMAIL = "info@royalstroje.sk";
+const WHATSAPP = "https://wa.me/421948555551";
+const TELEGRAM = "https://t.me/petokrivo";
+
+const services = [
+  {
+    icon: "🚚",
+    title: "Rýchly dovoz strojov",
+    description: "Zabezpečíme bezproblémový dovoz akejkoľvek mechanizácie z našej ponuky priamo na vašu stavbu alebo domov.",
+    features: ["Dovoz do 24h", "Vlastné vozidlá", "GPS navigácia", "Flexibilné hodiny"]
+  },
+  {
+    icon: "📍",
+    title: "Presná navigácia",
+    description: "Využívame GPS navigáciu. Stačí nám poslať aktuálnu polohu a my vás vždy nájdeme.",
+    features: ["GPS tracking", "Aktuálna poloha", "Jednoduchá komunikácia", "Žiadne blúdenie"]
+  },
+  {
+    icon: "🎓",
+    title: "Školenie na obsluhu",
+    description: "Rozvozcovia strojov vám ochotne poskytnú profesionálne školenie na obsluhu prenajatého stroja.",
+    features: ["Odborný výklad", "Praktické ukázky", "Bezpečnostné pokyny", "Tipy na údržbu"]
+  },
+  {
+    icon: "💳",
+    title: "Flexibilná platba",
+    description: "Platbu môžete realizovať pri preberaní stroja priamo na stavbe alebo doma u zákazníka.",
+    features: ["Hotovosť", "Karta", "Faktúra", "Platba na mieste"]
+  },
+  {
+    icon: "📄",
+    title: "Elektronické dokumenty",
+    description: "Všetky dokumenty vieme vybaviť elektronicky - nemusíte chodiť na prevádzku.",
+    features: ["Email", "WhatsApp", "Online zmluvy", "Rýchle vybavenie"]
+  },
+  {
+    icon: "🤝",
+    title: "Priateľský prístup",
+    description: "Príjemné vystupovanie, odborný prístup a priateľská komunikácia je u nás samozrejmosťou.",
+    features: ["Profesionalita", "Ochota", "Slušnosť", "Kvalitný servis"]
+  }
+];
+
+const vehicles = [
+  {
+    name: "Dodávkové vozidlo",
+    type: "Rozvoz malého a stredného náradia",
+    capacity: "Malé náradie a stredná mechanizácia",
+    image: "🚐"
+  },
+  {
+    name: "Pick-up + prívesný vozík",
+    type: "Prevoz techniky",
+    capacity: "Do 3,5 tony",
+    image: "🚙"
+  }
+];
+
+const priceInfo = [
+  {
+    area: "Senec",
+    delivery: "10,00 €",
+    deliveryWithVat: "12,30 €",
+    pickup: "10,00 €",
+    pickupWithVat: "12,30 €",
+    note: "Pri prenájme na viac dní je doprava ZDARMA",
+    highlight: false
+  },
+  {
+    area: "Bratislava",
+    delivery: "40,00 €",
+    deliveryWithVat: "49,20 €",
+    pickup: "40,00 €",
+    pickupWithVat: "49,20 €",
+    note: "Pri prenájme na viac dní je doprava individuálna",
+    highlight: false
+  },
+  {
+    area: "Iné lokality",
+    delivery: "1,00 € / km",
+    deliveryWithVat: "1,23 € / km",
+    pickup: "1,00 € / km",
+    pickupWithVat: "1,23 € / km",
+    note: "Vzdialenosť počítaná od Senca",
+    highlight: false
+  }
+];
+
+const transportRange = [
+  {
+    category: "Malé náradie",
+    items: ["Vŕtacie kladivá", "Brúsky", "Píly", "Vysávače", "Čerpadlá", "Miešadlá", "Lešenie"]
+  },
+  {
+    category: "Stredná mechanizácia",
+    items: ["Vibračné dosky", "Elektrocentrály", "Kompresory", "Rezačky", "Miešačky betónu"]
+  },
+  {
+    category: "Ťažká technika",
+    items: ["Mini-rýpadlá", "Šmykáče", "Dumpre", "Nakladače", "Valce"]
+  },
+  {
+    category: "Pracovné plošiny",
+    items: ["Interiérové plošiny", "Exteriérové plošiny", "Teleskopické plošiny"]
+  }
+];
+
+const benefits = [
+  {
+    icon: "⚡",
+    title: "Okamžitá dostupnosť",
+    description: "Dovoz aj mimo otváracích hodín po dohode"
+  },
+  {
+    icon: "🎯",
+    title: "Presné dodanie",
+    description: "GPS navigácia zabezpečí včasný príchod"
+  },
+  {
+    icon: "💰",
+    title: "Transparentné ceny",
+    description: "Bez skrytých poplatkov a príplatkov"
+  },
+  {
+    icon: "📞",
+    title: "Stála komunikácia",
+    description: "Informujeme o čase príchodu SMS/telefonicky"
+  },
+  {
+    icon: "👨‍🏫",
+    title: "Profesionálne školenie",
+    description: "Zaučenie na obsluhu stroja pri dodaní"
+  },
+  {
+    icon: "🔧",
+    title: "Odborný servis",
+    description: "Všetky stroje sú servisované a pripravené na prácu"
+  }
+];
+
+const processSteps = [
+  {
+    number: "01",
+    title: "Objednávka stroja",
+    description: "Kontaktujte nás telefonicky, emailom alebo cez WhatsApp. Dohodneme si termín dovozu a všetky detaily."
+  },
+  {
+    number: "02",
+    title: "Potvrdenie a adresa",
+    description: "Pošlite nám aktuálnu GPS polohu stavby alebo adresu. Vieme vybaviť dokumenty elektronicky."
+  },
+  {
+    number: "03",
+    title: "Dovoz na stavbu",
+    description: "Privezieme stroj v dohodnutom čase. Rozvozcovia majú GPS navigáciu, takže vás určite nájdu."
+  },
+  {
+    number: "04",
+    title: "Školenie a predanie",
+    description: "Odovzdáme stroj, poskytneme školenie na obsluhu a prevezmiete potrebné dokumenty."
+  }
+];
+
+const faqItems = [
+  {
+    question: "Dovážate aj mimo Senca a Bratislavy?",
+    answer: "Áno, dovážame mechanizáciu po celom Slovensku. Cena dovozu je 1,20 € / km s DPH. Vzdialenosť sa počíta od našej prevádzky v Senci."
+  },
+  {
+    question: "Možno dohodnúť dovoz mimo otváracích hodín?",
+    answer: "Áno, po dohode vieme zabezpečiť rýchly dovoz aj mimo štandardných otváracích hodín (Po-Pi 7:00-16:00). Kontaktujte nás telefonicky alebo cez WhatsApp."
+  },
+  {
+    question: "Kedy je doprava zadarmo?",
+    answer: "V Senci je dovoz aj odvoz ZDARMA pri prenájme na viac dní. V Bratislave je doprava taktiež individuálna pri dlhodobejšom prenájme."
+  },
+  {
+    question: "Musím prísť na prevádzku podpísať zmluvu?",
+    answer: "Nie, všetky dokumenty vieme vybaviť elektronicky - emailom alebo cez WhatsApp. Nemusíte chodiť na prevádzku."
+  },
+  {
+    question: "Ako vám mám poslať polohu stavby?",
+    answer: "Stačí nám poslať aktuálnu GPS polohu cez WhatsApp alebo zadať adresu. Rozvozcovia majú GPS navigáciu, takže vás bez problémov nájdu."
+  },
+  {
+    question: "Kedy a ako môžem zaplatiť?",
+    answer: "Platbu môžete realizovať pri preberaní stroja na stavbe – hotovosťou, kartou alebo na faktúru pre firmy. Platba je flexibilná podľa vašich potrieb."
+  },
+  {
+    question: "Dostaneme školenie na obsluhu stroja?",
+    answer: "Samozrejme! Rozvozcovia strojov vám pri odovzdaní poskytnú odborné školenie na bezpečnú obsluhu prenajatého stroja. Ukážu všetky funkcie a bezpečnostné prvky."
+  },
+  {
+    question: "Aké vozidlá používate na rozvoz?",
+    answer: "Máme Ford Transit Custom a VW Amarok s prívesným vozíkom do 3,5 tony. Dokážeme previesť všetko od malého náradia až po mini-rýpadlá a ťažkú techniku."
+  }
+];
+---
+
+<Layout
+  title="Dovoz techniky | ROYAL STROJE - Rýchly dovoz na stavbu"
+  description="Profesionálny dovoz stavebnej techniky a náradia priamo na vašu stavbu. GPS navigácia, školenie na obsluhu, elektronické dokumenty. Senec a Bratislava."
+>
+  <main id="main" class="relative z-10">
+    <!-- Tmavé pozadie pre celú stránku -->
+    <div class="absolute inset-0 z-0 bg-gradient-to-b from-black via-zinc-950 to-black pointer-events-none">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,102,0,0.03)_1px,transparent_0)] bg-[length:40px_40px]"></div>
+    </div>
+
+    <!-- HERO SEKCIA - Celý obrázok ako pozadie -->
+    <section class="relative pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-12 lg:pb-16 overflow-hidden min-h-[600px] md:min-h-[700px] z-10">
+      <!-- Pozadie obrázok - celá sekcia -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/images/dovoz/hero-dovoz.webp" 
+          alt="Dovoz techniky ROYAL STROJE"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        
+        <!-- Gradient overlay pre čitateľnosť textu -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/50"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
+      </div>
+
+      <!-- Obsah -->
+      <div class="relative z-10 max-w-[1440px] mx-auto px-4 md:px-6 lg:px-10 xl:px-12 2xl:px-20">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-[#FF6600]/30 to-[#ff8533]/30 border border-[#FF6600]/50 rounded-full mb-6 backdrop-blur-sm">
+            <span class="w-2 h-2 bg-[#FF6600] rounded-full animate-pulse"></span>
+            <span class="text-[#FF6600] font-bold text-sm tracking-wider uppercase">
+              Dovoz techniky priamo k vám
+            </span>
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5 leading-tight drop-shadow-2xl">
+            Dovoz techniky<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6600] to-[#ff8533] drop-shadow-[0_2px_10px_rgba(255,102,0,0.5)]">
+              na vašu stavbu
+            </span>
+          </h1>
+          
+          <p class="text-base md:text-lg lg:text-xl text-white mb-3 leading-relaxed drop-shadow-lg">
+            Profesionálny rozvoz stavebných strojov vlastnými vozidlami. GPS navigácia, školenie na obsluhu a elektronické dokumenty.
+          </p>
+          
+          <p class="text-sm md:text-base text-white/90 mb-8 drop-shadow-lg">
+            V rámci Senca a Bratislavy • Prenájom na viac dní = doprava ZDARMA
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-start gap-3">
+            <a 
+              href={`tel:${PHONE.replace(/\s/g,"")}`}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-base rounded-full hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,102,0,0.6)]"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+              </svg>
+              Dohodnúť dovoz
+            </a>
+
+            <a 
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-white/15 border-2 border-white/40 text-white font-bold text-base rounded-full hover:bg-white/25 hover:scale-105 transition-all duration-300 backdrop-blur-sm shadow-lg"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              WhatsApp
+            </a>
+          </div>
+
+          <div class="flex items-center gap-2 text-white mt-5 drop-shadow-lg">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.6)]"></span>
+            <span class="text-sm font-medium">Dostupní 24/7 • Dovoz aj mimo otváracích hodín</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+    <!-- SLUŽBY -->
+    <section class="relative py-12 md:py-16 z-10">
+      <div class="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-10 xl:px-12 2xl:px-20">
+        <div class="text-center mb-10 lg:mb-12">
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+            Prečo si vybrať <span class="text-[#FF6600]">náš rozvoz</span>?
+          </h2>
+          <p class="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
+            Profesionálny servis od objednávky až po predanie stroja na vašej stavbe
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {services.map((service) => (
+            <div class="group bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 border border-zinc-800 rounded-2xl p-6 hover:border-[#FF6600]/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,102,0,0.15)]">
+              <div class="text-4xl mb-4">{service.icon}</div>
+              <h3 class="text-lg lg:text-xl font-bold text-white mb-2.5 group-hover:text-[#FF6600] transition-colors">
+                {service.title}
+              </h3>
+              <p class="text-white/80 text-sm leading-relaxed mb-4">
+                {service.description}
+              </p>
+              <ul class="space-y-2">
+                {service.features.map((feature) => (
+                  <li class="flex items-center gap-2 text-white/70 text-sm">
+                    <span class="w-1.5 h-1.5 bg-[#FF6600] rounded-full flex-shrink-0"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+    <!-- CENNÍK DOPRAVY -->
+    <section class="relative py-12 md:py-16 z-10">
+      <div class="max-w-[1120px] mx-auto px-4 md:px-6 lg:px-10 xl:px-12">
+        <div class="text-center mb-10 lg:mb-12">
+          <div class="text-4xl mb-3">💰</div>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+            Cenník <span class="text-[#FF6600]">dopravy</span>
+          </h2>
+          <p class="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
+            Transparentné ceny bez skrytých poplatkov
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5 lg:gap-6 mb-10">
+          {priceInfo.map((price) => (
+            <div class="relative rounded-2xl p-6 border-2 bg-zinc-900/50 border-zinc-800 hover:border-[#FF6600]/50 transition-all duration-300">
+              <h3 class="text-xl font-black text-white mb-5 text-center">
+                {price.area}
+              </h3>
+              
+              <div class="space-y-3 mb-5">
+                <div class="pb-2.5 border-b border-white/10">
+                  <div class="flex justify-between items-baseline mb-1">
+                    <span class="text-white/70 text-sm">Dovoz</span>
+                    <div class="text-right">
+                      <span class="text-lg font-bold text-[#FF6600]">{price.delivery}</span>
+                      <span class="text-xs text-white/50 block">({price.deliveryWithVat} s DPH)</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pb-2.5 border-b border-white/10">
+                  <div class="flex justify-between items-baseline mb-1">
+                    <span class="text-white/70 text-sm">Odvoz</span>
+                    <div class="text-right">
+                      <span class="text-lg font-bold text-[#FF6600]">{price.pickup}</span>
+                      <span class="text-xs text-white/50 block">({price.pickupWithVat} s DPH)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-black/40 rounded-xl p-3 text-center">
+                <p class="text-sm text-white/80 leading-relaxed">
+                  {price.note}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-gradient-to-br from-[#FF6600]/10 to-transparent border border-[#FF6600]/30 rounded-2xl p-6 text-center">
+          <div class="text-3xl mb-2">📍</div>
+          <p class="text-white/90 text-base mb-2">
+            <strong class="text-white font-bold">Štandardná cena:</strong> 1,00 € / km bez DPH (1,23 € / km s DPH)
+          </p>
+          <p class="text-white/70 text-sm mb-3">
+            Vzdialenosť sa počíta od prevádzky v Senci (Récka cesta 182)
+          </p>
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-black/40 rounded-full border border-white/10 mb-3">
+            <span class="w-1.5 h-1.5 bg-[#FF6600] rounded-full"></span>
+            <p class="text-white/80 text-xs">
+              Ceny sú uvedené <strong class="text-[#FF6600]">bez DPH</strong> • DPH 23%
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-white/10">
+            <p class="text-white/90 text-sm leading-relaxed">
+              <strong class="text-[#FF6600]">Dôležité:</strong> Uvedené ceny sa vzťahujú len na prevoz našej vlastnej techniky. 
+              V prípade, že by ste potrebovali previesť váš vlastný stroj, je to možné po individuálnej dohode 
+              alebo na základe cenovej ponuky.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+    <!-- NAŠE VOZIDLÁ -->
+    <section class="relative py-12 md:py-16 z-10">
+      <div class="max-w-[1120px] mx-auto px-4 md:px-6 lg:px-10 xl:px-12">
+        <div class="text-center mb-10 lg:mb-12">
+          <div class="text-4xl mb-3">🚛</div>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+            Náš <span class="text-[#FF6600]">vozový park</span>
+          </h2>
+          <p class="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
+            Moderné vozidlá pre bezpečný prevoz techniky
+          </p>
+        </div>
+
+        <!-- FOTKY VOZIDIEL V AKCII - 3 obrázky -->
+        <div class="grid md:grid-cols-3 gap-5 lg:gap-6 mb-10">
+          <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-zinc-800 hover:border-[#FF6600]/50 transition-all duration-300 group">
+            <img 
+              src="/images/dovoz/transit-1.webp" 
+              alt="Dodávkové vozidlo pri dovoze techniky"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <h3 class="text-white font-bold text-lg mb-1">Dodávkové vozidlo</h3>
+              <p class="text-white/80 text-sm">Dovoz malého a stredného náradia</p>
+            </div>
+          </div>
+
+          <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-zinc-800 hover:border-[#FF6600]/50 transition-all duration-300 group">
+            <img 
+              src="/images/dovoz/amarok-1.webp" 
+              alt="Pick-up s prívesným vozíkom"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <h3 class="text-white font-bold text-lg mb-1">Pick-up + prívesný vozík</h3>
+              <p class="text-white/80 text-sm">Prevoz techniky do 3,5 tony</p>
+            </div>
+          </div>
+
+          <div class="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-zinc-800 hover:border-[#FF6600]/50 transition-all duration-300 group">
+            <img 
+              src="/images/dovoz/stavba-1.webp" 
+              alt="Dovoz stroja na stavbu"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <h3 class="text-white font-bold text-lg mb-1">Dovoz na stavbu</h3>
+              <p class="text-white/80 text-sm">Priamo na vašu lokalitu</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- VOZIDLÁ INFO -->
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
+          {vehicles.map((vehicle) => (
+            <div class="bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 border border-zinc-800 rounded-2xl p-6 hover:border-[#FF6600]/50 transition-all duration-300">
+              <div class="text-5xl mb-4 text-center">{vehicle.image}</div>
+              <h3 class="text-xl font-bold text-white mb-2 text-center">
+                {vehicle.name}
+              </h3>
+              <p class="text-[#FF6600] font-semibold mb-3 text-center text-sm">
+                {vehicle.type}
+              </p>
+              <div class="bg-black/40 rounded-xl p-3 text-center">
+                <p class="text-white/80 text-sm">
+                  {vehicle.capacity}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- ČO DOKÁŽEME PREVIESŤ -->
+        <div class="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-2xl p-6 lg:p-8">
+          <h3 class="text-xl lg:text-2xl font-bold text-white mb-6 text-center">
+            Čo dokážeme <span class="text-[#FF6600]">previesť</span>
+          </h3>
+          
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {transportRange.map((category) => (
+              <div class="bg-black/40 rounded-xl p-5">
+                <h4 class="text-base font-bold text-[#FF6600] mb-3">
+                  {category.category}
+                </h4>
+                <ul class="space-y-2">
+                  {category.items.map((item) => (
+                    <li class="flex items-start gap-2 text-white/70 text-sm">
+                      <span class="w-1.5 h-1.5 bg-[#FF6600] rounded-full flex-shrink-0 mt-1.5"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+    <!-- VÝHODY -->
+    <section class="relative py-12 md:py-16 z-10">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-10 xl:px-12">
+        <div class="text-center mb-10">
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+            Výhody nášho <span class="text-[#FF6600]">rozvozu</span>
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {benefits.map((benefit) => (
+            <div class="flex gap-4 bg-zinc-900/50 border border-zinc-800 rounded-xl p-5 hover:border-[#FF6600]/50 transition-all duration-300">
+              <div class="text-3xl flex-shrink-0">{benefit.icon}</div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-2">
+                  {benefit.title}
+                </h3>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+    <!-- AKO TO FUNGUJE -->
+    <section class="relative py-12 md:py-16 z-10">
+      <div class="max-w-[1120px] mx-auto px-4 md:px-6 lg:px-10 xl:px-12">
+        <div class="text-center mb-10 lg:mb-12">
+          <div class="text-4xl mb-3">🎯</div>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+            Ako to <span class="text-[#FF6600]">funguje</span>?
+          </h2>
+          <p class="text-base md:text-lg text-white/80 max-w-3xl mx-auto">
+            Jednoduchý proces v 4 krokoch
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {processSteps.map((step) => (
+            <div class="relative">
+              <div class="bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 border-2 border-zinc-800 rounded-2xl p-6 h-full hover:border-[#FF6600]/50 transition-all duration-300">
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-xl text-white font-black text-lg mb-4">
+                  {step.number}
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2.5">
+                  {step.title}
+                </h3>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 bg-gradient-to-br from-[#FF6600]/10 to-transparent border border-[#FF6600]/30 rounded-2xl p-6 text-center">
+          <p class="text-white/90 text-base">
+            <strong class="text-white font-bold">Potrebujete dovoz urgentne?</strong> Zavolajte nám – vieme zabezpečiť dovoz aj mimo otváracích hodín!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+    <!-- FAQ -->
+    <section class="relative py-12 md:py-16 z-10">
+      <div class="max-w-[800px] mx-auto px-4 md:px-6 lg:px-10">
+        <div class="text-center mb-10 lg:mb-12">
+          <div class="text-4xl mb-3">❓</div>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+            Často kladené <span class="text-[#FF6600]">otázky</span>
+          </h2>
+          <p class="text-base text-white/80">
+            Všetko, čo potrebujete vedieť o dovoze techniky
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          {faqItems.map((item, index) => (
+            <div class="faq-item bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 border border-zinc-800 rounded-xl overflow-hidden hover:border-[#FF6600]/50 transition-all duration-300">
+              <button
+                class="faq-question w-full flex items-center justify-between gap-3 p-5 text-left"
+                aria-expanded="false"
+                aria-controls={`faq-${index}`}
+              >
+                <span class="text-base font-bold text-white pr-3">
+                  {item.question}
+                </span>
+                <div class="faq-icon flex-shrink-0">
+                  <svg class="w-5 h-5 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </div>
+              </button>
+              
+              <div
+                id={`faq-${index}`}
+                class="faq-answer overflow-hidden transition-all duration-300"
+                style="max-height: 0;"
+              >
+                <div class="px-5 pb-5">
+                  <p class="text-white/80 text-sm leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
+
+    <!-- CTA KONTAKT -->
+    <section class="relative py-12 md:py-16 z-10">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <div class="bg-gradient-to-br from-[#FF6600]/10 to-transparent border-2 border-[#FF6600]/30 rounded-2xl p-6 md:p-10 text-center">
+          <div class="text-4xl md:text-5xl mb-5">🚚</div>
+          <h3 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
+            Potrebujete doviesť <span class="text-[#FF6600]">stroj na stavbu</span>?
+          </h3>
+          <p class="text-white/90 text-base md:text-lg mb-2 max-w-2xl mx-auto">
+            Dohodneme si termín, pripravíme dokumenty a privezieme stroj priamo k vám.
+          </p>
+          <p class="text-white/70 text-sm mb-6">
+            GPS navigácia • Školenie zdarma • Elektronické dokumenty
+          </p>
+          
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a 
+              href={`tel:${PHONE.replace(/\s/g,"")}`}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-base rounded-full hover:scale-105 transition-all duration-300 shadow-xl"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+              </svg>
+              Zavolať teraz
+            </a>
+
+            <a 
+              href={`mailto:${EMAIL}`}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-zinc-800 border-2 border-zinc-700 text-white font-bold text-base rounded-full hover:bg-zinc-700 hover:scale-105 transition-all duration-300"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              Napísať email
+            </a>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
+            <a href={WHATSAPP} target="_blank" rel="noopener" class="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              WhatsApp
+            </a>
+            <a href={TELEGRAM} target="_blank" rel="noopener" class="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+              Telegram
+            </a>
+            <span class="text-white/40">|</span>
+            <span class="flex items-center gap-2 text-white/60">
+              <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+              Online 24/7
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon svg');
+      
+      if (!question || !answer || !icon) return;
+      
+      question.addEventListener('click', () => {
+        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+        
+        // Zatvor všetky FAQ
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          a.style.maxHeight = '0';
+        });
+        document.querySelectorAll('.faq-icon svg').forEach(i => {
+          i.style.transform = 'rotate(0deg)';
+        });
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.setAttribute('aria-expanded', 'false');
+        });
+        
+        // Otvor aktuálny (ak nebol otvorený)
+        if (!isOpen) {
+          answer.style.maxHeight = `${answer.scrollHeight}px`;
+          icon.style.transform = 'rotate(180deg)';
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>
