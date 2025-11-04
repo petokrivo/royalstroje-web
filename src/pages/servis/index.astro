@@ -1,0 +1,319 @@
+---
+// src/pages/servis/index.astro
+import Layout from "../../layouts/Layout.astro";
+
+// TU NAHRAĎ CESTY K SVOJIM FOTKÁM:
+const heroImage = "/images/servis-hero.webp"; // Hero obrázok (napr. mechanik pri práci, dielňa)
+const gallery = [
+  "/images/servis-1.jpg", // Napr. oprava pneumatického kladiva
+  "/images/servis-2.jpg", // Napr. servis Honda motora
+  "/images/servis-3.jpg"  // Napr. údržba elektrocentrály
+];
+---
+
+<Layout
+  title="Servis a opravy náradia | ROYAL STROJE Senec"
+  description="Profesionálny servis a opravy stavebného náradia a mechanizácie. Opravujeme pneumatické kladivá, Honda motory, elektrocentrály, rezačky, vibračné dosky a ďalšie stroje."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-black pt-[85px]">
+    <!-- Background Image (ak je nastavený) -->
+    {heroImage && (
+      <div class="absolute inset-0 pt-[85px]">
+        <img 
+          src={heroImage} 
+          alt="ROYAL STROJE servis" 
+          class="w-full h-full object-cover opacity-30"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+      </div>
+    )}
+
+    <div class="relative max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-16 lg:py-24">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF6600] to-[#ff8533] rounded-full mb-6">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <span class="text-white font-bold text-sm">Profesionálny servis</span>
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[1.1]">
+          Servis, opravy a <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6600] to-[#ff8533]">náhradné diely</span>
+        </h1>
+        
+        <p class="text-lg lg:text-xl xl:text-2xl text-white/90 mb-8 leading-relaxed">
+          Profesionálne opravy a údržba náradia, stavebnej mechanizácie a predaj náhradných dielov
+        </p>
+
+        <a 
+          href="tel:+421948555551"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-[#FF6600]/50 transition-all duration-300"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          <span>Kontaktujte nás</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hlavný obsah -->
+  <section class="bg-zinc-950 py-16 lg:py-24">
+    <div class="max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
+      <div class="max-w-4xl mx-auto">
+        <!-- Hlavný text -->
+        <div class="bg-zinc-900/50 border border-white/10 rounded-2xl p-8 lg:p-12 mb-12">
+          <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+            Opravy, údržba a náhradné diely
+          </h2>
+          
+          <div class="space-y-6 text-lg lg:text-xl text-white/80 leading-relaxed">
+            <p>
+              U nás si môžu zákazníci dať profesionálne opraviť rôzne stavebné stroje, 
+              mechanizáciu a náradie. Špecializujeme sa na servis a údržbu zariadení, 
+              ktoré sú kľúčové pre vašu prácu na stavbe.
+            </p>
+
+            <div class="bg-gradient-to-r from-[#FF6600]/10 to-[#ff8533]/10 border-l-4 border-[#FF6600] rounded-lg p-6 my-8">
+              <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <svg class="w-8 h-8 text-[#FF6600]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Čo opravujeme a servisujeme
+              </h3>
+              <ul class="space-y-3 text-white/90">
+                <li class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-[#FF6600] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong class="text-white">Pneumatické kladivá</strong> - kompletný servis a opravy</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-[#FF6600] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong class="text-white">Honda motory</strong> - pravidelná údržba a opravy</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-[#FF6600] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong class="text-white">Elektrocentrály</strong> - servis a pravidelná údržba</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-[#FF6600] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong class="text-white">Rezačky</strong> - opravy a servisné prehliadky</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-[#FF6600] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong class="text-white">Vibračné nohy a dosky</strong> - údržba a opravy</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-[#FF6600] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong class="text-white">Ďalšie stavebné stroje a náradie</strong></span>
+                </li>
+              </ul>
+            </div>
+
+            <p>
+              Vykonávame <strong class="text-white">pravidelnú údržbu</strong> strojov, 
+              čo predlžuje ich životnosť a zabezpečuje bezpečnú prevádzku. 
+              Naši technici majú dlhoročné zkúsenosti a používame kvalitné náhradné diely.
+            </p>
+
+            <p>
+              <strong class="text-white">Zväčša na objednávku</strong> predávame aj 
+              <strong class="text-white">náhradné diely</strong> na väčšinu stavebnej techniky. 
+              Kontaktujte nás s konkrétnym požiadavkom a my vám zoženieme potrebné súčiastky 
+              v čo najkratšom čase.
+            </p>
+
+            <p class="text-white/70 text-base italic border-l-2 border-white/20 pl-4">
+              ℹ️ Poznámka: Opravujeme široké spektrum strojov a náradia, 
+              ale máme aj svoje limity. Pri špecializovaných zariadeniach 
+              vás radi poradíme s ďalším postupom.
+            </p>
+          </div>
+        </div>
+
+        <!-- Služby - 3 karty -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <!-- Karta 1: Opravy -->
+          <div class="bg-zinc-900/50 border border-white/10 rounded-xl p-6 hover:border-[#FF6600]/50 transition-all duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl lg:text-2xl font-bold text-white mb-3">Opravy</h3>
+            <p class="text-white/70 leading-relaxed">
+              Profesionálna diagnostika a oprava poškodených strojov a náradia
+            </p>
+          </div>
+
+          <!-- Karta 2: Údržba -->
+          <div class="bg-zinc-900/50 border border-white/10 rounded-xl p-6 hover:border-[#FF6600]/50 transition-all duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl lg:text-2xl font-bold text-white mb-3">Pravidelná údržba</h3>
+            <p class="text-white/70 leading-relaxed">
+              Servisné prehliadky a preventívna údržba pre dlhú životnosť strojov
+            </p>
+          </div>
+
+          <!-- Karta 3: Náhradné diely -->
+          <div class="bg-zinc-900/50 border border-white/10 rounded-xl p-6 hover:border-[#FF6600]/50 transition-all duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl lg:text-2xl font-bold text-white mb-3">Náhradné diely</h3>
+            <p class="text-white/70 leading-relaxed">
+              Dodávka kvalitných originálnych aj kompatibilných náhradných dielov
+            </p>
+          </div>
+        </div>
+
+        <!-- Galéria - 3 fotky -->
+        <div class="mb-12">
+          <h3 class="text-2xl lg:text-3xl font-bold text-white mb-8 text-center">
+            Náš <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6600] to-[#ff8533]">servis</span>
+          </h3>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            {gallery.map((image, index) => (
+              <div class="group relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-white/10 hover:border-[#FF6600]/50 transition-all duration-300">
+                <img 
+                  src={image} 
+                  alt={`Servis ROYAL STROJE ${index + 1}`}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Poznámka pre zmenu obrázkov -->
+          <div class="mt-6 text-center text-white/50 text-sm">
+            <p>📸 Nahraď obrázky v kóde (riadok 5-9) cestami k tvojim fotkám</p>
+          </div>
+        </div>
+
+        <!-- Proces servisu -->
+        <div class="bg-gradient-to-br from-zinc-900 to-zinc-900/50 border border-[#FF6600]/30 rounded-2xl p-8 lg:p-12 mb-12">
+          <h3 class="text-2xl lg:text-3xl font-bold text-white mb-8 text-center">
+            Ako prebieha servis?
+          </h3>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-[#FF6600] rounded-full flex items-center justify-center shrink-0 text-white font-bold text-lg">
+                1
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white mb-2">Kontakt a diagnostika</h4>
+                <p class="text-white/70 leading-relaxed">
+                  Kontaktujte nás telefonicky alebo osobne. Opíšte problém a my vykonáme prvotné zhodnotenie.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-[#FF6600] rounded-full flex items-center justify-center shrink-0 text-white font-bold text-lg">
+                2
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white mb-2">Cenová ponuka</h4>
+                <p class="text-white/70 leading-relaxed">
+                  Po diagnostike vám poskytneme cenovú ponuku na opravu vrátane náhradných dielov.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-[#FF6600] rounded-full flex items-center justify-center shrink-0 text-white font-bold text-lg">
+                3
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white mb-2">Oprava a testovanie</h4>
+                <p class="text-white/70 leading-relaxed">
+                  Po schválení ceny vykonáme opravu a dôkladne stroj otestujeme pred odovzdaním.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-[#FF6600] rounded-full flex items-center justify-center shrink-0 text-white font-bold text-lg">
+                4
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white mb-2">Prevzatie a záruka</h4>
+                <p class="text-white/70 leading-relaxed">
+                  Odovzdáme vám plne funkčný stroj so zárukou na vykonanú prácu.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Sekcia -->
+        <div class="bg-gradient-to-br from-[#FF6600] to-[#ff8533] rounded-2xl p-8 lg:p-12 text-center">
+          <h3 class="text-3xl lg:text-4xl font-black text-white mb-4">
+            Potrebujete servis?
+          </h3>
+          <p class="text-lg lg:text-xl text-white/90 mb-6">
+            Kontaktujte nás a dohodneme si termín<br>
+            <strong>Po - Pi: 7:00 - 16:00</strong>
+          </p>
+          
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a 
+              href="tel:+421948555551"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#FF6600] font-bold rounded-full hover:scale-105 hover:shadow-2xl transition-all duration-300"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              <span>+421 948 555 551</span>
+            </a>
+
+            <a 
+              href="https://wa.me/421948555551"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-black/20 border-2 border-white text-white font-bold rounded-full hover:bg-black/30 transition-all duration-300"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+
+            <a 
+              href="mailto:info@royalstroje.sk"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-black/20 border-2 border-white text-white font-bold rounded-full hover:bg-black/30 transition-all duration-300"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

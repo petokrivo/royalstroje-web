@@ -401,14 +401,14 @@ const newsItems = [
             <div class="absolute inset-0 bg-gradient-to-br from-[#FF6600]/0 via-[#FF6600]/0 to-[#FF6600]/0 group-hover:from-[#FF6600]/10 group-hover:via-[#FF6600]/5 group-hover:to-[#FF6600]/10 transition-all duration-700 pointer-events-none"></div>
             
             <!-- Obrázok - optimalizovaná výška -->
-            <div class="relative h-46 overflow-hidden">
+            <div class="relative h-64 overflow-hidden">
               <img 
                 src={service.image} 
                 alt={service.title}
-                class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ease-out brightness-[1.15] group-hover:brightness-[1.25]"
+                class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               
               <!-- Premium badge -->
               <div class="absolute top-4 right-4 px-3 py-1.5 bg-[#FF6600] text-white text-xs font-black rounded-lg uppercase tracking-widest shadow-2xl border border-white/30 backdrop-blur-sm">
@@ -604,7 +604,7 @@ const newsItems = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         {newsItems.map((item) => (
           <div class="stagger-item group relative overflow-hidden rounded-2xl bg-black/90 backdrop-blur-xl border-2 border-white/20 hover:border-[#FF6600] transition-all duration-300 hover:shadow-2xl hover:shadow-[#FF6600]/40">
-            <div class="relative h-48 overflow-hidden">
+            <div class="relative h-52 overflow-hidden">
               <img 
                 src={item.image} 
                 alt={item.title}
@@ -653,10 +653,10 @@ const newsItems = [
               <img 
                 src={equip.image} 
                 alt={equip.alt}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
               <h3 class="absolute bottom-6 left-6 text-2xl font-black text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
                 {equip.title}
               </h3>
@@ -690,7 +690,7 @@ const newsItems = [
       <!-- Grid pre fotky prevádzky -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <!-- Placeholder pre fotky - nahraďte skutočnými obrázkmi -->
-        <div class="relative h-64 rounded-2xl overflow-hidden border-2 border-zinc-800 group">
+        <div class="relative h-72 rounded-2xl overflow-hidden border-2 border-zinc-800 group">
           <img 
             src="/images/prevadzka/foto1.webp" 
             alt="Prevádzka ROYAL STROJE - exteriér"
@@ -701,7 +701,7 @@ const newsItems = [
           <p class="absolute bottom-4 left-4 text-white font-bold text-lg">Exteriér prevádzky</p>
         </div>
 
-        <div class="relative h-64 rounded-2xl overflow-hidden border-2 border-zinc-800 group">
+        <div class="relative h-72 rounded-2xl overflow-hidden border-2 border-zinc-800 group">
           <img 
             src="/images/prevadzka/foto2.webp" 
             alt="Prevádzka ROYAL STROJE - sklad náradia"
@@ -712,7 +712,7 @@ const newsItems = [
           <p class="absolute bottom-4 left-4 text-white font-bold text-lg">Sklad náradia</p>
         </div>
 
-        <div class="relative h-64 rounded-2xl overflow-hidden border-2 border-zinc-800 group">
+        <div class="relative h-72 rounded-2xl overflow-hidden border-2 border-zinc-800 group">
           <img 
             src="/images/prevadzka/foto3.webp" 
             alt="Prevádzka ROYAL STROJE - technika"

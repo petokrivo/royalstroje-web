@@ -1,4 +1,5 @@
 ---
+// src/pages/pozicovna-naradia/index.astro
 import Layout from "../../layouts/Layout.astro";
 
 const categories = [
@@ -74,34 +75,6 @@ const benefits = [
   },
 ];
 
-const vipBenefits = [
-  { 
-    icon: "💎", 
-    title: "Zľavy až 25%", 
-    description: "Exkluzívne ceny pre VIP"
-  },
-  { 
-    icon: "🎯", 
-    title: "Priorita", 
-    description: "Prednostné rezervácie"
-  },
-  { 
-    icon: "🚛", 
-    title: "Doprava zdarma", 
-    description: "V rámci Bratislavy"
-  },
-  { 
-    icon: "⚡", 
-    title: "Express", 
-    description: "Urgentné požiadavky"
-  },
-  { 
-    icon: "📊", 
-    title: "Osobný manager", 
-    description: "Dedikovaný kontakt"
-  },
-];
-
 const newMachines = [
   { 
     title: "Makita HM1203C", 
@@ -164,10 +137,9 @@ const popularMachines = [
         width="1920"
         height="1080"
       />
-      {/* Gradient Overlays - silnejší na okrajoch aby bolo vidieť pozadie */}
+      {/* Gradient Overlays */}
       <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-black/95"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90"></div>
-      {/* Orange glow */}
       <div class="absolute inset-0 bg-[#FF6600]/5"></div>
     </div>
 
@@ -252,15 +224,15 @@ const popularMachines = [
             href={cat.url}
             class="group overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 hover:border-[#FF6600]/50 transition-all duration-300"
           >
-            {/* Image */}
-            <div class="relative h-56 overflow-hidden">
+            {/* Image - väčšia výška pre lepšie zobrazenie */}
+            <div class="relative h-64 overflow-hidden">
               <img 
                 src={cat.image} 
                 alt={cat.title}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-110"
+                class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               
               {/* Badge */}
               {cat.badge && (
@@ -341,14 +313,14 @@ const popularMachines = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {newMachines.map((machine) => (
           <div class="group bg-zinc-900 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/50 transition-all duration-300">
-            <div class="relative h-48 overflow-hidden">
+            <div class="relative h-52 overflow-hidden">
               <img 
                 src={machine.image} 
                 alt={machine.title}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-110"
+                class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
               <span class="absolute top-3 right-3 px-2 py-1 bg-[#FF6600] text-black text-xs font-black rounded">
                 NOVINKA
               </span>
@@ -392,70 +364,6 @@ const popularMachines = [
   <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
-  <!-- VIP PROGRAM -->
-  <section class="relative py-16 md:py-20 lg:py-24 overflow-hidden">
-    {/* Gradient background overlay for VIP section */}
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-yellow-500/5 to-transparent"></div>
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 left-0 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="relative max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-      <div class="text-center mb-12">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-yellow-400 to-yellow-300 text-black text-xs font-black uppercase tracking-wide rounded-full mb-4">
-          <span>👑</span>
-          VIP PROGRAM
-        </span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
-          Staňte sa <span class="bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">VIP klientom</span>
-        </h2>
-        <p class="text-white/80 text-lg max-w-2xl mx-auto">
-          Exkluzívne výhody a prémiové služby pre našich partnerov
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-10">
-        {vipBenefits.map((benefit) => (
-          <div class="bg-yellow-300/5 border border-yellow-300/30 rounded-xl p-6 text-center hover:border-yellow-300/50 hover:bg-yellow-300/10 transition-all duration-300">
-            <div class="text-4xl mb-3">{benefit.icon}</div>
-            <h4 class="font-bold text-yellow-300 text-sm mb-2">{benefit.title}</h4>
-            <p class="text-white/70 text-xs">{benefit.description}</p>
-          </div>
-        ))}
-      </div>
-
-      <div class="bg-gradient-to-br from-yellow-300/10 to-[#FF6600]/10 border border-yellow-300/30 rounded-2xl p-8 md:p-10 text-center">
-        <h3 class="text-2xl md:text-3xl font-black text-white mb-3">
-          Ako získať VIP status?
-        </h3>
-        <p class="text-white/80 text-base max-w-2xl mx-auto mb-6">
-          VIP status získate automaticky podľa objemu prenájmov alebo po osobnej konzultácii. Kontaktujte nás a pripravíme vám riešenie na mieru.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a 
-            href="tel:+421948555551"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-yellow-300 to-yellow-200 text-black font-black rounded-full hover:scale-105 transition-all shadow-xl"
-          >
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-            </svg>
-            Zavolať teraz
-          </a>
-          <a 
-            href="/kontakt"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-yellow-300/50 text-yellow-300 font-bold rounded-full hover:bg-yellow-300/10 transition-all"
-          >
-            Získať VIP status
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Separator -->
-  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
-
   <!-- POPULÁRNE STROJE -->
   <section class="py-16 md:py-20 lg:py-24">
     <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
@@ -490,205 +398,26 @@ const popularMachines = [
   <!-- Separator -->
   <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
 
-  <!-- FAQ -->
-  <section class="py-16 md:py-20 lg:py-24">
-    <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-      <div class="text-center mb-12">
-        <span class="inline-block px-4 py-1.5 bg-[#FF6600]/10 border border-[#FF6600]/30 rounded-full text-[#FF6600] text-xs font-bold uppercase tracking-wide mb-3">
-          Často kladené otázky
-        </span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
-          Máte <span class="text-[#FF6600]">otázky</span>?
-        </h2>
-        <p class="text-white/80 text-lg">
-          Odpovede na najčastejšie otázky o prenájme
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-        <div class="space-y-4">
-          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
-            <button 
-              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-              type="button"
-              aria-expanded="false"
-            >
-              <span class="font-bold text-white text-base">Ako funguje prenájom náradia?</span>
-              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
-                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
-                Prenájom je jednoduchý: zavolajte nám, vyberte si náradie, dohodnite termín. Pri preberaní podpíšete zmluvu a zložíte kauciu. Minimálna doba prenájmu je 1 deň. Náradie si môžete vyzdvihnúť osobne alebo vám ho dovezieme na stavbu.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
-            <button 
-              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-              type="button"
-              aria-expanded="false"
-            >
-              <span class="font-bold text-white text-base">Aké dokumenty potrebujem?</span>
-              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
-                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
-                Pre fyzické osoby: občiansky preukaz a druhý doklad. Pre firmy: výpis z OR, IČO a oprávnenie konať. Pri niektorých strojoch vyžadujeme strojnícky preukaz. Kauciu možno zložiť hotovosťou, kartou alebo faktúrou.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
-            <button 
-              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-              type="button"
-              aria-expanded="false"
-            >
-              <span class="font-bold text-white text-base">Poskytujete dopravu techniky?</span>
-              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
-                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
-                Áno, zabezpečujeme kompletnú dopravu vlastným vozovým parkom. Pre Bratislavu a okolie do 20 km účtujeme 30-50€ za cestu. Pre vzdalenejšie lokality vypracujeme individuálnu cenovú ponuku. VIP klienti majú dopravu v BA zdarma.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
-            <button 
-              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-              type="button"
-              aria-expanded="false"
-            >
-              <span class="font-bold text-white text-base">Môžem prenajať stroje s obsluhou?</span>
-              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
-                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
-                Samozrejme! Väčšinu ťažkej techniky poskytujeme aj s kvalifikovanou obsluhou. Cena zahŕňa hodinovú sadzbu strojníka, PHM a základné poistenie. Minimálny čas objednávky je 4 hodiny. Obsluha je dostupná aj cez víkend.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
-            <button 
-              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-              type="button"
-              aria-expanded="false"
-            >
-              <span class="font-bold text-white text-base">Čo v prípade poruchy stroja?</span>
-              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
-                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
-                Pri technickej poruche, ktorá nie je spôsobená nesprávnym používaním, okamžite poskytneme náhradný stroj bez dodatočných poplatkov. Máme non-stop servisnú linku. Pri poškodení spôsobenom užívateľom sa škoda rieši z kaucie.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item bg-zinc-950 border border-white/10 rounded-xl overflow-hidden hover:border-[#FF6600]/30 transition-all">
-            <button 
-              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-              type="button"
-              aria-expanded="false"
-            >
-              <span class="font-bold text-white text-base">Aké sú platobné možnosti?</span>
-              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#FF6600]/10 flex items-center justify-center border border-[#FF6600]/30">
-                <svg class="faq-icon w-4 h-4 text-[#FF6600] transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-            </button>
-            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-              <div class="px-6 pb-5 text-white/80 text-sm leading-relaxed">
-                Akceptujeme platbu kartou, hotovosť aj faktúru pre firmy. Kauciu možno zložiť rovnakým spôsobom. Pre verných zákazníkov ponúkame dlhodobé zmluvy s mesačným vyúčtovaním a špeciálnymi zľavami.
-              </div>
-            </div>
-          </div>
+  <!-- FINÁLNE CTA - Tmavý box ako na obrázku -->
+  <section class="relative py-16 md:py-20 lg:py-24">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+      <div class="bg-zinc-900/80 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
+        <div class="text-center mb-8">
+          <h3 class="text-3xl md:text-4xl font-black text-white mb-4">
+            Potrebujete poradiť s <span class="text-[#FF6600]">výberom</span>?
+          </h3>
+          <p class="text-white/80 text-lg mb-3 max-w-2xl mx-auto">
+            Náš tím odborníkov vám ochotne pomôže nájsť správne riešenie.
+          </p>
+          <p class="text-white/60 text-base">
+            Zavolajte alebo napíšte. Sme tu pre vás.
+          </p>
         </div>
-
-        <div class="lg:sticky lg:top-24">
-          <div class="bg-zinc-950 border border-[#FF6600]/30 rounded-2xl p-8 md:p-10">
-            <div class="mb-6 rounded-xl overflow-hidden border-2 border-[#FF6600]/20">
-              <img 
-                src="/images/faq-support.webp" 
-                alt="Potrebujete poradiť?"
-                class="w-full h-auto"
-                loading="lazy"
-              />
-            </div>
-            
-            <div class="bg-black/40 rounded-xl p-6 text-center">
-              <div class="text-4xl mb-4">🤝</div>
-              <h3 class="text-2xl font-black text-white mb-3">Potrebujete radu?</h3>
-              <p class="text-white/80 text-base mb-6">
-                Náš tím odborníkov vám ochotne pomôže s výberom vhodného náradia a techniky pre váš projekt.
-              </p>
-              
-              <a 
-                href="tel:+421948555551"
-                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold rounded-full hover:scale-105 transition-all duration-300 mb-3"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
-                </svg>
-                0948 555 551
-              </a>
-
-              <div class="flex items-center justify-center gap-2 text-white/60 text-xs">
-                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                <span>Online 24/7 • Odpovedáme do 5 minút</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Separator -->
-  <div class="h-px bg-gradient-to-r from-transparent via-[#FF6600]/50 to-transparent"></div>
-
-  <!-- FINÁLNE CTA -->
-  <section class="py-16 md:py-20 lg:py-24">
-    <div class="max-w-5xl mx-auto px-4 md:px-8">
-      <div class="bg-gradient-to-br from-[#FF6600]/10 to-transparent border-2 border-[#FF6600]/30 rounded-2xl p-8 md:p-12 text-center">
-        <div class="text-4xl md:text-5xl mb-6">🚀</div>
-        <h3 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
-          Potrebujete poradiť s <span class="text-[#FF6600]">výberom</span>?
-        </h3>
-        <p class="text-white/90 text-lg md:text-xl mb-3 max-w-2xl mx-auto">
-          Náš tím odborníkov vám ochotne pomôže nájsť správne riešenie pre váš projekt.
-        </p>
-        <p class="text-white/70 text-base mb-8">
-          Zavolajte alebo napíšte. Odpovedáme do 5 minút. Sme tu pre vás 24/7.
-        </p>
         
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
           <a 
             href="tel:+421948555551"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-lg rounded-full hover:scale-105 transition-all duration-300 shadow-xl"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-lg rounded-full hover:scale-105 transition-all duration-300"
           >
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.4 21.82 2.18 11.6 2.18 3a1 1 0 011-1H6.7a1 1 0 011 1c0 1.27.2 2.47.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
@@ -698,7 +427,7 @@ const popularMachines = [
 
           <a 
             href="mailto:info@royalstroje.sk"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-zinc-800 border-2 border-zinc-700 text-white font-bold text-lg rounded-full hover:bg-zinc-700 hover:scale-105 transition-all duration-300"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 border-2 border-white/30 text-white font-bold text-lg rounded-full hover:bg-white/20 hover:border-white/50 transition-all duration-300"
           >
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -707,7 +436,7 @@ const popularMachines = [
           </a>
         </div>
 
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
+        <div class="flex flex-wrap items-center justify-center gap-3 text-sm">
           <a href="https://wa.me/421948555551" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -716,7 +445,7 @@ const popularMachines = [
           </a>
           <a href="https://t.me/petokrivo" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
             </svg>
             Telegram
           </a>
@@ -731,37 +460,3 @@ const popularMachines = [
   </section>
 
 </Layout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach((item) => {
-      const question = item.querySelector('.faq-question');
-      const answer = item.querySelector('.faq-answer');
-      const icon = item.querySelector('.faq-icon');
-      
-      if (!question || !answer || !icon) return;
-      
-      question.addEventListener('click', () => {
-        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-        
-        document.querySelectorAll('.faq-answer').forEach(a => {
-          a.style.maxHeight = '0';
-        });
-        document.querySelectorAll('.faq-icon').forEach(i => {
-          i.style.transform = 'rotate(0deg)';
-        });
-        document.querySelectorAll('.faq-question').forEach(q => {
-          q.setAttribute('aria-expanded', 'false');
-        });
-        
-        if (!isOpen) {
-          answer.style.maxHeight = `${answer.scrollHeight}px`;
-          icon.style.transform = 'rotate(180deg)';
-          question.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-  });
-</script>
