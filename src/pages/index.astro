@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ProductShowcase from "../components/ProductShowcase.astro";
 
 const PHONE = "+421 948 555 551";
 const EMAIL = "info@royalstroje.sk";
@@ -144,6 +145,12 @@ const newsItems = [
     }
   </script>
 
+  <!-- 🆕 PRODUCT SHOWCASE - First thing after header -->
+  <ProductShowcase />
+
+  <!-- Divider -->
+  <div class="h-1 bg-gradient-to-r from-transparent via-[#FF6600] to-transparent"></div>
+
   <!-- HERO SEKCIA - Centrovaný obsah -->
   <section class="relative min-h-[55vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
@@ -170,7 +177,7 @@ const newsItems = [
 
         <!-- Hlavný nadpis -->
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)]">
-          Požičovňa <span class="text-[#FF6600]">náradia</span> a stavebných <span class="text-[#FF6600]">strojov</span>
+          Vyberte si z našej <span class="text-[#FF6600]">ponuky</span>
         </h1>
 
         <!-- Popis -->
@@ -287,7 +294,7 @@ const newsItems = [
       </div>
     </div>
   </section>
-
+  
   <!-- PREVÁDZKA A OTVÁRACIE HODINY - Tmavý pásik s oranžovo-čiernym akcentom -->
   <section class="py-6 md:py-7 relative overflow-hidden">
     <!-- Tmavé pozadie -->
