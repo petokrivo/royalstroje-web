@@ -28,12 +28,12 @@ export default {
 
       // 📏 SPACING & SIZING
       spacing: {
-        '18': '4.5rem',   // 72px
-        '70': '70px',     // Header scrolled
-        '88': '22rem',    // 352px
-        '90': '90px',     // Header default
-        '128': '32rem',   // 512px
-        '144': '36rem'    // 576px
+        '18': '4.5rem',
+        '70': '70px',
+        '88': '22rem',
+        '90': '90px',
+        '128': '32rem',
+        '144': '36rem'
       },
 
       // 📐 MAX WIDTH
@@ -72,21 +72,21 @@ export default {
       },
 
       fontSize: {
-        'xxs': ['0.625rem', { lineHeight: '0.875rem' }],  // 10px
-        '2xs': ['0.6875rem', { lineHeight: '1rem' }],     // 11px
-        'xs': ['0.75rem', { lineHeight: '1rem' }],        // 12px
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],    // 14px
-        'base': ['1rem', { lineHeight: '1.5rem' }],       // 16px
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],    // 18px
-        'xl': ['1.25rem', { lineHeight: '1.75rem' }],     // 20px
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],        // 24px
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],   // 30px
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],     // 36px
-        '5xl': ['3rem', { lineHeight: '1' }],             // 48px
-        '6xl': ['3.75rem', { lineHeight: '1' }],          // 60px
-        '7xl': ['4.5rem', { lineHeight: '1' }],           // 72px
-        '8xl': ['6rem', { lineHeight: '1' }],             // 96px
-        '9xl': ['8rem', { lineHeight: '1' }]              // 128px
+        'xxs': ['0.625rem', { lineHeight: '0.875rem' }],
+        '2xs': ['0.6875rem', { lineHeight: '1rem' }],
+        'xs': ['0.75rem', { lineHeight: '1rem' }],
+        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+        'base': ['1rem', { lineHeight: '1.5rem' }],
+        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+        '5xl': ['3rem', { lineHeight: '1' }],
+        '6xl': ['3.75rem', { lineHeight: '1' }],
+        '7xl': ['4.5rem', { lineHeight: '1' }],
+        '8xl': ['6rem', { lineHeight: '1' }],
+        '9xl': ['8rem', { lineHeight: '1' }]
       },
 
       fontWeight: {
@@ -114,14 +114,14 @@ export default {
       // 🎭 BORDER RADIUS
       borderRadius: {
         'none': '0',
-        'sm': '0.25rem',    // 4px
-        'DEFAULT': '0.5rem', // 8px
-        'md': '0.5rem',     // 8px
-        'lg': '0.625rem',   // 10px
-        'xl': '0.75rem',    // 12px
-        '2xl': '1rem',      // 16px
-        '3xl': '1.5rem',    // 24px
-        '4xl': '2rem',      // 32px
+        'sm': '0.25rem',
+        'DEFAULT': '0.5rem',
+        'md': '0.5rem',
+        'lg': '0.625rem',
+        'xl': '0.75rem',
+        '2xl': '1rem',
+        '3xl': '1.5rem',
+        '4xl': '2rem',
         'full': '9999px'
       },
 
@@ -135,7 +135,6 @@ export default {
         '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
         'inner': 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
         'none': 'none',
-        // Custom orange shadows
         'orange-sm': '0 4px 15px rgba(255, 102, 0, 0.3)',
         'orange-md': '0 6px 20px rgba(255, 102, 0, 0.5)',
         'orange-lg': '0 8px 30px rgba(255, 102, 0, 0.4)',
@@ -156,9 +155,8 @@ export default {
         '3xl': '64px'
       },
 
-      // 🎬 ANIMATIONS
+      // 🎬 ANIMATIONS - 🆕 BLOB ANIMATION ADDED HERE
       keyframes: {
-        // Pulse animácia
         pulse: {
           '0%, 100%': { 
             opacity: '1',
@@ -170,7 +168,6 @@ export default {
           }
         },
         
-        // Ping animácia
         ping: {
           '75%, 100%': {
             transform: 'scale(1.5)',
@@ -178,7 +175,6 @@ export default {
           }
         },
         
-        // Feature pulse (hero sekcia)
         featurePulse: {
           '0%, 100%': {
             transform: 'scale(1)',
@@ -190,7 +186,6 @@ export default {
           }
         },
         
-        // Ring pulse (quick sidebar)
         ringPulse: {
           '0%, 100%': {
             opacity: '0',
@@ -202,19 +197,16 @@ export default {
           }
         },
         
-        // Fade in
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' }
         },
         
-        // Fade out
         fadeOut: {
           '0%': { opacity: '1' },
           '100%': { opacity: '0' }
         },
         
-        // Slide in from left
         slideInLeft: {
           '0%': { 
             transform: 'translateX(-100%)',
@@ -226,7 +218,6 @@ export default {
           }
         },
         
-        // Slide in from right
         slideInRight: {
           '0%': { 
             transform: 'translateX(100%)',
@@ -238,7 +229,6 @@ export default {
           }
         },
         
-        // Slide in from top
         slideInTop: {
           '0%': { 
             transform: 'translateY(-100%)',
@@ -250,7 +240,6 @@ export default {
           }
         },
         
-        // Slide in from bottom
         slideInBottom: {
           '0%': { 
             transform: 'translateY(100%)',
@@ -262,7 +251,6 @@ export default {
           }
         },
         
-        // Bounce
         bounce: {
           '0%, 100%': {
             transform: 'translateY(-25%)',
@@ -274,7 +262,6 @@ export default {
           }
         },
         
-        // Scale up
         scaleUp: {
           '0%': { 
             transform: 'scale(0.95)',
@@ -286,21 +273,30 @@ export default {
           }
         },
         
-        // Rotate
         rotate: {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' }
+        },
+
+        // 🆕 NEW: Blob animation for background
+        blob: {
+          '0%, 100%': {
+            transform: 'translate(0px, 0px) scale(1)'
+          },
+          '33%': {
+            transform: 'translate(50px, -70px) scale(1.2)'
+          },
+          '66%': {
+            transform: 'translate(-40px, 40px) scale(0.85)'
+          }
         }
       },
 
       animation: {
-        // Basic animations
         'spin': 'rotate 1s linear infinite',
         'ping': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
         'pulse': 'pulse 2s ease-in-out infinite',
         'bounce': 'bounce 1s infinite',
-        
-        // Custom animations
         'feature-pulse': 'featurePulse 3s ease-in-out infinite',
         'ring-pulse': 'ringPulse 3s infinite',
         'fade-in': 'fadeIn 0.3s ease-in',
@@ -310,12 +306,13 @@ export default {
         'slide-in-top': 'slideInTop 0.5s ease-out',
         'slide-in-bottom': 'slideInBottom 0.5s ease-out',
         'scale-up': 'scaleUp 0.3s ease-out',
-        
-        // Custom durations
         'pulse-slow': 'pulse 3s ease-in-out infinite',
         'pulse-fast': 'pulse 1s ease-in-out infinite',
         'spin-slow': 'rotate 3s linear infinite',
-        'spin-fast': 'rotate 0.5s linear infinite'
+        'spin-fast': 'rotate 0.5s linear infinite',
+        
+        // 🆕 NEW: Blob animation
+        'blob': 'blob 20s ease-in-out infinite'
       },
 
       // ⏱️ TRANSITION
@@ -374,41 +371,24 @@ export default {
     }
   },
 
-  // 🔌 PLUGINS
-  plugins: [
-    // Pre lepšiu typografiu (optional)
-    // require('@tailwindcss/typography'),
-    
-    // Pre forms styling (optional)
-    // require('@tailwindcss/forms'),
-    
-    // Pre aspect ratio (optional, už je v core v Tailwind 3.4+)
-    // require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [],
 
-  // ⚠️ SAFELIST - triedy ktoré sa nemajú purgovať
   safelist: [
-    // Animácie
     'animate-pulse',
     'animate-ping',
     'animate-feature-pulse',
     'animate-ring-pulse',
     'animate-fade-in',
     'animate-bounce',
-    
-    // Z-index
+    'animate-blob',
     'z-800',
     'z-900',
     'z-999',
     'z-1000',
     'z-1001',
-    
-    // Dynamické farby
     'bg-primary-orange',
     'text-primary-orange',
     'border-primary-orange',
-    
-    // Shadows
     'shadow-orange-sm',
     'shadow-orange-md',
     'shadow-orange-lg',

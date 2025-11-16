@@ -146,6 +146,7 @@ const quickCategories = [
     <Header />
 
     <!-- QUICK SIDEBAR - LEN NA DESKTOP XL+ (1280px+) -->
+    <!-- COMMENTED OUT - RÝCHLY PRÍSTUP
     <aside id="quickSidebar" class="quick-sidebar">
       <div class="quick-wrap">
         <button id="quickTrigger" class="quick-trigger" aria-label="Rýchly prístup">
@@ -219,6 +220,7 @@ const quickCategories = [
         </div>
       </div>
     </aside>
+    -->
 
     <main id="main" class="relative z-10">
       <slot />
@@ -235,6 +237,7 @@ const quickCategories = [
     </button>
 
     <!-- ROYAL ASISTENT -->
+    <!-- COMMENTED OUT - ROYAL ASISTENT
     <div id="royalAssistant" class="royal-assist">
       <button id="assistantBtn" class="assist-btn" aria-label="Royal Asistent - WhatsApp">
         <span class="assist-glow"></span>
@@ -246,9 +249,11 @@ const quickCategories = [
       </button>
       <span class="assist-label">Royal Asistent</span>
     </div>
+    -->
 
     <style>
       /* QUICK SIDEBAR */
+      /* COMMENTED OUT - RÝCHLY PRÍSTUP STYLES
       .quick-sidebar{display:none;position:fixed;left:0;top:30%;z-index:900;transition:all .5s;opacity:1}
       .quick-sidebar.hidden{transform:translateX(-100%);opacity:0}
       .quick-trigger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
@@ -327,6 +332,7 @@ const quickCategories = [
         transition:all .3s;box-shadow:0 4px 20px rgba(255,102,0,.3)}
       .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,102,0,.5)}
       .cta-btn svg{width:16px;height:16px}
+      */
       
       /* BACK TO TOP */
       .back-top{position:fixed;bottom:20px;right:20px;width:54px;height:54px;
@@ -342,6 +348,7 @@ const quickCategories = [
         animation:pulse 2s infinite;opacity:0}
       
       /* ROYAL ASISTENT */
+      /* COMMENTED OUT - ROYAL ASISTENT STYLES
       .royal-assist{display:none;position:fixed;bottom:32px;left:32px;z-index:800;
         flex-direction:column;align-items:center;gap:10px}
       .assist-btn{width:68px;height:68px;border-radius:20px;
@@ -361,15 +368,18 @@ const quickCategories = [
       .assist-label{padding:6px 14px;border-radius:10px;font-size:10px;font-weight:800;
         text-transform:uppercase;letter-spacing:.8px;color:#FF6600;
         background:rgba(0,0,0,.8);border:1px solid rgba(255,102,0,.3);backdrop-filter:blur(10px)}
+      */
       
       @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.2)}}
       @keyframes ping{75%,100%{transform:scale(1.5);opacity:0}}
       
       /* RESPONSIVE */
+      /* COMMENTED OUT - RESPONSIVE RULES FOR COMMENTED COMPONENTS
       @media (min-width:1280px){
         .quick-sidebar{display:block}
         .royal-assist{display:flex}
       }
+      */
       
       @media (min-width:768px){
         .back-top{width:60px;height:60px;bottom:32px;right:32px}
@@ -377,10 +387,12 @@ const quickCategories = [
       }
       
       /* SCROLLBAR */
+      /* COMMENTED OUT - SCROLLBAR FOR QUICK PANEL
       .quick-panel::-webkit-scrollbar{width:8px}
       .quick-panel::-webkit-scrollbar-track{background:rgba(0,0,0,.3)}
       .quick-panel::-webkit-scrollbar-thumb{background:rgba(255,102,0,.4);border-radius:4px}
       .quick-panel::-webkit-scrollbar-thumb:hover{background:rgba(255,102,0,.6)}
+      */
     </style>
 
     <script is:inline>
@@ -402,6 +414,7 @@ const quickCategories = [
         }
 
         // Quick Sidebar (len desktop XL+)
+        /* COMMENTED OUT - QUICK SIDEBAR FUNCTIONALITY
         const quickSidebar = document.getElementById('quickSidebar');
         const quickTrigger = document.getElementById('quickTrigger');
         const quickPanel = document.getElementById('quickPanel');
@@ -455,12 +468,15 @@ const quickCategories = [
             });
           });
         }
+        */
 
         // Royal Assistant
+        /* COMMENTED OUT - ROYAL ASSISTANT FUNCTIONALITY
         const assistBtn = document.getElementById('assistantBtn');
         assistBtn?.addEventListener('click', () => {
           window.open('https://wa.me/421948555551?text=Dobrý%20deň,%20potrebujem%20poradiť%20s%20výberom%20náradia', '_blank');
         });
+        */
       });
     </script>
   </body>

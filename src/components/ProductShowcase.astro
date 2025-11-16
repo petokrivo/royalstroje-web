@@ -184,14 +184,53 @@ const categories = [
 ---
 
 <section class="relative bg-black py-12 lg:py-16" id="productShowcase">
-  <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-    
-    <!-- Section Header -->
-    <div class="text-center mb-10">
 
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-3 leading-tight">
-        Prenájom náradia a <span class="text-[#FF6600]">stavebných strojov</span>
-      </h2>
+  <div class="max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 relative z-10">
+    
+    <!-- 🔥 ANIMATED TITLE SECTION -->
+    <div class="relative mb-12 lg:mb-16 overflow-hidden rounded-3xl">
+      
+      <!-- Animated Background for Title Only -->
+      <div class="absolute inset-0 pointer-events-none">
+        <!-- Base gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#1a0a00] via-black to-[#0d0500]"></div>
+        
+        <!-- Horizontal scan lines -->
+        <div class="scan-line scan-line-1"></div>
+        <div class="scan-line scan-line-2"></div>
+        <div class="scan-line scan-line-3"></div>
+        
+        <!-- Moving light beams -->
+        <div class="light-beam light-beam-1"></div>
+        <div class="light-beam light-beam-2"></div>
+        
+        <!-- Pulsing orange glow orbs -->
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        
+        <!-- Animated border edges -->
+        <div class="border-glow border-top"></div>
+        <div class="border-glow border-bottom"></div>
+        
+        <!-- Grid overlay -->
+        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(rgba(255,102,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,102,0,0.6) 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <!-- Radial gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-radial from-transparent via-black/20 to-black/80"></div>
+      </div>
+      
+      <!-- Title Content -->
+      <div class="relative z-10 text-center py-12 lg:py-16 px-6">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
+          <span class="inline-block title-word title-word-1">Požičovňa náradia</span>
+          {' '}
+          <span class="inline-block title-word title-word-2 text-[#FF6600]">a stavebnej techniky</span>
+        </h2>
+        
+        <!-- Decorative underline -->
+
+      </div>
+      
     </div>
 
     <!-- Main Content: Categories + Products Grid -->
@@ -300,6 +339,204 @@ const categories = [
   .product-card:nth-child(4) { animation-delay: 0.2s; }
   .product-card:nth-child(5) { animation-delay: 0.25s; }
   .product-card:nth-child(6) { animation-delay: 0.3s; }
+
+  /* 🔥 TITLE SECTION ANIMATIONS */
+  
+  /* Title words fade in */
+  .title-word {
+    animation: titleFadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .title-word-1 { animation-delay: 0.1s; }
+  .title-word-2 { animation-delay: 0.3s; }
+  .title-word-3 { animation-delay: 0.5s; }
+  .title-word-4 { animation-delay: 0.7s; }
+  
+  @keyframes titleFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Horizontal scan lines */
+  .scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 102, 0, 0.4) 30%, 
+      rgba(255, 102, 0, 0.8) 50%, 
+      rgba(255, 102, 0, 0.4) 70%, 
+      transparent 100%
+    );
+    opacity: 0.7;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+  }
+
+  .scan-line-1 {
+    top: 20%;
+    animation: scanMove 6s linear infinite;
+  }
+
+  .scan-line-2 {
+    top: 50%;
+    animation: scanMove 8s linear infinite;
+    animation-delay: 2s;
+  }
+
+  .scan-line-3 {
+    top: 75%;
+    animation: scanMove 7s linear infinite;
+    animation-delay: 4s;
+  }
+
+  @keyframes scanMove {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    90% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(200px);
+      opacity: 0;
+    }
+  }
+
+  /* Light beams */
+  .light-beam {
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 102, 0, 0.2) 50%, 
+      transparent
+    );
+    transform: skewX(-15deg);
+    opacity: 0;
+  }
+
+  .light-beam-1 {
+    left: -250px;
+    animation: beamSweep 8s ease-in-out infinite;
+  }
+
+  .light-beam-2 {
+    left: -250px;
+    animation: beamSweep 10s ease-in-out infinite;
+    animation-delay: 4s;
+  }
+
+  @keyframes beamSweep {
+    0%, 100% {
+      left: -250px;
+      opacity: 0;
+    }
+    50% {
+      left: calc(100% + 250px);
+      opacity: 0.6;
+    }
+  }
+
+  /* Pulsing glow orbs */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+  }
+
+  .glow-orb-1 {
+    top: 10%;
+    left: 15%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.6) 0%, transparent 70%);
+    animation: orbPulse 4s ease-in-out infinite;
+  }
+
+  .glow-orb-2 {
+    bottom: 10%;
+    right: 15%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 133, 51, 0.6) 0%, transparent 70%);
+    animation: orbPulse 5s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  @keyframes orbPulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.2);
+    }
+  }
+
+  /* Animated border edges */
+  .border-glow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 102, 0, 0.8) 50%, 
+      transparent 100%
+    );
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.8);
+  }
+
+  .border-top {
+    top: 0;
+    animation: borderSlide 3s ease-in-out infinite;
+  }
+
+  .border-bottom {
+    bottom: 0;
+    animation: borderSlide 3s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes borderSlide {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scaleX(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
+
+  /* Performance optimization */
+  .scan-line,
+  .light-beam,
+  .glow-orb,
+  .border-glow {
+    will-change: transform, opacity;
+  }
 </style>
 
 <script define:vars={{ productData, categories }}>
@@ -323,60 +560,60 @@ const categories = [
   }
 
   // Render product card
-function renderProductCard(product) {
-  return `
-    <div class="product-card group relative bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:border-[#FF6600]/50 hover:shadow-2xl hover:shadow-[#FF6600]/20 transition-all duration-300 hover:-translate-y-1">
-      <!-- Product Image -->
-      <div class="relative h-56 bg-white overflow-hidden">
-        <img 
-          src="${product.image}" 
-          alt="${product.name}"
-          class="w-full h-full object-contain object-center p-4 group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
-          onerror="this.src='/images/products/placeholder.webp'"
-        />
-        <!-- Price Badge - Bottom Left -->
-        <div class="absolute bottom-3 left-3 px-3 py-1.5 bg-[#FF6600] text-white text-sm font-black rounded-lg shadow-xl">
-          ${product.pricePerDay}€/deň
+  function renderProductCard(product) {
+    return `
+      <div class="product-card group relative bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:border-[#FF6600]/50 hover:shadow-2xl hover:shadow-[#FF6600]/20 transition-all duration-300 hover:-translate-y-1">
+        <!-- Product Image -->
+        <div class="relative h-56 bg-white overflow-hidden">
+          <img 
+            src="${product.image}" 
+            alt="${product.name}"
+            class="w-full h-full object-contain object-center p-4 group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+            onerror="this.src='/images/products/placeholder.webp'"
+          />
+          <!-- Price Badge - Bottom Left -->
+          <div class="absolute bottom-3 left-3 px-3 py-1.5 bg-[#FF6600] text-white text-sm font-black rounded-lg shadow-xl">
+            ${product.pricePerDay}€/deň
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="p-5">
+          <h3 class="text-white font-bold text-lg mb-2 group-hover:text-[#FF6600] transition-colors duration-300 line-clamp-2">
+            ${product.name}
+          </h3>
+          <p class="text-white/60 text-sm mb-4">${product.category}</p>
+
+          <!-- CTA Buttons -->
+          <div class="space-y-2">
+            <button
+              type="button"
+              class="reserve-btn w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-sm rounded-lg hover:shadow-lg hover:shadow-[#FF6600]/50 transition-all duration-300"
+              data-product-id="${product.id}"
+              data-product-name="${product.name}"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+              <span>REZERVOVAŤ</span>
+            </button>
+
+            <button
+              type="button"
+              class="details-btn w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 text-white font-semibold text-sm rounded-lg hover:bg-white/10 hover:border-[#FF6600]/30 transition-all duration-300"
+              data-product-id="${product.id}"
+            >
+              <span>Technické parametre</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-
-      <!-- Product Info -->
-      <div class="p-5">
-        <h3 class="text-white font-bold text-lg mb-2 group-hover:text-[#FF6600] transition-colors duration-300 line-clamp-2">
-          ${product.name}
-        </h3>
-        <p class="text-white/60 text-sm mb-4">${product.category}</p>
-
-        <!-- CTA Buttons -->
-        <div class="space-y-2">
-          <button
-            type="button"
-            class="reserve-btn w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#FF6600] to-[#ff8533] text-white font-bold text-sm rounded-lg hover:shadow-lg hover:shadow-[#FF6600]/50 transition-all duration-300"
-            data-product-id="${product.id}"
-            data-product-name="${product.name}"
-          >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-            </svg>
-            <span>REZERVOVAŤ</span>
-          </button>
-
-          <button
-            type="button"
-            class="details-btn w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 text-white font-semibold text-sm rounded-lg hover:bg-white/10 hover:border-[#FF6600]/30 transition-all duration-300"
-            data-product-id="${product.id}"
-          >
-            <span>Technické parametre</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-}
+    `;
+  }
 
   // Render products
   function renderProducts() {
@@ -454,8 +691,6 @@ function renderProductCard(product) {
     document.querySelectorAll('.details-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const productId = e.currentTarget.dataset.productId;
-        // Navigate to product detail page (you'll need to create these routes)
-        // For now, we'll just log it
         console.log(`View details for product ${productId}`);
         alert('Stránka s detailami produktu bude čoskoro dostupná');
       });
